@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
+import axios from "axios";
 
 
 const products = [
@@ -28,7 +29,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://5.35.13.72:8000/web-data', {
+        axios('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
