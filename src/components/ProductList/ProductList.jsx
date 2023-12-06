@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
-import axios from "axios";
 
 
 
@@ -35,7 +34,7 @@ const ProductList = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data) // Используйте JSON.stringify для преобразования данных в строку JSON
+            body: JSON.stringify({ data: data }) // Убедитесь, что передаете правильные данные
         })
             .then(response => response.json()) // Преобразование ответа в JSON
             .then(data => {
