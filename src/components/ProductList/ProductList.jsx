@@ -28,15 +28,15 @@ const ProductList = () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
-            queryId,
+
         }
-        tg.sendData(fetch('http://5.35.13.72:8000/web-data', {
+        fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
-        }))
+        })
 
 
 
