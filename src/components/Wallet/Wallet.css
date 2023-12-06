@@ -1,5 +1,5 @@
 .wallet {
-    background: #fff;
+    background: var(--tg-theme-bg-color);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 350px; /* Или другой подходящий размер */
@@ -40,7 +40,7 @@
 .transaction-history {
     margin-top: 20px;
 }
-/* Добавляется в Wallet.css */
+
 
 .currency {
     display: flex;
@@ -56,5 +56,5 @@
 .currency-amount,
 .currency-usd-value {
     font-size: 0.9em;
-    color: #666;
+    color: var(--tg-theme-text-color);
 }
