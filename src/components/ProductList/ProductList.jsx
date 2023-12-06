@@ -34,7 +34,7 @@ const ProductList = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ data: data }) // Убедитесь, что передаете правильные данные
+            body: JSON.stringify({ data }) // Убедитесь, что передаете правильные данные
         })
             .then(response => response.json()) // Преобразование ответа в JSON
             .then(data => {
