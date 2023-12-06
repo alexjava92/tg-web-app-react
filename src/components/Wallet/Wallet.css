@@ -1,0 +1,60 @@
+.wallet {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Или другой подходящий размер */
+    margin: auto;
+    padding: 20px;
+}
+
+.wallet-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.actions button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.currencies {
+    margin-top: 20px;
+}
+
+.currency {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.transaction-history {
+    margin-top: 20px;
+}
+/* Добавляется в Wallet.css */
+
+.currency {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.currency-name {
+    font-weight: bold;
+}
+
+.currency-amount,
+.currency-usd-value {
+    font-size: 0.9em;
+    color: #666;
+}

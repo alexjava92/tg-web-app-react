@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
 import Form from "./components/Form/Form";
+import Wallet from "./components/Wallet/Wallet";
 
 
 
@@ -21,6 +22,7 @@ function App() {
             <Routes>
                 <Route index element={<ProductList/>}/>
                 <Route path={'/form'} element={<Form/>}/>
+                <Route path={'/wallet'} element={<Wallet/>}/>
             </Routes>
         </div>
     );
