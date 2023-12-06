@@ -25,7 +25,7 @@ const ProductList = () => {
 
 
     const onSendData = useCallback(() => {
-
+        tg.sendData(JSON.stringify("data"))
         fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
