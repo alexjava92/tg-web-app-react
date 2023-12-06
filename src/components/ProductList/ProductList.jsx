@@ -36,7 +36,12 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
             },
             data: data  // Используйте data, а не body
+        }).then(response => {
+            console.log('Ответ сервера:', response.data);
         })
+            .catch(error => {
+                console.error('Ошибка запроса:', error);
+            });
 
     }, [addedItems])
 
