@@ -40,11 +40,11 @@ const ProductList = () => {
 
     }, [addedItems])
 
-    useEffect(() => {
+    useCallback(() => {
         tg.onEvent('mainButtonClicked', onSendData)
-       /* return () => {
+        return () => {
             tg.offEvent('mainButtonClicked', onSendData)
-        }*/
+        }
     }, [onSendData])
 
     const onAdd = (product) => {
