@@ -30,19 +30,21 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        axios({
+        fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
-            url: 'http://5.35.13.72:8000/web-data',
             headers: {
                 'Content-Type': 'application/json',
             },
-            data: tg.sendData(JSON.stringify(data))  // Используйте data, а не body
-        }).then(response => {
-            console.log('Ответ сервера:', response.data);
+            body: JSON.stringify(data) // Используйте JSON.stringify для преобразования данных в строку JSON
         })
-            .catch(error => {
-                console.error('Ошибка запроса:', error);
+            .then(response => response.json()) // Преобразование ответа в JSON
+            .then(data => {
+                console.log('Успешно:', data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
             });
+
 
     }, [addedItems])
 
