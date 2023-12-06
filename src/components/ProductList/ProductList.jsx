@@ -5,6 +5,7 @@ import {useTelegram} from "../../hooks/useTelegram";
 import axios from "axios";
 
 
+
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
     {id: '2', title: 'Джинсы', price: 1000, description: 'Синего цвета, прямые'},
@@ -35,7 +36,7 @@ const ProductList = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            data: JSON.stringify(data)  // Используйте data, а не body
+            data: tg.sendData(JSON.stringify(data))  // Используйте data, а не body
         }).then(response => {
             console.log('Ответ сервера:', response.data);
         })
@@ -43,14 +44,14 @@ const ProductList = () => {
                 console.error('Ошибка запроса:', error);
             });
 
-    }, [])
+    }, [addedItems])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
         return () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
-    }, [])
+    }, [onSendData])
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
