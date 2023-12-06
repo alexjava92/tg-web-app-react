@@ -38,7 +38,7 @@ const ProductList = () => {
             body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
         })
 
-    }, [addedItems])
+    }, [data])
 
     useCallback(() => {
         tg.onEvent('mainButtonClicked', onSendData)
