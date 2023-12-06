@@ -20,6 +20,8 @@
 }
 
 .actions button {
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
     margin: 5px;
     padding: 10px 20px;
     border: none;
