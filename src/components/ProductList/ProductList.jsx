@@ -49,7 +49,7 @@ const ProductList = () => {
     }, [addedItems])
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
+        tg.onEvent('mainButtonClicked', onSendData())
         return () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
