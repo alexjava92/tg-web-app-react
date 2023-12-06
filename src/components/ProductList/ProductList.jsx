@@ -31,7 +31,7 @@ const ProductList = () => {
         }
         axios({
             method: 'POST',
-            url: 'http://5.35.13.72:8000/web-data',
+            url: 'https://5.35.13.72:8000/web-data',
             headers: {
                 'Content-Type': 'application/json',
             },
