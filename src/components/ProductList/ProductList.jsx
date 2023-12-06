@@ -25,9 +25,9 @@ const ProductList = () => {
 
     const onSendData = useCallback(() => {
         const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
-            queryId,
+            products: 'addedItems',
+            totalPrice: 'getTotalPrice(addedItems)',
+            queryId:111,
         }
         fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
