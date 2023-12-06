@@ -22,14 +22,14 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
-    const data = {
-        products: addedItems,
-        totalPrice: getTotalPrice(addedItems),
-        queryId,
-    }
+
 
     const onSendData = useCallback(() => {
-
+        const data = {
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+            queryId,
+        }
         fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
