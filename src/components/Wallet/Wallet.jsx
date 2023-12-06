@@ -17,8 +17,8 @@ const Wallet = () => {
                 <div className="balance">{dummyBalance} $</div>
                 <div className="actions">
                     <button onClick={() => {}}>Отправить</button>
-                    <button onClick={() => {}}>Обменять</button>
-                    <button onClick={() => {}}>Продать</button>
+                    <button onClick={() => {}}>Получить</button>
+
                 </div>
             </div>
             <div className="currencies">
