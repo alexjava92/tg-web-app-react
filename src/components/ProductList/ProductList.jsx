@@ -25,16 +25,16 @@ const ProductList = () => {
 
     const onSendData = useCallback(() => {
         const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
-            queryId,
+            products: 'addedItems',
+            totalPrice: 'getTotalPrice(addedItems)',
+            queryId: 123,
         }
         fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ data }) // Убедитесь, что передаете правильные данные
+            body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
         })
             .then(response => response.json()) // Преобразование ответа в JSON
             .then(data => {
