@@ -35,7 +35,7 @@ const ProductList = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            data: data  // Используйте data, а не body
+            data: JSON.stringify(data)  // Используйте data, а не body
         }).then(response => {
             console.log('Ответ сервера:', response.data);
         })
@@ -43,7 +43,7 @@ const ProductList = () => {
                 console.error('Ошибка запроса:', error);
             });
 
-    }, [addedItems])
+    }, [])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
