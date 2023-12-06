@@ -30,28 +30,23 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://5.35.13.72:8000/web-data', {
+        tg.sendData(fetch('http://5.35.13.72:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
-        })
-            .then(response => response.json()) // Преобразование ответа в JSON
-            .then(data => {
-                console.log('Успешно:', data);
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-            });
+        }))
+
+
 
 
     }, [addedItems])
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', tg.sendData(onSendData))
+        tg.onEvent('mainButtonClicked', onSendData)
         return () => {
-            tg.offEvent('mainButtonClicked', tg.sendData(onSendData))
+            tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
 
