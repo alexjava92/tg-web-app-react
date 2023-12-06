@@ -29,13 +29,15 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        axios('http://5.35.13.72:8000/web-data', {
+        axios({
             method: 'POST',
+            url: 'http://5.35.13.72:8000/web-data',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            data: data  // Используйте data, а не body
         })
+
     }, [addedItems])
 
     useEffect(() => {
