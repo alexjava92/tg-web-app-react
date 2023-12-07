@@ -7,7 +7,8 @@
 }
 
 .body p {
-    border: 1px solid var(--tg-theme-secondary-bg-color); /* Рамка вокруг адреса */
+    margin: 5px;
+    border: 2px solid var(--tg-theme-secondary-bg-color); /* Рамка вокруг адреса */
     padding: 10px; /* Отступы вокруг адреса */
 }
 
