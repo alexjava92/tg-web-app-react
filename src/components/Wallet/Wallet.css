@@ -1,11 +1,11 @@
 .wallet {
-    background: var(--tg-theme-secondary-bg-color);
+    background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
-    border-radius: 10px;
+    border-radius: 10px var(--tg-theme-secondary-bg-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 95%; /* Или другой подходящий размер */
     margin: auto;
-    padding: 5px;
+    padding: 15px;
 }
 
 .wallet-header {
