@@ -16,26 +16,16 @@ const BitcoinAddress = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleCopyAddress = () => {
-        const clipboard = new ClipboardJS('.copy-button', {
-            text: function () {
-                return address;
-            },
-        });
-
-        setIsButtonDisabled(true);
-
-        clipboard.on('success', function (e) {
-            console.log('Address copied to clipboard:', e.text);
-            setIsButtonDisabled(false);
-            toast.success('Адрес скопирован в буфер обмена');
-        });
-
-        clipboard.on('error', function (e) {
-            console.error('Error copying address to clipboard:', e.text);
-            setIsButtonDisabled(false);
-        });
-
-        clipboard.destroy();
+        navigator.clipboard.writeText(address)
+            .then(() => {
+                console.log('Address copied to clipboard:', address);
+                setIsButtonDisabled(false);
+                toast.success('Адрес скопирован в буфер обмена');
+            })
+            .catch((error) => {
+                console.error('Error copying address to clipboard:', error);
+                setIsButtonDisabled(false);
+            });
     };
 
     backButton.onClick(() => {
