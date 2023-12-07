@@ -12,63 +12,67 @@ const BitcoinAddress = () => {
     const navigate = useNavigate();
     const [address, setAddress] = useState('');
 
+    const handleCopyAddress = async () => {
+        try {
+            await navigator.clipboard.writeText(address);
 
+            console.log('Address copied to clipboard:', address);
+
+            // Показываем уведомление об успешном копировании
+            toast.success('Адрес скопирован', {
+                position: 'top-center',
+                autoClose: 300, // Закрытие через 3 секунды
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                    background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
+                    color: 'var(--tg-theme-text-color)', // Задайте цвет текста
+                },
+            });
+        } catch (error) {
+            console.error('Error copying address to clipboard:', error);
+        }
+    };
 
     useEffect(() => {
-        const data = {
-            chatId: chatId,
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ chatId }),
+                });
+
+                if (response.ok) {
+                    const responseData = await response.json();
+                    const newAddress = responseData.address.newAddress;
+                    setAddress(newAddress);
+                    console.log('Получен адрес:', newAddress);
+                } else {
+                    console.error('Server returned an error:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching data from the server:', error);
+            }
         };
 
-        fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((responseData) => {
-                // responseData - это объект, который вернул сервер
-                const newAddress = responseData.address.newAddress;
-                setAddress(newAddress); // Установка нового значения в состояние
-                console.log('Получен адрес:', newAddress);
-            })
-            .catch((error) => {
-                console.error('Ошибка при выполнении запроса:', error);
-            });
+        fetchData();
+    }, [chatId]);
+
+    useEffect(() => {
         tg.MainButton.onClick(handleCopyAddress);
 
         return () => {
             tg.MainButton.offClick(handleCopyAddress);
             tg.MainButton.hide();
         };
+    }, [tg.MainButton, handleCopyAddress]);
 
-    }, [chatId]);
 
-    const handleCopyAddress = () => {
-        navigator.clipboard
-            .writeText(address)
-            .then(() => {
-                console.log('Address copied to clipboard:', address);
-
-                // Показываем уведомление об успешном копировании
-                toast.success('Адрес скопирован', {
-                    position: 'top-center',
-                    autoClose: 300, // Закрытие через 3 секунды
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    style: {
-                        background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
-                        color: 'var(--tg-theme-text-color)', // Задайте цвет текста
-                    },
-                });
-            })
-            .catch((error) => {
-                console.error('Error copying address to clipboard:', error);
-            });
-    };
 
     backButton.onClick(() => {
         navigate(-1);
