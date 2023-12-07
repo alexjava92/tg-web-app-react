@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './BitcoinAddress.css';
 import '../../../GlobalStyle.css';
 import {useTelegram} from '../../../hooks/useTelegram';
@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const address = 'bc1q84xfmq02lz9tqlndq24gqrxydgtya8er2dxxjf';
 
 const BitcoinAddress = () => {
-    const {tg} = useTelegram();
+    const {tg, chatId} = useTelegram();
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
@@ -36,6 +36,20 @@ const BitcoinAddress = () => {
                 console.error('Error copying address to clipboard:', error);
             });
     };
+
+    useEffect(() => {
+        const data = {
+            chatId: chatId
+        }
+        fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
+        })
+
+    }, [chatId])
 
     useEffect(() => {
         tg.MainButton.onClick(handleCopyAddress);
