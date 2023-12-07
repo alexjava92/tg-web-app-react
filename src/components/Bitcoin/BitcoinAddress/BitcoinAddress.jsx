@@ -40,16 +40,6 @@ const BitcoinAddress = () => {
     // Отображаем кнопку "BackButton"
     backButton.show();
 
-    // Скрываем кнопку "BackButton" после некоторого времени (пример: 5000 миллисекунд)
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            backButton.hide();
-        }, 5000);
-
-        // Очистка таймаута при размонтировании компонента
-        return () => clearTimeout(timeoutId);
-    }, [backButton]);
-
     return (
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
