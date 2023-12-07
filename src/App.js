@@ -18,6 +18,10 @@ function App() {
 
     return (
         <div className="App">
+            <head>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=YourFontFamily&display=swap" />
+
+            </head>
             <Header/>
             <Routes>
                 <Route index element={<ProductList/>}/>
