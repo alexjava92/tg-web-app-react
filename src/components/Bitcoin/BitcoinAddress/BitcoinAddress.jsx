@@ -59,13 +59,6 @@ const BitcoinAddress = () => {
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
-            <button
-                className="button"
-                onClick={handleCopyAddress}
-                disabled={isButtonDisabled}
-            >
-                Копировать
-            </button>
             <ToastContainer />
         </div>
     );
