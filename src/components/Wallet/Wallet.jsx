@@ -18,7 +18,6 @@ const Wallet = () => {
                 <div className="actions">
                     <button onClick={() => {}}>Отправить</button>
                     <button onClick={() => {}}>Получить</button>
-
                 </div>
             </div>
             <div className="currencies">
