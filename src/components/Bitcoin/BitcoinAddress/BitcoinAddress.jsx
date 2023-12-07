@@ -16,7 +16,7 @@ const BitcoinAddress = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleCopyAddress = () => {
-        const clipboard = new ClipboardJS('.copy-button', {
+        const clipboard = new ClipboardJS('.button', {
             text: function () {
                 return address;
             },
@@ -48,6 +48,13 @@ const BitcoinAddress = () => {
     tg.MainButton.setParams({
         text: `Скопировать адрес`
     })
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', handleCopyAddress)
+        return () => {
+            tg.offEvent('mainButtonClicked', handleCopyAddress)
+        }
+    }, [handleCopyAddress])
 
     return (
         <div className={'body'}>
