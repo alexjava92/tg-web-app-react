@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ClipboardJS from 'clipboard';
 import './BitcoinAddress.css';
 import '../../../GlobalStyle.css';
 import { useTelegram } from '../../../hooks/useTelegram';
@@ -22,7 +21,7 @@ const BitcoinAddress = () => {
                 setIsButtonDisabled(false);
                 // Показываем уведомление об успешном копировании
                 toast.success('Адрес скопирован', {
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 1, // Закрытие через 3 секунды
                     hideProgressBar: false,
                     closeOnClick: false,
@@ -57,7 +56,7 @@ const BitcoinAddress = () => {
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button
-                className="button copy-button"
+                className="button"
                 onClick={handleCopyAddress}
                 disabled={isButtonDisabled}
             >
