@@ -20,7 +20,15 @@ const BitcoinAddress = () => {
             .then(() => {
                 console.log('Address copied to clipboard:', address);
                 setIsButtonDisabled(false);
-                toast.success('Адрес скопирован в буфер обмена');
+                // Показываем уведомление об успешном копировании
+                toast.success('Адрес скопирован', {
+                    position: 'top-right',
+                    autoClose: 1, // Закрытие через 3 секунды
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: false,
+                    draggable: false,
+                });
             })
             .catch((error) => {
                 console.error('Error copying address to clipboard:', error);
