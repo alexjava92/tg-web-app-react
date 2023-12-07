@@ -59,16 +59,16 @@ const BitcoinAddress = () => {
             .catch((error) => {
                 console.error('Ошибка при выполнении запроса:', error);
             });
-    }, [chatId]);
-
-    useEffect(() => {
         tg.MainButton.onClick(handleCopyAddress);
 
         return () => {
             tg.MainButton.offClick(handleCopyAddress);
             tg.MainButton.hide();
         };
-    }, [tg.MainButton, handleCopyAddress, address]);
+
+    }, [chatId]);
+
+
 
     backButton.onClick(() => {
         navigate(-1);
