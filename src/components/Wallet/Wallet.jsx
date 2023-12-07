@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Wallet.css'; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
@@ -10,6 +11,8 @@ const dummyTransactions = [
 const dummyBalance = '4 957,92';
 
 const Wallet = () => {
+
+
     return (
         <div className="wallet">
             <div className="wallet-header">
@@ -17,8 +20,9 @@ const Wallet = () => {
                 <div className="balance">{dummyBalance} $</div>
                 <div className="actions">
                     <button onClick={() => {}}>Отправить</button>
+                    <Link to="/bitcoin-address">
                     <button onClick={() => {}}>Получить</button>
-
+                    </Link>
                 </div>
             </div>
             <div className="currencies">

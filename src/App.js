@@ -6,6 +6,7 @@ import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
 import Form from "./components/Form/Form";
 import Wallet from "./components/Wallet/Wallet";
+import BitcoinAddress from "./components/Bitcoin/BitcoinAddress/BitcoinAddress";
 
 
 
@@ -27,6 +28,7 @@ function App() {
                 <Route index element={<ProductList/>}/>
                 <Route path={'/form'} element={<Form/>}/>
                 <Route path={'/wallet'} element={<Wallet/>}/>
+                <Route path={'/bitcoin-address'} element={<BitcoinAddress/>}/>
             </Routes>
         </div>
     );
