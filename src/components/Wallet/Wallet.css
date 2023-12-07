@@ -1,8 +1,9 @@
 .wallet {
     background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-button-text-color);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Или другой подходящий размер */
+    width: 350px; /* Или другой подходящий размер */
     margin: auto;
     padding: 20px;
 }
@@ -44,4 +45,5 @@
     border-bottom: 1px solid var(--tg-theme-text-color);
     color: var(--tg-theme-text-color);
 }
+
 
