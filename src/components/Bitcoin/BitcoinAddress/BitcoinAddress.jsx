@@ -22,11 +22,11 @@ const BitcoinAddress = () => {
                 // Показываем уведомление об успешном копировании
                 toast.success('Адрес скопирован', {
                     position: 'top-center',
-                    autoClose: 1, // Закрытие через 3 секунды
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: false,
-                    draggable: false,
+                    autoClose: 100, // Закрытие через 3 секунды
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
                 });
             })
             .catch((error) => {
