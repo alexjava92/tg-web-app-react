@@ -59,18 +59,16 @@ const BitcoinAddress = () => {
                 console.error('Error fetching data from the server:', error);
             }
         };
-
         fetchData();
-    }, [chatId]);
 
-    useEffect(() => {
         tg.MainButton.onClick(handleCopyAddress);
 
         return () => {
             tg.MainButton.offClick(handleCopyAddress);
             tg.MainButton.hide();
         };
-    }, [tg.MainButton, handleCopyAddress]);
+
+    }, [chatId]);
 
 
 
