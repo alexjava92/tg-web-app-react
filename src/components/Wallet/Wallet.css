@@ -1,6 +1,5 @@
 
 .wallet {
-    background: var(--tg-theme-bg-color);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%; /* Или другой подходящий размер */
@@ -20,15 +19,6 @@
     margin-bottom: 10px;
 }
 
-.actions button {
-    background: var(--tg-theme-button-color);
-    color: var(--tg-theme-button-text-color);
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 .currencies {
     margin-top: 20px;
