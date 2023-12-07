@@ -1,20 +1,20 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './BitcoinAddress.css';
 import '../../../GlobalStyle.css';
-import {useTelegram} from '../../../hooks/useTelegram';
-import {useNavigate} from 'react-router-dom';
-import {ToastContainer, toast} from 'react-toastify';
+import { useTelegram } from '../../../hooks/useTelegram';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const address = 'bc1q84xfmq02lz9tqlndq24gqrxydgtya8er2dxxjf';
-
 const BitcoinAddress = () => {
-    const {tg, chatId} = useTelegram();
+    const { tg, chatId } = useTelegram();
     const backButton = tg.BackButton;
     const navigate = useNavigate();
+    const [address, setAddress] = useState('');
 
     const handleCopyAddress = () => {
-        navigator.clipboard.writeText(address)
+        navigator.clipboard
+            .writeText(address)
             .then(() => {
                 console.log('Address copied to clipboard:', address);
 
@@ -39,17 +39,27 @@ const BitcoinAddress = () => {
 
     useEffect(() => {
         const data = {
-            chatId: chatId
-        }
+            chatId: chatId,
+        };
+
         fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data) // Убедитесь, что передаете правильные данные
+            body: JSON.stringify(data),
         })
-
-    }, [chatId])
+            .then((response) => response.json())
+            .then((responseData) => {
+                // responseData - это объект, который вернул сервер
+                const newAddress = responseData.address.newAddress;
+                setAddress(newAddress); // Установка нового значения в состояние
+                console.log('Получен адрес:', newAddress);
+            })
+            .catch((error) => {
+                console.error('Ошибка при выполнении запроса:', error);
+            });
+    }, [chatId]);
 
     useEffect(() => {
         tg.MainButton.onClick(handleCopyAddress);
@@ -70,11 +80,12 @@ const BitcoinAddress = () => {
     tg.MainButton.setParams({
         text: 'Скопировать адрес',
     });
+
     return (
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };
