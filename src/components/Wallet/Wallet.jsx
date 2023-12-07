@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import './Wallet.css'; // Убедитесь, что вы создали соответствующий файл стилей
+import './Wallet.css';
+import {useTelegram} from "../../hooks/useTelegram"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     { id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $' },
@@ -10,8 +11,19 @@ const dummyTransactions = [
 
 const dummyBalance = '4 957,92';
 
-const Wallet = () => {
 
+
+const Wallet = () => {
+    const {tg} = useTelegram();
+    const backButton = tg.BackButton
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            backButton.hide();
+        }, 1000);
+
+        // Очистка таймаута при размонтировании компонента
+        return () => clearTimeout(timeoutId);
+    }, [backButton]);
 
     return (
         <div className="wallet">
