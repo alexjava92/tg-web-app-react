@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import ClipboardJS from 'clipboard';
 import './BitcoinAddress.css';
 import {useTelegram} from "../../../hooks/useTelegram";
@@ -32,9 +32,26 @@ const BitcoinAddress = () => {
         clipboard.destroy();
     };
 
+    backButton.onClick(() => {
+        console.log('BackButton clicked!');
+        // Дополнительные действия при нажатии на кнопку "BackButton"
+    });
+
+    // Отображаем кнопку "BackButton"
+    backButton.show();
+
+    // Скрываем кнопку "BackButton" после некоторого времени (пример: 5000 миллисекунд)
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            backButton.hide();
+        }, 5000);
+
+        // Очистка таймаута при размонтировании компонента
+        return () => clearTimeout(timeoutId);
+    }, [backButton]);
+
     return (
         <div className={'body'}>
-            <div>{backButton.show()}</div>
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button
