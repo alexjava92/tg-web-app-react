@@ -50,11 +50,12 @@ const BitcoinAddress = () => {
     })
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', handleCopyAddress)
+        tg.MainButton.onClick(handleCopyAddress);
         return () => {
-            tg.offEvent('mainButtonClicked', handleCopyAddress)
-        }
-    }, [handleCopyAddress])
+            tg.MainButton.offClick(handleCopyAddress);
+        };
+    }, [handleCopyAddress]);
+
 
     return (
         <div className={'body'}>
