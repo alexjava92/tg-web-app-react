@@ -8,8 +8,6 @@ import Form from "./components/Form/Form";
 import Wallet from "./components/Wallet/Wallet";
 import BitcoinAddress from "./components/Bitcoin/BitcoinAddress/BitcoinAddress";
 
-
-
 function App() {
     const {tg} = useTelegram();
     useEffect(() => {
@@ -21,7 +19,6 @@ function App() {
         <div className="App">
             <head>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=YourFontFamily&display=swap" />
-
             </head>
             <Routes>
                 <Route index element={<ProductList/>}/>
