@@ -12,30 +12,7 @@ const BitcoinAddress = () => {
     const navigate = useNavigate();
     const [address, setAddress] = useState('');
 
-    const handleCopyAddress = () => {
-        navigator.clipboard
-            .writeText(address)
-            .then(() => {
-                console.log('Address copied to clipboard:', address);
 
-                // Показываем уведомление об успешном копировании
-                toast.success('Адрес скопирован', {
-                    position: 'top-center',
-                    autoClose: 300, // Закрытие через 3 секунды
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    style: {
-                        background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
-                        color: 'var(--tg-theme-text-color)', // Задайте цвет текста
-                    },
-                });
-            })
-            .catch((error) => {
-                console.error('Error copying address to clipboard:', error);
-            });
-    };
 
     useEffect(() => {
         const data = {
@@ -68,7 +45,30 @@ const BitcoinAddress = () => {
 
     }, [chatId]);
 
+    const handleCopyAddress = () => {
+        navigator.clipboard
+            .writeText(address)
+            .then(() => {
+                console.log('Address copied to clipboard:', address);
 
+                // Показываем уведомление об успешном копировании
+                toast.success('Адрес скопирован', {
+                    position: 'top-center',
+                    autoClose: 300, // Закрытие через 3 секунды
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    style: {
+                        background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
+                        color: 'var(--tg-theme-text-color)', // Задайте цвет текста
+                    },
+                });
+            })
+            .catch((error) => {
+                console.error('Error copying address to clipboard:', error);
+            });
+    };
 
     backButton.onClick(() => {
         navigate(-1);
