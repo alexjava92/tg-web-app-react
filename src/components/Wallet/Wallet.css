@@ -33,30 +33,15 @@
     margin-top: 20px;
 }
 
-.currency {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
 .transaction-history {
     margin-top: 20px;
 }
-
 
 .currency {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.currency-name {
-    font-weight: bold;
-}
-
-.currency-amount,
-.currency-usd-value {
-    font-size: 0.9em;
+    border-bottom: 1px solid var(--tg-theme-text-color);
     color: var(--tg-theme-text-color);
 }
+

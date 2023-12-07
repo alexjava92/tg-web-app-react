@@ -13,7 +13,7 @@ const Wallet = () => {
     return (
         <div className="wallet">
             <div className="wallet-header">
-                <h2>Кошелек</h2>
+                <h3>Баланс</h3>
                 <div className="balance">{dummyBalance} $</div>
                 <div className="actions">
                     <button onClick={() => {}}>Отправить</button>
@@ -24,9 +24,9 @@ const Wallet = () => {
             <div className="currencies">
                 {dummyTransactions.map(transaction => (
                     <div className="currency" key={transaction.id}>
-                        <span className="currency-name">{transaction.name}</span>
-                        <span className="currency-amount">{transaction.amount}</span>
-                        <span className="currency-usd-value">{transaction.usdValue}</span>
+                        <span >{transaction.name}</span>
+                        <span >{transaction.amount}</span>
+                        <span >{transaction.usdValue}</span>
                     </div>
                 ))}
             </div>
