@@ -47,7 +47,7 @@ const BitcoinAddress = () => {
     return (
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
-            <code>{address}</code>
+            <p>{address}</p>
             <button
                 className="button"
                 onClick={handleCopyAddress}
