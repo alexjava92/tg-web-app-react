@@ -16,7 +16,7 @@ const BitcoinAddress = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleCopyAddress = () => {
-        const clipboard = new ClipboardJS('.button', {
+        const clipboard = new ClipboardJS('.copy-button', {
             text: function () {
                 return address;
             },
