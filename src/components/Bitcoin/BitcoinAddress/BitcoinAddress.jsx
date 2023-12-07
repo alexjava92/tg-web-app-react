@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react';
 import ClipboardJS from 'clipboard';
 import './BitcoinAddress.css';
 import {useTelegram} from "../../../hooks/useTelegram";
+import { useNavigate } from 'react-router-dom';
 
 const address = 'bc1q84xfmq02lz9tqlndq24gqrxydgtya8er2dxxjf';
 
 const BitcoinAddress = () => {
     const {tg} = useTelegram();
     const backButton = tg.BackButton
+    const navigate  = useNavigate();
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleCopyAddress = () => {
@@ -37,6 +39,11 @@ const BitcoinAddress = () => {
         // Дополнительные действия при нажатии на кнопку "BackButton"
     });
 
+    backButton.onClick(() => {
+        console.log('BackButton clicked!');
+        // Возвращаемся назад при нажатии кнопки "BackButton"
+        navigate(-1);
+    });
     // Отображаем кнопку "BackButton"
     backButton.show();
 
