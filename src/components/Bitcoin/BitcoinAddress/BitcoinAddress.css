@@ -3,7 +3,7 @@
     flex-direction: column;
     background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
-    justify-content: center;
+    align-items: center;
 }
 
 .copy-button {
