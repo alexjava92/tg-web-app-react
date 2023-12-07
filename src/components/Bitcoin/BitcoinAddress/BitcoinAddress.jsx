@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ClipboardJS from 'clipboard';
 import './BitcoinAddress.css';
+import '../../../GlobalStyle.css'
 import {useTelegram} from "../../../hooks/useTelegram";
 import { useNavigate } from 'react-router-dom';
 
@@ -36,11 +37,6 @@ const BitcoinAddress = () => {
 
     backButton.onClick(() => {
         console.log('BackButton clicked!');
-        // Дополнительные действия при нажатии на кнопку "BackButton"
-    });
-
-    backButton.onClick(() => {
-        console.log('BackButton clicked!');
         // Возвращаемся назад при нажатии кнопки "BackButton"
         navigate(-1);
     });
@@ -52,7 +48,7 @@ const BitcoinAddress = () => {
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button
-                className="copy-button"
+                className="button"
                 onClick={handleCopyAddress}
                 disabled={isButtonDisabled}
             >
