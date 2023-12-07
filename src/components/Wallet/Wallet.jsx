@@ -1,5 +1,6 @@
 import React from 'react';
 import './Wallet.css'; // Убедитесь, что вы создали соответствующий файл стилей
+import '../../App.css'
 
 const dummyTransactions = [
     { id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $' },
@@ -15,7 +16,7 @@ const Wallet = () => {
             <div className="wallet-header">
                 <h3>Баланс</h3>
                 <div className="balance">{dummyBalance} $</div>
-                <div className="actions">
+                <div className="button">
                     <button onClick={() => {}}>Отправить</button>
                     <button onClick={() => {}}>Получить</button>
                 </div>
