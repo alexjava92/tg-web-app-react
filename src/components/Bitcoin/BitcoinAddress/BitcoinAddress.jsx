@@ -66,6 +66,7 @@ const BitcoinAddress = () => {
             >
                 Копировать
             </button>
+            <ToastContainer />
         </div>
     );
 };
