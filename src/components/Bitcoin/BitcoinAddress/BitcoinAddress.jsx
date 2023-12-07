@@ -22,7 +22,7 @@ const BitcoinAddress = () => {
                 // Показываем уведомление об успешном копировании
                 toast.success('Адрес скопирован', {
                     position: 'top-center',
-                    autoClose: 100, // Закрытие через 3 секунды
+                    autoClose: 300, // Закрытие через 3 секунды
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
