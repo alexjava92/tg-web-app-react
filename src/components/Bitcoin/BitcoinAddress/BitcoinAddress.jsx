@@ -44,6 +44,11 @@ const BitcoinAddress = () => {
     // Отображаем кнопку "BackButton"
     backButton.show();
 
+    tg.MainButton.show()
+    tg.MainButton.setParams({
+        text: `Скопировать адрес`
+    })
+
     return (
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
