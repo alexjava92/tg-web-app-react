@@ -42,6 +42,7 @@ const BitcoinAddress = () => {
 
         return () => {
             tg.MainButton.offClick(handleCopyAddress);
+            tg.MainButton.hide();
         };
     }, [tg.MainButton, handleCopyAddress]);
 
