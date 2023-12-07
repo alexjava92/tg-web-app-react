@@ -27,16 +27,18 @@ const BitcoinAddress = () => {
         clipboard.on('success', function (e) {
             console.log('Address copied to clipboard:', e.text);
             setIsButtonDisabled(false);
+
+            // Показываем уведомление об успешном копировании
+            toast.success('Адрес скопирован в буфер обмена', {
+                position: 'top-right',
+                autoClose: 3000, // Закрытие через 3 секунды
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         });
 
-        toast.success('Адрес скопирован в буфер обмена', {
-            position: 'top-right',
-            autoClose: 3000, // Закрытие через 3 секунды
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-        });
 
         clipboard.on('error', function (e) {
             console.error('Error copying address to clipboard:', e.text);
