@@ -4,6 +4,8 @@ import './BitcoinAddress.css';
 import '../../../GlobalStyle.css'
 import {useTelegram} from "../../../hooks/useTelegram";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const address = 'bc1q84xfmq02lz9tqlndq24gqrxydgtya8er2dxxjf';
 
@@ -27,6 +29,15 @@ const BitcoinAddress = () => {
             setIsButtonDisabled(false);
         });
 
+        toast.success('Адрес скопирован в буфер обмена', {
+            position: 'top-right',
+            autoClose: 3000, // Закрытие через 3 секунды
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+
         clipboard.on('error', function (e) {
             console.error('Error copying address to clipboard:', e.text);
             setIsButtonDisabled(false);
@@ -36,7 +47,6 @@ const BitcoinAddress = () => {
     };
 
     backButton.onClick(() => {
-        console.log('BackButton clicked!');
         // Возвращаемся назад при нажатии кнопки "BackButton"
         navigate(-1);
     });
