@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import ClipboardJS from 'clipboard';
 import './BitcoinAddress.css';
+import {useTelegram} from "../../../hooks/useTelegram";
 
 const address = 'bc1q84xfmq02lz9tqlndq24gqrxydgtya8er2dxxjf';
 
 const BitcoinAddress = () => {
+    const {tg} = useTelegram();
+    const backButton = tg.BackButton
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleCopyAddress = () => {
@@ -31,6 +34,7 @@ const BitcoinAddress = () => {
 
     return (
         <div className={'body'}>
+            <div>{backButton.show()}</div>
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button
