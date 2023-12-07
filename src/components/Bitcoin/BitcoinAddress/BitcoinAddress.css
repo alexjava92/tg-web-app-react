@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+.body p {
+    border: 1px solid var(--tg-theme-secondary-bg-color); /* Рамка вокруг адреса */
+    padding: 10px; /* Отступы вокруг адреса */
+}
+
 .copy-button {
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
