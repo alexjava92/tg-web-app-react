@@ -42,7 +42,7 @@ export const SendBitcoin = () => {
                 <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
             </div>
             <div>
-                <label htmlFor="bitcoinAmount">Отправить BTC:</label>
+                <label htmlFor="bitcoinAmount">Количество bitcoin:</label>
                 <input
                     className={'input'}
                     type="number"
@@ -52,7 +52,7 @@ export const SendBitcoin = () => {
                 />
             </div>
             <div>
-                <label htmlFor="bitcoinAddress">Адрес биткоина:</label>
+                <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
                 <input
                     className={'input'}
                     type="text"
