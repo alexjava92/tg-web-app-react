@@ -35,6 +35,8 @@ export const SendBitcoin = () => {
                 if (response.ok) {
                     const responseData = await response.json();
                     const newBalance = responseData.balance;
+                    console.log(responseData)
+                    console.log(newBalance)
 
                     // Проверка, изменился ли баланс
                     if (newBalance !== balance) {
