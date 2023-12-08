@@ -48,13 +48,17 @@ export const SendBitcoin = () => {
     }, [chatId, setBalance]);
 
     useEffect(() => {
-        // Показываем кнопку назад после загрузки данных
-        backButton.show();
-    }, [backButton]);
-
-    backButton.onClick(() => {
-        navigate(-1);
-    });
+        // Проверяем, что backButton существует и имеет методы show и onClick
+        if (backButton && backButton.show && backButton.onClick) {
+            // Показываем кнопку назад после загрузки данных
+            backButton.show();
+            backButton.onClick(() => {
+                navigate(-1);
+            });
+        } else {
+            console.error('backButton is not properly configured.');
+        }
+    }, [backButton, navigate]);
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
