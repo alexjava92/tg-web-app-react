@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {getFees} from "./apiGetFees";
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
     const [fees, setFees] = useState([]);
