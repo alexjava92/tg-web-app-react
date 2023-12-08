@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'

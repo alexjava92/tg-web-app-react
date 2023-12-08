@@ -18,7 +18,7 @@ label {
 
 }
 
-input {
+.input {
     background: var(--tg-theme-secondary-bg-color);
     width: 100%;
     border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
