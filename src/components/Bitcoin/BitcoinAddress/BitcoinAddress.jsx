@@ -5,12 +5,13 @@ import { useTelegram } from '../../../hooks/useTelegram';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 const BitcoinAddress = () => {
     const { tg, chatId } = useTelegram();
     const backButton = tg.BackButton;
     const navigate = useNavigate();
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState('bc1qgyp7r488nw96a8t9plt3vqaen8tjanced0fwla');
 
     const handleCopyAddress = () => {
         navigator.clipboard.writeText(address)
@@ -88,6 +89,9 @@ const BitcoinAddress = () => {
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button className={'button'} onClick={handleCopyAddress}>копировать</button>
+            <CopyToClipboard text={address} onCopy={handleCopyAddress}>
+                <button className={'button'}>Копировать</button>
+            </CopyToClipboard>
             <ToastContainer />
         </div>
     );
