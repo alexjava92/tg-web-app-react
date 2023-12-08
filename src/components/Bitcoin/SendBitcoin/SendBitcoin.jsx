@@ -40,7 +40,7 @@ export const SendBitcoin = () => {
     return (
         <div className={'send-bitcoin-container'}>
             <div>
-                <h2 className={'h2'}>Баланс кошелька: {balance} BTC</h2>
+                <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
             </div>
             <div>
                 <label htmlFor="bitcoinAmount">Отправить BTC:</label>
