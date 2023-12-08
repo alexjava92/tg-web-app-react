@@ -3,6 +3,7 @@ import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
+import './SendBitcoin.css'
 
 
 export const SendBitcoin = () => {
@@ -35,7 +36,7 @@ export const SendBitcoin = () => {
     return (
         <div>
             <div>
-                <h2>Баланс кошелька: {balance} BTC</h2>
+                <h2 className={'h2'}>Баланс кошелька: {balance} BTC</h2>
             </div>
             <div>
                 <label htmlFor="bitcoinAmount">Отправить BTC:</label>
