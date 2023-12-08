@@ -1,6 +1,7 @@
 import {toast} from "react-toastify";
+import {useCallback} from "react";
 // Хук для работы с уведомлениями
-export const useCopyToClipboard = (text) => {
+export const useCopyToClipboard = () => {
     const handleCopyAddress = useCallback(() => {
         // Показываем уведомление об успешном копировании
         toast.success('Адрес скопирован', {
