@@ -3,6 +3,7 @@ import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
+import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 
 
 export const SendBitcoin = () => {
@@ -20,7 +21,7 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
     // Используем ваш хук для получения баланса
-
+    useFetchBitcoinAddress(chatId, setBalance);
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);

@@ -1,6 +1,6 @@
 // Хук для работы с сервером
-import {useEffect} from "react";
-import {config} from "./config";
+import { useEffect } from "react";
+import { config } from "./config";
 
 const url = config.apiBaseUrl;
 export const useGetBalanceUserWallet = (chatId, setBalance) => {
@@ -18,8 +18,12 @@ export const useGetBalanceUserWallet = (chatId, setBalance) => {
                 if (response.ok) {
                     const responseData = await response.json();
                     const newBalance = responseData.balance;
-                    setBalance(newBalance);
-                    console.log('Получен баланс:', newBalance);
+
+                    // Проверка, изменился ли баланс
+                    if (newBalance !== setBalance) {
+                        setBalance(newBalance);
+                        console.log('Получен баланс:', newBalance);
+                    }
                 } else {
                     console.error('Server returned an error:', response.status);
                 }
