@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-export const BitcoinNetworkFees = () => {
+export const BitcoinNetworkFees = (onSelect) => {
+    const [selectedCommission, setSelectedCommission] = useState('');
 
+    const handleSelectChange = (e) => {
+        const selectedValue = e.target.value;
+        setSelectedCommission(selectedValue);
+        onSelect(selectedValue);
+    };
 
     return (
         <div>
