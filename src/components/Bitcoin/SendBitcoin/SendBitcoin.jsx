@@ -6,6 +6,7 @@ import './SendBitcoin.css'
 import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
+import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
 
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
@@ -71,8 +72,12 @@ export const SendBitcoin = () => {
                 />
             </div>
             <div>
+                <BitcoinNetworkFees/>
+            </div>
+            <div>
                 <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
             </div>
+
         </div>
     );
 };
