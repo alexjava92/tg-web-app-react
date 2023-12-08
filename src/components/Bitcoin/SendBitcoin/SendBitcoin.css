@@ -24,6 +24,7 @@ label {
     border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
     padding: 5px; /* Отступы вокруг адреса */
     color: var(--tg-theme-text-color);
+    margin-top: 2px;
 }
 .h2 {
     color: var(--tg-theme-text-color);
