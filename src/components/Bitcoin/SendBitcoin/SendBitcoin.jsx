@@ -13,14 +13,7 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Показываем кнопку назад после загрузки данных
-        backButton.show();
-    }, [backButton]);
 
-    backButton.onClick(() => {
-        navigate(-1);
-    });
 
     const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
@@ -59,6 +52,14 @@ export const SendBitcoin = () => {
         fetchData();
     }, [chatId, balance, setBalance]);
 
+    useEffect(() => {
+        // Показываем кнопку назад после загрузки данных
+        backButton.show();
+    }, [backButton]);
+
+    backButton.onClick(() => {
+        navigate(-1);
+    });
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
