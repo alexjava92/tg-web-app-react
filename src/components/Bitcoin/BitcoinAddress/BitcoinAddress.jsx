@@ -80,10 +80,7 @@ const BitcoinAddress = () => {
     return (
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
-            <p>{address}</p>
-            <button className={'button'} onClick={handleCopyAddress}>
-                Копировать
-            </button>
+            <p onClick={handleCopyAddress}>{address}</p>
             <ToastContainer />
         </div>
     );
