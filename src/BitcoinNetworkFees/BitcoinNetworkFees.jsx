@@ -29,7 +29,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedFee(selectedValue);
-        onSelect(selectedValue);
+        onSelect(fees.find(([key]) => key === selectedKey)[1]);
     };
 
     return (
