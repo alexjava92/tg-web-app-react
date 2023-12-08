@@ -12,7 +12,7 @@ export const SendBitcoin = () => {
     const navigate = useNavigate();
 
 
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState();
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
