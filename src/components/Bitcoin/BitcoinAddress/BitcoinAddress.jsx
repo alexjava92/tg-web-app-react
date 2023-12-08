@@ -11,7 +11,7 @@ const BitcoinAddress = () => {
     const { tg, chatId } = useTelegram();
     const backButton = tg.BackButton;
     const navigate = useNavigate();
-    const [address, setAddress] = useState('bc1qgyp7r488nw96a8t9plt3vqaen8tjanced0fwla');
+    const [address, setAddress] = useState('');
 
     const handleCopyAddress = () => {
         navigator.clipboard.writeText(address)
