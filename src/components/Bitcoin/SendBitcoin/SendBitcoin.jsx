@@ -27,8 +27,8 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
     // Используем ваш хук для получения баланса
-    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(async () => {
+
             try {
                 const response = await fetch(`${url}/web-new-balance-user-wallet`, {
                     method: 'POST',
@@ -53,9 +53,9 @@ export const SendBitcoin = () => {
             } catch (error) {
                 console.error('Error fetching data from the server:', error);
             }
-        };
 
-        fetchData();
+
+
     }, [chatId,balance, setBalance]);
 
     const handleBitcoinAmountChange = (e) => {
