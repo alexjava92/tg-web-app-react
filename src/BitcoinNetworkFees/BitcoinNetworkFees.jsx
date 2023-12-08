@@ -31,12 +31,16 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
     return (
         <div>
             <label htmlFor="commission">Выберите комиссию:</label>
-            <select id="commission" value={selectedCommission} onChange={handleSelectChange}>
-                {fees.map(fee => (
-                    <option key={fee.satPerByte} value={fee.satPerByte.toString()}>
-                        {`${fee.name} (${fee.satPerByte} sat/b)`}
-                    </option>
-                ))}
+            <select id="commission" onChange={handleSelectChange}>
+                {Array.isArray(fees) ? (
+                    fees.map((fee) => (
+                        <option key={fee.value} value={fee.value}>
+                            {fee.label} ({fee.satPerByte} sat/b)
+                        </option>
+                    ))
+                ) : (
+                    <option value="default">Нет данных о комиссиях</option>
+                )}
             </select>
         </div>
     );
