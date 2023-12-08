@@ -19,7 +19,7 @@
 label {
     color: var(--tg-theme-text-color);
     display: block;
-    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 input {
