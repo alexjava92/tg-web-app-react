@@ -32,38 +32,28 @@ const BitcoinAddress = () => {
 
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({chatId}),
-                });
+    useEffect(async () => {
 
-                if (response.ok) {
-                    const responseData = await response.json();
-                    const newAddress = responseData.address.newAddress;
-                    setAddress(newAddress);
-                    console.log('Получен адрес:', newAddress);
-                } else {
-                    console.error('Server returned an error:', response.status);
-                }
-            } catch (error) {
-                console.error('Error fetching data from the server:', error);
+        try {
+            const response = await fetch('https://e4f6-62-33-234-17.ngrok-free.app/web-new-bitcoin-address', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({chatId}),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                const newAddress = responseData.address.newAddress;
+                setAddress(newAddress);
+                console.log('Получен адрес:', newAddress);
+            } else {
+                console.error('Server returned an error:', response.status);
             }
-        };
-        fetchData();
-
-        tg.MainButton.onClick(handleCopyAddress);
-
-        return () => {
-            tg.MainButton.offClick(handleCopyAddress);
-            tg.MainButton.hide();
-        };
-
+        } catch (error) {
+            console.error('Error fetching data from the server:', error);
+        }
     }, [chatId]);
 
 
@@ -73,10 +63,6 @@ const BitcoinAddress = () => {
 
     backButton.show();
 
-    tg.MainButton.show();
-    tg.MainButton.setParams({
-        text: 'Скопировать адрес',
-    });
 
     return (
         <div className={'body'}>
