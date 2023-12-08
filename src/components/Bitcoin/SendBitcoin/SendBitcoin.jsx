@@ -47,18 +47,7 @@ export const SendBitcoin = () => {
         }
     }, [chatId, setBalance]);
 
-    useEffect(() => {
-        // Проверяем, что backButton существует и имеет методы show и onClick
-        if (backButton && backButton.show && backButton.onClick) {
-            // Показываем кнопку назад после загрузки данных
-            backButton.show();
-            backButton.onClick(() => {
-                navigate(-1);
-            });
-        } else {
-            console.error('backButton is not properly configured.');
-        }
-    }, [backButton, navigate]);
+
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
@@ -73,6 +62,14 @@ export const SendBitcoin = () => {
         // Например, вызовите функцию для отправки биткоинов на сервер
         // sendBitcoinToServer(chatId, balance, bitcoinAmount, bitcoinAddress);
     };
+    useEffect(() => {
+        // Показываем кнопку назад после загрузки данных
+        backButton.show();
+    }, [backButton]);
+
+    backButton.onClick(() => {
+        navigate(-1);
+    });
 
     return (
         <div className={'send-bitcoin-container'}>
