@@ -78,7 +78,7 @@ export const SendBitcoin = () => {
                 />
             </div>
             <div>
-                {balance !== '' && <BitcoinNetworkFees onSelect={handleCommissionSelect}/>}
+                <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
             </div>
             <div>
                 <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
