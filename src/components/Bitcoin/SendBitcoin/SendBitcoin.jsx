@@ -20,33 +20,7 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
     // Используем ваш хук для получения баланса
-    // Используем ваш хук для получения баланса
-    useEffect(async () => {
-        try {
-            const response = await fetch(`${url}/web-new-balance-user-wallet`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ chatId }),
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-
-                // Убедитесь, что у вас есть корректный путь к свойству balance в объекте
-                const newBalance = responseData.balance;
-
-                setBalance(newBalance.balance);
-                console.log('Получен баланс:', newBalance.balance);
-            } else {
-                console.error('Server returned an error:', response.status);
-            }
-        } catch (error) {
-            console.error('Error fetching data from the server:', error);
-        }
-    }, [chatId, setBalance]);
-
+    useGetBalanceUserWallet(chatId, setBalance)
 
 
     const handleBitcoinAmountChange = (e) => {

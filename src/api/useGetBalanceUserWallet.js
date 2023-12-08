@@ -17,13 +17,12 @@ export const useGetBalanceUserWallet = (chatId, setBalance) => {
 
                 if (response.ok) {
                     const responseData = await response.json();
+
+                    // Убедитесь, что у вас есть корректный путь к свойству balance в объекте
                     const newBalance = responseData.balance;
 
-                    // Проверка, изменился ли баланс
-                    if (newBalance !== setBalance) {
-                        setBalance(newBalance);
-                        console.log('Получен баланс:', newBalance);
-                    }
+                    setBalance(newBalance.balance);
+                    console.log('Получен баланс:', newBalance.balance);
                 } else {
                     console.error('Server returned an error:', response.status);
                 }
