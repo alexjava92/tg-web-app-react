@@ -21,38 +21,31 @@ export const SendBitcoin = () => {
 
     // Используем ваш хук для получения баланса
     // Используем ваш хук для получения баланса
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`${url}/web-new-balance-user-wallet`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ chatId }),
-                });
+    useEffect(async () => {
+        try {
+            const response = await fetch(`${url}/web-new-balance-user-wallet`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ chatId }),
+            });
 
-                if (response.ok) {
-                    const responseData = await response.json();
-                    const newBalance = responseData.balance;
-                    console.log(responseData)
-                    console.log(newBalance)
+            if (response.ok) {
+                const responseData = await response.json();
 
-                    // Проверка, изменился ли баланс
-                    if (newBalance !== balance) {
-                        setBalance(newBalance);
-                        console.log('Получен баланс:', newBalance);
-                    }
-                } else {
-                    console.error('Server returned an error:', response.status);
-                }
-            } catch (error) {
-                console.error('Error fetching data from the server:', error);
+                // Убедитесь, что у вас есть корректный путь к свойству balance в объекте
+                const newBalance = responseData.balance;
+
+                setBalance(newBalance.balance);
+                console.log('Получен баланс:', newBalance.balance);
+            } else {
+                console.error('Server returned an error:', response.status);
             }
-        };
-
-        fetchData();
-    }, [chatId, balance, setBalance]);
+        } catch (error) {
+            console.error('Error fetching data from the server:', error);
+        }
+    }, [chatId, setBalance]);
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
