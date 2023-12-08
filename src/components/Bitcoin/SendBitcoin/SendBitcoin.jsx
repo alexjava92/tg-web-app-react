@@ -3,7 +3,7 @@ import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
-import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
+
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
