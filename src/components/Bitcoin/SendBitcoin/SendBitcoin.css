@@ -24,9 +24,8 @@ label {
 
 input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
+    padding: 10px; /* Отступы вокруг адреса */
 }
 .h2 {
     color: var(--tg-theme-text-color);
