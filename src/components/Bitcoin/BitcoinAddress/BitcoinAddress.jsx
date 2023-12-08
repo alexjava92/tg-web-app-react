@@ -1,12 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import './BitcoinAddress.css';
-import '../../../GlobalStyle.css';
-import { useTelegram } from '../../../hooks/useTelegram';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CopyToClipboard from 'react-copy-to-clipboard';
-import copyPaste from "clipboard";
+import { useTelegram } from '../../../hooks/useTelegram';
+import copyPaste from 'clipboard';
 
 const BitcoinAddress = () => {
     const { tg, chatId } = useTelegram();
@@ -16,23 +13,22 @@ const BitcoinAddress = () => {
 
     const handleCopyAddress = () => {
         copyPaste.copy(address, () => {
-                console.log('Address copied to clipboard:', address);
+            console.log('Address copied to clipboard:', address);
 
-                // Показываем уведомление об успешном копировании
-                toast.success('Адрес скопирован', {
-                    position: 'top-center',
-                    autoClose: 300, // Закрытие через 3 секунды
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    style: {
-                        background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
-                        color: 'var(--tg-theme-text-color)', // Задайте цвет текста
-                    },
-                });
-            })
-
+            // Показываем уведомление об успешном копировании
+            toast.success('Адрес скопирован', {
+                position: 'top-center',
+                autoClose: 300, // Закрытие через 3 секунды
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                    background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
+                    color: 'var(--tg-theme-text-color)', // Задайте цвет текста
+                },
+            });
+        });
     };
 
     useEffect(() => {
@@ -60,16 +56,15 @@ const BitcoinAddress = () => {
         };
         fetchData();
 
-        tg.MainButton.onClick(handleCopyAddress);
+        tg.MainButton.onClick(() => {
+            handleCopyAddress(); // Вызываем функцию копирования
+        });
 
         return () => {
             tg.MainButton.offClick(handleCopyAddress);
             tg.MainButton.hide();
         };
-
     }, [chatId]);
-
-
 
     backButton.onClick(() => {
         navigate(-1);
@@ -86,10 +81,9 @@ const BitcoinAddress = () => {
         <div className={'body'}>
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
-            <button className={'button'} onClick={handleCopyAddress}>копировать</button>
-            <CopyToClipboard text={address} onCopy={handleCopyAddress}>
-                <button className={'button'}>Копировать</button>
-            </CopyToClipboard>
+            <button className={'button'} onClick={handleCopyAddress}>
+                Копировать
+            </button>
             <ToastContainer />
         </div>
     );
