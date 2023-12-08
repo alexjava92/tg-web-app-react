@@ -11,6 +11,10 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
+    backButton.show();
+    backButton.onClick(() => {
+        navigate(-1);
+    });
 
     const [balance, setBalance] = useState();
     const [bitcoinAmount, setBitcoinAmount] = useState('');
