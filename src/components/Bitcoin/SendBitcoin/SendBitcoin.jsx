@@ -17,7 +17,7 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
     // Используем ваш хук для получения баланса
-    useGetBalanceUserWallet(chatId, setBalance);
+
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
