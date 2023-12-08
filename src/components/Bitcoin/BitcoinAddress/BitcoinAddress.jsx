@@ -87,7 +87,7 @@ const BitcoinAddress = () => {
             <h3>Новый адрес биткоина:</h3>
             <p>{address}</p>
             <button className={'button'} onClick={handleCopyAddress}>копировать</button>
-            <CopyToClipboard text={address} onCopy={handleCopyAddress}>
+            <CopyToClipboard text={address} onClick={handleCopyAddress}>
                 <button className={'button'}>Копировать</button>
             </CopyToClipboard>
             <ToastContainer />
