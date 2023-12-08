@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import copyPaste from "clipboard";
 
 const BitcoinAddress = () => {
     const { tg, chatId } = useTelegram();
@@ -14,8 +15,7 @@ const BitcoinAddress = () => {
     const [address, setAddress] = useState('');
 
     const handleCopyAddress = () => {
-        navigator.clipboard.writeText(address)
-            .then(() => {
+        copyPaste.copy(address, () => {
                 console.log('Address copied to clipboard:', address);
 
                 // Показываем уведомление об успешном копировании
@@ -32,9 +32,7 @@ const BitcoinAddress = () => {
                     },
                 });
             })
-            .catch((error) => {
-                console.error('Error copying address to clipboard:', error);
-            });
+
     };
 
     useEffect(() => {
