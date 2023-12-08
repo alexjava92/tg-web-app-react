@@ -56,7 +56,7 @@ export const SendBitcoin = () => {
         };
 
         fetchData();
-    }, [chatId, setBalance]);
+    }, [chatId,balance, setBalance]);
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
