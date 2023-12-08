@@ -1,26 +1,34 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
 import {getFees} from "./apiGetFees";
-import {logDOM} from "@testing-library/react";
+
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
     const [fees, setFees] = useState([]);
+    const [selectedFee, setSelectedFee] = useState('');
 
     useEffect(() => {
         const fetchFees = async () => {
             try {
-                // Получаем данные с сервера
                 const feesData = await getFees();
-
-                // Преобразуем объект в массив
-                const feesArray = Object.entries(feesData).map(([key, value]) => ({
-                    label: key,
-                    value: value,
-                    satPerByte: value,
-                }));
-                console.log(feesArray)
-
-                // Устанавливаем данные в state
-                setFees(feesArray);
+                const filteredFees = Object.entries(feesData)
+                    .filter(([key]) => key !== 'minimumFee' && key !== 'halfHourFee')
+                    .map(([key, value]) => {
+                        let label;
+                        if (key === 'fastestFee') {
+                            label = 'Приоритет';
+                        } else if (key === 'hourFee') {
+                            label = 'Средняя';
+                        } else if (key === 'economyFee') {
+                            label = 'Обычная';
+                        }
+                        return {
+                            label,
+                            value,
+                            satPerByte: value,
+                        };
+                    });
+                setFees(filteredFees);
+                setSelectedFee(filteredFees[0]); // Устанавливаем первое значение по умолчанию
             } catch (error) {
                 console.error('Error fetching fees:', error);
             }
@@ -31,20 +39,20 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
 
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
+        setSelectedFee(selectedValue);
         onSelect(selectedValue);
     };
 
     return (
         <div>
-            <label htmlFor="commission">Выберите комиссию:</label>
-            <select id="commission" onChange={handleSelectChange}>
-                {fees.map((fee) => (
-                    <option key={fee.value} value={fee.value}>
-                        {fee.label} {fee.satPerByte} sat/b
+            <label htmlFor="fee">Выберите комиссию:</label>
+            <select id="fee" value={selectedFee} onChange={handleSelectChange}>
+                {fees.map(({ label, value, satPerByte }, index) => (
+                    <option key={index} value={label}>
+                        {label} - {value} sat/b
                     </option>
                 ))}
             </select>
         </div>
     );
 };
-
