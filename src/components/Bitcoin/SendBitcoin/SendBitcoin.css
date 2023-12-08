@@ -27,5 +27,6 @@ input {
 }
 .h2 {
     color: var(--tg-theme-text-color);
+    margin-bottom: 20px;
 }
 
