@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
 import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
+import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 
 
 export const SendBitcoin = () => {
@@ -16,12 +17,12 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
-    const [balance, setBalance] = useState(0.002416);
+    const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
 
     // Используем ваш хук для получения баланса
-    useFetchBitcoinAddress(chatId, setBalance);
+    useGetBalanceUserWallet(chatId, setBalance);
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
