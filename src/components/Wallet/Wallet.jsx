@@ -31,7 +31,9 @@ const Wallet = () => {
                 <h3>Баланс</h3>
                 <div className="balance">{dummyBalance} $</div>
                 <div className="actions">
+                    <Link to="/send-bitcoin">
                     <button onClick={() => {}}>Отправить</button>
+                    </Link>
                     <Link to="/bitcoin-address">
                     <button onClick={() => {}}>Получить</button>
                     </Link>

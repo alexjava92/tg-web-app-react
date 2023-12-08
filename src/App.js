@@ -1,12 +1,12 @@
 import './App.css';
 import {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
-import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
 import Form from "./components/Form/Form";
 import Wallet from "./components/Wallet/Wallet";
 import BitcoinAddress from "./components/Bitcoin/BitcoinAddress/BitcoinAddress";
+import {SendBitcoin} from "./components/Bitcoin/SendBitcoin/SendBitcoin";
 
 function App() {
     const {tg} = useTelegram();
@@ -25,6 +25,7 @@ function App() {
                 <Route path={'/form'} element={<Form/>}/>
                 <Route path={'/wallet'} element={<Wallet/>}/>
                 <Route path={'/bitcoin-address'} element={<BitcoinAddress/>}/>
+                <Route path={'/send-bitcoin'} element={<SendBitcoin/>}/>
             </Routes>
         </div>
     );
