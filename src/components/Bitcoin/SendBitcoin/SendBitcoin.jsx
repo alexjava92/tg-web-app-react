@@ -5,8 +5,9 @@ import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
 import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
+import {config} from "../../../api/config";
 
-
+const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
     const {tg, chatId} = useTelegram();
     const backButton = tg.BackButton;
