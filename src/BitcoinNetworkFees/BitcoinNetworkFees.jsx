@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {getFees} from "./apiGetFees";
+import {logDOM} from "@testing-library/react";
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
     const [fees, setFees] = useState([]);
@@ -16,6 +17,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                     value: value,
                     satPerByte: value,
                 }));
+                console.log(feesArray)
 
                 // Устанавливаем данные в state
                 setFees(feesArray);
