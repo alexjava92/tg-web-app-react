@@ -37,6 +37,12 @@ export const SendBitcoin = () => {
         // Например, вызовите функцию для отправки биткоинов на сервер
         // sendBitcoinToServer(chatId, balance, bitcoinAmount, bitcoinAddress);
     };
+
+    const handleCommissionSelect = (selectedCommission) => {
+        // Обработка выбора комиссии в родительском компоненте
+        console.log('Выбрана комиссия:', selectedCommission);
+    };
+
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
         backButton.show();
@@ -72,7 +78,7 @@ export const SendBitcoin = () => {
                 />
             </div>
             <div>
-                <BitcoinNetworkFees/>
+                <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
             </div>
             <div>
                 <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
