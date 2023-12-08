@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
@@ -12,7 +12,11 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
-    backButton.show();
+    useEffect(() => {
+        // Показываем кнопку назад после загрузки данных
+        backButton.show();
+    }, [backButton]);
+
     backButton.onClick(() => {
         navigate(-1);
     });
