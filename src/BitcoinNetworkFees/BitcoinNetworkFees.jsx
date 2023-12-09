@@ -41,7 +41,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedFee(selectedValue);
-        onSelect(selectedValue === '' ? '' : selectedValue);
+        onSelect(selectedValue === 'custom' ? '' : selectedValue);
     };
 
 
@@ -54,7 +54,8 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                         {label} - {satPerByte} sat/b
                     </option>
                 ))}
-                <option value="">Установить свою</option>
+                <option value="custom">Установить свою</option>
+
             </select>
         </div>
 
