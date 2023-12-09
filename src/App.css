@@ -4,8 +4,9 @@
   box-sizing: border-box;
   font-family: 'Righteous', sans-serif;
   font-size: 14px;
-  background: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
-
 }
 
+.body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+}
