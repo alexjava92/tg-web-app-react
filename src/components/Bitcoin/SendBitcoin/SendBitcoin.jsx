@@ -52,6 +52,10 @@ export const SendBitcoin = () => {
 
         await sendBitcoinToServer(chatId, outputs, 2, setTxId)
         // Очищаем поля ввода
+        setBitcoinAmount("")
+        setBitcoinAddress("")
+        setSatoshiPerByte(0)
+        setOutputs([])
     };
     console.log(outputs)
 
