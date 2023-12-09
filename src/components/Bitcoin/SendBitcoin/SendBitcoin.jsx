@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {ToastContainer} from "react-toastify";
 import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
-import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres";
+import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 
 
 
