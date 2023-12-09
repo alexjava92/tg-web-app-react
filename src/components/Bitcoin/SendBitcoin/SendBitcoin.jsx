@@ -50,7 +50,7 @@ export const SendBitcoin = () => {
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
 
-        useSendBitcoin(chatId, outputs, 2, setTxId)
+        await useSendBitcoin(chatId, outputs, 2, setTxId)
         // Очищаем поля ввода
     };
     console.log(outputs)
