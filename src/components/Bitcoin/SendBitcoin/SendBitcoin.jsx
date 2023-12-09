@@ -77,9 +77,10 @@ export const SendBitcoin = () => {
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('responseData', responseData);
-                const newSendBitcoin = responseData.txId;
-                setTxId(newSendBitcoin);
-                console.log('Получен txId:', newSendBitcoin);
+                const transaction = responseData.txId;
+                console.log('Получен txId:', transaction);
+                setTxId(transaction);
+
             } else {
                 console.error('Server returned an error:', response.status);
             }
