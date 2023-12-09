@@ -19,7 +19,7 @@ const BitcoinAddress = () => {
 
     // Используем хуки для работы с сервером и уведомлениями
     useFetchBitcoinAddress(chatId, setAddress);
-    const { handleCopyAddress } = useCopyToClipboard();
+    const { handleCopyAddress } = useCopyToClipboard('Адрес скопирован');
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных

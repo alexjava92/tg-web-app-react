@@ -8,6 +8,8 @@ import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
 import {useSendBitcoin} from "../../../api/useSendBitcoin";
+import CopyToClipboard from "react-copy-to-clipboard";
+import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
@@ -45,6 +47,8 @@ export const SendBitcoin = () => {
         setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
+
+    const { handleCopyAddress } = useCopyToClipboard('Транзакция скопирована');
 
     const handleSendBitcoin = async () => {
         // Формируем новый объект для выхода и добавляем его в массив outputs
@@ -111,7 +115,13 @@ export const SendBitcoin = () => {
                 <div className="success-icon">✔️</div>
                 <h2 className="success-header">Транзакция успешно отправлена!</h2>
                 <p className="success-txid">Идентификатор транзакции: {txId}</p>
+                <CopyToClipboard text={txId}>
+                    <button className={'button'} onClick={handleCopyAddress}>
+                        Скопировать адрес bitcoin
+                    </button>
+                </CopyToClipboard>
             </div>
+
         );
     };
 
