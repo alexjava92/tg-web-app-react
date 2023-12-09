@@ -1,0 +1,19 @@
+.select {
+    background-color: var(--tg-theme-secondary-bg-color); /* Фоновый цвет */
+    color: var(--tg-theme-text-color); /* Цвет текста */
+    border: 1px solid var(--tg-theme-hint-color); /* Цвет рамки */
+    padding: 10px; /* Отступы внутри */
+    border-radius: 4px; /* Скругленные углы */
+    font-size: 1em; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+.select:focus {
+    outline: none; /* Убрать стандартный outline при фокусе */
+    border-color: var(--tg-theme-link-color); /* Цвет рамки при фокусе */
+}
+
+.select option {
+    color: var(--tg-theme-text-color); /* Цвет текста вариантов */
+    background-color: var(--tg-theme-bg-color); /* Фоновый цвет вариантов */
+}
