@@ -8,7 +8,7 @@
     right: 0; /* Справа */
     bottom: 0; /* Снизу */
     z-index: 1000; /* Установите достаточно большое значение z-index, чтобы он был поверх других элементов */
-    background-color: var(--tg-theme-secondary-bg-color); /* Полупрозрачный фон, если нужно */
+    background-color: var(--tg-theme-bg-color); /* Полупрозрачный фон, если нужно */
 }
 
 .loading-spinner {
