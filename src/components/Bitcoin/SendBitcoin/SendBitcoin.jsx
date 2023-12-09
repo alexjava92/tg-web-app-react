@@ -95,14 +95,20 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
-    if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== '') {
-        tg.MainButton.hide()
-    } else {
-        tg.MainButton.show()
+    if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== 0) {
+        tg.MainButton.show();
         tg.MainButton.setParams({
             text: `Отправить ${bitcoinAmount}`
-        })
+        });
+    } else {
+        tg.MainButton.hide();
     }
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', handleSendBitcoin)
+        return () => {
+            tg.offEvent('mainButtonClicked', handleSendBitcoin)
+        }
+    }, [handleSendBitcoin])
 
     // Рендеринг страницы успеха
     const renderSuccessPage = () => {
