@@ -1,7 +1,7 @@
 // Хук для работы с сервером
 import {useEffect} from "react";
 import {config} from "./config";
-import {logDOM} from "@testing-library/react";
+
 
 const url = config.apiBaseUrl;
 export const useSendBitcoin = (chatId, outputs, satoshisPerByte, setTxId) => {
@@ -12,6 +12,7 @@ export const useSendBitcoin = (chatId, outputs, satoshisPerByte, setTxId) => {
                 outputs: outputs,
                 satoshisPerByte: satoshisPerByte
             }
+            console.log(data)
             try {
                 const response = await fetch(`${url}/web-new-send-bitcoin`, {
                     method: 'POST',
