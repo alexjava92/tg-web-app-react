@@ -7,10 +7,10 @@ export const useCopyToClipboard = (text) => {
         toast.success(text, {
             position: 'top-center',
             autoClose: 300, // Закрытие через 3 секунды
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
             style: {
                 background: 'var(--tg-theme-bg-color)', // Задайте цвет фона
                 color: 'var(--tg-theme-text-color)', // Задайте цвет текста
