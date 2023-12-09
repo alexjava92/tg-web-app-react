@@ -13,6 +13,7 @@ import {ToastContainer} from "react-toastify";
 import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 import {logDOM} from "@testing-library/react";
+import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 
 
 
@@ -159,7 +160,7 @@ export const SendBitcoin = () => {
 
     return (
         <div>
-            {isLoading ? <div>Загрузка...</div> : (isSent ? renderSuccessPage() : renderForm())}
+            {isLoading ? <LoadingSpinner /> : (isSent ? renderSuccessPage() : renderForm())}
         </div>
     );
 };
