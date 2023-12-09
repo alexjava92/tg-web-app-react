@@ -34,6 +34,8 @@ export const SendBitcoin = () => {
     const [isSending, setIsSending] = useState(false);
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
+    const [isCustomFee, setIsCustomFee] = useState(false);
+
 
 
 
@@ -62,10 +64,11 @@ export const SendBitcoin = () => {
 
 
     const handleCommissionSelect = (selectedCommission) => {
-        // Обработка выбора комиссии в родительском компоненте
+        setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
+
 
     const { handleCopyAddress } = useCopyToClipboard('Транзакция скопирована');
 
@@ -148,7 +151,18 @@ export const SendBitcoin = () => {
                     />
                 </div>
                 <div>
-                    <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
+                    <div>
+                        <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
+                        {isCustomFee && (
+                            <input
+                                type="number"
+                                className={'input'}
+                                value={satoshiPerByte}
+                                onChange={(e) => setSatoshiPerByte(e.target.value)}
+                                placeholder="Введите комиссию (sat/byte)"
+                            />
+                        )}
+                    </div>
                 </div>
                 <div>
                     <button className={'button'} onClick={handleSendBitcoin} disabled={isSending}>Отправить</button>
