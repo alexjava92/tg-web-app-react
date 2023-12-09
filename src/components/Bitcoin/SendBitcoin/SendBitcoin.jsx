@@ -46,7 +46,7 @@ export const SendBitcoin = () => {
         // Формируем новый объект для выхода и добавляем его в массив outputs
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         setOutputs([...outputs, newOutput]);
-        console.log(newOutput)
+        console.log(outputs)
 
         // Очищаем поля ввода
         setBitcoinAddress('');
