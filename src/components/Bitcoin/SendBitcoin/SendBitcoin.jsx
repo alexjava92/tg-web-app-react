@@ -68,7 +68,7 @@ export const SendBitcoin = () => {
         console.log(updatedOutputs)
         setOutputs(updatedOutputs);
 
-        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent);
+        await sendBitcoinToServer(chatId, updatedOutputs, 2, setTxId, setIsSent);
 
         // Очищаем поля ввода
         setBitcoinAmount("");
@@ -76,8 +76,6 @@ export const SendBitcoin = () => {
         setSatoshiPerByte(0);
         setIsSending(false);
     };
-
-    console.log(outputs)
 
     // Перенесенная логика из useSendBitcoin.js
 
