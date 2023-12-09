@@ -56,7 +56,7 @@ export const SendBitcoin = () => {
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
 
-        await sendBitcoinToServer(chatId, outputs, 2, setTxId)
+        await sendBitcoinToServer(chatId, outputs, 2, setTxId, setIsSent)
         // Очищаем поля ввода
         setBitcoinAmount("")
         setBitcoinAddress("")
@@ -94,7 +94,6 @@ export const SendBitcoin = () => {
 
         );
     };
-
 
     // Рендеринг основного интерфейса
     const renderForm = () => {
