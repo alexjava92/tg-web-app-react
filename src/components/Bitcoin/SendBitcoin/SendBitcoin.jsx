@@ -19,6 +19,8 @@ export const SendBitcoin = () => {
     const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
+    const [satoshiPerByte, setSatoshiPerByte] = useState(0)
+    const [outputs, setOutputs] = useState([]);
 
     // Используем ваш хук для получения баланса
     useGetBalanceUserWallet(chatId, setBalance)
@@ -26,21 +28,30 @@ export const SendBitcoin = () => {
 
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
+        console.log(e.target.value)
     };
 
     const handleBitcoinAddressChange = (e) => {
         setBitcoinAddress(e.target.value);
-    };
-
-    const handleSendBitcoin = () => {
-        // Реализуйте отправку биткоинов с использованием полученных данных (chatId, balance, bitcoinAmount, bitcoinAddress)
-        // Например, вызовите функцию для отправки биткоинов на сервер
-        // sendBitcoinToServer(chatId, balance, bitcoinAmount, bitcoinAddress);
+        console.log(e.target.value)
     };
 
     const handleCommissionSelect = (selectedCommission) => {
         // Обработка выбора комиссии в родительском компоненте
+        setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
+    };
+
+    const handleSendBitcoin = async () => {
+        // Формируем новый объект для выхода и добавляем его в массив outputs
+        const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
+        setOutputs([...outputs, newOutput]);
+        console.log(newOutput)
+
+        // Очищаем поля ввода
+        setBitcoinAddress('');
+        setBitcoinAmount('');
+        setSatoshiPerByte(0)
     };
 
     useEffect(() => {
