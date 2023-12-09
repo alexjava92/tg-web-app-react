@@ -1,5 +1,5 @@
 
-const isValidBitcoinAddress = async (address) => {
+export const isValidBitcoinAddress = async (address) => {
     try {
         const response = await fetch(`https://mempool.space/testnet/api/address/${address}`);
 
@@ -11,4 +11,4 @@ const isValidBitcoinAddress = async (address) => {
     }
 };
 
-module.exports = isValidBitcoinAddress;
+
