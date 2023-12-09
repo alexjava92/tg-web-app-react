@@ -42,14 +42,16 @@ export const SendBitcoin = () => {
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
-    const handleSendBitcoin = async () => {
-        // Формируем новый объект для выхода и добавляем его в массив outputs
+    const handleSendBitcoin = () => {
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
-        setOutputs([...outputs, newOutput]);
-        console.log(outputs)
+        setOutputs(prevOutputs => [...prevOutputs, newOutput]);
+        console.log(outputs);
 
         // Очищаем поля ввода
-
+        setBitcoinAddress('');
+        setBitcoinAmount('');
+        setSatoshiPerByte(0);
+        setOutputs([]);
     };
 
     useEffect(() => {
