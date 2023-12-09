@@ -27,7 +27,7 @@ export const SendBitcoin = () => {
     const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
-    const [satoshiPerByte, setSatoshiPerByte] = useState(0)
+    const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [outputs, setOutputs] = useState([]);
     const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
