@@ -30,15 +30,11 @@ export const SendBitcoin = () => {
     const handleBitcoinAmountChange = (e) => {
         setBitcoinAmount(e.target.value);
         console.log(e.target.value)
-        newOutput = {address: bitcoinAmount}
-        console.log(newOutput)
     };
 
     const handleBitcoinAddressChange = (e) => {
         setBitcoinAddress(e.target.value);
         console.log(e.target.value)
-        newOutput = {...newOutput, amount: bitcoinAddress}
-        console.log(newOutput)
     };
 
     const handleCommissionSelect = (selectedCommission) => {
