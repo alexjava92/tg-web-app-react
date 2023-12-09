@@ -23,6 +23,7 @@ export const SendBitcoin = () => {
     const [satoshiPerByte, setSatoshiPerByte] = useState(0)
     const [outputs, setOutputs] = useState([]);
     const [txId, setTxId] = useState('')
+    const [isSent, setIsSent] = useState(false);
 
     let newOutput = {};
     // Используем ваш хук для получения баланса
@@ -84,6 +85,7 @@ export const SendBitcoin = () => {
                 const transaction = responseData.transactionTxId.txId;
                 console.log('Получен txId:', transaction);
                 setTxId(transaction);
+                setIsSent(true);
 
             } else {
                 console.error('Server returned an error:', response.status);
@@ -102,38 +104,57 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
-    return (
-        <div className={'send-bitcoin-container'}>
+    // Рендеринг страницы успеха
+    const renderSuccessPage = () => {
+        return (
             <div>
-                <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
+                <h2>Транзакция успешно отправлена!</h2>
+                <p>Идентификатор транзакции: {txId}</p>
+                <button onClick={() => navigate(-1)}>Вернуться</button>
             </div>
-            <div>
-                <label htmlFor="bitcoinAmount">Количество bitcoin:</label>
-                <input
-                    className={'input'}
-                    type="number"
-                    id="bitcoinAmount"
-                    value={bitcoinAmount}
-                    onChange={handleBitcoinAmountChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
-                <input
-                    className={'input'}
-                    type="text"
-                    id="bitcoinAddress"
-                    value={bitcoinAddress}
-                    onChange={handleBitcoinAddressChange}
-                />
-            </div>
-            <div>
-                <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
-            </div>
-            <div>
-                <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
-            </div>
+        );
+    };
 
+    // Рендеринг основного интерфейса
+    const renderForm = () => {
+        return (
+            <div className={'send-bitcoin-container'}>
+                <div>
+                    <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
+                </div>
+                <div>
+                    <label htmlFor="bitcoinAmount">Количество bitcoin:</label>
+                    <input
+                        className={'input'}
+                        type="number"
+                        id="bitcoinAmount"
+                        value={bitcoinAmount}
+                        onChange={handleBitcoinAmountChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
+                    <input
+                        className={'input'}
+                        type="text"
+                        id="bitcoinAddress"
+                        value={bitcoinAddress}
+                        onChange={handleBitcoinAddressChange}
+                    />
+                </div>
+                <div>
+                    <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
+                </div>
+                <div>
+                    <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div>
+            {isSent ? renderSuccessPage() : renderForm()}
         </div>
     );
 };
