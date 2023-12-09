@@ -50,10 +50,43 @@ export const SendBitcoin = () => {
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
 
-        await useSendBitcoin(chatId, outputs, 2, setTxId)
+        await sendBitcoinToServer(chatId, outputs, 2, setTxId)
         // Очищаем поля ввода
     };
     console.log(outputs)
+
+    // Перенесенная логика из useSendBitcoin.js
+    const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setTxId) => {
+        console.log('запрос пришел');
+        const data = {
+            chatId: chatId,
+            outputs: outputs,
+            satoshisPerByte: satoshisPerByte
+        };
+
+        try {
+            console.log('запрос пришел');
+            const response = await fetch(`${url}/web-new-send-bitcoin`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data }),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData);
+                const newSendBitcoin = responseData.transactionId;
+                setTxId(newSendBitcoin);
+                console.log('Получен txId:', newSendBitcoin);
+            } else {
+                console.error('Server returned an error:', response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching data from the server:', error);
+        }
+    };
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
