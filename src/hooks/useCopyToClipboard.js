@@ -12,7 +12,7 @@ export const useCopyToClipboard = (text) => {
             pauseOnHover: true,
             draggable: true,
             style: {
-               // background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
+                background: 'var(--tg-theme-secondary-bg-color)', // Задайте цвет фона
                 color: 'var(--tg-theme-text-color)', // Задайте цвет текста
             },
         });

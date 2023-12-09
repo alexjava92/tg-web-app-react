@@ -35,8 +35,13 @@ export const SendBitcoin = () => {
 
 
     const handleBitcoinAmountChange = (e) => {
-        setBitcoinAmount(e.target.value);
-        console.log(e.target.value)
+        const amount = parseFloat(e.target.value); // Преобразование введенного значения в число
+        if (amount <= parseFloat(balance)) { // Проверка, что введенное значение не превышает баланс
+            setBitcoinAmount(amount);
+        } else {
+            setBitcoinAmount(balance); // Установка значения равного балансу, если введенное значение больше
+        }
+        console.log(e.target.value);
     };
 
     const handleBitcoinAddressChange = (e) => {
@@ -111,6 +116,7 @@ export const SendBitcoin = () => {
                         type="number"
                         id="bitcoinAmount"
                         value={bitcoinAmount}
+                        max={balance - selectedCommission}
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
