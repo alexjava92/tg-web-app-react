@@ -53,7 +53,7 @@ export const SendBitcoin = () => {
     const { handleCopyAddress } = useCopyToClipboard('Транзакция скопирована');
 
     const handleSendBitcoin = async () => {
-        setIsSending(false);
+        setIsSending(true);
         // Формируем новый объект для выхода и добавляем его в массив outputs
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
