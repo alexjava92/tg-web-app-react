@@ -74,14 +74,4 @@ label {
 .transaction-link {
     color: var(--tg-theme-link-color); /* Цвет ссылки */
     text-decoration: none; /* Убрать подчеркивание */
-    font-weight: bold; /* Сделать текст жирным */
-    padding: 8px; /* Отступы вокруг текста */
-    border-radius: 4px; /* Скругленные углы */
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход для цвета и фона */
-}
-
-.transaction-link:hover {
-    background-color: var(--tg-theme-button-color); /* Цвет фона при наведении */
-    color: var(--tg-theme-button-text-color); /* Цвет текста при наведении */
-    text-decoration: underline; /* Подчеркивание при наведении */
 }
