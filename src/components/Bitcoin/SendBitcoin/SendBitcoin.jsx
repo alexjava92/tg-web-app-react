@@ -137,7 +137,7 @@ export const SendBitcoin = () => {
                 <div>
                     <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
                     <input
-                        className={`input ${!isValidAddress ? 'invalid-input' : ''}`}
+                        className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
                         type="text"
                         id="bitcoinAddress"
                         value={bitcoinAddress}
