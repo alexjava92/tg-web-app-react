@@ -121,6 +121,7 @@ export const SendBitcoin = () => {
                 <div className="success-icon">✔️</div>
                 <h2 className="success-header">Транзакция успешно отправлена!</h2>
                 <p className="success-txid">Идентификатор транзакции: {txId}</p>
+                <p>{config.mempoolUrl}/{txId}</p>
                 <CopyToClipboard text={txId}>
                     <button className={'button'} onClick={handleCopyAddress}>
                         Скопировать транзакцию
