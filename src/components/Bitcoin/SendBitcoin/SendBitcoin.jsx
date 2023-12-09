@@ -59,17 +59,23 @@ export const SendBitcoin = () => {
 
     const handleSendBitcoin = async () => {
         setIsSending(true);
-        // Формируем новый объект для выхода и добавляем его в массив outputs
-        const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
-        await setOutputs([newOutput]);
 
-        await sendBitcoinToServer(chatId, outputs, 2, setTxId, setIsSent)
+        // Формируем новый объект для выхода
+        const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
+
+        // Массив outputs обновляем непосредственно перед отправкой данных
+        const updatedOutputs = [newOutput];
+        setOutputs(updatedOutputs);
+
+        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent);
+
         // Очищаем поля ввода
-        setBitcoinAmount("")
-        setBitcoinAddress("")
-        setSatoshiPerByte(0)
-        setOutputs([])
+        setBitcoinAmount("");
+        setBitcoinAddress("");
+        setSatoshiPerByte(0);
+        setIsSending(false);
     };
+
     console.log(outputs)
 
     // Перенесенная логика из useSendBitcoin.js
