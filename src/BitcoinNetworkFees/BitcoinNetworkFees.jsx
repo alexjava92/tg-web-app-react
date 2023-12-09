@@ -28,7 +28,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                         };
                     });
                 setFees(filteredFees);
-                setSelectedFee(filteredFees[3]); // Устанавливаем первое значение по умолчанию
+                setSelectedFee(filteredFees[0]); // Устанавливаем первое значение по умолчанию
             } catch (error) {
                 console.error('Error fetching fees:', error);
             }
@@ -48,6 +48,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
         <div>
             <label htmlFor="fee">Выберите комиссию:</label>
             <select id="fee" value={selectedFee} onChange={handleSelectChange}>
+                <option value="">Выберите комиссию</option>
                 {fees.map(({ label, value, satPerByte }, index) => (
                     <option key={index} value={satPerByte}>
                         {label} - {satPerByte} sat/b

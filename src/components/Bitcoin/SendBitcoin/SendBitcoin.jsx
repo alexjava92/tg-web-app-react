@@ -16,8 +16,6 @@ import {logDOM} from "@testing-library/react";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 
 
-
-
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
     const {tg, chatId} = useTelegram();
@@ -36,12 +34,8 @@ export const SendBitcoin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
 
-
-
-
     // Используем ваш хук для получения баланса
     useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
-
 
 
     const handleBitcoinAmountChange = (e) => {
@@ -62,21 +56,19 @@ export const SendBitcoin = () => {
         console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
     };
 
-
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
-
-    const { handleCopyAddress } = useCopyToClipboard('Транзакция скопирована');
+    const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
     const handleSendBitcoin = async () => {
         setIsSending(true);
 
         // Формируем новый объект для выхода
-        const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
+        const newOutput = {address: bitcoinAddress, amount: parseFloat(bitcoinAmount)};
 
         // Массив outputs обновляем непосредственно перед отправкой данных
         const updatedOutputs = [newOutput];
@@ -94,7 +86,6 @@ export const SendBitcoin = () => {
 
     // Перенесенная логика из useSendBitcoin.js
 
-
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
         backButton.show();
@@ -103,6 +94,15 @@ export const SendBitcoin = () => {
     backButton.onClick(() => {
         navigate(-1);
     });
+
+    if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== '') {
+        tg.MainButton.hide()
+    } else {
+        tg.MainButton.show()
+        tg.MainButton.setParams({
+            text: `Отправить ${bitcoinAmount}`
+        })
+    }
 
     // Рендеринг страницы успеха
     const renderSuccessPage = () => {
@@ -116,7 +116,7 @@ export const SendBitcoin = () => {
                         Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
-                <ToastContainer />
+                <ToastContainer/>
             </div>
 
         );
@@ -174,7 +174,8 @@ export const SendBitcoin = () => {
 
     return (
         <div>
-            {isLoading ? <LoadingSpinner /> : (isSending ? <LoadingSpinner /> : (isSent ? renderSuccessPage() : renderForm()))}
+            {isLoading ? <LoadingSpinner/> : (isSending ?
+                <LoadingSpinner/> : (isSent ? renderSuccessPage() : renderForm()))}
         </div>
     );
 };
