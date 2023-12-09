@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {config} from "./config";
 
 const url = config.apiBaseUrl;
-export const useFetchBitcoinAddress = (chatId, setAddress) => {
+export const useFetchBitcoinAddress = (chatId, setAddress, onLoaded) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -20,11 +20,16 @@ export const useFetchBitcoinAddress = (chatId, setAddress) => {
                     const newAddress = responseData.address.newAddress;
                     setAddress(newAddress);
                     console.log('Получен адрес:', newAddress);
+                    onLoaded();
                 } else {
                     console.error('Server returned an error:', response.status);
                 }
             } catch (error) {
                 console.error('Error fetching data from the server:', error);
+            } finally {
+                if (!response.ok) {
+                    onLoaded(); // Вызываем onLoaded даже если запрос завершился ошибкой
+                }
             }
         };
 

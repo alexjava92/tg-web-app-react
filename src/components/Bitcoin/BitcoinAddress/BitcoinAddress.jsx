@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
+import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 
 
 
@@ -16,9 +17,10 @@ const BitcoinAddress = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
     const [address, setAddress] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     // Используем хуки для работы с сервером и уведомлениями
-    useFetchBitcoinAddress(chatId, setAddress);
+    useFetchBitcoinAddress(chatId, setAddress, () => setIsLoading(false));
     const { handleCopyAddress } = useCopyToClipboard('Адрес скопирован');
 
     useEffect(() => {
@@ -30,16 +32,24 @@ const BitcoinAddress = () => {
         navigate(-1);
     });
 
+    const renderForm = () => {
+        return (
+            <div className={'body'}>
+                <h3>Новый адрес биткоина:</h3>
+                <p><code style={{ fontFamily: 'monospace' }}>{address}</code></p>
+                <CopyToClipboard text={address}>
+                    <button className={'button'} onClick={handleCopyAddress}>
+                        Скопировать адрес bitcoin
+                    </button>
+                </CopyToClipboard>
+                <ToastContainer />
+            </div>
+        );
+    }
+
     return (
-        <div className={'body'}>
-            <h3>Новый адрес биткоина:</h3>
-            <p><code style={{ fontFamily: 'monospace' }}>{address}</code></p>
-            <CopyToClipboard text={address}>
-                <button className={'button'} onClick={handleCopyAddress}>
-                    Скопировать адрес bitcoin
-                </button>
-            </CopyToClipboard>
-            <ToastContainer />
+        <div>
+            {isLoading ? <LoadingSpinner/> : renderForm()}
         </div>
     );
 };

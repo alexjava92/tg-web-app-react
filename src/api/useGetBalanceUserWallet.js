@@ -18,7 +18,6 @@ export const useGetBalanceUserWallet = (chatId, setBalance, onLoaded) => {
                 if (response.ok) {
                     const responseData = await response.json();
                     const newBalance = responseData.balance;
-
                     setBalance(newBalance.balance);
                     console.log('Получен баланс:', newBalance.balance);
                     onLoaded(); // Вызываем onLoaded после успешной установки баланса
