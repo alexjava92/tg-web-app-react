@@ -64,7 +64,7 @@ label {
 }
 .h2 {
     color: var(--tg-theme-text-color);
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .invalid-text {
@@ -74,4 +74,5 @@ label {
 .transaction-link {
     color: var(--tg-theme-link-color); /* Цвет ссылки */
     text-decoration: none; /* Убрать подчеркивание */
+    margin-bottom: 10px;
 }
