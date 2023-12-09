@@ -3,13 +3,12 @@ import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
-
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
-import {useSendBitcoin} from "../../../api/useSendBitcoin";
-import CopyToClipboard from "react-copy-to-clipboard";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
+import CopyToClipboard from "react-copy-to-clipboard";
+
 
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
