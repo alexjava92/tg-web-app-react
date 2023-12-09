@@ -12,6 +12,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import {ToastContainer} from "react-toastify";
 import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
+import {logDOM} from "@testing-library/react";
 
 
 
@@ -49,13 +50,7 @@ export const SendBitcoin = () => {
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
-        if (isValid) {
-            console.log("Адрес валиден.");
-            setBitcoinAddress(address);
-        } else {
-            console.log("Невалидный адрес.");
-            // Обработка невалидного адреса
-        }
+        console.log(isValid)
     };
 
     const handleCommissionSelect = (selectedCommission) => {
