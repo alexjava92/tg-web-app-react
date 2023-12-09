@@ -47,11 +47,11 @@ export const SendBitcoin = () => {
         // Формируем новый объект для выхода и добавляем его в массив outputs
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
-        console.log(outputs)
 
         // Очищаем поля ввода
 
     };
+    console.log(outputs)
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
