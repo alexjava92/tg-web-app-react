@@ -7,7 +7,10 @@ import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
-import CopyToClipboard from "react-copy-to-clipboard";
+import 'react-toastify/dist/ReactToastify.css';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import {ToastContainer} from "react-toastify";
+
 
 
 const url = config.apiBaseUrl;
@@ -119,6 +122,7 @@ export const SendBitcoin = () => {
                         Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
+                <ToastContainer />
             </div>
 
         );
