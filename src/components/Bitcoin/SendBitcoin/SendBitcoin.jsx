@@ -98,7 +98,7 @@ export const SendBitcoin = () => {
     // Рендеринг основного интерфейса
     const renderForm = () => {
         return (
-            <div className={'send-bitcoin-container'}>
+            <div className={'success-container'}>
                 <div>
                     <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
                 </div>
