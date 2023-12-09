@@ -12,8 +12,8 @@
 }
 
 .loading-spinner {
-    border: 5px solid rgba(255, 255, 255, 0.3); /* Цвет и размер границы */
-    border-top: 5px solid blue; /* Цвет верхней границы, определяющий цвет спиннера */
+    border: 5px solid rgba(255, 255, 255, 0.2); /* Цвет и размер границы */
+    border-top: 5px solid var(--tg-theme-button-color); /* Цвет верхней границы, определяющий цвет спиннера */
     border-radius: 50%;
     width: 50px; /* Размер спиннера */
     height: 50px;
