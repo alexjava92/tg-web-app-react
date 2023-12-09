@@ -7,7 +7,7 @@ import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
-import CopyToClipboard from "react-copy-to-clipboard";
+
 
 
 const url = config.apiBaseUrl;
@@ -114,11 +114,6 @@ export const SendBitcoin = () => {
                 <div className="success-icon">✔️</div>
                 <h2 className="success-header">Транзакция успешно отправлена!</h2>
                 <p className="success-txid">Идентификатор транзакции: {txId}</p>
-                <CopyToClipboard text={txId}>
-                    <button className={'button'} onClick={handleCopyAddress}>
-                        Скопировать транзакцию
-                    </button>
-                </CopyToClipboard>
             </div>
 
         );
