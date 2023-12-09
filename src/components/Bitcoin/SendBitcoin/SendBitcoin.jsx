@@ -116,7 +116,7 @@ export const SendBitcoin = () => {
                         type="number"
                         id="bitcoinAmount"
                         value={bitcoinAmount}
-                        max={balance - selectedCommission}
+                        max={balance}
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
