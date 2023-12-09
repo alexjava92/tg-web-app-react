@@ -140,23 +140,23 @@ export const SendBitcoin = () => {
                     <h2 className={'h2'}>Баланс кошелька: {balance} </h2>
                 </div>
                 <div>
-                    <label htmlFor="bitcoinAmount">Количество bitcoin:</label>
                     <input
                         className={'input'}
                         type="number"
                         id="bitcoinAmount"
                         value={bitcoinAmount}
                         max={balance}
+                        placeholder="Сумма bitcoin"
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
                     <input
                         className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
                         type="text"
                         id="bitcoinAddress"
                         value={bitcoinAddress}
+                        placeholder="Адрес bitcoin"
                         onChange={handleBitcoinAddressChange}
                     />
                 </div>
