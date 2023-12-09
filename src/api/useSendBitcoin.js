@@ -11,6 +11,7 @@ export const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setT
         outputs: outputs,
         satoshisPerByte: satoshisPerByte
     };
+    console.log("outputs", outputs)
 
     try {
         console.log('запрос пришел');
