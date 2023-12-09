@@ -97,7 +97,7 @@ export const SendBitcoin = () => {
     });
 
     useEffect(() => {
-        if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== 0) {
+        if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== '') {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить ${bitcoinAmount}`
@@ -106,8 +106,7 @@ export const SendBitcoin = () => {
             tg.MainButton.hide();
         }
     }, [bitcoinAmount, bitcoinAddress, satoshiPerByte]);
-
-
+ ё
     useEffect(() => {
         tg.onEvent('mainButtonClicked', handleSendBitcoin)
         return () => {
@@ -174,10 +173,6 @@ export const SendBitcoin = () => {
                             />
                         )}
                     </div>
-                </div>
-                <div>
-                    <button className={'button'} onClick={handleSendBitcoin} disabled={isSending}>Отправить</button>
-
                 </div>
             </div>
         );
