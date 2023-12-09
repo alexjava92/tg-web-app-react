@@ -49,10 +49,7 @@ export const SendBitcoin = () => {
         console.log(outputs)
 
         // Очищаем поля ввода
-        setBitcoinAddress('');
-        setBitcoinAmount('');
-        setSatoshiPerByte(0);
-        setOutputs([])
+
     };
 
     useEffect(() => {
