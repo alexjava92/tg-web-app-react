@@ -96,14 +96,18 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
-    if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== 0) {
-        tg.MainButton.show();
-        tg.MainButton.setParams({
-            text: `Отправить ${bitcoinAmount}`
-        });
-    } else {
-        tg.MainButton.hide();
-    }
+    useEffect(() => {
+        if (bitcoinAmount !== '' && bitcoinAddress !== '' && satoshiPerByte !== 0) {
+            tg.MainButton.show();
+            tg.MainButton.setParams({
+                text: `Отправить ${bitcoinAmount}`
+            });
+        } else {
+            tg.MainButton.hide();
+        }
+    }, [bitcoinAmount, bitcoinAddress, satoshiPerByte]);
+
+
     useEffect(() => {
         tg.onEvent('mainButtonClicked', handleSendBitcoin)
         return () => {
