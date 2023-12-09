@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { config } from "./config";
 
 const url = config.apiBaseUrl;
-export const useGetBalanceUserWallet = (chatId, setBalance) => {
+export const useGetBalanceUserWallet = (chatId, setBalance, onLoaded) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,6 +23,7 @@ export const useGetBalanceUserWallet = (chatId, setBalance) => {
 
                     setBalance(newBalance.balance);
                     console.log('Получен баланс:', newBalance.balance);
+
                 } else {
                     console.error('Server returned an error:', response.status);
                 }
@@ -30,7 +31,7 @@ export const useGetBalanceUserWallet = (chatId, setBalance) => {
                 console.error('Error fetching data from the server:', error);
             }
         };
-
         fetchData();
+        onLoaded();
     }, [chatId, setBalance]);
 };

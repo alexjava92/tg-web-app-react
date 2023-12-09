@@ -32,11 +32,13 @@ export const SendBitcoin = () => {
     const [isSent, setIsSent] = useState(false);
     const [isSending, setIsSending] = useState(false);
     const [isValidAddress, setIsValidAddress] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
 
 
     // Используем ваш хук для получения баланса
-    useGetBalanceUserWallet(chatId, setBalance)
+    useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
+
 
 
     const handleBitcoinAmountChange = (e) => {
@@ -157,7 +159,7 @@ export const SendBitcoin = () => {
 
     return (
         <div>
-            {isSent ? renderSuccessPage() : renderForm()}
+            {isLoading ? <div>Загрузка...</div> : (isSent ? renderSuccessPage() : renderForm())}
         </div>
     );
 };
