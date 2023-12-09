@@ -174,7 +174,7 @@ export const SendBitcoin = () => {
 
     return (
         <div>
-            {isLoading ? <LoadingSpinner /> : (isSent ? renderSuccessPage() : renderForm())}
+            {isLoading ? <LoadingSpinner /> : (isSending ? <LoadingSpinner /> : (isSent ? renderSuccessPage() : renderForm()))}
         </div>
     );
 };
