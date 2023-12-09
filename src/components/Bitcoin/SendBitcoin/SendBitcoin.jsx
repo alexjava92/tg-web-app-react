@@ -10,6 +10,7 @@ import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {ToastContainer} from "react-toastify";
+import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 
 
 
@@ -19,8 +20,6 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
-
-
     const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
@@ -29,7 +28,7 @@ export const SendBitcoin = () => {
     const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
 
-    let newOutput = {};
+
     // Используем ваш хук для получения баланса
     useGetBalanceUserWallet(chatId, setBalance)
 
@@ -67,39 +66,7 @@ export const SendBitcoin = () => {
     console.log(outputs)
 
     // Перенесенная логика из useSendBitcoin.js
-    const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setTxId) => {
-        console.log('запрос пришел');
-        const data = {
-            chatId: chatId,
-            outputs: outputs,
-            satoshisPerByte: satoshisPerByte
-        };
 
-        try {
-            console.log('запрос пришел');
-            const response = await fetch(`${url}/web-new-send-bitcoin`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ data }),
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log('responseData', responseData);
-                const transaction = responseData.transactionTxId.txId;
-                console.log('Получен txId:', transaction);
-                setTxId(transaction);
-                setIsSent(true);
-
-            } else {
-                console.error('Server returned an error:', response.status);
-            }
-        } catch (error) {
-            console.error('Error fetching data from the server:', error);
-        }
-    };
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
