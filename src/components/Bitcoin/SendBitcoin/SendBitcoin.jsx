@@ -50,8 +50,15 @@ export const SendBitcoin = () => {
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
-        console.log(isValid)
+        if (isValid) {
+            console.log("Адрес валиден.");
+            setBitcoinAddress(address);
+        } else {
+            console.log("Невалидный адрес.");
+            // Вы можете здесь установить состояние для невалидного адреса, если это необходимо
+        }
     };
+
 
     const handleCommissionSelect = (selectedCommission) => {
         // Обработка выбора комиссии в родительском компоненте
