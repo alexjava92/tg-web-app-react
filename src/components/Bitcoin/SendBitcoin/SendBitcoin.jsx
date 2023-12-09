@@ -7,6 +7,7 @@ import './SendBitcoin.css'
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
+import {useSendBitcoin} from "../../../api/useSendBitcoin";
 
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
@@ -21,6 +22,7 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState(0)
     const [outputs, setOutputs] = useState([]);
+    const [txId, setTxId] = useState('')
 
     let newOutput = {};
     // Используем ваш хук для получения баланса
@@ -48,8 +50,8 @@ export const SendBitcoin = () => {
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
 
+        useSendBitcoin(chatId, outputs, 2, setTxId)
         // Очищаем поля ввода
-
     };
     console.log(outputs)
 
