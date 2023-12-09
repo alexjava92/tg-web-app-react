@@ -31,6 +31,8 @@ export const SendBitcoin = () => {
     const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
     const [isSending, setIsSending] = useState(false);
+    const [isValidAddress, setIsValidAddress] = useState(true);
+
 
 
     // Используем ваш хук для получения баланса
@@ -50,13 +52,9 @@ export const SendBitcoin = () => {
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
-        if (isValid) {
-            console.log("Адрес валиден.");
-            setBitcoinAddress(address);
-        } else {
-            console.log("Невалидный адрес.");
-            // Вы можете здесь установить состояние для невалидного адреса, если это необходимо
-        }
+        setIsValidAddress(isValid); // Обновление состояния валидности
+        setBitcoinAddress(address);
+        console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
     };
 
 
@@ -139,7 +137,7 @@ export const SendBitcoin = () => {
                 <div>
                     <label htmlFor="bitcoinAddress">Адрес bitcoin:</label>
                     <input
-                        className={'input'}
+                        className={`input ${!isValidAddress ? 'invalid-input' : ''}`}
                         type="text"
                         id="bitcoinAddress"
                         value={bitcoinAddress}

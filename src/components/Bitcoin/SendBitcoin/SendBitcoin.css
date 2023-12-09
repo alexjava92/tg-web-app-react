@@ -67,3 +67,7 @@ label {
     margin-bottom: 20px;
 }
 
+.invalid-input {
+    border: 1px solid red;
+}
+
