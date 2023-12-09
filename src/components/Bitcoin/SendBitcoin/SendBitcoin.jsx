@@ -117,7 +117,7 @@ export const SendBitcoin = () => {
                 <p className="success-txid">Идентификатор транзакции: {txId}</p>
                 <CopyToClipboard text={txId}>
                     <button className={'button'} onClick={handleCopyAddress}>
-                        Скопировать адрес bitcoin
+                        Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
             </div>
