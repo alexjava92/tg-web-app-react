@@ -65,6 +65,7 @@ export const SendBitcoin = () => {
 
         // Массив outputs обновляем непосредственно перед отправкой данных
         const updatedOutputs = [newOutput];
+        console.log(updatedOutputs)
         setOutputs(updatedOutputs);
 
         await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent);
