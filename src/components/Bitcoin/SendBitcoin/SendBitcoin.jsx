@@ -27,6 +27,7 @@ export const SendBitcoin = () => {
     const [outputs, setOutputs] = useState([]);
     const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
+    const [isSending, setIsSending] = useState(false);
 
 
     // Используем ваш хук для получения баланса
@@ -52,6 +53,7 @@ export const SendBitcoin = () => {
     const { handleCopyAddress } = useCopyToClipboard('Транзакция скопирована');
 
     const handleSendBitcoin = async () => {
+        setIsSending(false);
         // Формируем новый объект для выхода и добавляем его в массив outputs
         const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinAmount) };
         await setOutputs([newOutput]);
@@ -126,7 +128,8 @@ export const SendBitcoin = () => {
                     <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
                 </div>
                 <div>
-                    <button className={'button'} onClick={handleSendBitcoin}>Отправить</button>
+                    <button className={'button'} onClick={handleSendBitcoin} disabled={isSending}>Отправить</button>
+
                 </div>
             </div>
         );
