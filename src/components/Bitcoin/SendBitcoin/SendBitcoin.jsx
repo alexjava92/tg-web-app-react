@@ -66,6 +66,7 @@ export const SendBitcoin = () => {
 
     const handleSendBitcoin = async () => {
         setIsSending(true);
+        tg.MainButton.hide();
 
         // Формируем новый объект для выхода
         const newOutput = {address: bitcoinAddress, amount: parseFloat(bitcoinAmount)};
@@ -164,7 +165,7 @@ export const SendBitcoin = () => {
                                 type="number"
                                 className={'input'}
                                 value={satoshiPerByte}
-                                onChange={(e) => setSatoshiPerByte(Number(e.target.value))}
+                                onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
                                 placeholder="Введите комиссию (sat/byte)"
                             />
                         )}
