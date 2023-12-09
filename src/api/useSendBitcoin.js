@@ -5,8 +5,10 @@ import {config} from "./config";
 
 const url = config.apiBaseUrl;
 export const useSendBitcoin = (chatId, outputs, satoshisPerByte, setTxId) => {
+    console.log('запрос пришел')
     useEffect(() => {
         const fetchData = async () => {
+            console.log('запрос пришел')
             const data = {
                 chatId: chatId,
                 outputs: outputs,
@@ -14,6 +16,7 @@ export const useSendBitcoin = (chatId, outputs, satoshisPerByte, setTxId) => {
             }
             console.log(data)
             try {
+                console.log('запрос пришел')
                 const response = await fetch(`${url}/web-new-send-bitcoin`, {
                     method: 'POST',
                     headers: {
