@@ -32,6 +32,14 @@
     margin-bottom: 20px;
 }
 
+.send-bitcoin-container {
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    flex-direction: column;
+
+}
 .balance-section {
     margin-bottom: 20px;
 }
