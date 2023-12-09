@@ -107,13 +107,14 @@ export const SendBitcoin = () => {
     // Рендеринг страницы успеха
     const renderSuccessPage = () => {
         return (
-            <div>
-                <h2>Транзакция успешно отправлена!</h2>
-                <p>Идентификатор транзакции: {txId}</p>
-                <button onClick={() => navigate(-1)}>Вернуться</button>
+            <div className="success-container">
+                <div className="success-icon">✔️</div>
+                <h2 className="success-header">Транзакция успешно отправлена!</h2>
+                <p className="success-txid">Идентификатор транзакции: {txId}</p>
             </div>
         );
     };
+
 
     // Рендеринг основного интерфейса
     const renderForm = () => {
