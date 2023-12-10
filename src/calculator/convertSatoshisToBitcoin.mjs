@@ -9,7 +9,7 @@ export function convertSatoshisToBitcoin(satoshis) {
 // Принимает биткоин, показывает сатоши
 export function convertBitcoinToSatoshis(bitcoins) {
     const SATOSHIS_PER_BITCOIN = 1e8; // 1 Bitcoin = 100 миллионов сатоши
-    return bitcoins * SATOSHIS_PER_BITCOIN;
+    return Math.round(bitcoins * SATOSHIS_PER_BITCOIN);
 }
 // Принимает биткоин, показывает рубли
 export async function convertBtcToRub(btc) {
