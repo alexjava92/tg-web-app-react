@@ -33,6 +33,7 @@
 }
 
 .send-bitcoin-container {
+    background: var(--tg-theme-secondary-bg-color);
     display: flex;
     max-width: 100%;
     margin: 0 auto;
