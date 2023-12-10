@@ -23,11 +23,10 @@ export async function convertBtcToRub(btc) {
     }
 }
 
-/*
-const btc1 = convertSatoshisToBitcoin(184732)
+/*const btc1 = convertSatoshisToBitcoin(22)
 console.log(btc1)
 
-const btc2 = convertBitcoinToSatoshis(0.00184732)
+const btc2 = convertBitcoinToSatoshis(btc1)
 console.log(btc2)
 
 // Пример использования
