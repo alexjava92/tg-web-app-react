@@ -41,25 +41,30 @@ export const SendBitcoin = () => {
 
 
     const handleBitcoinAmountChange = (e) => {
-        const inputValue = e.target.value.replace(',', '.'); // Заменяем запятые на точки
-        // Ограничиваем количество цифр после запятой до 8
-        const validInput = inputValue.match(/^-?\d*(\.\d{0,8})?/)[0];
+        const inputValue = e.target.value;
+        // Разрешаем вводить только цифры, точки и запятые
+        const validInput = inputValue.match(/^[\d.,]*$/);
 
-        if (validInput !== inputValue) {
-            e.target.value = validInput; // Устанавливаем корректное значение в поле ввода
-        }
+        if (validInput) {
+            const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
+            // Ограничиваем количество цифр после запятой до 8
+            const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
 
-        const amount = parseFloat(validInput); // Преобразование введенного значения в число
+            const amount = parseFloat(finalInput); // Преобразование введенного значения в число
 
-        // Проверка на NaN и сравнение с балансом
-        if (!isNaN(amount) && amount <= balanceToBtc) {
-            setBitcoinAmount(amount);
-        } else if (isNaN(amount)) {
-            setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+            // Проверка на NaN и сравнение с балансом
+            if (!isNaN(amount) && amount <= balanceToBtc) {
+                setBitcoinAmount(amount);
+            } else if (isNaN(amount)) {
+                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+            } else {
+                setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
+            }
         } else {
-            setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
+            e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
         }
     };
+
 
 
 
