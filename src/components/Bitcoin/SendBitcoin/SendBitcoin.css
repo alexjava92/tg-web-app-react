@@ -93,5 +93,5 @@ label {
 }
 .img_bitcoin {
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
