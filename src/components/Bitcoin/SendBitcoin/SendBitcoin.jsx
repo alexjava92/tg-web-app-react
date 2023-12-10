@@ -23,6 +23,7 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
+    const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
@@ -87,6 +88,9 @@ export const SendBitcoin = () => {
         setIsSending(false);
     };
 
+    useEffect(() => {
+        setBalanceToBtc(convertSatoshisToBitcoin(balance));
+    }, [balance]);
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
