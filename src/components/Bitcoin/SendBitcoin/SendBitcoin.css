@@ -103,7 +103,7 @@ label {
     justify-content: center;
     text-align: center;
     padding: 20px;
-    background-color: #fff; /* Белый фон, можно изменить на нужный цвет */
+    background-color: var(--tg-theme-bg-color); /* Белый фон, можно изменить на нужный цвет */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Небольшая тень для визуального выделения */
     margin: 20px;
@@ -115,7 +115,7 @@ label {
 }
 
 .error-container p {
-    color: #666; /* Темно-серый цвет для текста сообщения */
+    color: var(--tg-theme-text-color); /* Темно-серый цвет для текста сообщения */
 }
 
 .error-icon {
