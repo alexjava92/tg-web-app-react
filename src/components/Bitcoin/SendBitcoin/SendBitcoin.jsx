@@ -138,7 +138,7 @@ export const SendBitcoin = () => {
     });
 
     useEffect(() => {
-        if (bitcoinAmount !== '' && isValidAddress === true && satoshiPerByte !== '' ) {
+        if (bitcoinAmount !== '' && bitcoinAddress !== '' && isValidAddress === true && satoshiPerByte !== '' ) {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить ${bitcoinAmount}`
