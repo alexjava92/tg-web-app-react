@@ -18,7 +18,7 @@ import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 import {
     convertBitcoinToSatoshis,
     convertBtcToRub,
-    convertSatoshisToBitcoin
+    convertSatoshisToBitcoin, formatNumberWithSpaces
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 // В начале вашего файла компонента
 
@@ -121,7 +121,8 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchBalanceToRub = async () => {
             const convertedBalance = await convertBtcToRub(balanceToBtc);
-            setBalanceToRub(convertedBalance);
+
+            setBalanceToRub(formatNumberWithSpaces(convertedBalance));
         };
 
         fetchBalanceToRub();

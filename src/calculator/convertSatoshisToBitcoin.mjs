@@ -23,6 +23,10 @@ export async function convertBtcToRub(btc) {
         return null;
     }
 }
+// Устанавливает пробел между тысячами
+export function formatNumberWithSpaces(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
 /*const btc1 = convertSatoshisToBitcoin(222)
 console.log(btc1)
