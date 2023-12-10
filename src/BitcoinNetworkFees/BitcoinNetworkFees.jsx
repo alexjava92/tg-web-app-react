@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFees } from "./apiGetFees";
-import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
+import {fetchBitcoinPrices} from "../api/Blockchain/BlockchainRate.mjs";
+import {convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
 
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
@@ -12,8 +13,8 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
         const fetchFeesAndRates = async () => {
             try {
                 const feesData = await getFees();
-                const rates = await convertBtcToRub(1); // Получаем текущий курс BTC к RUB
-                setBtcToRubRate(rates);
+                const ratesData = await fetchBitcoinPrices(); // Получаем текущий курс BTC к RUB
+                setBtcToRubRate(ratesData.RUB.last);
 
                 const filteredFees = Object.entries(feesData)
                     .filter(([key]) => key !== 'minimumFee' && key !== 'halfHourFee')
@@ -27,7 +28,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                             label = 'Обычная';
                         }
                         const btcValue = convertSatoshisToBitcoin(value);
-                        const amountRub = btcValue * rates;
+                        const amountRub = btcValue * ratesData.RUB.last;
                         return {
                             label,
                             value,

@@ -20,5 +20,5 @@ export async function fetchBitcoinPrices() {
 
 // Использование функции
 /*fetchBitcoinPrices().then(prices => {
-    console.log(prices);
+    console.log(prices.RUB.last);
 });*/
