@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFees } from "./apiGetFees";
-import { convertSatoshisToBitcoin, convertBtcToRub } from "../api/Blockchain/BlockchainRate.mjs";
+import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
+
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
     const [fees, setFees] = useState([]);
