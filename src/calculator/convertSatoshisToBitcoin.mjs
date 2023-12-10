@@ -3,7 +3,8 @@ import {fetchBitcoinPrices} from "../api/Blockchain/BlockchainRate.mjs";
 // Принимает сатоши, показывает биткоин
 export function convertSatoshisToBitcoin(satoshis) {
     const BITCOINS_PER_SATOSHI = 1e-8; // 1 Bitcoin = 100 миллионов сатоши
-    return satoshis * BITCOINS_PER_SATOSHI;
+    const result = satoshis * BITCOINS_PER_SATOSHI;
+    return Math.round(result * 1e8) / 1e8;
 }
 // Принимает биткоин, показывает сатоши
 export function convertBitcoinToSatoshis(bitcoins) {
