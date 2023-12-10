@@ -202,7 +202,7 @@ export const SendBitcoin = () => {
                                 className={'input'}
                                 value={satoshiPerByte}
                                 onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
-                                placeholder="Введите комиссию (sat/byte)"
+                                placeholder="Введите комиссию минимум: 2 sat/byte "
                             />
                         )}
                     </div>
