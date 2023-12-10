@@ -64,14 +64,21 @@ label {
 }
 
 .h2 {
-    font-size: 2rem; /* Увеличение размера шрифта */
-    font-weight: bold; /* Жирный шрифт */
-    text-align: center; /* Центрирование текста */
+    font-size: 1.5rem; /* Размер шрифта */
+    font-weight: bold; /* Жирность текста */
+    text-align: center; /* Выравнивание текста */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    display: flex; /* Использование Flexbox */
+    flex-direction: column; /* Элементы выстраиваются в колонку */
+    align-items: center; /* Выравнивание элементов по центру */
     color: var(--tg-theme-text-color); /* Цвет текста */
-    margin-top: 20px; /* Верхний отступ */
-    margin-bottom: 20px; /* Нижний отступ */
-    padding: 10px; /* Внутренний отступ */
 }
+
+.h2 > div {
+    margin: 5px 0; /* Отступы для каждого div */
+    font-size: 1.2rem; /* Размер шрифта для баланса */
+}
+
 
 .invalid-text {
     color: red;
