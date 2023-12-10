@@ -184,7 +184,7 @@ export const SendBitcoin = () => {
         return (
 
             <div className={'send-bitcoin-container'}>
-                <div>
+                <div className={'img_bitcoin'}>
                     <img src={ExampleImage} width="70" height="70" alt="bitcoin" />
                 </div>
                 <div className={'body_second'}>

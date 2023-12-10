@@ -91,3 +91,7 @@ label {
     text-decoration: none; /* Убрать подчеркивание */
     margin-bottom: 10px;
 }
+.img_bitcoin {
+    display: flex;
+    align-items: center;
+}
