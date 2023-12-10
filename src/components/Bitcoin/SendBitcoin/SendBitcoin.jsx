@@ -219,16 +219,20 @@ export const SendBitcoin = () => {
                     </div>
                 </div>
                 <div className={'body_second'}>
-                    <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
-                    {isCustomFee && (
-                        <input
-                            type="number"
-                            className={'input'}
-                            value={satoshiPerByte}
-                            onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
-                            placeholder="Введите комиссию минимум: 2 (sat/byte)"
-                        />
-                    )}
+                    <div>
+                        <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
+                    </div>
+                    <div>
+                        {isCustomFee && (
+                            <input
+                                className={'input'}
+                                type="number"
+                                value={satoshiPerByte}
+                                onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
+                                placeholder="Введите комиссию минимум: 2 (sat/byte)"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         );
