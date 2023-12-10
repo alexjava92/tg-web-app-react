@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getFees } from "./apiGetFees";
 import {fetchBitcoinPrices} from "../api/Blockchain/BlockchainRate.mjs";
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
+import {logDOM} from "@testing-library/react";
 
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
@@ -12,6 +13,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
         const fetchFeesAndRates = async () => {
             try {
                 const feesData = await getFees();
+                console.log(feesData)
 
                 // Создаем массив промисов
                 const feesPromises = Object.entries(feesData)
@@ -27,6 +29,8 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                         }
                         const btcValue = convertSatoshisToBitcoin(value);
                         const amountRub = await convertBtcToRub(btcValue);
+                        console.log(btcValue)
+                        console.log(amountRub)
                         return {
                             label,
                             value,
