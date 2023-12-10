@@ -79,7 +79,15 @@ export const SendBitcoin = () => {
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
-        setSatoshiPerByte(selectedCommission);
+
+        // Проверяем, является ли введенное значение числом и больше ли оно или равно 2
+        const commissionValue = Number(selectedCommission);
+        if (!isNaN(commissionValue) && commissionValue >= 2) {
+            setSatoshiPerByte(commissionValue);
+        } else {
+            setSatoshiPerByte(2); // Устанавливаем минимальное значение, если введено некорректное
+        }
+
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
@@ -201,8 +209,15 @@ export const SendBitcoin = () => {
                                 type="number"
                                 className={'input'}
                                 value={satoshiPerByte}
-                                onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
-                                placeholder="Введите комиссию минимум: 2 sat/byte "
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    const onlyDigits = value.match(/^\d*$/); // Ограничиваем ввод только цифрами
+
+                                    if (onlyDigits) {
+                                        handleCommissionSelect(value);
+                                    }
+                                }}
+                                placeholder="Введите комиссию минимум: 2 sat/byte"
                             />
                         )}
                     </div>
