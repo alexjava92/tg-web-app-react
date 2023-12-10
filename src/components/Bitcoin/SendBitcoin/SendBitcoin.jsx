@@ -56,11 +56,11 @@ export const SendBitcoin = () => {
 
             const amount = parseFloat(finalInput); // Преобразование введенного значения в число
 
-            // Проверка на NaN, минимальное значение и сравнение с балансом
-            if (!isNaN(amount) && amount >= 0.000001 && amount <= balanceToBtc) {
+            // Проверка на NaN и сравнение с балансом
+            if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
-            } else if (isNaN(amount) || amount < 0.000001) {
-                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение или значение меньше минимально допустимого
+            } else if (isNaN(amount)) {
+                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
             } else {
                 setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
             }
@@ -79,15 +79,7 @@ export const SendBitcoin = () => {
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
-
-        // Проверяем, является ли введенное значение числом и больше ли оно или равно 2
-        const commissionValue = Number(selectedCommission);
-        if (!isNaN(commissionValue) && commissionValue >= 2) {
-            setSatoshiPerByte(commissionValue);
-        } else {
-            setSatoshiPerByte(2); // Устанавливаем минимальное значение, если введено некорректное
-        }
-
+        setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
@@ -177,7 +169,7 @@ export const SendBitcoin = () => {
         return (
             <div className={'send-bitcoin-container'}>
                 <div>
-                    <h2 className={'h2'}>Баланс: {balanceToBtc} </h2>
+                    <h2 className={'h2'}>Баланс кошелька: {balanceToBtc} </h2>
                 </div>
                 <div>
                     <input
@@ -187,7 +179,7 @@ export const SendBitcoin = () => {
                         value={bitcoinAmount}
                         min="0.000001"
                         max={balanceToBtc}
-                        placeholder="Сумма: минимум 0.000001"
+                        placeholder="Сумма"
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
@@ -209,15 +201,8 @@ export const SendBitcoin = () => {
                                 type="number"
                                 className={'input'}
                                 value={satoshiPerByte}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    const onlyDigits = value.match(/^\d*$/); // Ограничиваем ввод только цифрами
-
-                                    if (onlyDigits) {
-                                        handleCommissionSelect(value);
-                                    }
-                                }}
-                                placeholder="Введите комиссию минимум: 2 sat/byte"
+                                onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
+                                placeholder="Введите комиссию (sat/byte)"
                             />
                         )}
                     </div>
