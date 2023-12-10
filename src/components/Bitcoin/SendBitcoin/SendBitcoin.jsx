@@ -177,6 +177,7 @@ export const SendBitcoin = () => {
                         type="number"
                         id="bitcoinAmount"
                         value={bitcoinAmount}
+                        min="0.000001"
                         max={balanceToBtc}
                         placeholder="Сумма"
                         onChange={handleBitcoinAmountChange}
