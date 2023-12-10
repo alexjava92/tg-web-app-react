@@ -88,9 +88,7 @@ export const SendBitcoin = () => {
         setIsSending(false);
     };
 
-    useEffect(() => {
-        setBalanceToBtc(convertSatoshisToBitcoin(balance));
-    }, [balance]);
+
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
