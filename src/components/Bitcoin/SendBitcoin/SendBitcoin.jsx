@@ -13,7 +13,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import {ToastContainer} from "react-toastify";
 import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
-import {logDOM} from "@testing-library/react";
+import ExampleImage from '../../../img/bitcoin.png';
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 import {
     convertBitcoinToSatoshis,
@@ -185,7 +185,7 @@ export const SendBitcoin = () => {
             <div className={'send-bitcoin-container'}>
                 <div className={'body_second'}>
                     <h2 className="h2">
-                        <img src={'../../img/svg/bitcoin-logo.svg'} width="30" height="30" alt="Bitcoin Logo" />
+                        <img src={ExampleImage} width="45" height="45" alt="bitcoin" />
                         <div>{balanceToBtc} BTC</div>
                         <div>{balanceToRub} ₽</div>
                     </h2>
