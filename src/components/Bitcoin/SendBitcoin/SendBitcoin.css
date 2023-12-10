@@ -62,9 +62,15 @@ label {
     margin-top: 2px;
 
 }
+
 .h2 {
-    color: var(--tg-theme-text-color);
-    margin-top: 40px;
+    font-size: 2rem; /* Увеличение размера шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    text-align: center; /* Центрирование текста */
+    color: var(--tg-theme-text-color); /* Цвет текста */
+    margin-top: 20px; /* Верхний отступ */
+    margin-bottom: 20px; /* Нижний отступ */
+    padding: 10px; /* Внутренний отступ */
 }
 
 .invalid-text {
