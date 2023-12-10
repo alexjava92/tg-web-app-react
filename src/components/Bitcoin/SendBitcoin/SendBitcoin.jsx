@@ -23,8 +23,6 @@ import {
 // В начале вашего файла компонента
 
 
-
-
 const url = config.apiBaseUrl;
 export const SendBitcoin = () => {
     const {tg, chatId} = useTelegram();
@@ -140,7 +138,7 @@ export const SendBitcoin = () => {
     });
 
     useEffect(() => {
-        if (bitcoinAmount !== '' && bitcoinAddress !== '' && isValidAddress === true && satoshiPerByte !== '' ) {
+        if (bitcoinAmount !== '' && bitcoinAddress !== '' && isValidAddress === true && satoshiPerByte !== '') {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить ${bitcoinAmount}`
@@ -175,7 +173,7 @@ export const SendBitcoin = () => {
                         Посмотреть транзакцию
                     </a>
                 </div>
-                <ToastContainer />
+                <ToastContainer/>
             </div>
 
         );
@@ -187,11 +185,12 @@ export const SendBitcoin = () => {
 
             <div className={'send-bitcoin-container'}>
                 <div className={'img_bitcoin'}>
-                    <img src={ExampleImage} width="70" height="70" alt="bitcoin" />
+                    <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
                 </div>
                 <div className={'body_second'}>
                     <h2 className="h2">
-                        Баланс: {balanceToBtc} BTC
+                        <div>Баланс:</div>
+                        {balanceToBtc} BTC
                         <div>{balanceToRub} ₽</div>
                     </h2>
                 </div>
