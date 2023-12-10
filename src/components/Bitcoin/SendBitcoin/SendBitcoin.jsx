@@ -56,11 +56,11 @@ export const SendBitcoin = () => {
 
             const amount = parseFloat(finalInput); // Преобразование введенного значения в число
 
-            // Проверка на NaN и сравнение с балансом
-            if (!isNaN(amount) && amount <= balanceToBtc) {
+            // Проверка на NaN, минимальное значение и сравнение с балансом
+            if (!isNaN(amount) && amount >= 0.000001 && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
-            } else if (isNaN(amount)) {
-                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+            } else if (isNaN(amount) || amount < 0.000001) {
+                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение или значение меньше минимально допустимого
             } else {
                 setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
             }
