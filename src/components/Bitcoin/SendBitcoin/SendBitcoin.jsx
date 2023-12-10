@@ -182,8 +182,11 @@ export const SendBitcoin = () => {
     // Рендеринг основного интерфейса
     const renderForm = () => {
         return (
+
             <div className={'send-bitcoin-container'}>
-                <img className={'img'} src={ExampleImage} width="70" height="70" alt="bitcoin" />
+                <div>
+                    <img src={ExampleImage} width="70" height="70" alt="bitcoin" />
+                </div>
                 <div className={'body_second'}>
                     <h2 className="h2">
                         <div>{balanceToBtc} BTC</div>

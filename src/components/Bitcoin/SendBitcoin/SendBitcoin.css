@@ -74,9 +74,7 @@ label {
     color: var(--tg-theme-text-color); /* Цвет текста */
 }
 
-.img {
-    align-items: center; /* Выравнивание элементов по центру */
-}
+
 
 .h2 > div {
     margin: 5px 0; /* Отступы для каждого div */
