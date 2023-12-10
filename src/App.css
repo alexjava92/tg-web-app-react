@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Mono', monospace;;
   font-size: 14px;
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);

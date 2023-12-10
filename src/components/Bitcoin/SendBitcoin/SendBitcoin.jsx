@@ -189,8 +189,7 @@ export const SendBitcoin = () => {
                 </div>
                 <div className={'body_second'}>
                     <h2 className="h2">
-                        Баланс
-                        <div>{balanceToBtc} BTC</div>
+                        Баланс: {balanceToBtc} BTC
                         <div>{balanceToRub} ₽</div>
                     </h2>
                 </div>
