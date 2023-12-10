@@ -14,6 +14,7 @@ import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 import {logDOM} from "@testing-library/react";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
+import {convertBtcToRub} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 
 const url = config.apiBaseUrl;
@@ -36,6 +37,7 @@ export const SendBitcoin = () => {
 
     // Используем ваш хук для получения баланса
     useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
+
 
 
     const handleBitcoinAmountChange = (e) => {
@@ -85,7 +87,13 @@ export const SendBitcoin = () => {
         setIsSending(false);
     };
 
-    // Перенесенная логика из useSendBitcoin.js
+    useEffect(() => {
+        async function updateBalance() {
+            const convertedBalance = await convertBtcToRub(balance);
+            setBalance(convertedBalance);
+        }
+        updateBalance();
+    }, [balance]);
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных

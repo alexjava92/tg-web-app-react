@@ -28,8 +28,6 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                         };
                     });
                 setFees(filteredFees);
-                 // Устанавливаем первое значение по умолчанию
-                 // Вызываем onSelect с начальным значением // Устанавливаем первое значение по умолчанию
             } catch (error) {
                 console.error('Error fetching fees:', error);
             }
