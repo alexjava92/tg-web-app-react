@@ -179,7 +179,7 @@ export const SendBitcoin = () => {
                         value={bitcoinAmount}
                         min="0.000001"
                         max={balanceToBtc}
-                        placeholder="Сумма"
+                        placeholder="Сумма: минимум 0.000001"
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
