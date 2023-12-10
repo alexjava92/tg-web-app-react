@@ -28,7 +28,9 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                             label = 'Обычная';
                         }
                         const btcValue = convertSatoshisToBitcoin(value);
-                        const amountRub = btcValue * ratesData.RUB.last;
+                        console.log('btcValue', btcValue)
+                        const amountRub = btcValue * btcToRubRate;
+                        console.log('amountRub', amountRub)
                         return {
                             label,
                             value,
