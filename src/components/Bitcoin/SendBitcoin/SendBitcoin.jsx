@@ -60,7 +60,7 @@ export const SendBitcoin = () => {
             if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
             } else if (isNaN(amount)) {
-                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+                setBitcoinAmount('0.000001'); // Очистить поле, если введено некорректное значение
             } else {
                 setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
             }
@@ -179,7 +179,7 @@ export const SendBitcoin = () => {
                         value={bitcoinAmount}
                         min="0.000001"
                         max={balanceToBtc}
-                        placeholder="Сумма"
+                        placeholder="Сумма минимум 0.000001"
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
@@ -202,7 +202,7 @@ export const SendBitcoin = () => {
                                 className={'input'}
                                 value={satoshiPerByte}
                                 onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
-                                placeholder="Введите комиссию (sat/byte)"
+                                placeholder="Введите комиссию минимум: 2 (sat/byte)"
                             />
                         )}
                     </div>
