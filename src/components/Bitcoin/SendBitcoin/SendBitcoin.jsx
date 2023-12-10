@@ -3,6 +3,7 @@ import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
 import './SendBitcoin.css'
+import '../../../App.css'
 import {useGetBalanceUserWallet} from "../../../api/useGetBalanceUserWallet";
 import {config} from "../../../api/config";
 import {BitcoinNetworkFees} from "../../../BitcoinNetworkFees/BitcoinNetworkFees";
@@ -179,7 +180,7 @@ export const SendBitcoin = () => {
     const renderForm = () => {
         return (
             <div className={'send-bitcoin-container'}>
-                <div>
+                <div className={'body_second'}>
                     <h2 className="h2">
                         <div>{balanceToBtc} BTC</div>
                         <div>{balanceToRub} ₽</div>

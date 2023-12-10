@@ -11,3 +11,8 @@
 .Toastify__toast-container {
   background: transparent; /* Сделать фон прозрачным */
 }
+
+.body_second{
+  background: var(--tg-theme-secondary-bg-color);
+  border: 0,1px solid var(--tg-theme-link-color);
+}
