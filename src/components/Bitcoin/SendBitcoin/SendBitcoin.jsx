@@ -29,6 +29,7 @@ export const SendBitcoin = () => {
 
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
+    const [balanceToRub, setBalanceToRub] = useState('');
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
@@ -114,6 +115,16 @@ export const SendBitcoin = () => {
     }, [balance]);
 
     useEffect(() => {
+        const fetchBalanceToRub = async () => {
+            const convertedBalance = await convertBtcToRub(balanceToBtc);
+            setBalanceToRub(convertedBalance);
+        };
+
+        fetchBalanceToRub();
+    }, [balanceToBtc]); // добавил balanceToBtc в массив зависимостей
+
+
+    useEffect(() => {
         // Показываем кнопку назад после загрузки данных
         backButton.show();
     }, [backButton]);
@@ -169,7 +180,7 @@ export const SendBitcoin = () => {
         return (
             <div className={'send-bitcoin-container'}>
                 <div>
-                    <h2 className={'h2'}>Баланс кошелька: {balanceToBtc} </h2>
+                    <h2 className={'h2'}>Баланс кошелька: {balanceToBtc} {balanceToBtc}</h2>
                 </div>
                 <div>
                     <input
