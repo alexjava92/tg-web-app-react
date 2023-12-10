@@ -64,7 +64,7 @@ label {
 }
 .h2 {
     color: var(--tg-theme-text-color);
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .invalid-text {
