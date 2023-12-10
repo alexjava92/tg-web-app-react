@@ -195,26 +195,28 @@ export const SendBitcoin = () => {
                     </h2>
                 </div>
                 <div className={'body_second'}>
-                    <input
-                        className={'input'}
-                        type="number"
-                        id="bitcoinAmount"
-                        value={bitcoinAmount}
-                        min="0.000001"
-                        max={balanceToBtc}
-                        placeholder="Сумма минимум 0.000001"
-                        onChange={handleBitcoinAmountChange}
-                    />
-                </div>
-                <div className={'body_second'}>
-                    <input
-                        className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
-                        type="text"
-                        id="bitcoinAddress"
-                        value={bitcoinAddress}
-                        placeholder="Адрес"
-                        onChange={handleBitcoinAddressChange}
-                    />
+                    <div>
+                        <input
+                            className={'input'}
+                            type="number"
+                            id="bitcoinAmount"
+                            value={bitcoinAmount}
+                            min="0.000001"
+                            max={balanceToBtc}
+                            placeholder="Сумма минимум 0.000001"
+                            onChange={handleBitcoinAmountChange}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
+                            type="text"
+                            id="bitcoinAddress"
+                            value={bitcoinAddress}
+                            placeholder="Адрес"
+                            onChange={handleBitcoinAddressChange}
+                        />
+                    </div>
                 </div>
                 <div>
                     <div>
