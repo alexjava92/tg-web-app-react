@@ -16,7 +16,7 @@ export async function convertBtcToRub(btc) {
         const rates = await fetchBitcoinPrices(); // Дожидаемся выполнения запроса
         const rateRUB = rates.RUB.last; // Предполагаем, что курс находится в свойстве 'last'
         const amountRUB = btc * rateRUB; // Вычисляем итоговую сумму в рублях
-        return Math.round(amountRUB);
+        return amountRUB.toFixed(2);
     } catch (error) {
         console.error('Error fetching Bitcoin prices:', error);
         return null;
