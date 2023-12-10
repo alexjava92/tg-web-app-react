@@ -235,13 +235,13 @@ export const SendBitcoin = () => {
         );
     };
 
+    // Рендеринг страницы ошибки
     const renderErrorPage = () => {
         return (
             <div className="error-container">
                 <div className="error-icon">❌</div>
                 <h2>Ошибка при отправке</h2>
                 <p>Произошла ошибка при отправке Bitcoin. Пожалуйста, попробуйте снова.</p>
-                // Здесь можно добавить кнопки или другие элементы управления, если необходимо
             </div>
         );
     };
