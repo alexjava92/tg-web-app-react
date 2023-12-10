@@ -13,9 +13,10 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
             try {
                 const feesData = await getFees();
 
-                const filteredFees = Object.entries(feesData)
+                // Создаем массив промисов
+                const feesPromises = Object.entries(feesData)
                     .filter(([key]) => key !== 'minimumFee' && key !== 'halfHourFee')
-                    .map(([key, value]) => {
+                    .map(async ([key, value]) => {
                         let label;
                         if (key === 'fastestFee') {
                             label = 'Приоритет';
@@ -25,9 +26,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                             label = 'Обычная';
                         }
                         const btcValue = convertSatoshisToBitcoin(value);
-                        console.log('btcValue', btcValue)
-                        const amountRub = convertBtcToRub(btcValue);
-                        console.log('amountRub', amountRub)
+                        const amountRub = await convertBtcToRub(btcValue);
                         return {
                             label,
                             value,
@@ -35,6 +34,9 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                             amountRub: Math.round(amountRub)
                         };
                     });
+
+                // Ожидаем выполнения всех промисов
+                const filteredFees = await Promise.all(feesPromises);
                 setFees(filteredFees);
             } catch (error) {
                 console.error('Error fetching fees and rates:', error);
@@ -43,6 +45,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
 
         fetchFeesAndRates();
     }, []);
+
 
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
