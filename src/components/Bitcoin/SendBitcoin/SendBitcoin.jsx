@@ -39,7 +39,6 @@ export const SendBitcoin = () => {
     // Используем ваш хук для получения баланса
     useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
 
-    setBalance(convertSatoshisToBitcoin(balance));
 
     const handleBitcoinAmountChange = (e) => {
         const amount = parseFloat(e.target.value); // Преобразование введенного значения в число
@@ -88,7 +87,9 @@ export const SendBitcoin = () => {
         setIsSending(false);
     };
 
-
+    useEffect(() => {
+        setBalanceToBtc(convertSatoshisToBitcoin(balance));
+    }, [balance]);
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
