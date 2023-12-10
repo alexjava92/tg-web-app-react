@@ -75,7 +75,6 @@ label {
 }
 
 .img {
-    display: flex; /* Использование Flexbox */
     align-items: center; /* Выравнивание элементов по центру */
 }
 
