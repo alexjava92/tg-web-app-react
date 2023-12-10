@@ -20,6 +20,9 @@ import {
     convertBtcToRub,
     convertSatoshisToBitcoin
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
+// В начале вашего файла компонента
+import BitcoinLogo from '../../img/svg/bitcoin-logo.svg';
+
 
 
 const url = config.apiBaseUrl;
@@ -182,6 +185,7 @@ export const SendBitcoin = () => {
             <div className={'send-bitcoin-container'}>
                 <div className={'body_second'}>
                     <h2 className="h2">
+                        <div><BitcoinLogo width="30" height="30" /></div>
                         <div>{balanceToBtc} BTC</div>
                         <div>{balanceToRub} ₽</div>
                     </h2>
