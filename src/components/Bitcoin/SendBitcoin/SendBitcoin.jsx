@@ -41,6 +41,7 @@ export const SendBitcoin = () => {
     const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
     const [isSending, setIsSending] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
@@ -105,7 +106,7 @@ export const SendBitcoin = () => {
         console.log(updatedOutputs)
         setOutputs(updatedOutputs);
 
-        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent);
+        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent, setIsError);
 
         // Очищаем поля ввода
         setBitcoinAmount("");
@@ -234,11 +235,27 @@ export const SendBitcoin = () => {
         );
     };
 
+    const renderErrorPage = () => {
+        return (
+            <div className="error-container">
+                <div className="error-icon">❌</div>
+                <h2>Ошибка при отправке</h2>
+                <p>Произошла ошибка при отправке Bitcoin. Пожалуйста, попробуйте снова.</p>
+                // Здесь можно добавить кнопки или другие элементы управления, если необходимо
+            </div>
+        );
+    };
+
+
     return (
         <div>
-            {isLoading ? <LoadingSpinner/> : (isSending ?
-                <LoadingSpinner/> : (isSent ? renderSuccessPage() : renderForm()))}
+            {isLoading ? <LoadingSpinner/>
+                : isError ? renderErrorPage()
+                    : (isSending ? <LoadingSpinner/>
+                        : (isSent ? renderSuccessPage()
+                            : renderForm()))}
         </div>
     );
+
 };
 

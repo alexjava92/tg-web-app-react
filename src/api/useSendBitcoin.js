@@ -4,7 +4,7 @@ import {config} from "./config";
 
 
 const url = config.apiBaseUrl;
-export const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setTxId, setIsSent) => {
+export const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setTxId, setIsSent, setIsError) => {
     console.log('запрос пришел');
     const data = {
         chatId: chatId,
@@ -33,8 +33,10 @@ export const sendBitcoinToServer = async (chatId, outputs, satoshisPerByte, setT
 
         } else {
             console.error('Server returned an error:', response.status);
+            setIsError(true)
         }
     } catch (error) {
         console.error('Error fetching data from the server:', error);
+        setIsError(true)
     }
 };

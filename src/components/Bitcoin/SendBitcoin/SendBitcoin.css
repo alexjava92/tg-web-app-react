@@ -95,3 +95,30 @@ label {
     display: flex;
     justify-content: center;
 }
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff; /* Белый фон, можно изменить на нужный цвет */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Небольшая тень для визуального выделения */
+    margin: 20px;
+}
+
+.error-container h2 {
+    margin-top: 10px;
+    color: #d9534f; /* Темно-красный цвет для заголовка, указывающего на ошибку */
+}
+
+.error-container p {
+    color: #666; /* Темно-серый цвет для текста сообщения */
+}
+
+.error-icon {
+    font-size: 50px; /* Большой размер иконки */
+    color: #d9534f; /* Темно-красный цвет иконки */
+}
