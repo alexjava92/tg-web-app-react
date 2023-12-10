@@ -60,7 +60,7 @@ export const SendBitcoin = () => {
             if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
             } else if (isNaN(amount)) {
-                setBitcoinAmount('0.000001'); // Очистить поле, если введено некорректное значение
+                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
             } else {
                 setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
             }
