@@ -14,7 +14,11 @@ import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 import {logDOM} from "@testing-library/react";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
-import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {
+    convertBitcoinToSatoshis,
+    convertBtcToRub,
+    convertSatoshisToBitcoin
+} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 
 const url = config.apiBaseUrl;
@@ -65,10 +69,6 @@ export const SendBitcoin = () => {
         }
     };
 
-
-
-
-
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
@@ -89,8 +89,11 @@ export const SendBitcoin = () => {
         setIsSending(true);
         tg.MainButton.hide();
 
+        const bitcoinSatoshi = convertBitcoinToSatoshis(bitcoinAmount);
+        console.log('bitcoinSatoshi', bitcoinSatoshi)
+
         // Формируем новый объект для выхода
-        const newOutput = {address: bitcoinAddress, amount: parseFloat(bitcoinAmount)};
+        const newOutput = {address: bitcoinAddress, amount: parseFloat(bitcoinSatoshi)};
 
         // Массив outputs обновляем непосредственно перед отправкой данных
         const updatedOutputs = [newOutput];
