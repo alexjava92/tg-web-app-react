@@ -42,17 +42,25 @@ export const SendBitcoin = () => {
 
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value.replace(',', '.'); // Заменяем запятые на точки
-        const amount = parseFloat(inputValue); // Преобразование введенного значения в число
+        // Проверяем, что это число и ограничиваем количество цифр после запятой до 8
+        const isValidInput = /^-?\d*(\.\d{0,8})?$/.test(inputValue);
 
-        // Проверка на NaN и сравнение с балансом
-        if (!isNaN(amount) && amount <= balanceToBtc) {
-            setBitcoinAmount(amount);
-        } else if (isNaN(amount)) {
-            setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+        if (isValidInput) {
+            const amount = parseFloat(inputValue); // Преобразование введенного значения в число
+
+            // Проверка на NaN и сравнение с балансом
+            if (!isNaN(amount) && amount <= balanceToBtc) {
+                setBitcoinAmount(amount);
+            } else if (isNaN(amount)) {
+                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+            } else {
+                setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
+            }
         } else {
-            setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
+            setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
         }
     };
+
 
 
     const handleBitcoinAddressChange = async (e) => {
