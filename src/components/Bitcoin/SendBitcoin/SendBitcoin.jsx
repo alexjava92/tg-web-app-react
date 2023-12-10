@@ -194,7 +194,7 @@ export const SendBitcoin = () => {
                         <div>{balanceToRub} ₽</div>
                     </h2>
                 </div>
-                <div>
+                <div className={'body_second'}>
                     <input
                         className={'input'}
                         type="number"
@@ -206,7 +206,7 @@ export const SendBitcoin = () => {
                         onChange={handleBitcoinAmountChange}
                     />
                 </div>
-                <div>
+                <div className={'body_second'}>
                     <input
                         className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
                         type="text"
