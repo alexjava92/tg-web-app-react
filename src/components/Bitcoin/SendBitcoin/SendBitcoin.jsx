@@ -190,16 +190,16 @@ export const SendBitcoin = () => {
                     <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
-                <div className={'body_second'}>
-                    <BitcoinInput
-                        bitcoinAmount={bitcoinAmount}
-                        handleBitcoinAmountChange={handleBitcoinAmountChange}
-                        bitcoinAddress={bitcoinAddress}
-                        handleBitcoinAddressChange={handleBitcoinAddressChange}
-                        isValidAddress={isValidAddress}
-                        balanceToBtc={balanceToBtc}
-                    />
-                </div>
+
+                <BitcoinInput
+                    bitcoinAmount={bitcoinAmount}
+                    handleBitcoinAmountChange={handleBitcoinAmountChange}
+                    bitcoinAddress={bitcoinAddress}
+                    handleBitcoinAddressChange={handleBitcoinAddressChange}
+                    isValidAddress={isValidAddress}
+                    balanceToBtc={balanceToBtc}
+                />
+
                 <div className={'body_second'}>
                     <div>
                         <BitcoinNetworkFees onSelect={handleCommissionSelect}/>

@@ -1,9 +1,10 @@
 // BitcoinInput.js
 import React from 'react';
+import '../../../App.css'
 
 export const BitcoinInput = ({ bitcoinAmount, handleBitcoinAmountChange, bitcoinAddress, handleBitcoinAddressChange, isValidAddress, balanceToBtc }) => {
     return (
-        <>
+        <div className={'body_second'}>
             <div>
                 <input
                     className={'input'}
@@ -26,7 +27,7 @@ export const BitcoinInput = ({ bitcoinAmount, handleBitcoinAmountChange, bitcoin
                     onChange={handleBitcoinAddressChange}
                 />
             </div>
-        </>
+        </div>
     );
 };
 
