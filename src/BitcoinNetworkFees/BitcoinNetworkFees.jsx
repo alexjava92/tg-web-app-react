@@ -60,7 +60,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
 
     return (
         <div>
-            <select id="fee" value={selectedFee} onChange={handleSelectChange} className={'input'}>
+            <select id="fee" value={selectedFee} onChange={handleSelectChange} className={'select'}>
                 <option value="" disabled hidden>Выберите комиссию</option>
                 {fees.map(({ label, satPerByte, amountRub }, index) => (
                     <option key={index} value={satPerByte}>
