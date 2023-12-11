@@ -20,7 +20,7 @@ import {
     convertBtcToRub,
     convertSatoshisToBitcoin, formatNumberWithSpaces
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
-import { Balance } from '../Balance/Balance';
+import {Balance} from '../Balance/Balance';
 // В начале вашего файла компонента
 
 
@@ -189,9 +189,7 @@ export const SendBitcoin = () => {
                     <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
                 </div>
                 <div className={'body_second'}>
-                    <h2 className="h2">
-                        <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub} />
-                    </h2>
+                    <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
                 </div>
                 <div className={'body_second'}>
                     <div>
