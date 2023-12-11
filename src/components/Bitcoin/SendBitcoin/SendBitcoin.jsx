@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
@@ -47,10 +47,12 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
 
     // Используем ваш хук для получения баланса
-    useEffect(() => {
-        // Загрузка баланса пользователя
-        useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
-    }, [chatId]); // Зависимость от chatId, если баланс должен обновляться при изменении chatId
+    const handleLoaded = useCallback(() => {
+        // Логика после загрузки данных
+        setIsLoading(false);
+    }, []);
+
+    useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
 
 
     const handleCommissionSelect = (selectedCommission) => {
