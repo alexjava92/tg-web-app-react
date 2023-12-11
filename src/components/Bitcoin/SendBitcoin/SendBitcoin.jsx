@@ -47,8 +47,10 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
 
     // Используем ваш хук для получения баланса
-    useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
-
+    useEffect(() => {
+        // Загрузка баланса пользователя
+        useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
+    }, [chatId]); // Зависимость от chatId, если баланс должен обновляться при изменении chatId
 
 
 
