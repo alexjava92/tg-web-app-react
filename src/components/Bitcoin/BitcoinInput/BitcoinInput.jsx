@@ -4,13 +4,18 @@ import '../../../App.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 
 export const BitcoinInput = ({
+                                 index,
                                  bitcoinAmount,
                                  setBitcoinAmount,
                                  bitcoinAddress,
                                  setBitcoinAddress,
                                  setIsValidAddress,
                                  isValidAddress,
-                                 balanceToBtc
+                                 balanceToBtc,
+                                 addInput,
+                                 removeInput,
+                                 canRemove,
+
                              }) => {
 
     const handleBitcoinAmountChange = (e) => {
@@ -71,6 +76,10 @@ export const BitcoinInput = ({
                     onChange={handleBitcoinAddressChange}
                 />
             </div>
+            {canRemove && (
+                <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить этот ввод</span>
+            )}
+            <span className={'span_add'} onClick={addInput}>Добавить еще один адрес</span>
         </div>
     );
 };
