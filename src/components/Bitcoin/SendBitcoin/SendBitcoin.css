@@ -68,9 +68,6 @@ label {
 }
 
 
-.invalid-text {
-    color: red;
-}
 
 .transaction-link {
     color: var(--tg-theme-link-color); /* Цвет ссылки */
@@ -109,14 +106,7 @@ label {
     color: #d9534f; /* Темно-красный цвет иконки */
 }
 
-.span_delete {
-    display: flex;
-    font-size: 0.9rem;
-    cursor: pointer;
-    justify-content: flex-start;
-    color: var(--tg-theme-link-color);
-    margin-left: 25px;
-}
+
 
 .span_add {
     display: flex;

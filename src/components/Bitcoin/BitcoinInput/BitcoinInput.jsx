@@ -14,7 +14,6 @@ export const BitcoinInput = ({
                                  setIsValidAddress,
                                  isValidAddress,
                                  balanceToBtc,
-                                 addInput,
                                  removeInput,
                                  canRemove,
 

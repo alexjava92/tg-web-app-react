@@ -1,3 +1,12 @@
 .invalid-text {
     color: red;
 }
+
+.span_delete {
+    display: flex;
+    font-size: 0.9rem;
+    cursor: pointer;
+    justify-content: flex-start;
+    color: var(--tg-theme-link-color);
+    margin-left: 5px;
+}
