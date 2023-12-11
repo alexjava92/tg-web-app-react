@@ -130,8 +130,9 @@ export const SendBitcoin = () => {
             tg.MainButton.setParams({
                 text: `Отправить ${bitcoinAmount}`
             });
-        } else {
-            tg.MainButton.hide();
+        }
+        return () => {
+            tg.MainButton.hide()
         }
     }, [bitcoinAmount, bitcoinAddress, satoshiPerByte]);
 
