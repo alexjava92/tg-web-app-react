@@ -1,6 +1,7 @@
 // BitcoinInput.js
 import React from 'react';
 import '../../../App.css'
+import './BitcoinInput.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 
 export const BitcoinInput = ({
