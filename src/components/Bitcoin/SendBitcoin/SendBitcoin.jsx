@@ -63,6 +63,7 @@ export const SendBitcoin = () => {
     const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
 
     const onSendClick = async () => {
+        tg.MainButton.disable();
         // Проверьте, что все данные введены корректно
         if (bitcoinAmount && bitcoinAddress && satoshiPerByte) {
             // Вызов функции отправки биткоина из хука
@@ -109,7 +110,6 @@ export const SendBitcoin = () => {
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendClick)
-        tg.MainButton.disable();
         return () => {
             tg.MainButton.hide();
             tg.offEvent('mainButtonClicked', onSendClick)
