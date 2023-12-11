@@ -53,7 +53,6 @@ export const SendBitcoin = () => {
     }, [chatId]); // Зависимость от chatId, если баланс должен обновляться при изменении chatId
 
 
-
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
