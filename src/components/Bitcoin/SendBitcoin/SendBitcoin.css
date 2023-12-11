@@ -108,3 +108,19 @@ label {
     font-size: 50px; /* Большой размер иконки */
     color: #d9534f; /* Темно-красный цвет иконки */
 }
+
+.span_delete {
+    display: inline-block;
+    font-size: 0.5rem;
+    cursor: pointer;
+    justify-content: flex-start;
+    color: var(--tg-theme-link-color);
+}
+
+.span_add {
+    display: inline-block;
+    font-size: 0.5rem;
+    cursor: pointer;
+    justify-content: flex-end;
+    color: var(--tg-theme-link-color);
+}
