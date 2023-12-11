@@ -66,7 +66,9 @@ export const SendBitcoin = () => {
         newInputs[index] = newInput;
         setInputs(newInputs);
     };
-
+// Проверка, что все вводы корректны
+    const allInputsValid = inputs.every(input =>
+        input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress));
 
 
 
@@ -89,16 +91,15 @@ export const SendBitcoin = () => {
 
     const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
 
+    // Изменение функции onSendClick
     const onSendClick = async () => {
         tg.MainButton.disable();
-        // Проверьте, что все данные введены корректно
-        if (bitcoinAmount && bitcoinAddress && satoshiPerByte) {
-            // Вызов функции отправки биткоина из хука
-            await handleSendBitcoin(bitcoinAmount, bitcoinAddress, satoshiPerByte);
+        if (allInputsValid && satoshiPerByte) {
+            await handleSendBitcoin(inputs, satoshiPerByte);
             tg.MainButton.enable();
         } else {
+            console.log('Некорректные параметры');
             // Обработка ошибок или невалидных данных
-            console.log('параметры пустые')
         }
     };
 
@@ -121,14 +122,17 @@ export const SendBitcoin = () => {
         backButton.show();
     }, [backButton]);
 
+    // Обновление состояния кнопки в зависимости от вводов
     useEffect(() => {
-
+        if (allInputsValid && satoshiPerByte) {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Отправить ${bitcoinAmount}`
+                text: `Отправить`
             });
-
-    }, []);
+        } else {
+            tg.MainButton.hide();
+        }
+    }, [inputs, satoshiPerByte]);
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendClick)
