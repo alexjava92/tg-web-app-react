@@ -122,7 +122,7 @@ export const SendBitcoin = () => {
     }, [backButton]);
 
     useEffect(() => {
-        if (inputs !== '' && isValidAddress === true ) {
+        if (isValidAddress === true ) {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить ${bitcoinAmount}`
