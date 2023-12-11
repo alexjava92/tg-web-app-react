@@ -53,10 +53,8 @@ export const BitcoinInput = ({
         setIsValidAddress(isValid); // После проверки устанавливаем валидность
     };
 
-
-    useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
-    }, [isValidAddress, bitcoinAddress]);
+
 
 
     return (
