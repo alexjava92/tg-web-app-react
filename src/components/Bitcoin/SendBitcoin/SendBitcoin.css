@@ -110,16 +110,16 @@ label {
 }
 
 .span_delete {
-    display: inline-block;
-    font-size: 0.5rem;
+    display: flex;
+    font-size: 1rem;
     cursor: pointer;
     justify-content: flex-start;
     color: var(--tg-theme-link-color);
 }
 
 .span_add {
-    display: inline-block;
-    font-size: 0.5rem;
+    display: flex;
+    font-size: 1rem;
     cursor: pointer;
     justify-content: flex-end;
     color: var(--tg-theme-link-color);
