@@ -43,12 +43,14 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
 
 
+
+
     // Массив для хранения вводов
-    const [inputs, setInputs] = useState([{bitcoinAmount: '', bitcoinAddress: ''}]);
+    const [inputs, setInputs] = useState([{ bitcoinAmount: '', bitcoinAddress: '' }]);
 
     // Добавление нового ввода
     const addInput = () => {
-        setInputs([...inputs, {bitcoinAmount: '', bitcoinAddress: ''}]);
+        setInputs([...inputs, { bitcoinAmount: '', bitcoinAddress: '' }]);
     };
 
     // Удаление ввода
@@ -69,6 +71,8 @@ export const SendBitcoin = () => {
         input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress));
 
 
+
+
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
         // Логика после загрузки данных
@@ -85,7 +89,7 @@ export const SendBitcoin = () => {
 
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
-    const {handleSendBitcoin, txId, isSent, isSending, isError} = useSendBitcoin(chatId);
+    const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
 
     // Изменение функции onSendClick
     const onSendClick = async () => {
@@ -178,7 +182,7 @@ export const SendBitcoin = () => {
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
 
-                {/* <BitcoinInput
+               {/* <BitcoinInput
                     bitcoinAmount={bitcoinAmount}
                     setBitcoinAmount={setBitcoinAmount}
                     bitcoinAddress={bitcoinAddress}
@@ -193,24 +197,22 @@ export const SendBitcoin = () => {
                         <React.Fragment key={index}>
                             <BitcoinInput
                                 bitcoinAmount={input.bitcoinAmount}
-                                setBitcoinAmount={amount => updateInput(index, {...input, bitcoinAmount: amount})}
+                                setBitcoinAmount={amount => updateInput(index, { ...input, bitcoinAmount: amount })}
                                 bitcoinAddress={input.bitcoinAddress}
-                                setBitcoinAddress={address => updateInput(index, {...input, bitcoinAddress: address})}
+                                setBitcoinAddress={address => updateInput(index, { ...input, bitcoinAddress: address })}
                                 setIsValidAddress={setIsValidAddress}
                                 isValidAddress={isValidAddress}
                                 balanceToBtc={balanceToBtc}
                             />
-                            <div className={'body_second'}>
-                                {inputs.length > 1 && (
-                                    <span className={'span_delete'}
-                                          onClick={() => removeInput(index)}>Удалить вывод</span>
-                                )}
-                                <span className={'span_add'} onClick={addInput}>Добавить получателя</span>
-                            </div>
+                            {inputs.length > 1 && (
+                                <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>
+                            )}
                         </React.Fragment>
                     ))}
-
+                    <span className={'span_add'} onClick={addInput}>Добавить получателя</span>
                 </div>
+
+
 
 
                 <div className={'body_second'}>

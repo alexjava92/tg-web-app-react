@@ -111,7 +111,7 @@ label {
 
 .span_delete {
     display: flex;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     cursor: pointer;
     justify-content: flex-start;
     color: var(--tg-theme-link-color);
@@ -119,7 +119,7 @@ label {
 
 .span_add {
     display: flex;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     cursor: pointer;
     justify-content: flex-end;
     color: var(--tg-theme-link-color);
