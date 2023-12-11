@@ -21,6 +21,7 @@ import {
     convertSatoshisToBitcoin, formatNumberWithSpaces
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {Balance} from '../Balance/Balance';
+import {BitcoinInput} from "../BitcoinInput/BitcoinInput";
 // В начале вашего файла компонента
 
 
@@ -190,28 +191,14 @@ export const SendBitcoin = () => {
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
                 <div className={'body_second'}>
-                    <div>
-                        <input
-                            className={'input'}
-                            type="number"
-                            id="bitcoinAmount"
-                            value={bitcoinAmount}
-                            min="0.000001"
-                            max={balanceToBtc}
-                            placeholder="Сумма минимум 0.000001"
-                            onChange={handleBitcoinAmountChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
-                            type="text"
-                            id="bitcoinAddress"
-                            value={bitcoinAddress}
-                            placeholder="Адрес"
-                            onChange={handleBitcoinAddressChange}
-                        />
-                    </div>
+                    <BitcoinInput
+                        bitcoinAmount={bitcoinAmount}
+                        handleBitcoinAmountChange={handleBitcoinAmountChange}
+                        bitcoinAddress={bitcoinAddress}
+                        handleBitcoinAddressChange={handleBitcoinAddressChange}
+                        isValidAddress={isValidAddress}
+                        balanceToBtc={balanceToBtc}
+                    />
                 </div>
                 <div className={'body_second'}>
                     <div>
