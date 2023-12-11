@@ -9,7 +9,7 @@
     color: var(--tg-theme-text-color); /* Цвет текста */
 }
 
-.h2 > div {
+.balance {
     display: flex;
     justify-content: center;
     margin: 5px 0; /* Отступы для каждого div */
