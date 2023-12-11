@@ -50,38 +50,7 @@ export const SendBitcoin = () => {
     useGetBalanceUserWallet(chatId, setBalance, () => setIsLoading(false));
 
 
-    const handleBitcoinAmountChange = (e) => {
-        const inputValue = e.target.value;
-        // Разрешаем вводить только цифры, точки и запятые
-        const validInput = inputValue.match(/^[\d.,]*$/);
 
-        if (validInput) {
-            const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
-            // Ограничиваем количество цифр после запятой до 8
-            const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
-
-            const amount = parseFloat(finalInput); // Преобразование введенного значения в число
-
-            // Проверка на NaN и сравнение с балансом
-            if (!isNaN(amount) && amount <= balanceToBtc) {
-                setBitcoinAmount(amount);
-            } else if (isNaN(amount)) {
-                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
-            } else {
-                setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
-            }
-        } else {
-            e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
-        }
-    };
-
-    const handleBitcoinAddressChange = async (e) => {
-        const address = e.target.value;
-        const isValid = await isValidBitcoinAddress(address);
-        setIsValidAddress(isValid); // Обновление состояния валидности
-        setBitcoinAddress(address);
-        console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
-    };
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -193,9 +162,10 @@ export const SendBitcoin = () => {
 
                 <BitcoinInput
                     bitcoinAmount={bitcoinAmount}
-                    handleBitcoinAmountChange={handleBitcoinAmountChange}
+                    setBitcoinAmount={setBitcoinAmount}
                     bitcoinAddress={bitcoinAddress}
-                    handleBitcoinAddressChange={handleBitcoinAddressChange}
+                    setBitcoinAddress={setBitcoinAddress}
+                    setIsValidAddress={setIsValidAddress}
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />
