@@ -42,6 +42,35 @@ export const SendBitcoin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
 
+
+
+
+    // Массив для хранения вводов
+    const [inputs, setInputs] = useState([{ bitcoinAmount: '', bitcoinAddress: '' }]);
+
+    // Добавление нового ввода
+    const addInput = () => {
+        setInputs([...inputs, { bitcoinAmount: '', bitcoinAddress: '' }]);
+    };
+
+    // Удаление ввода
+    const removeInput = index => {
+        const newInputs = [...inputs];
+        newInputs.splice(index, 1);
+        setInputs(newInputs);
+    };
+
+    // Обновление конкретного ввода
+    const updateInput = (index, newInput) => {
+        const newInputs = [...inputs];
+        newInputs[index] = newInput;
+        setInputs(newInputs);
+    };
+
+
+
+
+
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
         // Логика после загрузки данных
@@ -158,6 +187,29 @@ export const SendBitcoin = () => {
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />
+
+                <div>
+                    {inputs.map((input, index) => (
+                        <React.Fragment key={index}>
+                            <BitcoinInput
+                                bitcoinAmount={input.bitcoinAmount}
+                                setBitcoinAmount={amount => updateInput(index, { ...input, bitcoinAmount: amount })}
+                                bitcoinAddress={input.bitcoinAddress}
+                                setBitcoinAddress={address => updateInput(index, { ...input, bitcoinAddress: address })}
+                                setIsValidAddress={setIsValidAddress}
+                                isValidAddress={isValidAddress}
+                                balanceToBtc={balanceToBtc}
+                            />
+                            {inputs.length > 1 && (
+                                <button onClick={() => removeInput(index)}>Удалить этот ввод</button>
+                            )}
+                        </React.Fragment>
+                    ))}
+                    <button onClick={addInput}>Добавить еще один адрес</button>
+                </div>
+
+
+
 
                 <div className={'body_second'}>
                     <div>
