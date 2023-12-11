@@ -22,6 +22,7 @@ import {
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {Balance} from '../Balance/Balance';
 import {BitcoinInput} from "../BitcoinInput/BitcoinInput";
+import {useSendBitcoin} from "../Hooks/useSendBitcoinHook";
 // В начале вашего файла компонента
 
 
@@ -38,10 +39,10 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [outputs, setOutputs] = useState([]);
-    const [txId, setTxId] = useState('')
+   /* const [txId, setTxId] = useState('')
     const [isSent, setIsSent] = useState(false);
     const [isSending, setIsSending] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState(false);*/
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
@@ -63,7 +64,9 @@ export const SendBitcoin = () => {
 
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
-    const handleSendBitcoin = async () => {
+    const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
+
+    /*const handleSendBitcoin = async () => {
         setIsSending(true);
         tg.MainButton.hide();
 
@@ -85,7 +88,7 @@ export const SendBitcoin = () => {
         setBitcoinAddress("");
         setSatoshiPerByte(0);
         setIsSending(false);
-    };
+    };*/
 
     useEffect(() => {
         setBalanceToBtc(convertSatoshisToBitcoin(balance));
@@ -100,7 +103,6 @@ export const SendBitcoin = () => {
 
         fetchBalanceToRub();
     }, [balanceToBtc]); // добавил balanceToBtc в массив зависимостей
-
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
