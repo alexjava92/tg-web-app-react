@@ -125,7 +125,8 @@ export const SendBitcoin = () => {
     }, [bitcoinAmount, bitcoinAddress, satoshiPerByte]);
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', handleSendBitcoin)
+        tg.onEvent('mainButtonClicked', handleSendBitcoin(bitcoinAddress, bitcoinAmount,
+            satoshiPerByte))
         return () => {
             tg.offEvent('mainButtonClicked', handleSendBitcoin)
         }
