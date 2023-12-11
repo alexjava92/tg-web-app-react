@@ -8,14 +8,16 @@ export const useSendBitcoin = (chatId) => {
     const [isSending, setIsSending] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    const handleSendBitcoin = async (bitcoinAmount, bitcoinAddress, satoshiPerByte) => {
+    const handleSendBitcoin = async (inputs, satoshiPerByte) => {
         setIsSending(true);
 
-        const bitcoinSatoshi = convertBitcoinToSatoshis(bitcoinAmount);
-        const newOutput = { address: bitcoinAddress, amount: parseFloat(bitcoinSatoshi) };
-        const updatedOutputs = [newOutput];
+        // Преобразовываем каждый ввод в формат, требуемый сервером
+        const outputs = inputs.map(input => ({
+            address: input.bitcoinAddress,
+            amount: parseFloat(convertBitcoinToSatoshis(input.bitcoinAmount)),
+        }));
 
-        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent, setIsError);
+        await sendBitcoinToServer(chatId, outputs, satoshiPerByte, setTxId, setIsSent, setIsError);
 
         setIsSending(false);
     };
