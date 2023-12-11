@@ -95,6 +95,8 @@ export const SendBitcoin = () => {
     const onSendClick = async () => {
         tg.MainButton.disable();
         if (allInputsValid && satoshiPerByte) {
+            console.log('inputs', inputs)
+            console.log('satoshiPerByte', satoshiPerByte)
             await handleSendBitcoin(inputs, satoshiPerByte);
             tg.MainButton.enable();
         } else {
