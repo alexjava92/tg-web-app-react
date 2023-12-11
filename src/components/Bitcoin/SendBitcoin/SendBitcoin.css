@@ -114,5 +114,5 @@ label {
     cursor: pointer;
     justify-content: flex-end;
     color: var(--tg-theme-link-color);
-    margin-right: 10px;
+    margin-right: 15px;
 }
