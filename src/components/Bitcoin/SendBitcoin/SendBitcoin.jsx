@@ -83,7 +83,7 @@ export const SendBitcoin = () => {
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
-        setSatoshiPerByte(selectedCommission);
+        setSatoshiPerByte((selectedCommission * 0.15).toString());
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
