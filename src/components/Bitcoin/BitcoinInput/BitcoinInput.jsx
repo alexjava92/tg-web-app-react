@@ -53,6 +53,7 @@ export const BitcoinInput = ({
         console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
     };
 
+    console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
 
     return (
         <div className={'body_second'}>
