@@ -50,6 +50,7 @@ export const BitcoinInput = ({
         setBitcoinAddress(address);
         const isValid = await isValidBitcoinAddress(address);
         setIsValidAddress(isValid);
+        setBitcoinAddress(address);
 
     };
 
