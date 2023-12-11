@@ -71,7 +71,7 @@ export const BitcoinInput = ({
             </div>
             <div>
                 <input
-                    className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
+                    className={`input ${!isValid ? 'invalid-text' : ''}`}
                     type="text"
                     id="bitcoinAddress"
                     value={bitcoinAddress}
