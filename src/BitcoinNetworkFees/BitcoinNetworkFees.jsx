@@ -8,6 +8,7 @@ import {logDOM} from "@testing-library/react";
 export const BitcoinNetworkFees = ({ onSelect }) => {
     const [fees, setFees] = useState([]);
     const [selectedFee, setSelectedFee] = useState('');
+    const [isCustomFee, setIsCustomFee] = useState(false);
 
     useEffect(() => {
         const fetchFeesAndRates = async () => {
@@ -54,6 +55,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedFee(selectedValue);
+        setIsCustomFee(selectedValue === 'custom');
         onSelect(selectedValue === 'custom' ? '' : selectedValue);
     };
 

@@ -39,13 +39,9 @@ export const SendBitcoin = () => {
     const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [outputs, setOutputs] = useState([]);
-   /* const [txId, setTxId] = useState('')
-    const [isSent, setIsSent] = useState(false);
-    const [isSending, setIsSending] = useState(false);
-    const [isError, setIsError] = useState(false);*/
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    const [isCustomFee, setIsCustomFee] = useState(false);
+    //const [isCustomFee, setIsCustomFee] = useState(false);
 
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
@@ -55,9 +51,7 @@ export const SendBitcoin = () => {
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
 
-
     const handleCommissionSelect = (selectedCommission) => {
-        setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
@@ -76,30 +70,6 @@ export const SendBitcoin = () => {
             console.log('параметры пустые')
         }
     };
-
-    /*const handleSendBitcoin = async () => {
-        setIsSending(true);
-        tg.MainButton.hide();
-
-        const bitcoinSatoshi = convertBitcoinToSatoshis(bitcoinAmount);
-        console.log('bitcoinSatoshi', bitcoinSatoshi)
-
-        // Формируем новый объект для выхода
-        const newOutput = {address: bitcoinAddress, amount: parseFloat(bitcoinSatoshi)};
-
-        // Массив outputs обновляем непосредственно перед отправкой данных
-        const updatedOutputs = [newOutput];
-        console.log(updatedOutputs)
-        setOutputs(updatedOutputs);
-
-        await sendBitcoinToServer(chatId, updatedOutputs, satoshiPerByte, setTxId, setIsSent, setIsError);
-
-        // Очищаем поля ввода
-        setBitcoinAmount("");
-        setBitcoinAddress("");
-        setSatoshiPerByte(0);
-        setIsSending(false);
-    };*/
 
     useEffect(() => {
         setBalanceToBtc(convertSatoshisToBitcoin(balance));
