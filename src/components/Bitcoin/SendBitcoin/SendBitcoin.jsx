@@ -68,6 +68,7 @@ export const SendBitcoin = () => {
         if (bitcoinAmount && bitcoinAddress && satoshiPerByte) {
             // Вызов функции отправки биткоина из хука
             await handleSendBitcoin(bitcoinAmount, bitcoinAddress, satoshiPerByte);
+            tg.MainButton.enable();
         } else {
             // Обработка ошибок или невалидных данных
             console.log('параметры пустые')
