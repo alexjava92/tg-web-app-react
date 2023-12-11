@@ -10,6 +10,8 @@
 }
 
 .h2 > div {
+    display: flex;
+    flex-direction: column;
     margin: 5px 0; /* Отступы для каждого div */
     font-size: 1.2rem; /* Размер шрифта для баланса */
     align-items: center; /* Выравнивание элементов по центру */
