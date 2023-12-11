@@ -47,14 +47,18 @@ export const BitcoinInput = ({
 
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
+        setBitcoinAddress(address); // Сначала устанавливаем адрес
+
         const isValid = await isValidBitcoinAddress(address);
-        setBitcoinAddress(address);
         setIsValidAddress(isValid);
 
 
     };
 
+    useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
+    }, [bitcoinAddress, isValidAddress]); // Следим за изменениями bitcoinAddress и isValidAddress
+
 
 
 
