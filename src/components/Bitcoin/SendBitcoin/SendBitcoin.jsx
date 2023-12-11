@@ -38,7 +38,6 @@ export const SendBitcoin = () => {
     const [bitcoinAmount, setBitcoinAmount] = useState('');
     const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
-    const [outputs, setOutputs] = useState([]);
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
@@ -50,7 +49,6 @@ export const SendBitcoin = () => {
     }, []);
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
-
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -94,10 +92,6 @@ export const SendBitcoin = () => {
         backButton.show();
     }, [backButton]);
 
-    backButton.onClick(() => {
-        navigate(-1);
-    });
-
     useEffect(() => {
         if (bitcoinAmount !== '' && bitcoinAddress !== '' && isValidAddress === true && satoshiPerByte !== '') {
             tg.MainButton.show();
@@ -116,6 +110,10 @@ export const SendBitcoin = () => {
             tg.offEvent('mainButtonClicked', onSendClick)
         }
     }, [onSendClick])
+
+    backButton.onClick(() => {
+        navigate(-1);
+    });
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
     // Рендеринг страницы успеха
