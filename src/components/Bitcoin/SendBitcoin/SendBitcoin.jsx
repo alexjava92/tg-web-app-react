@@ -66,6 +66,17 @@ export const SendBitcoin = () => {
 
     const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
 
+    const onSendClick = async () => {
+        // Проверьте, что все данные введены корректно
+        if (bitcoinAmount && bitcoinAddress && satoshiPerByte) {
+            // Вызов функции отправки биткоина из хука
+            await handleSendBitcoin(bitcoinAmount, bitcoinAddress, satoshiPerByte);
+        } else {
+            // Обработка ошибок или невалидных данных
+            console.log('параметры пустые')
+        }
+    };
+
     /*const handleSendBitcoin = async () => {
         setIsSending(true);
         tg.MainButton.hide();
@@ -125,12 +136,11 @@ export const SendBitcoin = () => {
     }, [bitcoinAmount, bitcoinAddress, satoshiPerByte]);
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', handleSendBitcoin(bitcoinAddress, bitcoinAmount,
-            satoshiPerByte))
+        tg.onEvent('mainButtonClicked', onSendClick)
         return () => {
-            tg.offEvent('mainButtonClicked', handleSendBitcoin)
+            tg.offEvent('mainButtonClicked', onSendClick)
         }
-    }, [handleSendBitcoin])
+    }, [onSendClick])
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
     // Рендеринг страницы успеха
