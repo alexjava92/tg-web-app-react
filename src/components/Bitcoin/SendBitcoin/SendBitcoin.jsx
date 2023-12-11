@@ -201,11 +201,11 @@ export const SendBitcoin = () => {
                                 balanceToBtc={balanceToBtc}
                             />
                             {inputs.length > 1 && (
-                                <button onClick={() => removeInput(index)}>Удалить этот ввод</button>
+                                <span onClick={() => removeInput(index)}>Удалить этот ввод</span>
                             )}
                         </React.Fragment>
                     ))}
-                    <button onClick={addInput}>Добавить еще один адрес</button>
+                    <span onClick={addInput}>Добавить еще один адрес</span>
                 </div>
 
 
