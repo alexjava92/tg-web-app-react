@@ -93,10 +93,11 @@ export const BitcoinInput = ({
                 />
             </div>
             {canRemove && (
-                <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить этот ввод</span>
+                <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>
             )}
-            <span className={'span_add'} onClick={addInput}>Добавить еще один адрес</span>
+
         </div>
+
     );
 };
 

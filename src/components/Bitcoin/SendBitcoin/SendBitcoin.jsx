@@ -43,7 +43,6 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
 
 
-
     // Массив для хранения вводов
     const [inputs, setInputs] = useState([{
         bitcoinAmount: '',
@@ -53,7 +52,7 @@ export const SendBitcoin = () => {
 
     // Добавление нового ввода
     const addInput = () => {
-        setInputs([...inputs, { bitcoinAmount: '', bitcoinAddress: '', isValidAddress: true }]);
+        setInputs([...inputs, {bitcoinAmount: '', bitcoinAddress: '', isValidAddress: true}]);
     };
 
     // Удаление ввода
@@ -74,8 +73,6 @@ export const SendBitcoin = () => {
         input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress));
 
 
-
-
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
         // Логика после загрузки данных
@@ -92,7 +89,7 @@ export const SendBitcoin = () => {
 
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
-    const { handleSendBitcoin, txId, isSent, isSending, isError } = useSendBitcoin(chatId);
+    const {handleSendBitcoin, txId, isSent, isSending, isError} = useSendBitcoin(chatId);
 
     // Изменение функции onSendClick
     const onSendClick = async () => {
@@ -185,7 +182,7 @@ export const SendBitcoin = () => {
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
 
-               {/* <BitcoinInput
+                {/* <BitcoinInput
                     bitcoinAmount={bitcoinAmount}
                     setBitcoinAmount={setBitcoinAmount}
                     bitcoinAddress={bitcoinAddress}
@@ -201,10 +198,10 @@ export const SendBitcoin = () => {
                             key={index}
                             index={index}
                             bitcoinAmount={input.bitcoinAmount}
-                            setBitcoinAmount={amount => updateInput(index, { ...input, bitcoinAmount: amount })}
+                            setBitcoinAmount={amount => updateInput(index, {...input, bitcoinAmount: amount})}
                             bitcoinAddress={input.bitcoinAddress}
-                            setBitcoinAddress={address => updateInput(index, { ...input, bitcoinAddress: address })}
-                            setIsValidAddress={isValid => updateInput(index, { ...input, isValidAddress: isValid })}
+                            setBitcoinAddress={address => updateInput(index, {...input, bitcoinAddress: address})}
+                            setIsValidAddress={isValid => updateInput(index, {...input, isValidAddress: isValid})}
                             isValidAddress={input.isValidAddress}
                             balanceToBtc={balanceToBtc}
                             addInput={addInput}
@@ -212,6 +209,7 @@ export const SendBitcoin = () => {
                             canRemove={inputs.length > 1}
                         />
                     ))}
+                    <span className={'span_add'} onClick={addInput}>Добавить получателя</span>
                 </div>
 
 
