@@ -48,8 +48,8 @@ export const BitcoinInput = ({
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
-        setIsValidAddress(isValid); // После проверки устанавливаем валидность
-        setBitcoinAddress(address); // Сначала устанавливаем адрес
+        setBitcoinAddress(address);
+        setIsValidAddress(isValid);
 
     };
 
