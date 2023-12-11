@@ -204,8 +204,8 @@ export const SendBitcoin = () => {
                             setBitcoinAmount={amount => updateInput(index, { ...input, bitcoinAmount: amount })}
                             bitcoinAddress={input.bitcoinAddress}
                             setBitcoinAddress={address => updateInput(index, { ...input, bitcoinAddress: address })}
-                            setIsValidAddress={setIsValidAddress}
-                            isValidAddress={isValid => updateInput(index, { ...input, isValidAddress: isValid })}
+                            setIsValidAddress={isValid => updateInput(index, { ...input, isValidAddress: isValid })}
+                            isValidAddress={input.isValidAddress}
                             balanceToBtc={balanceToBtc}
                             addInput={addInput}
                             removeInput={removeInput}
