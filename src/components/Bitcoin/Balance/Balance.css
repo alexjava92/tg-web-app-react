@@ -1,5 +1,5 @@
 .h2 {
-    font-size: 1.5rem; /* Размер шрифта */
+    font-size: 1.3rem; /* Размер шрифта */
     font-weight: bold; /* Жирность текста */
     text-align: center; /* Выравнивание текста */
     margin: 20px 0; /* Отступы сверху и снизу */
@@ -13,5 +13,5 @@
     display: flex;
     justify-content: center;
     margin: 5px 0; /* Отступы для каждого div */
-    font-size: 1.2rem; /* Размер шрифта для баланса */
+    font-size: 1rem; /* Размер шрифта для баланса */
 }
