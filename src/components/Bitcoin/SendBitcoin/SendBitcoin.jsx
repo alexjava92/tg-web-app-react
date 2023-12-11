@@ -212,9 +212,7 @@ export const SendBitcoin = () => {
                             canRemove={inputs.length > 1}
                         />
                     ))}
-                </div>>
-
-
+                </div>
 
 
                 <div className={'body_second'}>

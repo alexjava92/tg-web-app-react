@@ -47,8 +47,8 @@ export const BitcoinInput = ({
 
     const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
-        const isValid = await isValidBitcoinAddress(address);
         setBitcoinAddress(address);
+        const isValid = await isValidBitcoinAddress(address);
         setIsValidAddress(isValid);
 
     };
@@ -84,7 +84,7 @@ export const BitcoinInput = ({
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить этот ввод</span>
             )}
-            <span className={'span_add'} onClick={addInput}> Добавить еще один адрес</span>
+            <span className={'span_add'} onClick={addInput}>Добавить еще один адрес</span>
         </div>
     );
 };
