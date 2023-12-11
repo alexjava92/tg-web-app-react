@@ -2,9 +2,9 @@
     background-color: var(--tg-theme-secondary-bg-color); /* Фоновый цвет */
     color: var(--tg-theme-text-color); /* Цвет текста */
     border: 1px solid var(--tg-theme-hint-color); /* Цвет рамки */
-    padding: 10px; /* Отступы внутри */
+    padding: 5px; /* Отступы внутри */
     border-radius: 4px; /* Скругленные углы */
-    font-size: 1em; /* Размер шрифта */
+    font-size: 0.7em; /* Размер шрифта */
     cursor: pointer; /* Курсор в виде указателя */
 }
 
