@@ -178,7 +178,7 @@ export const SendBitcoin = () => {
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
 
-                <BitcoinInput
+               {/* <BitcoinInput
                     bitcoinAmount={bitcoinAmount}
                     setBitcoinAmount={setBitcoinAmount}
                     bitcoinAddress={bitcoinAddress}
@@ -186,7 +186,7 @@ export const SendBitcoin = () => {
                     setIsValidAddress={setIsValidAddress}
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
-                />
+                />*/}
 
                 <div>
                     {inputs.map((input, index) => (
