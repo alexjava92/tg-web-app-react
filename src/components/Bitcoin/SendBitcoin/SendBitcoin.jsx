@@ -109,6 +109,7 @@ export const SendBitcoin = () => {
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendClick)
+        tg.MainButton.disable();
         return () => {
             tg.MainButton.hide();
             tg.offEvent('mainButtonClicked', onSendClick)
