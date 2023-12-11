@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getFees } from "./apiGetFees";
-import {fetchBitcoinPrices} from "../api/Blockchain/BlockchainRate.mjs";
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
-import {logDOM} from "@testing-library/react";
+import './BitcoinNetworkFees.css'
+
+
 
 
 export const BitcoinNetworkFees = ({ onSelect }) => {
@@ -59,7 +60,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
 
     return (
         <div>
-            <select id="fee" value={selectedFee} onChange={handleSelectChange} className="select">
+            <select id="fee" value={selectedFee} onChange={handleSelectChange} className={'input'}>
                 <option value="" disabled hidden>Выберите комиссию</option>
                 {fees.map(({ label, satPerByte, amountRub }, index) => (
                     <option key={index} value={satPerByte}>
