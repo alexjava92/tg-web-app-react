@@ -1,5 +1,5 @@
 // BitcoinInput.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
@@ -53,7 +53,10 @@ export const BitcoinInput = ({
         console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
     };
 
-    console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
+    useEffect(() => {
+        console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
+    }, [isValidAddress, bitcoinAddress]);
+
 
     return (
         <div className={'body_second'}>
@@ -71,7 +74,7 @@ export const BitcoinInput = ({
             </div>
             <div>
                 <input
-                    className={`input ${!isValid ? 'invalid-text' : ''}`}
+                    className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
                     type="text"
                     id="bitcoinAddress"
                     value={bitcoinAddress}
