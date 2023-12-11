@@ -41,7 +41,7 @@ export const SendBitcoin = () => {
     const [outputs, setOutputs] = useState([]);
     const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    //const [isCustomFee, setIsCustomFee] = useState(false);
+    const [isCustomFee, setIsCustomFee] = useState(false);
 
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
@@ -51,7 +51,9 @@ export const SendBitcoin = () => {
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
 
+
     const handleCommissionSelect = (selectedCommission) => {
+        setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };

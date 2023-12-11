@@ -11,6 +11,7 @@ export async function isValidBitcoinAddress (address) {
     }
 };
 
+/*
 isValidBitcoinAddress('tb1q86c4pqdhusv5g7q5z90dv8enpke9n5273yyl8c').then(valid => {
     console.log(valid)
-})
+})*/
