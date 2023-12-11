@@ -115,7 +115,7 @@ label {
     cursor: pointer;
     justify-content: flex-start;
     color: var(--tg-theme-link-color);
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .span_add {
