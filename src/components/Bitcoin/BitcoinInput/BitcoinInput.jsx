@@ -1,5 +1,5 @@
 // BitcoinInput.js
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
@@ -45,13 +45,32 @@ export const BitcoinInput = ({
         }
     };
 
-    const handleBitcoinAddressChange = async (e) => {
+    /*const handleBitcoinAddressChange = async (e) => {
         const address = e.target.value;
         const isValid = await isValidBitcoinAddress(address);
         setIsValidAddress(isValid); // Обновление состояния валидности
         setBitcoinAddress(address);
         console.log(isValid ? "Адрес валиден." : "Невалидный адрес.");
+    };*/
+
+    const [tempAddress, setTempAddress] = useState('');
+
+    const handleBitcoinAddressChange = async (e) => {
+        const address = e.target.value;
+        setTempAddress(address); // Сохраняем введенный адрес во временном состоянии
     };
+
+    useEffect(() => {
+        const validateAddress = async () => {
+            const isValid = await isValidBitcoinAddress(tempAddress);
+            setIsValidAddress(isValid);
+            if (isValid) {
+                setBitcoinAddress(tempAddress); // Обновляем глобальное состояние адреса только если он валиден
+            }
+        };
+
+        validateAddress();
+    }, [tempAddress]); // useEffect зависит от tempAddress
 
     useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
@@ -85,7 +104,7 @@ export const BitcoinInput = ({
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить этот ввод</span>
             )}
-            <span className={'span_add'} onClick={addInput}>Добавить еще один адрес</span>
+            <span className={'span_add'} onClick={addInput}> Добавить еще один адрес</span>
         </div>
     );
 };
