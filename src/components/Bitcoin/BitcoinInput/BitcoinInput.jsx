@@ -66,8 +66,6 @@ export const BitcoinInput = ({
             } else if (!isNaN(amount) && amount <= balanceToBtc) {
                 setLastUpdatedByUserBitcoin(true);
             }
-        } else {
-            e.target.value = e.target.value.slice('', -1);
         }
     };
     const handleRubAmountChange = async (e) => {
