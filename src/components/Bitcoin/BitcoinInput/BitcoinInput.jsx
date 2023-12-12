@@ -4,7 +4,7 @@ import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
-import {convertBtcToRub, convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 export const BitcoinInput = ({
                                  index,
@@ -24,7 +24,7 @@ export const BitcoinInput = ({
 
 
 
-    const handleBitcoinAmountChange = async (e) => {
+    const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
         // Разрешаем вводить только цифры, точки и запятые
         const validInput = inputValue.match(/^[\d.,]*$/);
@@ -35,8 +35,7 @@ export const BitcoinInput = ({
             const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
 
             const amount = parseFloat(finalInput); // Преобразование введенного значения в число
-            const rubEquivalent = await convertBtcToRub(amount)
-            setRubAmount(rubEquivalent)
+
             // Проверка на NaN и сравнение с балансом
             if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
