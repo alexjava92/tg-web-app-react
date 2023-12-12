@@ -47,12 +47,18 @@ export const SendBitcoin = () => {
     const [inputs, setInputs] = useState([{
         bitcoinAmount: '',
         bitcoinAddress: '',
-        isValidAddress: true  // Новое свойство для каждого инпута
+        isValidAddress: true,  // Новое свойство для каждого инпута
+        rubAmount: '',
     }]);
 
     // Добавление нового ввода
     const addInput = () => {
-        setInputs([...inputs, {bitcoinAmount: '', bitcoinAddress: '', isValidAddress: true}]);
+        setInputs([...inputs, {
+            bitcoinAmount: '',
+            bitcoinAddress: '',
+            isValidAddress: true,
+            rubAmount: '',
+        }]);
     };
 
     // Удаление ввода
@@ -201,6 +207,8 @@ export const SendBitcoin = () => {
                             setBitcoinAddress={address => updateInput(index, {...input, bitcoinAddress: address})}
                             setIsValidAddress={isValid => updateInput(index, {...input, isValidAddress: isValid})}
                             isValidAddress={input.isValidAddress}
+                            rubAmount={input.rubAmount}
+                            setRubAmount={amount => updateInput(index, {...input, rubAmount: amount})}
                             balanceToBtc={balanceToBtc}
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}

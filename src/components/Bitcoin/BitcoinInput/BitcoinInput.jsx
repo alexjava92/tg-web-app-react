@@ -14,6 +14,8 @@ export const BitcoinInput = ({
                                  setBitcoinAddress,
                                  setIsValidAddress,
                                  isValidAddress,
+                                 rubAmount,
+                                 setRubAmount,
                                  balanceToBtc,
                                  removeInput,
                                  canRemove,
@@ -55,6 +57,7 @@ export const BitcoinInput = ({
         const rubAmount = e.target.value;
         const btcEquivalent = convertRubToBtc(rubAmount);
         setBitcoinAmount(btcEquivalent);
+        setRubAmount(rubAmount)
         // Обновление поля ввода рублей
         // ...
     };
@@ -95,6 +98,8 @@ export const BitcoinInput = ({
                 <input
                     className={'input'}
                     type="number"
+                    id="rubAmount"
+                    value={rubAmount}
                     // другие нужные пропсы
                     onChange={handleRubAmountChange}
                     placeholder="Сумма в рублях"
