@@ -60,22 +60,25 @@ export const BitcoinInput = ({
         if (validInput) {
             const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
             const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0]; // Ограничиваем количество цифр после запятой до 8
-            setBitcoinAmount(finalInput); // Устанавливаем введенное значение
 
-            if (finalInput !== '') {
-                const amount = parseFloat(finalInput); // Преобразование введенного значения в число
-                if (!isNaN(amount) && amount <= balanceToBtc) {
+            // Устанавливаем значение без прямой проверки на баланс
+            setBitcoinAmount(finalInput);
+
+            // Выполняем конвертацию и обновление поля рублей только если ввод является числом
+            if (finalInput !== '' && !isNaN(parseFloat(finalInput))) {
+                const amount = parseFloat(finalInput);
+                if (amount <= balanceToBtc) {
                     const rubEquivalent = await convertBtcToRub(amount);
                     setRubAmount(String(rubEquivalent)); // Обновляем рубли
-                } else if (isNaN(amount)){
-                    setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
-                    setRubAmount(''); // Очистить поле для рублей // Здесь может быть код для обработки ситуации, когда введенное значение больше баланса
+                } else {
+                    // Ситуация, когда введенная сумма больше баланса
+                    // Можно добавить какую-то логику здесь, например, предупреждение для пользователя
                 }
-            } else {
-                setRubAmount(''); // Очистить поле для рублей, если введенное значение пустое
+            } else if (finalInput === '') {
+                setRubAmount(''); // Очищаем поле рублей, если поле биткоинов пустое
             }
         } else {
-            e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
+            e.target.value = e.target.value.slice(0, -1); // Удаляем последний недопустимый символ
         }
     };
 
