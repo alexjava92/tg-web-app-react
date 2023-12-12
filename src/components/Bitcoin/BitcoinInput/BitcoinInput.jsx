@@ -22,7 +22,8 @@ export const BitcoinInput = ({
 
                              }) => {
 
-
+    const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
+    const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
 
     /*const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
@@ -74,6 +75,8 @@ export const BitcoinInput = ({
         } else {
             e.target.value = e.target.value.slice(0, -1);
         }
+        setLastUpdatedByUserBitcoin(true);
+        setLastUpdatedByUserRub(false);
     };
     const handleRubAmountChange = async (e) => {
         const rubValue = e.target.value;
@@ -85,6 +88,8 @@ export const BitcoinInput = ({
         console.log(rubValue)
 
         setRubAmount(rubValue);
+        setLastUpdatedByUserRub(true);
+        setLastUpdatedByUserBitcoin(false);
     };
 
     const handleBitcoinAddressChange = (e) => {
@@ -94,23 +99,23 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         const convert = async () => {
-            if (!isNaN(bitcoinAmount) && bitcoinAmount !== '') {
+            if (lastUpdatedByUserBitcoin) {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
-                setRubAmount(String(rubEquivalent)); // Обновляем состояние rubAmount
+                setRubAmount(String(rubEquivalent));
             }
         };
         convert();
-    }, [bitcoinAmount]); // Вызываем эффект при изменении bitcoinAmount
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin]); // Зависит от bitcoinAmount и lastUpdatedByUserBitcoin
 
     useEffect(() => {
         const convert = async () => {
-            if (!isNaN(rubAmount) && rubAmount.trim() !== '') {
+            if (lastUpdatedByUserRub) {
                 const btcEquivalent = await convertRubToBtc(rubAmount);
-                setBitcoinAmount(String(btcEquivalent)); // Обновляем состояние как строку
+                setBitcoinAmount(String(btcEquivalent));
             }
         };
         convert();
-    }, [rubAmount]); // Вызываем эффект при изменении rubAmount
+    }, [rubAmount, lastUpdatedByUserRub]); // Зависит от rubAmount и lastUpdatedByUserRub
 
     useEffect(() => {
         const validateAddress = async () => {
