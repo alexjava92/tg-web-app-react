@@ -213,8 +213,8 @@ export const SendBitcoin = () => {
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}
                             balance={balance}
-                            isValidAmount={input.isValidAmount}
-                            setIsValidAmount={isValid => updateInput(index, {...input, isValidAmount: isValid})}
+                            validBalance={input.validBalance}
+                            setValidBalance={isValid => updateInput(index, {...input, validBalance: isValid})}
                         />
                     ))}
                     <div className={'span_add_block'}>
