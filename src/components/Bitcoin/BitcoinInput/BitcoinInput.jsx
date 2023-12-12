@@ -4,7 +4,7 @@ import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
-import {convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertBtcToRub, convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 export const BitcoinInput = ({
                                  index,
@@ -24,8 +24,10 @@ export const BitcoinInput = ({
 
 
 
-    const handleBitcoinAmountChange = (e) => {
+    const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
+        const rubEquivalent = await convertBtcToRub(inputValue);
+        rubAmount(rubEquivalent);
         // Разрешаем вводить только цифры, точки и запятые
         const validInput = inputValue.match(/^[\d.,]*$/);
 
