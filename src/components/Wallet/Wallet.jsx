@@ -26,6 +26,7 @@ const Wallet = () => {
     }, [backButton]);
 
     const handleButtonClick = () => {
+        console.log(tg)
         tg.Popup.show({
             title: 'Заголовок',
             message: 'Текст сообщения',
