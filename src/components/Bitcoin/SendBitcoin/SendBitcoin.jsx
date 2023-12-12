@@ -75,7 +75,7 @@ export const SendBitcoin = () => {
     };
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress));
+        input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress) === true);
     console.log(allInputsValid)
 
 
