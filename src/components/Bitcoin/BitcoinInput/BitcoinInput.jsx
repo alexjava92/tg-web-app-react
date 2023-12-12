@@ -24,7 +24,7 @@ export const BitcoinInput = ({
 
 
 
-    const handleBitcoinAmountChange = async (e) => {
+    /*const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
         // Разрешаем вводить только цифры, точки и запятые
         const validInput = inputValue.match(/^[\d.,]*$/);
@@ -52,8 +52,32 @@ export const BitcoinInput = ({
         } else {
             e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
         }
-    };
+    };*/
+    const handleBitcoinAmountChange = async (e) => {
+        const inputValue = e.target.value;
+        const validInput = inputValue.match(/^[\d.,]*$/); // Разрешаем вводить только цифры, точки и запятые
 
+        if (validInput) {
+            const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
+            const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0]; // Ограничиваем количество цифр после запятой до 8
+            setBitcoinAmount(finalInput); // Устанавливаем введенное значение
+
+            if (finalInput !== '') {
+                const amount = parseFloat(finalInput); // Преобразование введенного значения в число
+                if (!isNaN(amount) && amount <= balanceToBtc) {
+                    const rubEquivalent = await convertBtcToRub(amount);
+                    setRubAmount(String(rubEquivalent)); // Обновляем рубли
+                } else if (isNaN(amount)){
+                    setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
+                    setRubAmount(''); // Очистить поле для рублей // Здесь может быть код для обработки ситуации, когда введенное значение больше баланса
+                }
+            } else {
+                setRubAmount(''); // Очистить поле для рублей, если введенное значение пустое
+            }
+        } else {
+            e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
+        }
+    };
 
     const handleRubAmountChange = async (e) => {
         const rubValue = e.target.value;
