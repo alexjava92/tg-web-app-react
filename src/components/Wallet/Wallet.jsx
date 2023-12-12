@@ -39,6 +39,9 @@ const Wallet = () => {
                 if (result.button_id === 'add_button') {
                     tg.HapticFeedback.notificationOccurred('success');
                 }
+                if (result.button_id === 'cancel_button') {
+                    tg.HapticFeedback.notificationOccurred('error');
+                }
             } else {
                 console.log('Пользователь закрыл попап без выбора');
             }
