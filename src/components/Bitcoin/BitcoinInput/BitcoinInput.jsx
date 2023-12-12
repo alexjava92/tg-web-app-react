@@ -53,6 +53,7 @@ export const BitcoinInput = ({
             e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
         }
     };*/
+
     const handleBitcoinAmountChange = async (e) => {
         const btcValue = e.target.value;
         if (!isNaN(btcValue) && btcValue.trim() !== '') {
@@ -81,15 +82,7 @@ export const BitcoinInput = ({
         const address = e.target.value;
         setBitcoinAddress(address); // Устанавливаем адрес в состояние сразу же
     };
-    useEffect(() => {
-        const convert = async () => {
-            if (!isNaN(bitcoinAmount) && bitcoinAmount.trim() !== '') {
-                const rubEquivalent = await convertBtcToRub(bitcoinAmount);
-                setBitcoinAmount(String(rubEquivalent)); // Обновляем состояние как строку
-            }
-        };
-        convert();
-    }, [bitcoinAmount]); // Вызываем эффект при изменении rubAmount
+
 
     useEffect(() => {
         const convert = async () => {
@@ -97,9 +90,13 @@ export const BitcoinInput = ({
                 const btcEquivalent = await convertRubToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent)); // Обновляем состояние как строку
             }
+            if (!isNaN(bitcoinAmount) && bitcoinAmount.trim() !== '') {
+                const rubEquivalent = await convertBtcToRub(bitcoinAmount);
+                setBitcoinAmount(String(rubEquivalent)); // Обновляем состояние как строку
+            }
         };
         convert();
-    }, [rubAmount]); // Вызываем эффект при изменении rubAmount
+    }, [rubAmount, bitcoinAmount]); // Вызываем эффект при изменении rubAmount
 
     useEffect(() => {
         const validateAddress = async () => {
