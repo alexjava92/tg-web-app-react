@@ -108,8 +108,6 @@ label {
 
 .span_add_block{
     display: flex;
-    font-size: 0.9rem;
-    cursor: pointer;
     justify-content: flex-end;
     margin-right: 15px;
 }
@@ -117,4 +115,6 @@ label {
 .span_add {
     display: inline-block;
     color: var(--tg-theme-link-color);
+    font-size: 0.9rem;
+    cursor: pointer;
 }

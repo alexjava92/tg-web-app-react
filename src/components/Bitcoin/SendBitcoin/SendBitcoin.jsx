@@ -32,6 +32,8 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
+    tg.ScanQrPopupParams()
+
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
     const [balanceToRub, setBalanceToRub] = useState('');
