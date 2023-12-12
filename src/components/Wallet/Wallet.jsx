@@ -30,7 +30,7 @@ const Wallet = () => {
             message: 'Текст сообщения',
             buttons: [
                 {id: 'ok_button', type: 'ok', text: 'Текст кнопки OK' },
-                {id: 'cancel_button', type: 'cancel', text: 'Текст кнопки отмены' }
+
             ]
         }).then((result) => {
             if (result) {
