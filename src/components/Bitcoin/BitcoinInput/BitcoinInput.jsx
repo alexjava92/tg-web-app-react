@@ -25,6 +25,8 @@ export const BitcoinInput = ({
                                  removeInput,
                                  canRemove,
                                  balance,
+                                 isValidAmount,
+                                 setIsValidAmount,
 
                              }) => {
 
@@ -97,8 +99,10 @@ export const BitcoinInput = ({
                 setRubAmount(String(rubEquivalent));
             } else if (satoshiBalance > balance) {
                 setValidBalance(false)
+                setIsValidAmount(false)
             } else if (satoshiBalance <= balance) {
                 setValidBalance(true)
+                setIsValidAmount(true)
             }
             setLastUpdatedByUserBitcoin(false);
         };
