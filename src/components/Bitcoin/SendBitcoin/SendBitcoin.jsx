@@ -75,7 +75,7 @@ export const SendBitcoin = () => {
     };
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress) === true);
+        input.bitcoinAmount && input.bitcoinAddress);
     console.log(allInputsValid)
 
 
@@ -136,7 +136,7 @@ export const SendBitcoin = () => {
 
     // Обновление состояния кнопки в зависимости от вводов
     useEffect(() => {
-        if (allInputsValid && satoshiPerByte) {
+        if (allInputsValid && satoshiPerByte && isValidBitcoinAddress(inputs.bitcoinAddress) === true) {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить`
