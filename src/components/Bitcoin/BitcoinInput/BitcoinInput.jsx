@@ -58,14 +58,12 @@ export const BitcoinInput = ({
             const formattedInput = validInput[0].replace(',', '.');
             const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
 
-            const amount = parseFloat(finalInput);
+            const amount = finalInput === '' ? '' : parseFloat(finalInput);
 
-            if (!isNaN(amount) && amount <= balanceToBtc) {
-                setBitcoinAmount(amount);
-                setLastUpdatedByUserBitcoin(true);
-            } else {
-                setBitcoinAmount('');
+            setBitcoinAmount(finalInput);
+            if (amount === '') {
                 setRubAmount('');
+            } else if (!isNaN(amount) && amount <= balanceToBtc) {
                 setLastUpdatedByUserBitcoin(true);
             }
         } else {
@@ -77,6 +75,9 @@ export const BitcoinInput = ({
         if (!isNaN(rubValue) && rubValue.trim() !== '') {
             setRubAmount(rubValue);
             setLastUpdatedByUserRub(true);
+        } else if (rubValue.trim() === '') {
+            setRubAmount('');
+            setBitcoinAmount('');
         }
     };
 
@@ -87,26 +88,25 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         const convert = async () => {
-            if (lastUpdatedByUserBitcoin) {
+            if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
-                setLastUpdatedByUserBitcoin(false);
             }
+            setLastUpdatedByUserBitcoin(false);
         };
         convert();
     }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
-            if (lastUpdatedByUserRub) {
+            if (lastUpdatedByUserRub && rubAmount !== '') {
                 const btcEquivalent = await convertRubToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent));
-                setLastUpdatedByUserRub(false);
             }
+            setLastUpdatedByUserRub(false);
         };
         convert();
     }, [rubAmount, lastUpdatedByUserRub]);
-
     useEffect(() => {
         const validateAddress = async () => {
             const isValid = await isValidBitcoinAddress(bitcoinAddress);
