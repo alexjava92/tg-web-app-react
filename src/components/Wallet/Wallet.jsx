@@ -30,8 +30,7 @@ const Wallet = () => {
         tg.showPopup({
             title: 'Заголовок',
             message: 'Текст сообщения',
-            ok_button_text: 'Текст кнопки OK',
-            cancel_button_text: 'Текст кнопки отмены'
+            buttons: 'ага'
         }).then((result) => {
             if (result) {
                 console.log('Пользователь нажал OK');
