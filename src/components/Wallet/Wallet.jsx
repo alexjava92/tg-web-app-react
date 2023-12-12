@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Wallet.css';
 import {useTelegram} from "../../hooks/useTelegram"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
-    { id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $' },
-    { id: 2, name: 'Доллары', amount: '4 948,58 USDT', usdValue: '4 949,55 $' },
-    { id: 3, name: 'Bitcoin', amount: '0,0001902 BTC', usdValue: '8,37 $' },
+    {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
+    {id: 2, name: 'Доллары', amount: '4 948,58 USDT', usdValue: '4 949,55 $'},
+    {id: 3, name: 'Bitcoin', amount: '0,0001902 BTC', usdValue: '8,37 $'},
 ];
 
 const dummyBalance = '4 957,92';
-
 
 
 const Wallet = () => {
@@ -30,8 +29,10 @@ const Wallet = () => {
             title: 'Заголовок',
             message: 'Текст сообщения',
             buttons: [
-                { type: 'ok', text: 'Текст кнопки OK' },
-                { type: 'cancel', text: 'Текст кнопки отмены' }
+                {id: 'ok_button', type: 'ok'},
+                {id: 'cancel_button', type: 'cancel'},
+                {id: 'add_button', type: 'default'},
+                {id: 'add_button', type: 'default'}
             ]
         }).then((result) => {
             if (result) {
@@ -42,6 +43,7 @@ const Wallet = () => {
         });
     };
 
+
     return (
         <div className="wallet">
             <div className="wallet-header">
@@ -49,19 +51,23 @@ const Wallet = () => {
                 <div className="balance">{dummyBalance} $</div>
                 <div className="actions">
                     <Link to="/send-bitcoin">
-                    <button onClick={() => {}}>Отправить</button>
+                        <button onClick={() => {
+                        }}>Отправить
+                        </button>
                     </Link>
                     <Link to="/bitcoin-address">
-                    <button onClick={() => {}}>Получить</button>
+                        <button onClick={() => {
+                        }}>Получить
+                        </button>
                     </Link>
                 </div>
             </div>
             <div className="currencies">
                 {dummyTransactions.map(transaction => (
                     <div className="currency" key={transaction.id}>
-                        <span >{transaction.name}</span>
-                        <span >{transaction.amount}</span>
-                        <span >{transaction.usdValue}</span>
+                        <span>{transaction.name}</span>
+                        <span>{transaction.amount}</span>
+                        <span>{transaction.usdValue}</span>
                     </div>
                 ))}
             </div>
