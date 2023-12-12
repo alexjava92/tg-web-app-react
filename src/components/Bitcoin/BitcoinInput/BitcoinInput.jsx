@@ -25,14 +25,14 @@ export const BitcoinInput = ({
                                  removeInput,
                                  canRemove,
                                  balance,
-                                 isValidAmount,
-                                 setIsValidAmount,
+                                 validBalance,
+                                 setValidBalance,
 
                              }) => {
 
     const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
-    const [validBalance, setValidBalance] = useState(true);
+   // const [validBalance, setValidBalance] = useState(true);
 
     /*const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
@@ -99,10 +99,10 @@ export const BitcoinInput = ({
                 setRubAmount(String(rubEquivalent));
             } else if (satoshiBalance > balance) {
                 setValidBalance(false)
-                setIsValidAmount(false)
+
             } else if (satoshiBalance <= balance) {
                 setValidBalance(true)
-                setIsValidAmount(true)
+
             }
             setLastUpdatedByUserBitcoin(false);
         };
