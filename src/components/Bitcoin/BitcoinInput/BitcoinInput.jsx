@@ -71,11 +71,7 @@ export const BitcoinInput = ({
         // Установка rubAmount независимо от того, является ли значение числом
         setRubAmount(rubValue);
 
-        if (rubValue.trim() === '') {
-            // Если поле пустое, обнуляем значения и флаги
-            setBitcoinAmount('');
-        } else if (!isNaN(rubValue)) {
-            // Если значение является числом, запускаем конвертацию
+        if (rubValue !== '') {
             setLastUpdatedByUserRub(true);
         }
     };
@@ -120,8 +116,6 @@ export const BitcoinInput = ({
     useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
     }, [bitcoinAddress, isValidAddress]); // Следим за изменениями bitcoinAddress и isValidAddress
-
-
 
 
     return (
