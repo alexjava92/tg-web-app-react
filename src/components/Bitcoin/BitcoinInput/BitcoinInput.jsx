@@ -125,9 +125,7 @@ export const BitcoinInput = ({
             validateAddress();
         }
     }, [bitcoinAddress]);
-    useEffect(() => {
-        onBalanceChange(validBalance);
-    }, [validBalance, onBalanceChange]);
+
 
     useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
