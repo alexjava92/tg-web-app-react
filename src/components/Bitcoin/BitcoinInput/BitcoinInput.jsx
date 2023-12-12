@@ -5,6 +5,7 @@ import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 import {convertBtcToRub, convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {logDOM} from "@testing-library/react";
 
 export const BitcoinInput = ({
                                  index,
@@ -85,6 +86,7 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         const convert = async () => {
+            console.log(balance)
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
