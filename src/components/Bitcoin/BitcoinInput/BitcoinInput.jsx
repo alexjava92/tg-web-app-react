@@ -4,6 +4,7 @@ import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
+import {convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 export const BitcoinInput = ({
                                  index,
@@ -49,6 +50,15 @@ export const BitcoinInput = ({
         setBitcoinAddress(address); // Устанавливаем адрес в состояние сразу же
     };
 
+    const handleRubAmountChange = (e) => {
+        // Конвертация рублей в биткоины и обновление состояния
+        const rubAmount = e.target.value;
+        const btcEquivalent = convertRubToBtc(rubAmount);
+        setBitcoinAmount(btcEquivalent);
+        // Обновление поля ввода рублей
+        // ...
+    };
+
     useEffect(() => {
         const validateAddress = async () => {
             const isValid = await isValidBitcoinAddress(bitcoinAddress);
@@ -79,6 +89,15 @@ export const BitcoinInput = ({
                     max={balanceToBtc}
                     placeholder="Сумма минимум 0.000001"
                     onChange={handleBitcoinAmountChange}
+                />
+            </div>
+            <div>
+                <input
+                    className={'input'}
+                    type="number"
+                    // другие нужные пропсы
+                    onChange={handleRubAmountChange}
+                    placeholder="Сумма в рублях"
                 />
             </div>
             <div>
