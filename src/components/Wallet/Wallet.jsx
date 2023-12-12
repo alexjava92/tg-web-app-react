@@ -29,17 +29,19 @@ const Wallet = () => {
             title: 'Заголовок',
             message: 'Текст сообщения',
             buttons: [
-                {id: 'ok_button', type: 'ok', text: 'Текст кнопки OK' },
-
+                { id: 'ok_button', type: 'ok' },
+                { id: 'cancel_button', type: 'cancel' },
+                { id: 'add_button', type: 'default'}
             ]
-        }).then((result) => {
+        }, function(result) {
             if (result) {
                 console.log('Пользователь нажал кнопку:', result);
+            } else {
+                console.log('Пользователь закрыл попап без выбора');
             }
-        }).catch((error) => {
-            console.error('Ошибка:', error);
         });
     };
+
 
 
     return (
