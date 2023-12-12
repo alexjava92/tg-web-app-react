@@ -25,6 +25,7 @@ export const BitcoinInput = ({
                                  removeInput,
                                  canRemove,
                                  balance,
+                                 onBalanceChange,
 
                              }) => {
 
@@ -104,7 +105,6 @@ export const BitcoinInput = ({
         };
         convert();
     }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
-
     useEffect(() => {
         const convert = async () => {
             if (lastUpdatedByUserRub && rubAmount !== '') {
@@ -125,6 +125,9 @@ export const BitcoinInput = ({
             validateAddress();
         }
     }, [bitcoinAddress]);
+    useEffect(() => {
+        onBalanceChange(validBalance);
+    }, [validBalance, onBalanceChange]);
 
     useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);

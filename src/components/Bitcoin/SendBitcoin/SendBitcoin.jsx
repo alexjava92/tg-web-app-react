@@ -39,6 +39,7 @@ export const SendBitcoin = () => {
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
+    const [isValidBalances, setIsValidBalances] = useState([]);
 
 
     // Массив для хранения вводов
@@ -73,8 +74,12 @@ export const SendBitcoin = () => {
         setInputs(newInputs);
     };
 // Проверка, что все вводы корректны
-    const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress && isValidBitcoinAddress(input.bitcoinAddress));
+    const allInputsValid = inputs.every((input, index) =>
+        input.bitcoinAmount &&
+        input.bitcoinAddress &&
+        isValidBitcoinAddress(input.bitcoinAddress) &&
+        isValidBalances[index]
+    );
 
 
     // Используем ваш хук для получения баланса
@@ -84,6 +89,12 @@ export const SendBitcoin = () => {
     }, []);
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
+
+    const handleBalanceChange = (index, isValid) => {
+        let newValidBalances = [...isValidBalances];
+        newValidBalances[index] = isValid;
+        setIsValidBalances(newValidBalances);
+    };
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -211,6 +222,7 @@ export const SendBitcoin = () => {
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}
                             balance={balance}
+                            onBalanceChange={(isValid) => handleBalanceChange(index, isValid)}
                         />
                     ))}
                     <div className={'span_add_block'}>
