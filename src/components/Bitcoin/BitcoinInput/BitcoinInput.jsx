@@ -76,7 +76,6 @@ export const BitcoinInput = ({
         if (rubValue.trim() === '') {
             // Если поле пустое, обнуляем значения и флаги
             setBitcoinAmount('');
-            setLastUpdatedByUserRub(false);
         } else if (!isNaN(rubValue)) {
             // Если значение является числом, запускаем конвертацию
             setLastUpdatedByUserRub(true);
