@@ -62,36 +62,22 @@ export const BitcoinInput = ({
 
             if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
-                const rubEquivalent = await convertBtcToRub(amount);
-                setRubAmount(rubEquivalent);
                 setLastUpdatedByUserBitcoin(true);
-
-            } else if (isNaN(amount)) {
+            } else {
                 setBitcoinAmount('');
                 setRubAmount('');
-                setLastUpdatedByUserRub(false);
-            } else {
-                setBitcoinAmount(balanceToBtc);
-                const rubEquivalent = await convertBtcToRub(balanceToBtc);
-                setRubAmount(rubEquivalent);
+                setLastUpdatedByUserBitcoin(true);
             }
         } else {
             e.target.value = e.target.value.slice(0, -1);
         }
-
     };
     const handleRubAmountChange = async (e) => {
         const rubValue = e.target.value;
         if (!isNaN(rubValue) && rubValue.trim() !== '') {
-            const btcEquivalent = await convertRubToBtc(rubValue);
-            setBitcoinAmount(btcEquivalent);
-            console.log(btcEquivalent)
+            setRubAmount(rubValue);
+            setLastUpdatedByUserRub(true);
         }
-        console.log(rubValue)
-
-        setRubAmount(rubValue);
-        setLastUpdatedByUserRub(true);
-        setLastUpdatedByUserBitcoin(false);
     };
 
     const handleBitcoinAddressChange = (e) => {
@@ -108,7 +94,7 @@ export const BitcoinInput = ({
             }
         };
         convert();
-    }, [bitcoinAmount, lastUpdatedByUserBitcoin]); // Зависит от bitcoinAmount и lastUpdatedByUserBitcoin
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
@@ -119,7 +105,7 @@ export const BitcoinInput = ({
             }
         };
         convert();
-    }, [rubAmount, lastUpdatedByUserRub]); // Зависит от rubAmount и lastUpdatedByUserRub
+    }, [rubAmount, lastUpdatedByUserRub]);
 
     useEffect(() => {
         const validateAddress = async () => {
