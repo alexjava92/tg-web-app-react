@@ -32,7 +32,6 @@ const Wallet = () => {
                 {id: 'ok_button', type: 'ok'},
                 {id: 'cancel_button', type: 'cancel'},
                 {id: 'add_button', type: 'default'},
-                {id: 'add_button', type: 'default'}
             ]
         }).then((result) => {
             if (result) {
