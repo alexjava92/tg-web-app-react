@@ -22,6 +22,8 @@ export const BitcoinInput = ({
 
                              }) => {
 
+
+
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
         // Разрешаем вводить только цифры, точки и запятые
@@ -47,20 +49,21 @@ export const BitcoinInput = ({
         }
     };
 
+    const handleRubAmountChange = async (e) => {
+        const rubValue = e.target.value;
+        if (!isNaN(rubValue) && rubValue.trim() !== '') {
+            const btcEquivalent = await convertRubToBtc(rubValue);
+            setBitcoinAmount(btcEquivalent);
+        }
+        setRubAmount(rubValue);
+    };
+
     const handleBitcoinAddressChange = (e) => {
         const address = e.target.value;
         setBitcoinAddress(address); // Устанавливаем адрес в состояние сразу же
     };
 
-    const handleRubAmountChange = (e) => {
-        // Конвертация рублей в биткоины и обновление состояния
-        const rubAmount = e.target.value;
-        const btcEquivalent = convertRubToBtc(rubAmount);
-        setBitcoinAmount(btcEquivalent);
-        setRubAmount(rubAmount)
-        // Обновление поля ввода рублей
-        // ...
-    };
+
 
     useEffect(() => {
         const validateAddress = async () => {
