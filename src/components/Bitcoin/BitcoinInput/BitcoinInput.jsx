@@ -67,7 +67,7 @@ export const BitcoinInput = ({
                 setLastUpdatedByUserBitcoin(true);
             }
         } else {
-            e.target.value = e.target.value.slice(0, -1);
+            e.target.value = e.target.value.slice('', -1);
         }
     };
     const handleRubAmountChange = async (e) => {
