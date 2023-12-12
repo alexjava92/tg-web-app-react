@@ -4,7 +4,11 @@ import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
-import {convertBtcToRub, convertRubToBtc} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {
+    convertBitcoinToSatoshis,
+    convertBtcToRub,
+    convertRubToBtc
+} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {logDOM} from "@testing-library/react";
 
 export const BitcoinInput = ({
@@ -87,12 +91,13 @@ export const BitcoinInput = ({
     useEffect(() => {
         const convert = async () => {
             console.log(balance)
+            const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount)
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
-            } else if (bitcoinAmount > balance){
+            } else if (satoshiBalance > balance){
                 setValidBalance(false)
-            }else if (bitcoinAmount <= balance){
+            }else if (satoshiBalance <= balance){
                 setValidBalance(true)
             }
             setLastUpdatedByUserBitcoin(false);
