@@ -54,7 +54,10 @@ export const BitcoinInput = ({
         if (!isNaN(rubValue) && rubValue.trim() !== '') {
             const btcEquivalent = await convertRubToBtc(rubValue);
             setBitcoinAmount(btcEquivalent);
+            console.log(btcEquivalent)
         }
+        console.log(rubValue)
+
         setRubAmount(rubValue);
     };
 
