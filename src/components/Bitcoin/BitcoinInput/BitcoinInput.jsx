@@ -61,8 +61,8 @@ export const BitcoinInput = ({
             const amount = finalInput === '' ? '' : parseFloat(finalInput);
 
             setBitcoinAmount(finalInput);
-            if (amount === '') {
-                setRubAmount('');
+            if (amount === 0) {
+                setRubAmount(0);
             } else if (!isNaN(amount) && amount <= balanceToBtc) {
                 setLastUpdatedByUserBitcoin(true);
             }
@@ -73,9 +73,9 @@ export const BitcoinInput = ({
         if (!isNaN(rubValue) && rubValue.trim() !== '') {
             setRubAmount(rubValue);
             setLastUpdatedByUserRub(true);
-        } else if (rubValue.trim() === '') {
-            setRubAmount('');
-            setBitcoinAmount('');
+        } else if (rubValue.trim() === 0) {
+            setRubAmount(0);
+            setBitcoinAmount(0);
         }
     };
 
