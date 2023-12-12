@@ -65,10 +65,11 @@ export const BitcoinInput = ({
                 const rubEquivalent = await convertBtcToRub(amount);
                 setRubAmount(rubEquivalent);
                 setLastUpdatedByUserBitcoin(true);
-                setLastUpdatedByUserRub(false);
+
             } else if (isNaN(amount)) {
                 setBitcoinAmount('');
                 setRubAmount('');
+                setLastUpdatedByUserRub(false);
             } else {
                 setBitcoinAmount(balanceToBtc);
                 const rubEquivalent = await convertBtcToRub(balanceToBtc);
@@ -103,6 +104,7 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserBitcoin) {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
+                setLastUpdatedByUserBitcoin(false);
             }
         };
         convert();
@@ -113,6 +115,7 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserRub) {
                 const btcEquivalent = await convertRubToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent));
+                setLastUpdatedByUserRub(false);
             }
         };
         convert();
