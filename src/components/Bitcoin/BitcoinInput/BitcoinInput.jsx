@@ -55,31 +55,14 @@ export const BitcoinInput = ({
     };*/
     const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
-        const validInput = inputValue.match(/^[\d.,]*$/); // Разрешаем вводить только цифры, точки и запятые
-
-        if (validInput) {
-            const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
-            const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0]; // Ограничиваем количество цифр после запятой до 8
-
-            // Устанавливаем значение без прямой проверки на баланс
-            setBitcoinAmount(finalInput);
-
-            // Выполняем конвертацию и обновление поля рублей только если ввод является числом
-            if (finalInput !== '' && !isNaN(parseFloat(finalInput))) {
-                const amount = parseFloat(finalInput);
-                if (amount <= balanceToBtc) {
-                    const rubEquivalent = await convertBtcToRub(amount);
-                    setRubAmount(String(rubEquivalent)); // Обновляем рубли
-                } else {
-                    // Ситуация, когда введенная сумма больше баланса
-                    // Можно добавить какую-то логику здесь, например, предупреждение для пользователя
-                }
-            } else if (finalInput === '') {
-                setRubAmount(''); // Очищаем поле рублей, если поле биткоинов пустое
-            }
-        } else {
-            e.target.value = e.target.value.slice(0, -1); // Удаляем последний недопустимый символ
+        if (!isNaN(inputValue) && inputValue.trim() !== '') {
+            const rubEquivalent = await convertBtcToRub(inputValue);
+            setRubAmount(rubEquivalent);
+            console.log(rubEquivalent)
         }
+        console.log(inputValue)
+
+        setBitcoinAmount(inputValue);
     };
 
     const handleRubAmountChange = async (e) => {
