@@ -35,12 +35,11 @@ export const BitcoinInput = ({
             const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
 
             const amount = parseFloat(finalInput); // Преобразование введенного значения в число
-
+            const rubEquivalent = await convertBtcToRub(amount)
+            setRubAmount(rubEquivalent)
             // Проверка на NaN и сравнение с балансом
             if (!isNaN(amount) && amount <= balanceToBtc) {
                 setBitcoinAmount(amount);
-                const rubEquivalent = await convertBtcToRub(amount)
-                setRubAmount(rubEquivalent)
             } else if (isNaN(amount)) {
                 setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
             } else {
