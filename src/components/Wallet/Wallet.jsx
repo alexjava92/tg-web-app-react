@@ -26,16 +26,16 @@ const Wallet = () => {
     }, [backButton]);
 
     const handleButtonClick = () => {
-        console.log(tg)
         tg.showPopup({
             title: 'Заголовок',
             message: 'Текст сообщения',
-            buttons: 'ага'
+            buttons: [
+                { type: 'ok', text: 'Текст кнопки OK' },
+                { type: 'cancel', text: 'Текст кнопки отмены' }
+            ]
         }).then((result) => {
             if (result) {
-                console.log('Пользователь нажал OK');
-            } else {
-                console.log('Пользователь нажал отмену');
+                console.log('Пользователь нажал кнопку:', result);
             }
         }).catch((error) => {
             console.error('Ошибка:', error);
