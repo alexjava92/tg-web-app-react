@@ -66,7 +66,15 @@ export const BitcoinInput = ({
         setBitcoinAddress(address); // Устанавливаем адрес в состояние сразу же
     };
 
-
+    useEffect(() => {
+        const convert = async () => {
+            if (!isNaN(rubAmount) && rubAmount.trim() !== '') {
+                const btcEquivalent = await convertRubToBtc(rubAmount);
+                setBitcoinAmount(String(btcEquivalent)); // Обновляем состояние как строку
+            }
+        };
+        convert();
+    }, [rubAmount]); // Вызываем эффект при изменении rubAmount
 
     useEffect(() => {
         const validateAddress = async () => {
