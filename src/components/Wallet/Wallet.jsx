@@ -29,9 +29,9 @@ const Wallet = () => {
             title: 'Заголовок',
             message: 'Текст сообщения',
             buttons: [
-                {id: 'ok_button', type: 'ok'},
-                {id: 'cancel_button', type: 'cancel'},
-                {id: 'add_button', type: 'default'},
+                {id: 1, type: 'ok'},
+                {id: 2, type: 'cancel'},
+                {id: 3, type: 'default'},
             ]
         }).then((result) => {
             if (result) {
