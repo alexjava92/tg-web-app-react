@@ -9,7 +9,7 @@ import {
     convertBtcToRub,
     convertRubToBtc
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
-import {logDOM} from "@testing-library/react";
+
 
 export const BitcoinInput = ({
                                  index,
@@ -95,9 +95,9 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
-            } else if (satoshiBalance > balance){
+            } else if (satoshiBalance > balance) {
                 setValidBalance(false)
-            }else if (satoshiBalance <= balance){
+            } else if (satoshiBalance <= balance) {
                 setValidBalance(true)
             }
             setLastUpdatedByUserBitcoin(false);

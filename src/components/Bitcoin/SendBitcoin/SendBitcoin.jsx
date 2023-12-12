@@ -35,10 +35,7 @@ export const SendBitcoin = () => {
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
     const [balanceToRub, setBalanceToRub] = useState('');
-    const [bitcoinAmount, setBitcoinAmount] = useState('');
-    const [bitcoinAddress, setBitcoinAddress] = useState('');
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
-    //const [isValidAddress, setIsValidAddress] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
 
