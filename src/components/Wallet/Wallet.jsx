@@ -27,7 +27,7 @@ const Wallet = () => {
 
     const handleButtonClick = () => {
         console.log(tg)
-        tg.Popup.show({
+        tg.showPopup({
             title: 'Заголовок',
             message: 'Текст сообщения',
             ok_button_text: 'Текст кнопки OK',
