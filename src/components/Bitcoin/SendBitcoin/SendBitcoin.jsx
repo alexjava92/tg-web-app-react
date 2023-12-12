@@ -136,7 +136,7 @@ export const SendBitcoin = () => {
 
     // Обновление состояния кнопки в зависимости от вводов
     useEffect(() => {
-        if (allInputsValid && satoshiPerByte && isValidBitcoinAddress(inputs.bitcoinAddress) === true) {
+        if (allInputsValid && satoshiPerByte && isValidBitcoinAddress(inputs.bitcoinAddress)) {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить`
