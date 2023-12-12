@@ -50,7 +50,7 @@ export const BitcoinInput = ({
             e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
         }
     };*/
-    const handleBitcoinAmountChange = async (e) => {
+    const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
         const validInput = inputValue.match(/^[\d.,]*$/);
 
@@ -58,22 +58,18 @@ export const BitcoinInput = ({
             const formattedInput = validInput[0].replace(',', '.');
             const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
 
-            const amount = finalInput === '' ? '' : parseFloat(finalInput);
-
             setBitcoinAmount(finalInput);
-            if (amount === '' || 0) {
-                setRubAmount('');
-            } else if (!isNaN(amount) && amount <= balanceToBtc) {
+            if (finalInput !== '') {
                 setLastUpdatedByUserBitcoin(true);
             }
         }
     };
-    const handleRubAmountChange = async (e) => {
+    const handleRubAmountChange = (e) => {
         const rubValue = e.target.value;
         if (!isNaN(rubValue) && rubValue.trim() !== '') {
             setRubAmount(rubValue);
             setLastUpdatedByUserRub(true);
-        } else if (rubValue.trim() === '' || 0) {
+        } else if (rubValue.trim() === '') {
             setRubAmount('');
             setBitcoinAmount('');
         }
@@ -128,7 +124,7 @@ export const BitcoinInput = ({
             <div>
                 <input
                     className={'input'}
-                    type="number"
+                    type="text"
                     id="bitcoinAmount"
                     value={bitcoinAmount}
                     min="0.000001"
@@ -140,7 +136,7 @@ export const BitcoinInput = ({
             <div>
                 <input
                     className={'input'}
-                    type="number"
+                    type="text"
                     id="rubAmount"
                     value={rubAmount}
                     // другие нужные пропсы
