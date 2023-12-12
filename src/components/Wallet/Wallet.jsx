@@ -29,8 +29,8 @@ const Wallet = () => {
             title: 'Заголовок',
             message: 'Текст сообщения',
             buttons: [
-                { id: 'ok_button', type: 'ok' },
-                { id: 'cancel_button', type: 'cancel' },
+                { id: 'ok_button', type: 'ok', text: 'Ок' },
+                { id: 'cancel_button', type: 'cancel', text: 'Отмена' },
                 { id: 'add_button', type: 'default', text: 'Добавить' }
             ]
         }, function(result) {
