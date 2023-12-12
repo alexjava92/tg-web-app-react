@@ -36,6 +36,9 @@ const Wallet = () => {
         }, function(result) {
             if (result) {
                 console.log('Пользователь нажал кнопку:', result);
+                if (result.button_id === 'add_button') {
+                    tg.HapticFeedback.notificationOccurred('success');
+                }
             } else {
                 console.log('Пользователь закрыл попап без выбора');
             }
