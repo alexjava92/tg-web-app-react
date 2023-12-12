@@ -112,7 +112,7 @@ export const BitcoinInput = ({
                     id="bitcoinAddress"
                     value={bitcoinAddress}
                     placeholder="Адрес"
-                    onChange={handleRubAmountChange}
+                    onChange={handleBitcoinAddressChange}
                 />
             </div>
             {canRemove && (
