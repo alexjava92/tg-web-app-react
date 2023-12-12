@@ -27,7 +27,7 @@ export const BitcoinInput = ({
     const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
         const rubEquivalent = await convertBtcToRub(inputValue);
-        rubAmount(rubEquivalent);
+        console.log(rubEquivalent)
         // Разрешаем вводить только цифры, точки и запятые
         const validInput = inputValue.match(/^[\d.,]*$/);
 
