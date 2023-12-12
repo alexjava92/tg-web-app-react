@@ -52,6 +52,7 @@ export const BitcoinInput = ({
     };*/
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
+        console.log(inputValue)
         const validInput = inputValue.match(/^[\d.,]*$/);
 
         if (validInput) {
@@ -62,14 +63,11 @@ export const BitcoinInput = ({
             if (finalInput !== '') {
                 setLastUpdatedByUserBitcoin(true);
             }
-            if(finalInput.trim() === ''){
-                setRubAmount('')
-            }
         }
     };
     const handleRubAmountChange = (e) => {
         const rubValue = e.target.value;
-
+        console.log(rubValue)
         // Установка rubAmount независимо от того, является ли значение числом
         setRubAmount(rubValue);
 
