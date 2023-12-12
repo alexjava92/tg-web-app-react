@@ -39,7 +39,6 @@ export const SendBitcoin = () => {
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
-    const [isValidBalances, setIsValidBalances] = useState([]);
 
 
     // Массив для хранения вводов
@@ -75,8 +74,7 @@ export const SendBitcoin = () => {
     };
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress);
-    console.log(allInputsValid)
+        input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress);
 
 
     // Используем ваш хук для получения баланса
@@ -86,12 +84,6 @@ export const SendBitcoin = () => {
     }, []);
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
-
-    const handleBalanceChange = (index, isValid) => {
-        let newValidBalances = [...isValidBalances];
-        newValidBalances[index] = isValid;
-        setIsValidBalances(newValidBalances);
-    };
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -136,7 +128,7 @@ export const SendBitcoin = () => {
 
     // Обновление состояния кнопки в зависимости от вводов
     useEffect(() => {
-        if (allInputsValid && satoshiPerByte && isValidBitcoinAddress(inputs.bitcoinAddress)) {
+        if (allInputsValid && satoshiPerByte) {
             tg.MainButton.show();
             tg.MainButton.setParams({
                 text: `Отправить`
@@ -219,7 +211,6 @@ export const SendBitcoin = () => {
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}
                             balance={balance}
-                            onBalanceChange={(isValid) => handleBalanceChange(index, isValid)}
                         />
                     ))}
                     <div className={'span_add_block'}>
