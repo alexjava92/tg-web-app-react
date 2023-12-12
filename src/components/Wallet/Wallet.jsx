@@ -25,6 +25,23 @@ const Wallet = () => {
         return () => clearTimeout(timeoutId);
     }, [backButton]);
 
+    const handleButtonClick = () => {
+        tg.Popup.show({
+            title: 'Заголовок',
+            message: 'Текст сообщения',
+            ok_button_text: 'Текст кнопки OK',
+            cancel_button_text: 'Текст кнопки отмены'
+        }).then((result) => {
+            if (result) {
+                console.log('Пользователь нажал OK');
+            } else {
+                console.log('Пользователь нажал отмену');
+            }
+        }).catch((error) => {
+            console.error('Ошибка:', error);
+        });
+    };
+
     return (
         <div className="wallet">
             <div className="wallet-header">
@@ -48,6 +65,7 @@ const Wallet = () => {
                     </div>
                 ))}
             </div>
+            <button className={'button'} onClick={handleButtonClick}>окно</button>
             <div className="transaction-history">
                 <h3>История транзакций</h3>
                 {/* Тут можно добавить компонент истории транзакций */}
