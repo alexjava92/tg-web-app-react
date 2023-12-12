@@ -3,7 +3,7 @@
 }
 
 .span_delete {
-    display: flex;
+    display: inline-block;
     font-size: 0.9rem;
     cursor: pointer;
     justify-content: flex-start;

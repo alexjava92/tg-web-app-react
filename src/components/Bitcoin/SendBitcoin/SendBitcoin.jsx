@@ -215,7 +215,10 @@ export const SendBitcoin = () => {
                             balance={balance}
                         />
                     ))}
-                    <span className={'span_add'} onClick={addInput}>Добавить получателя</span>
+                    <div className={'span_add_block'}>
+                        <span className={'span_add'} onClick={addInput}>Добавить получателя</span>
+                    </div>
+
                 </div>
 
 

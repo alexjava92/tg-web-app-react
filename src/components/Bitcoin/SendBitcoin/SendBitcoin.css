@@ -106,13 +106,16 @@ label {
     color: #d9534f; /* Темно-красный цвет иконки */
 }
 
-
-
-.span_add {
+.span_add_block{
     display: flex;
     font-size: 0.9rem;
     cursor: pointer;
     justify-content: flex-end;
     color: var(--tg-theme-link-color);
     margin-right: 15px;
+}
+
+.span_add {
+    display: inline-block;
+
 }
