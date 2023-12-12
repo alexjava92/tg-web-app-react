@@ -66,12 +66,17 @@ export const BitcoinInput = ({
     };
     const handleRubAmountChange = (e) => {
         const rubValue = e.target.value;
-        if (!isNaN(rubValue) && rubValue.trim() !== '') {
-            setRubAmount(rubValue);
-            setLastUpdatedByUserRub(true);
-        } else if (rubValue.trim() === '') {
-            setRubAmount('');
+
+        // Установка rubAmount независимо от того, является ли значение числом
+        setRubAmount(rubValue);
+
+        if (rubValue.trim() === '') {
+            // Если поле пустое, обнуляем значения и флаги
             setBitcoinAmount('');
+            setLastUpdatedByUserRub(false);
+        } else if (!isNaN(rubValue)) {
+            // Если значение является числом, запускаем конвертацию
+            setLastUpdatedByUserRub(true);
         }
     };
 
