@@ -64,6 +64,8 @@ export const BitcoinInput = ({
                 setBitcoinAmount(amount);
                 const rubEquivalent = await convertBtcToRub(amount);
                 setRubAmount(rubEquivalent);
+                setLastUpdatedByUserBitcoin(true);
+                setLastUpdatedByUserRub(false);
             } else if (isNaN(amount)) {
                 setBitcoinAmount('');
                 setRubAmount('');
@@ -75,8 +77,7 @@ export const BitcoinInput = ({
         } else {
             e.target.value = e.target.value.slice(0, -1);
         }
-        setLastUpdatedByUserBitcoin(true);
-        setLastUpdatedByUserRub(false);
+
     };
     const handleRubAmountChange = async (e) => {
         const rubValue = e.target.value;
