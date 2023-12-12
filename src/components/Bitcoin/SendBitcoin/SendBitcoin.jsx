@@ -212,6 +212,7 @@ export const SendBitcoin = () => {
                             balanceToBtc={balanceToBtc}
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}
+                            balance={balance}
                         />
                     ))}
                     <span className={'span_add'} onClick={addInput}>Добавить получателя</span>

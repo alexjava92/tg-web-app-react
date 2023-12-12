@@ -19,11 +19,13 @@ export const BitcoinInput = ({
                                  balanceToBtc,
                                  removeInput,
                                  canRemove,
+                                 balance,
 
                              }) => {
 
     const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
+    const [validBalance, setValidBalance] = useState(true);
 
     /*const handleBitcoinAmountChange = async (e) => {
         const inputValue = e.target.value;
@@ -86,6 +88,10 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
+            } else if (bitcoinAmount > balance){
+                setValidBalance(false)
+            }else if (bitcoinAmount <= balance){
+                setValidBalance(true)
             }
             setLastUpdatedByUserBitcoin(false);
         };
@@ -122,7 +128,7 @@ export const BitcoinInput = ({
         <div className={'body_second'}>
             <div>
                 <input
-                    className={'input'}
+                    className={`input ${!validBalance ? 'invalid-text' : ''}`}
                     type="text"
                     id="bitcoinAmount"
                     value={bitcoinAmount}
@@ -134,7 +140,7 @@ export const BitcoinInput = ({
             </div>
             <div>
                 <input
-                    className={'input'}
+                    className={`input ${!validBalance ? 'invalid-text' : ''}`}
                     type="text"
                     id="rubAmount"
                     value={rubAmount}
