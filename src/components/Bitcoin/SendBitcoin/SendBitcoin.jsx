@@ -32,7 +32,9 @@ export const SendBitcoin = () => {
     const backButton = tg.BackButton;
     const navigate = useNavigate();
 
-   const qr = tg.ScanQrPopupParams().text()
+   const qr = tg.ScanQrPopupParams().setParams({
+       text: `Отправить`
+   });
 
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
@@ -128,7 +130,7 @@ export const SendBitcoin = () => {
     }, [backButton]);
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
-        qr.text();
+        qr.text;
     }, [backButton]);
 
     // Обновление состояния кнопки в зависимости от вводов
