@@ -217,13 +217,13 @@ export const SendBitcoin = () => {
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />*/}
-                <div className={'body_second'}>
-                    {totalBitcoinAmount > 0 && (
+                {totalBitcoinAmount > 0 && (
+                    <div className={'body_second'}>
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
-                            Общая сумма к отправке Bitcoin: {totalBitcoinAmount}
+                            Всего к отправке: {totalBitcoinAmount} BTC
                         </label>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 <div>
                     {inputs.map((input, index) => (
