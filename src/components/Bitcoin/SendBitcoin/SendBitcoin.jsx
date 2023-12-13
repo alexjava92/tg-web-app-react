@@ -40,7 +40,7 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
     const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
     const [virtualSize, setVirtualSize] = useState('');
-    const [debouncedOutputs, setDebouncedOutputs] = useState(outputs);
+    const [debouncedOutputs, setDebouncedOutputs] = useState([]);
 
 
     // Массив для хранения вводов
