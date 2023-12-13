@@ -49,6 +49,7 @@ export const SendBitcoin = () => {
         isValidAddress: true,  // Новое свойство для каждого инпута
         rubAmount: '',
         validBalance: true,
+        totalAmount: true,
 
     }]);
 
@@ -59,7 +60,8 @@ export const SendBitcoin = () => {
             bitcoinAddress: '',
             isValidAddress: true,
             rubAmount: '',
-            validBalance: true
+            validBalance: true,
+            totalAmount: true,
         }]);
     };
 
@@ -80,7 +82,7 @@ export const SendBitcoin = () => {
 
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance);
+        input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance && input.totalAmount);
 
 
     // Используем ваш хук для получения баланса
@@ -227,6 +229,8 @@ export const SendBitcoin = () => {
                             validBalance={input.validBalance}
                             setValidBalance={isValid => updateInput(index, {...input, validBalance: isValid})}
                             totalBitcoinAmount={totalBitcoinAmount}
+                            totaAmount={input.totalAmount}
+                            setTotalAmount={total => updateInput(index, {...input, totalAmount: total})}
                         />
                     ))}
                     <div className={'span_add_block'}>
