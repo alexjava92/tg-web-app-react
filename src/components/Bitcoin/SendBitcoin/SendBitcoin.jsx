@@ -195,12 +195,12 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchVirtualSize = async () => {
             if (allInputsValid) {
-                await getWeightTransactions(chatId, outputs, setVirtualSize);
+                await getWeightTransactions(chatId, debouncedOutputs, setVirtualSize);
             }
         };
 
         fetchVirtualSize();
-    }, [chatId, debouncedOutputs, allInputsValid]); // Добавляем allInputsValid в список зависимостей
+    }, [chatId, debouncedOutputs, allInputsValid]);
 
 
     useEffect(() => {
