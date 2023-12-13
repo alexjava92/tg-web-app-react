@@ -56,8 +56,17 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         onSelect(selectedValue === 'custom' ? '' : selectedValue);
     };
 
-    const test = convertSatoshisToBitcoin(selectedFee * virtualSize);
-    setAmountRubFinal(convertBtcToRub(test))
+    const updateAmountRubFinal = async () => {
+        const test = convertSatoshisToBitcoin(selectedFee * virtualSize);
+        const amountRub = await convertBtcToRub(test);
+        setAmountRubFinal(amountRub);
+    };
+
+    useEffect(() => {
+        if (selectedFee && virtualSize) {
+            updateAmountRubFinal();
+        }
+    }, [selectedFee, virtualSize]);
 
 
     return (
@@ -71,7 +80,7 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
-            {amountRubFinal !== ''} ? amountRubFinal : ''
+            {amountRubFinal !== '' ? amountRubFinal : ''}
         </div>
     );
 };
