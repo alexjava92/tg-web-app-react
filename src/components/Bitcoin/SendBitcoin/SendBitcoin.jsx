@@ -174,8 +174,6 @@ export const SendBitcoin = () => {
     });
 
 
-
-
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
     // Рендеринг страницы успеха
     const renderSuccessPage = () => {
@@ -220,10 +218,13 @@ export const SendBitcoin = () => {
                     balanceToBtc={balanceToBtc}
                 />*/}
                 <div className={'body_second'}>
-                    <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
-                        Общая сумма к отправке Bitcoin: {totalBitcoinAmount}
-                    </label>
+                    {totalBitcoinAmount > 0 && (
+                        <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
+                            Общая сумма к отправке Bitcoin: {totalBitcoinAmount}
+                        </label>
+                    )}
                 </div>
+
                 <div>
                     {inputs.map((input, index) => (
                         <BitcoinInput
