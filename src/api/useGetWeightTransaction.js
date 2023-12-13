@@ -25,7 +25,7 @@ export const getWeightTransactions = async (chatId, outputs, setVirtualSize) => 
         if (response.ok) {
             const responseData = await response.json();
             console.log('responseData', responseData);
-            const virtualSize = responseData.virtualSize;
+            const virtualSize = responseData.detailTransaction.virtualSize;
             console.log('Получен virtualSize:', virtualSize);
             setVirtualSize(virtualSize)
 
