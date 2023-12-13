@@ -178,10 +178,10 @@ export const SendBitcoin = () => {
         // и другие необходимые данные для каждого input
     }));
 
-    useEffect(async () => {
+    /*useEffect(async () => {
         // Вызываем getWeightTransactions когда outputs изменяется
         await getWeightTransactions(chatId, outputs, setVirtualSize);
-    }, [chatId, outputs]);
+    }, [chatId, outputs]);*/
 
     useEffect(() => {
         console.log("Текущий вес транзакции:", virtualSize);
