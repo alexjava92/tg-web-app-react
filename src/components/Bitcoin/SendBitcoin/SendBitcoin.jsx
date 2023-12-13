@@ -218,9 +218,11 @@ export const SendBitcoin = () => {
                     balanceToBtc={balanceToBtc}
                 />*/}
                 {totalBitcoinAmount > 0 && (
-                    <div className={'body_second'}>
+                    <div className={'total_amount_bitcoin'}>
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
-                            Всего к отправке: {totalBitcoinAmount} BTC
+                            {!isTotalAmountValid
+                                ? `Недостаточно баланса для отправки ${totalBitcoinAmount} BTC`
+                                : `Всего к отправке: ${totalBitcoinAmount} BTC`}
                         </label>
                     </div>
                 )}
