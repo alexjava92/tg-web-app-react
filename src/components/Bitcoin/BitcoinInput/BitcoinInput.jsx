@@ -27,6 +27,7 @@ export const BitcoinInput = ({
                                  balance,
                                  validBalance,
                                  setValidBalance,
+                                 totalBitcoinAmount,
 
                              }) => {
 
@@ -138,6 +139,9 @@ export const BitcoinInput = ({
     return (
         <div className={'body_second'}>
             <div>
+                <div>
+                    <label>Общая сумма Bitcoin: {totalBitcoinAmount}</label>
+                </div>
                 <input
                     className={`input ${!validBalance ? 'invalid-text' : ''}`}
                     type="text"

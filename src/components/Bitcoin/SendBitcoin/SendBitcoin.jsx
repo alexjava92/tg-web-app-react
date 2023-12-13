@@ -41,13 +41,15 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
 
 
+
     // Массив для хранения вводов
     const [inputs, setInputs] = useState([{
         bitcoinAmount: '',
         bitcoinAddress: '',
         isValidAddress: true,  // Новое свойство для каждого инпута
         rubAmount: '',
-        validBalance: true
+        validBalance: true,
+
     }]);
 
     // Добавление нового ввода
@@ -74,6 +76,8 @@ export const SendBitcoin = () => {
         newInputs[index] = newInput;
         setInputs(newInputs);
     };
+
+
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
         input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance);
@@ -152,6 +156,13 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
+    // Внутри компонента SendBitcoin
+    const totalBitcoinAmount = inputs.reduce((total, input) => {
+        const amount = parseFloat(input.bitcoinAmount) || 0;
+        return total + amount;
+    }, 0);
+
+
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
     // Рендеринг страницы успеха
     const renderSuccessPage = () => {
@@ -215,6 +226,7 @@ export const SendBitcoin = () => {
                             balance={balance}
                             validBalance={input.validBalance}
                             setValidBalance={isValid => updateInput(index, {...input, validBalance: isValid})}
+                            totalBitcoinAmount={totalBitcoinAmount}
                         />
                     ))}
                     <div className={'span_add_block'}>
@@ -222,7 +234,6 @@ export const SendBitcoin = () => {
                     </div>
 
                 </div>
-
 
                 <div className={'body_second'}>
                     <div>
