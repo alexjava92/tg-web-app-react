@@ -89,7 +89,12 @@ export const SendBitcoin = () => {
         && input.validBalance
     ) && isTotalAmountValid;
 
+    const outputs = inputs.map(input => ({
+        address: input.bitcoinAddress,
+        amount: convertBitcoinToSatoshis(input.bitcoinAmount),
 
+        // и другие необходимые данные для каждого input
+    }));
 
 
     // Используем ваш хук для получения баланса
@@ -109,6 +114,7 @@ export const SendBitcoin = () => {
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
+        getWeightTransactions(chatId, outputs, setVirtualSize);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
@@ -174,14 +180,9 @@ export const SendBitcoin = () => {
         console.log("Total Amount Valid:", isValid);
     }, [totalBitcoinAmount, balance]);
 
-    const outputs = inputs.map(input => ({
-        address: input.bitcoinAddress,
-        amount: convertBitcoinToSatoshis(input.bitcoinAmount),
 
-        // и другие необходимые данные для каждого input
-    }));
 
-    // Debounce для outputs
+  /*  // Debounce для outputs
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedOutputs(outputs);
@@ -195,12 +196,12 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchVirtualSize = async () => {
             if (allInputsValid) {
-                await getWeightTransactions(chatId, debouncedOutputs, setVirtualSize);
+                await getWeightTransactions(chatId, outputs, setVirtualSize);
             }
         };
 
         fetchVirtualSize();
-    }, [chatId, debouncedOutputs, allInputsValid]);
+    }, [chatId, debouncedOutputs, allInputsValid]);*/
 
 
     useEffect(() => {
