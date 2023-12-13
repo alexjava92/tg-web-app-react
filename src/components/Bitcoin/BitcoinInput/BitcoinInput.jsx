@@ -97,6 +97,7 @@ export const BitcoinInput = ({
         const convert = async () => {
             console.log(balance)
             const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount)
+            const satoshiTotalBitcoinAmount = convertBitcoinToSatoshis(totalBitcoinAmount)
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
@@ -106,9 +107,9 @@ export const BitcoinInput = ({
             } else if (satoshiBalance <= balance) {
                 setValidBalance(true)
 
-            } else if (totalBitcoinAmount > balance) {
+            } else if (satoshiTotalBitcoinAmount > balance) {
                 setTotalAmount(false)
-            } else if (totalBitcoinAmount <= balance) {
+            } else if (satoshiTotalBitcoinAmount <= balance) {
                 setTotalAmount(true)
             }
             setLastUpdatedByUserBitcoin(false);
