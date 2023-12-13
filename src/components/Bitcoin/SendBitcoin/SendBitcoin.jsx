@@ -11,8 +11,6 @@ import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {ToastContainer} from "react-toastify";
-import {sendBitcoinToServer} from "../../../api/useSendBitcoin";
-import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
 import ExampleImage from '../../../img/bitcoin.png';
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 import {
@@ -165,7 +163,9 @@ export const SendBitcoin = () => {
 
     useEffect(() => {
         const totalAmount = convertBitcoinToSatoshis(totalBitcoinAmount);
-        setIsTotalAmountValid(totalAmount <= balance);
+        const isValid = totalAmount <= balance;
+        setIsTotalAmountValid(isValid);
+        console.log("Total Amount Valid:", isValid);
     }, [totalBitcoinAmount, balance]);
 
     backButton.onClick(() => {
