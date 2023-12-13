@@ -98,6 +98,7 @@ export const BitcoinInput = ({
             console.log(balance)
             const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount)
             const satoshiTotalBitcoinAmount = convertBitcoinToSatoshis(totalBitcoinAmount)
+            console.log(satoshiTotalBitcoinAmount)
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
