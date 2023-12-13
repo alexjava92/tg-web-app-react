@@ -27,41 +27,11 @@ export const BitcoinInput = ({
                                  balance,
                                  validBalance,
                                  setValidBalance,
-                                 totalBitcoinAmount,
-                                 totalAmount,
-                                 setTotalAmount,
-
                              }) => {
 
     const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
-    // const [validBalance, setValidBalance] = useState(true);
 
-    /*const handleBitcoinAmountChange = async (e) => {
-        const inputValue = e.target.value;
-
-        // Разрешаем вводить только цифры, точки и запятые
-        const validInput = inputValue.match(/^[\d.,]*$/);
-
-        if (validInput) {
-            const formattedInput = validInput[0].replace(',', '.'); // Заменяем запятые на точки
-            // Ограничиваем количество цифр после запятой до 8
-            const finalInput = formattedInput.match(/^-?\d*(\.\d{0,8})?/)[0];
-
-            const amount = parseFloat(finalInput); // Преобразование введенного значения в число
-
-            // Проверка на NaN и сравнение с балансом
-            if (!isNaN(amount) && amount <= balanceToBtc) {
-                setBitcoinAmount(amount);
-            } else if (isNaN(amount)) {
-                setBitcoinAmount(''); // Очистить поле, если введено некорректное значение
-            } else {
-                setBitcoinAmount(balanceToBtc); // Установка значения равного балансу, если введенное значение больше
-            }
-        } else {
-            e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ, если он недопустим
-        }
-    };*/
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
         console.log(inputValue)
@@ -97,21 +67,13 @@ export const BitcoinInput = ({
         const convert = async () => {
             console.log(balance)
             const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount)
-            const satoshiTotalBitcoinAmount = convertBitcoinToSatoshis(totalBitcoinAmount)
-            console.log(satoshiTotalBitcoinAmount)
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
                 const rubEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(rubEquivalent));
             } else if (satoshiBalance > balance) {
                 setValidBalance(false)
-
             } else if (satoshiBalance <= balance) {
                 setValidBalance(true)
-
-            } else if (satoshiTotalBitcoinAmount > balance) {
-                setTotalAmount(false)
-            } else if (satoshiTotalBitcoinAmount <= balance) {
-                setTotalAmount(true)
             }
             setLastUpdatedByUserBitcoin(false);
         };
@@ -147,9 +109,7 @@ export const BitcoinInput = ({
     return (
         <div className={'body_second'}>
             <div>
-                <div className={`${!totalAmount ? 'invalid-text' : ''}`}>
-                    <label>Общая сумма Bitcoin: {totalBitcoinAmount}</label>
-                </div>
+
                 <input
                     className={`input ${!validBalance ? 'invalid-text' : ''}`}
                     type="text"

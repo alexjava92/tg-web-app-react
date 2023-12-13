@@ -39,7 +39,7 @@ export const SendBitcoin = () => {
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
-
+    const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
 
 
     // Массив для хранения вводов
@@ -49,7 +49,7 @@ export const SendBitcoin = () => {
         isValidAddress: true,  // Новое свойство для каждого инпута
         rubAmount: '',
         validBalance: true,
-        totalAmount: true,
+
 
     }]);
 
@@ -61,7 +61,7 @@ export const SendBitcoin = () => {
             isValidAddress: true,
             rubAmount: '',
             validBalance: true,
-            totalAmount: true,
+
         }]);
     };
 
@@ -82,8 +82,11 @@ export const SendBitcoin = () => {
 
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
-        input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance && input.totalAmount);
-    console.log('allInputsValid', allInputsValid)
+        input.bitcoinAmount
+        && input.bitcoinAddress
+        && input.isValidAddress
+        && input.validBalance
+    ) && isTotalAmountValid;
 
 
     // Используем ваш хук для получения баланса
@@ -93,6 +96,11 @@ export const SendBitcoin = () => {
     }, []);
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
+    // Внутри компонента SendBitcoin
+    const totalBitcoinAmount = inputs.reduce((total, input) => {
+        const amount = parseFloat(input.bitcoinAmount) || 0;
+        return total + amount;
+    }, 0);
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -155,15 +163,16 @@ export const SendBitcoin = () => {
         }
     }, [onSendClick])
 
+    useEffect(() => {
+        const totalAmount = convertBitcoinToSatoshis(totalBitcoinAmount);
+        setIsTotalAmountValid(totalAmount <= balance);
+    }, [totalBitcoinAmount, balance]);
+
     backButton.onClick(() => {
         navigate(-1);
     });
 
-    // Внутри компонента SendBitcoin
-    const totalBitcoinAmount = inputs.reduce((total, input) => {
-        const amount = parseFloat(input.bitcoinAmount) || 0;
-        return total + amount;
-    }, 0);
+
 
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
@@ -209,7 +218,9 @@ export const SendBitcoin = () => {
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />*/}
-
+                <div className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
+                    <label>Общая сумма Bitcoin: {totalBitcoinAmount}</label>
+                </div>
                 <div>
                     {inputs.map((input, index) => (
                         <BitcoinInput
@@ -229,9 +240,6 @@ export const SendBitcoin = () => {
                             balance={balance}
                             validBalance={input.validBalance}
                             setValidBalance={isValid => updateInput(index, {...input, validBalance: isValid})}
-                            totalBitcoinAmount={totalBitcoinAmount}
-                            totaAmount={input.totalAmount}
-                            setTotalAmount={total => updateInput(index, {...input, totalAmount: total})}
                         />
                     ))}
                     <div className={'span_add_block'}>
