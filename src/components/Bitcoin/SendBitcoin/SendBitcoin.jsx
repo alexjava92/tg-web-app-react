@@ -97,8 +97,9 @@ export const SendBitcoin = () => {
     // Внутри компонента SendBitcoin
     const totalBitcoinAmount = inputs.reduce((total, input) => {
         const amount = parseFloat(input.bitcoinAmount) || 0;
-        return total + amount;
+        return parseFloat((total + amount).toFixed(8));
     }, 0);
+
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
@@ -218,9 +219,9 @@ export const SendBitcoin = () => {
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />*/}
-                <div>
+                <div className={'body_second'}>
                     <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
-                        Общая сумма Bitcoin: {totalBitcoinAmount}
+                        Общая сумма к отправке Bitcoin: {totalBitcoinAmount}
                     </label>
                 </div>
                 <div>
