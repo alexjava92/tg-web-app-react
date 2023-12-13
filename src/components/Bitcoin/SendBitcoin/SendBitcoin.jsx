@@ -218,8 +218,10 @@ export const SendBitcoin = () => {
                     isValidAddress={isValidAddress}
                     balanceToBtc={balanceToBtc}
                 />*/}
-                <div className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
-                    <label>Общая сумма Bitcoin: {totalBitcoinAmount}</label>
+                <div>
+                    <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
+                        Общая сумма Bitcoin: {totalBitcoinAmount}
+                    </label>
                 </div>
                 <div>
                     {inputs.map((input, index) => (
