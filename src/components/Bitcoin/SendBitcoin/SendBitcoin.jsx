@@ -84,7 +84,7 @@ export const SendBitcoin = () => {
     const allInputsValid = inputs.every(input =>
         input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance && input.totalAmount);
     console.log('allInputsValid', allInputsValid)
-    console.log('input.totalAmount', input.totalAmount)
+    console.log('input.totalAmount', inputs.input.totalAmount)
 
 
     // Используем ваш хук для получения баланса
