@@ -85,7 +85,15 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
-            {isLoadingCommission ? <LoadingSpinner /> : (amountRubFinal !== '' ? amountRubFinal : '')}
+            <div className="loading-or-result">
+                {isLoadingCommission ? (
+                    <div className="loading-container">
+                        <LoadingSpinner />
+                    </div>
+                ) : (
+                    amountRubFinal !== '' ? amountRubFinal : ''
+                )}
+            </div>
         </div>
     );
 };
