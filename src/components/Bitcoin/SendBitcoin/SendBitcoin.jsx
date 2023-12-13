@@ -175,8 +175,8 @@ export const SendBitcoin = () => {
     }, [totalBitcoinAmount, balance]);
 
     const outputs = inputs.map(input => ({
-        bitcoinAddress: input.bitcoinAddress,
-        bitcoinAmount: convertBitcoinToSatoshis(input.bitcoinAmount),
+        address: input.bitcoinAddress,
+        amount: convertBitcoinToSatoshis(input.bitcoinAmount),
 
         // и другие необходимые данные для каждого input
     }));
