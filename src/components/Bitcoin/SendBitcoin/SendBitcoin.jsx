@@ -21,6 +21,7 @@ import {
 import {Balance} from '../Balance/Balance';
 import {BitcoinInput} from "../BitcoinInput/BitcoinInput";
 import {useSendBitcoin} from "../Hooks/useSendBitcoinHook";
+import {getWeightTransactions} from "../../../api/useGetWeightTransaction";
 // В начале вашего файла компонента
 
 
@@ -38,6 +39,8 @@ export const SendBitcoin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
     const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
+    const [virtualSize, setVirtualSize] = useState('');
+
 
 
     // Массив для хранения вводов
@@ -169,6 +172,21 @@ export const SendBitcoin = () => {
         console.log("Total Amount Valid:", isValid);
     }, [totalBitcoinAmount, balance]);
 
+    const outputs = inputs.map(input => ({
+        bitcoinAmount: input.bitcoinAmount,
+        bitcoinAddress: input.bitcoinAddress,
+        // и другие необходимые данные для каждого input
+    }));
+
+    useEffect(async () => {
+        // Вызываем getWeightTransactions когда outputs изменяется
+        await getWeightTransactions(chatId, outputs, setVirtualSize);
+    }, [chatId, outputs]);
+
+    useEffect(() => {
+        console.log("Текущий вес транзакции:", virtualSize);
+    }, [virtualSize]);
+
     backButton.onClick(() => {
         navigate(-1);
     });
@@ -208,15 +226,6 @@ export const SendBitcoin = () => {
                 </div>
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
 
-                {/* <BitcoinInput
-                    bitcoinAmount={bitcoinAmount}
-                    setBitcoinAmount={setBitcoinAmount}
-                    bitcoinAddress={bitcoinAddress}
-                    setBitcoinAddress={setBitcoinAddress}
-                    setIsValidAddress={setIsValidAddress}
-                    isValidAddress={isValidAddress}
-                    balanceToBtc={balanceToBtc}
-                />*/}
                 {totalBitcoinAmount > 0 && (
                     <div className={'total_amount_bitcoin'}>
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
@@ -256,7 +265,7 @@ export const SendBitcoin = () => {
 
                 <div className={'body_second'}>
                     <div>
-                        <BitcoinNetworkFees onSelect={handleCommissionSelect}/>
+                        <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>
                     </div>
                     <div>
                         {isCustomFee && (

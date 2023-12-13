@@ -3,10 +3,7 @@ import { getFees } from "./apiGetFees";
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
 import './BitcoinNetworkFees.css'
 
-
-
-
-export const BitcoinNetworkFees = ({ onSelect }) => {
+export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
     const [fees, setFees] = useState([]);
     const [selectedFee, setSelectedFee] = useState('');
 
@@ -28,7 +25,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                         } else if (key === 'economyFee') {
                             label = 'Обычная';
                         }
-                        const btcValue = convertSatoshisToBitcoin(value);
+                        const btcValue = convertSatoshisToBitcoin(value * virtualSize);
                         const amountRub = await convertBtcToRub(btcValue);
                         console.log(btcValue)
                         console.log(amountRub)
@@ -49,7 +46,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
         };
 
         fetchFeesAndRates();
-    }, []);
+    }, [virtualSize]);
 
 
     const handleSelectChange = (e) => {
@@ -64,7 +61,7 @@ export const BitcoinNetworkFees = ({ onSelect }) => {
                 <option value="" disabled hidden>Выберите комиссию</option>
                 {fees.map(({ label, satPerByte, amountRub }, index) => (
                     <option key={index} value={satPerByte}>
-                        {label} - {satPerByte} sat/b {/*- {amountRub} руб*/}
+                        {label} - {satPerByte} sat/b - {amountRub} руб
                     </option>
                 ))}
                 <option value="custom">Установить свою</option>
