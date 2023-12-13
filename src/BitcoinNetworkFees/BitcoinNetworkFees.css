@@ -31,15 +31,11 @@
 
 }
 
-.loading-container {
+.commission-loading-container {
     display: flex;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center; /* Центрирование по вертикали */
-    height: 50px; /* Высота контейнера */
-    /* Другие стили, если нужно */
-}
-
-.loading-or-result {
-    /* Стили для контейнера, содержащего результат или индикатор загрузки */
-    margin-top: 10px; /* Небольшой отступ сверху */
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Вы можете изменить высоту под ваш дизайн */
+    width: 100%; /* Ширина контейнера */
+    /* Дополнительные стили, если нужно */
 }
