@@ -6,6 +6,7 @@ import './BitcoinNetworkFees.css'
 export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
     const [fees, setFees] = useState([]);
     const [selectedFee, setSelectedFee] = useState('');
+    const [amountRubFinal, setAmountRubFinal] = useState('');
 
     useEffect(() => {
         const fetchFeesAndRates = async () => {
@@ -55,6 +56,10 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         onSelect(selectedValue === 'custom' ? '' : selectedValue);
     };
 
+    const test = convertSatoshisToBitcoin(selectedFee * virtualSize);
+    setAmountRubFinal(convertBtcToRub(test))
+
+
     return (
         <div>
             <select id="fee" value={selectedFee} onChange={handleSelectChange} className={'select'}>
@@ -66,6 +71,7 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
+            {amountRubFinal !== ''} ? amountRubFinal : ''
         </div>
     );
 };
