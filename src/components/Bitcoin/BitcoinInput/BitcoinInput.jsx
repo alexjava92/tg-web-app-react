@@ -145,7 +145,7 @@ export const BitcoinInput = ({
     return (
         <div className={'body_second'}>
             <div>
-                <div>
+                <div className={`${!validBalance ? 'invalid-text' : ''}`}>
                     <label>Общая сумма Bitcoin: {totalBitcoinAmount}</label>
                 </div>
                 <input

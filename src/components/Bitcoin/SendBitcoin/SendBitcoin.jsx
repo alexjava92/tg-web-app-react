@@ -83,6 +83,7 @@ export const SendBitcoin = () => {
 // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
         input.bitcoinAmount && input.bitcoinAddress && input.isValidAddress && input.validBalance && input.totalAmount);
+    console.log('allInputsValid', allInputsValid)
 
 
     // Используем ваш хук для получения баланса
