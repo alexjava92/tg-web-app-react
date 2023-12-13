@@ -40,7 +40,7 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
     const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
     const [virtualSize, setVirtualSize] = useState('');
-
+    const [debouncedOutputs, setDebouncedOutputs] = useState(outputs);
 
 
     // Массив для хранения вводов
@@ -181,6 +181,17 @@ export const SendBitcoin = () => {
         // и другие необходимые данные для каждого input
     }));
 
+    // Debounce для outputs
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedOutputs(outputs);
+        }, 2000); // Задержка в 500 миллисекунд
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [outputs]); // Зависит только от изменения outputs
+
     useEffect(() => {
         const fetchVirtualSize = async () => {
             if (allInputsValid) {
@@ -189,7 +200,7 @@ export const SendBitcoin = () => {
         };
 
         fetchVirtualSize();
-    }, [chatId, outputs, allInputsValid]); // Добавляем allInputsValid в список зависимостей
+    }, [chatId, debouncedOutputs, allInputsValid]); // Добавляем allInputsValid в список зависимостей
 
 
     useEffect(() => {
