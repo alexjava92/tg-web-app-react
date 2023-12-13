@@ -118,3 +118,6 @@ label {
     font-size: 0.9rem;
     cursor: pointer;
 }
+.invalid-text {
+    color: red;
+}
