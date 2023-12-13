@@ -90,6 +90,8 @@ export const SendBitcoin = () => {
     ) && isTotalAmountValid;
 
 
+
+
     // Используем ваш хук для получения баланса
     const handleLoaded = useCallback(() => {
         // Логика после загрузки данных
@@ -178,10 +180,13 @@ export const SendBitcoin = () => {
         // и другие необходимые данные для каждого input
     }));
 
-    /*useEffect(async () => {
+    useEffect(async () => {
         // Вызываем getWeightTransactions когда outputs изменяется
-        await getWeightTransactions(chatId, outputs, setVirtualSize);
-    }, [chatId, outputs]);*/
+        if(allInputsValid){
+            await getWeightTransactions(chatId, outputs, setVirtualSize);
+        }
+
+    }, [chatId, outputs]);
 
     useEffect(() => {
         console.log("Текущий вес транзакции:", virtualSize);
