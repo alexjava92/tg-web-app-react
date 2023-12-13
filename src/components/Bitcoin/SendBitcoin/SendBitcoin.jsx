@@ -114,7 +114,6 @@ export const SendBitcoin = () => {
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
-        getWeightTransactions(chatId, outputs, setVirtualSize);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
@@ -182,7 +181,7 @@ export const SendBitcoin = () => {
 
 
 
-  /*  // Debounce для outputs
+    // Debounce для outputs
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedOutputs(outputs);
@@ -195,13 +194,14 @@ export const SendBitcoin = () => {
 
     useEffect(() => {
         const fetchVirtualSize = async () => {
-            if (allInputsValid) {
-                await getWeightTransactions(chatId, outputs, setVirtualSize);
+            // Проверяем, что все инпуты заполнены и в debouncedOutputs есть данные
+            if (allInputsValid && debouncedOutputs.length > 0) {
+                await getWeightTransactions(chatId, debouncedOutputs, setVirtualSize);
             }
         };
 
         fetchVirtualSize();
-    }, [chatId, debouncedOutputs, allInputsValid]);*/
+    }, [chatId, debouncedOutputs, allInputsValid]);
 
 
     useEffect(() => {
