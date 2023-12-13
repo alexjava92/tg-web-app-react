@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { getFees } from "./apiGetFees";
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
 import './BitcoinNetworkFees.css'
+import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
 
 export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
     const [fees, setFees] = useState([]);
     const [selectedFee, setSelectedFee] = useState('');
     const [amountRubFinal, setAmountRubFinal] = useState('');
+    const [isLoadingCommission, setIsLoadingCommission] = useState(false);
+
 
     useEffect(() => {
         const fetchFeesAndRates = async () => {
@@ -54,12 +57,14 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         const selectedValue = e.target.value;
         setSelectedFee(selectedValue);
         onSelect(selectedValue === 'custom' ? '' : selectedValue);
+        setIsLoadingCommission(true);
     };
 
     const updateAmountRubFinal = async () => {
         const test = convertSatoshisToBitcoin(selectedFee * virtualSize);
         const amountRub = await convertBtcToRub(test);
         setAmountRubFinal(amountRub);
+        setIsLoadingCommission(false);
     };
 
     useEffect(() => {
@@ -75,12 +80,12 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 <option value="" disabled hidden>Выберите комиссию</option>
                 {fees.map(({ label, satPerByte, amountRub }, index) => (
                     <option key={index} value={satPerByte}>
-                        {label} - {satPerByte} sat/b - {amountRub} руб
+                        {label} - {satPerByte} sat/b {/*- {amountRub} руб*/}
                     </option>
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
-            {amountRubFinal !== '' ? amountRubFinal : ''}
+            {isLoadingCommission ? <LoadingSpinner /> : (amountRubFinal !== '' ? amountRubFinal : '')}
         </div>
     );
 };
