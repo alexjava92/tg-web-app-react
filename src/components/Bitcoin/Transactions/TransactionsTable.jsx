@@ -6,7 +6,7 @@ const TransactionCard = ({ transaction }) => {
     return (
         <div className="body_second">
             <div>
-                <div>TXID: {transaction.txid}</div>
+                TXID: {transaction.txid}
                 <div>
                     Senders: {transaction.senders.join(', ')}
                 </div>
