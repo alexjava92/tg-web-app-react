@@ -117,17 +117,13 @@ export const SendBitcoin = () => {
 
         console.log('Выбрана комиссия:', selectedCommission);
     };
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            if (allInputsValid) {
-                getWeightTransactions(chatId, outputs, setVirtualSize);
-            }
-        }, 3500); // Задержка в 1000 миллисекунд
-
-        return () => clearTimeout(handler);
-    }, [outputs, allInputsValid]);
 
 
+    const installCommission = async () =>{
+        if (allInputsValid) {
+           await getWeightTransactions(chatId, outputs, setVirtualSize);
+        }
+    }
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
     const {handleSendBitcoin, txId, isSent, isSending, isError} = useSendBitcoin(chatId);
@@ -274,6 +270,7 @@ export const SendBitcoin = () => {
                 </div>
 
                 <div className={'body_second'}>
+                    <div onClick={installCommission}>установить комиссию сети</div>
                     <div>
                         <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>
                     </div>
