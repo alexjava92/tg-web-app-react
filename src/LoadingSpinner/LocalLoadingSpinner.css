@@ -15,9 +15,9 @@
 }
 
 @keyframes colorChange {
-    0%, 100% { color: black; }
+    0%, 100% { color: var(--tg-theme-text-color); }
     33% { color: red; }
-    66% { color: black; }
+    66% { color: var(--tg-theme-text-color); }
 }
 
 .dot:nth-child(2) {
