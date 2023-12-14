@@ -309,9 +309,13 @@ export const SendBitcoin = () => {
     const renderErrorPage = () => {
         return (
             <div className="error-container">
-                <div className="error-icon">❌</div>
-                <h2>Ошибка при отправке</h2>
-                <p>Произошла ошибка при отправке Bitcoin. Пожалуйста, попробуйте снова.</p>
+                <div className={'body_second'}>
+                    <div className="error-icon">❌</div>
+                    <h2>Ошибка при отправке</h2>
+                </div>
+                <div className={'body_second'}>
+                    <p>Произошла ошибка при отправке Bitcoin. Пожалуйста, попробуйте снова.</p>
+                </div>
             </div>
         );
     };
