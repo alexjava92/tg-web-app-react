@@ -1,21 +1,22 @@
 import React from 'react';
 import './TransactionsTable.css'
+import '../../../App.css'
 
 const TransactionCard = ({ transaction }) => {
     return (
-        <div className="transaction-card">
-            <div className="transaction-details">
-                <div className="transaction-id">TXID: {transaction.txid}</div>
-                <div className="transaction-senders">
+        <div className="body_second">
+            <div>
+                <div>TXID: {transaction.txid}</div>
+                <div>
                     Senders: {transaction.senders.join(', ')}
                 </div>
-                <div className="transaction-recipients">
+                <div>
                     Recipients: {transaction.recipients.join(', ')}
                 </div>
-                <div className="transaction-confirmed">
+                <div>
                     Confirmed: {transaction.confirmed ? 'Yes' : 'No'}
                 </div>
-                <div className="transaction-blocktime">
+                <div>
                     Block Time: {transaction.blockTime}
                 </div>
             </div>
@@ -25,7 +26,7 @@ const TransactionCard = ({ transaction }) => {
 
 export const TransactionsList = ({ transactions }) => {
     return (
-        <div className="transactions-list">
+        <div>
             {transactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction} />
             ))}
