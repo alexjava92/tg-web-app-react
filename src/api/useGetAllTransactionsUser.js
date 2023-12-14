@@ -3,7 +3,7 @@ import { config } from "./config";
 
 const url = config.apiBaseUrl;
 
-export const useGetAllTransactionsUser = (chatId) => {
+export const useGetAllTransactionsUser = (chatId, setTransactions) => {
     useEffect(() => {
         const fetchData = async () => {
             let responseStatus = 0; // Добавляем переменную для отслеживания статуса ответа
@@ -22,7 +22,7 @@ export const useGetAllTransactionsUser = (chatId) => {
                 if (response.ok) {
                     const responseData = await response.json();
                     const allTransaction = responseData.allTransactions;
-                  //  setBalance(newBalance.balance);
+                    setTransactions(allTransaction);
                     console.log('Получены транзакции:', allTransaction);
                 } else {
                     console.error('Server returned an error:', response.status);

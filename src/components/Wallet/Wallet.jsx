@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Wallet.css';
 import {useTelegram} from "../../hooks/useTelegram";
-import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser"; // Убедитесь, что вы создали соответствующий файл стилей
+import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser";
+import {TransactionsTable} from "../Bitcoin/Transactions/TransactionsTable"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
@@ -16,6 +17,9 @@ const dummyBalance = '4 957,92';
 const Wallet = () => {
     const {tg, chatId} = useTelegram();
     const backButton = tg.BackButton
+
+    const [transactions, setTransactions] = useState([]);
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             backButton.hide();
@@ -25,7 +29,7 @@ const Wallet = () => {
         return () => clearTimeout(timeoutId);
     }, [backButton]);
 
-    useGetAllTransactionsUser(chatId)
+    useGetAllTransactionsUser(chatId, setTransactions)
 
     const handleButtonClick = () => {
         tg.showPopup({
@@ -83,7 +87,7 @@ const Wallet = () => {
             <button className={'button'} onClick={handleButtonClick}>окно</button>
             <div className="transaction-history">
                 <h3>История транзакций</h3>
-                {/* Тут можно добавить компонент истории транзакций */}
+                <TransactionsTable transactions={transactions}/>
             </div>
         </div>
     );
