@@ -22,6 +22,7 @@ import {Balance} from '../Balance/Balance';
 import {BitcoinInput} from "../BitcoinInput/BitcoinInput";
 import {useSendBitcoin} from "../Hooks/useSendBitcoinHook";
 import {getWeightTransactions} from "../../../api/useGetWeightTransaction";
+import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
 // В начале вашего файла компонента
 
 
@@ -40,7 +41,7 @@ export const SendBitcoin = () => {
     const [isCustomFee, setIsCustomFee] = useState(false);
     const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
     const [virtualSize, setVirtualSize] = useState('');
-    const [debouncedOutputs, setDebouncedOutputs] = useState([]);
+    const [isFetchingFee, setIsFetchingFee] = useState(false);
 
 
     // Массив для хранения вводов
@@ -119,11 +120,14 @@ export const SendBitcoin = () => {
     };
 
 
-    const installCommission = async () =>{
+    const installCommission = async () => {
         if (allInputsValid) {
-           await getWeightTransactions(chatId, outputs, setVirtualSize);
+            setIsFetchingFee(true);
+            await getWeightTransactions(chatId, outputs, setVirtualSize);
+            setIsFetchingFee(false);
         }
-    }
+    };
+
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
     const {handleSendBitcoin, txId, isSent, isSending, isError} = useSendBitcoin(chatId);
@@ -272,8 +276,9 @@ export const SendBitcoin = () => {
                 <div className={'body_second'}>
                     <div onClick={installCommission}>установить комиссию сети</div>
                     <div>
-                        <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>
+                        {isFetchingFee ? <LocalLoadingSpinner /> : <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize} />}
                     </div>
+
                     <div>
                         {isCustomFee && (
                             <input
