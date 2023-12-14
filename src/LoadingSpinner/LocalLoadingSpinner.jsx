@@ -5,7 +5,7 @@ import {LoadingSpinner} from "./LoadingSpinner"; // Убедитесь, что �
 const LocalLoadingSpinner = () => {
     return (
         <div className="local-loading-spinner">
-            <LoadingSpinner/>
+
             <div className="spinner">
                 Загрузка
                 <span className="dot">.</span>
