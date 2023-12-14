@@ -61,7 +61,7 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         setIsLoadingCommission(true);
     };
 
-    const updateAmountRubFinal = async () => {
+/*    const updateAmountRubFinal = async () => {
         const test = convertSatoshisToBitcoin(selectedFee * virtualSize);
         const amountRub = await convertBtcToRub(test);
         setAmountRubFinal(amountRub);
@@ -72,7 +72,7 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         if (selectedFee && virtualSize) {
             updateAmountRubFinal();
         }
-    }, [selectedFee, virtualSize]);
+    }, [selectedFee, virtualSize]);*/
 
 
     return (
@@ -81,14 +81,14 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 <option value="" disabled hidden>Выберите комиссию</option>
                 {fees.map(({ label, satPerByte, amountRub }, index) => (
                     <option key={index} value={satPerByte}>
-                        {label} - {satPerByte} sat/b {/*- {amountRub} руб*/}
+                        {label} - {satPerByte} sat/b - {amountRub} руб
                     </option>
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
-            <div className="your-specific-container">
+            {/*<div className="your-specific-container">
                 {isLoadingCommission ? <LocalLoadingSpinner /> : (amountRubFinal !== '' ? amountRubFinal : '')}
-            </div>
+            </div>*/}
         </div>
     );
 };

@@ -122,7 +122,7 @@ export const SendBitcoin = () => {
             if (allInputsValid) {
                 getWeightTransactions(chatId, outputs, setVirtualSize);
             }
-        }, 1000); // Задержка в 1000 миллисекунд
+        }, 3000); // Задержка в 1000 миллисекунд
 
         return () => clearTimeout(handler);
     }, [outputs, allInputsValid]);
