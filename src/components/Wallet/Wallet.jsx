@@ -85,7 +85,7 @@ const Wallet = () => {
                 ))}
             </div>
             <button className={'button'} onClick={handleButtonClick}>окно</button>
-            <div className="transaction-history">
+            <div>
                 <h3>История транзакций</h3>
                 <TransactionsList transactions={transactions}/>
             </div>
