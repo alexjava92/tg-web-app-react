@@ -1,4 +1,5 @@
 import React from 'react';
+import './TransactionsTable.css'
 
 const TransactionCard = ({ transaction }) => {
     return (
