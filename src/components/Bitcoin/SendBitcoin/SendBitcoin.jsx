@@ -114,9 +114,19 @@ export const SendBitcoin = () => {
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
-        getWeightTransactions(chatId, outputs, setVirtualSize);
+
         console.log('Выбрана комиссия:', selectedCommission);
     };
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            if (allInputsValid) {
+                getWeightTransactions(chatId, outputs, setVirtualSize);
+            }
+        }, 1000); // Задержка в 1000 миллисекунд
+
+        return () => clearTimeout(handler);
+    }, [outputs, allInputsValid]);
+
 
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
@@ -181,28 +191,6 @@ export const SendBitcoin = () => {
     }, [totalBitcoinAmount, balance]);
 
 
-
-/*    // Debounce для outputs
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedOutputs(outputs);
-        }, 2000); // Задержка в 500 миллисекунд
-
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [outputs]); // Зависит только от изменения outputs
-
-    useEffect(() => {
-        const fetchVirtualSize = async () => {
-            // Проверяем, что все инпуты заполнены и в debouncedOutputs есть данные
-            if (allInputsValid && debouncedOutputs.length > 0) {
-                await getWeightTransactions(chatId, debouncedOutputs, setVirtualSize);
-            }
-        };
-
-        fetchVirtualSize();
-    }, [chatId, debouncedOutputs, allInputsValid]);*/
 
 
     useEffect(() => {
