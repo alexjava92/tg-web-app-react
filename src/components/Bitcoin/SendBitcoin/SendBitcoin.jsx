@@ -121,11 +121,13 @@ export const SendBitcoin = () => {
     };
 
 
-    const installCommission = async () => {
-        setShowBitcoinFees(true);
-        setIsFetchingFee(true);
-        await getWeightTransactions(chatId, outputs, setVirtualSize);
-        setIsFetchingFee(false);
+    const toggleBitcoinFeesDisplay = async () => {
+        setShowBitcoinFees(!showBitcoinFees);
+        if (!showBitcoinFees) {
+            setIsFetchingFee(true);
+            await getWeightTransactions(chatId, outputs, setVirtualSize);
+            setIsFetchingFee(false);
+        }
     };
 
 
@@ -273,11 +275,12 @@ export const SendBitcoin = () => {
                 </div>
 
                 <div className={'body_second'}>
-                    <div onClick={installCommission}>установить комиссию сети</div>
                     <div>
-                        {showBitcoinFees && (isFetchingFee ? <LocalLoadingSpinner/> :
-                            <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>)}
+                        {showBitcoinFees ? (isFetchingFee ? <LocalLoadingSpinner/> :
+                                <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>) :
+                            <button onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</button>}
                     </div>
+
                     <div>
                         {isCustomFee && (
                             <input
