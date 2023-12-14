@@ -1,9 +1,6 @@
 .success-container {
     display: flex;
     flex-direction: column;
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 20px;
     align-items: center; /* Центрирует содержимое по горизонтали */
     text-align: center; /* Центрирует текст */
 }
