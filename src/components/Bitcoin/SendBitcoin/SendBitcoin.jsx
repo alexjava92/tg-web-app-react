@@ -122,11 +122,13 @@ export const SendBitcoin = () => {
 
 
     const toggleBitcoinFeesDisplay = async () => {
-        setShowBitcoinFees(!showBitcoinFees);
-        if (!showBitcoinFees && allInputsValid) {
-            setIsFetchingFee(true);
-            await getWeightTransactions(chatId, outputs, setVirtualSize);
-            setIsFetchingFee(false);
+        if (allInputsValid) {
+            setShowBitcoinFees(!showBitcoinFees);
+            if (!showBitcoinFees) {
+                setIsFetchingFee(true);
+                await getWeightTransactions(chatId, outputs, setVirtualSize);
+                setIsFetchingFee(false);
+            }
         }
     };
 
