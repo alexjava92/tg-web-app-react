@@ -64,8 +64,8 @@ export const SendBitcoin = () => {
             isValidAddress: true,
             rubAmount: '',
             validBalance: true,
-
         }]);
+        setShowBitcoinFees(false); // Сбросить состояние для показа кнопки
     };
 
     // Удаление ввода
