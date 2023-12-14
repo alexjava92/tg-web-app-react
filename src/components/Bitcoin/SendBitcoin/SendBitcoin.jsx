@@ -211,15 +211,19 @@ export const SendBitcoin = () => {
     const renderSuccessPage = () => {
         return (
             <div className="success-container">
-                <div className="success-icon">✔️</div>
-                <h2 className="success-header">Транзакция успешно отправлена!</h2>
-                <p className="success-txid">Идентификатор транзакции: {txId}</p>
+                <div className={'body_second'}>
+                    <div className="success-icon">✔️</div>
+                    <h2 className="success-header">Транзакция успешно отправлена!</h2>
+                </div>
+                <div className={'body_second'}>
+                    <p className="success-txid">Идентификатор транзакции: {txId}</p>
+                </div>
                 <CopyToClipboard text={txId}>
                     <button className={'button'} onClick={handleCopyAddress}>
                         Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
-                <div>
+                <div className={'body_second'}>
                     <a href={transactionUrl} target="_blank" rel="noopener noreferrer" className="transaction-link">
                         Посмотреть транзакцию
                     </a>
@@ -281,7 +285,8 @@ export const SendBitcoin = () => {
                     <div>
                         {showBitcoinFees ? (isFetchingFee ? <LocalLoadingSpinner/> :
                                 <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>) :
-                            <span className={'span_add'} onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</span>}
+                            <span className={'span_add'}
+                                  onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</span>}
                     </div>
 
                     <div>
