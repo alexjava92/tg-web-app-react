@@ -4,7 +4,7 @@ import '../../../App.css'
 
 const TransactionCard = ({ transaction }) => {
     return (
-        <div className="body_second">
+        <div className={'transactions-list'}>
             <div>
                 TXID: {transaction.txid}
                 <div>
@@ -26,7 +26,7 @@ const TransactionCard = ({ transaction }) => {
 
 export const TransactionsList = ({ transactions }) => {
     return (
-        <div>
+        <div className="body_second">
             {transactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction} />
             ))}

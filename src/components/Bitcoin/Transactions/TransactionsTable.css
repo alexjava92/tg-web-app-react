@@ -1,8 +1,7 @@
 .transactions-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 20px;
+
 }
 
 .transaction-card {
