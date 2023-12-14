@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './Wallet.css';
-import {useTelegram} from "../../hooks/useTelegram"; // Убедитесь, что вы создали соответствующий файл стилей
+import {useTelegram} from "../../hooks/useTelegram";
+import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
@@ -13,7 +14,7 @@ const dummyBalance = '4 957,92';
 
 
 const Wallet = () => {
-    const {tg} = useTelegram();
+    const {tg, chatId} = useTelegram();
     const backButton = tg.BackButton
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -23,6 +24,8 @@ const Wallet = () => {
         // Очистка таймаута при размонтировании компонента
         return () => clearTimeout(timeoutId);
     }, [backButton]);
+
+    useGetAllTransactionsUser(chatId)
 
     const handleButtonClick = () => {
         tg.showPopup({
