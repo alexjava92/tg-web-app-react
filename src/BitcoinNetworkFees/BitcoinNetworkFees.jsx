@@ -3,6 +3,7 @@ import { getFees } from "./apiGetFees";
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
 import './BitcoinNetworkFees.css'
 import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
+import LocalLoadingSpinner from "../LoadingSpinner/LocalLoadingSpinner";
 
 export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
     const [fees, setFees] = useState([]);
@@ -85,8 +86,8 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                 ))}
                 <option value="custom">Установить свою</option>
             </select>
-            <div className="commission-loading-container">
-                {isLoadingCommission ? <LoadingSpinner /> : (amountRubFinal !== '' ? amountRubFinal : '')}
+            <div className="your-specific-container">
+                {isLoadingCommission ? <LocalLoadingSpinner /> : (amountRubFinal !== '' ? amountRubFinal : '')}
             </div>
         </div>
     );

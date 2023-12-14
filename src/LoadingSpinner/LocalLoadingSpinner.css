@@ -1,0 +1,11 @@
+.local-loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Вы можете изменить высоту под ваш дизайн */
+    width: 100%; /* Ширина контейнера */
+}
+
+.spinner {
+    /* Стили для вашего индикатора загрузки */
+}
