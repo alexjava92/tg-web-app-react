@@ -114,7 +114,7 @@ export const SendBitcoin = () => {
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
-        getWeightTransactions(chatId, debouncedOutputs, setVirtualSize);
+        getWeightTransactions(chatId, outputs, setVirtualSize);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
