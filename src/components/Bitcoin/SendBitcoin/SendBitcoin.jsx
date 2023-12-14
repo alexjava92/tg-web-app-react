@@ -42,6 +42,7 @@ export const SendBitcoin = () => {
     const [isTotalAmountValid, setIsTotalAmountValid] = useState(true);
     const [virtualSize, setVirtualSize] = useState('');
     const [isFetchingFee, setIsFetchingFee] = useState(false);
+    const [showBitcoinFees, setShowBitcoinFees] = useState(false);
 
 
     // Массив для хранения вводов
@@ -121,12 +122,12 @@ export const SendBitcoin = () => {
 
 
     const installCommission = async () => {
-        if (allInputsValid) {
-            setIsFetchingFee(true);
-            await getWeightTransactions(chatId, outputs, setVirtualSize);
-            setIsFetchingFee(false);
-        }
+        setShowBitcoinFees(true);
+        setIsFetchingFee(true);
+        await getWeightTransactions(chatId, outputs, setVirtualSize);
+        setIsFetchingFee(false);
     };
+
 
     const {handleCopyAddress} = useCopyToClipboard('Транзакция скопирована');
 
@@ -189,8 +190,6 @@ export const SendBitcoin = () => {
         setIsTotalAmountValid(isValid);
         console.log("Total Amount Valid:", isValid);
     }, [totalBitcoinAmount, balance]);
-
-
 
 
     useEffect(() => {
@@ -276,9 +275,9 @@ export const SendBitcoin = () => {
                 <div className={'body_second'}>
                     <div onClick={installCommission}>установить комиссию сети</div>
                     <div>
-                        {isFetchingFee ? <LocalLoadingSpinner /> : <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize} />}
+                        {showBitcoinFees && (isFetchingFee ? <LocalLoadingSpinner/> :
+                            <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>)}
                     </div>
-
                     <div>
                         {isCustomFee && (
                             <input
