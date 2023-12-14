@@ -1,0 +1,22 @@
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px;
+}
+
+.transaction-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--tg-theme-bg-color);
+}
+
+.transaction-details div {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.transaction-id {
+    font-weight: bold;
+}

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Wallet.css';
 import {useTelegram} from "../../hooks/useTelegram";
 import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser";
-import {TransactionsTable} from "../Bitcoin/Transactions/TransactionsTable"; // Убедитесь, что вы создали соответствующий файл стилей
+import {TransactionsList} from "../Bitcoin/Transactions/TransactionsTable"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
@@ -87,7 +87,7 @@ const Wallet = () => {
             <button className={'button'} onClick={handleButtonClick}>окно</button>
             <div className="transaction-history">
                 <h3>История транзакций</h3>
-                <TransactionsTable transactions={transactions}/>
+                <TransactionsList transactions={transactions}/>
             </div>
         </div>
     );
