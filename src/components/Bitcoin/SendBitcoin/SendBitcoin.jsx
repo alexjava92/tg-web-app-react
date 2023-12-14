@@ -123,7 +123,7 @@ export const SendBitcoin = () => {
 
     const toggleBitcoinFeesDisplay = async () => {
         setShowBitcoinFees(!showBitcoinFees);
-        if (!showBitcoinFees) {
+        if (!showBitcoinFees && allInputsValid) {
             setIsFetchingFee(true);
             await getWeightTransactions(chatId, outputs, setVirtualSize);
             setIsFetchingFee(false);
