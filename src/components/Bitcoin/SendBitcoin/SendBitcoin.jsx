@@ -280,7 +280,7 @@ export const SendBitcoin = () => {
                     <div>
                         {showBitcoinFees ? (isFetchingFee ? <LocalLoadingSpinner/> :
                                 <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>) :
-                            <button onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</button>}
+                            <span className={'span_add'} onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</span>}
                     </div>
 
                     <div>
