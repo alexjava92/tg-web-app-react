@@ -4,9 +4,12 @@ import '../../../App.css'
 
 const TransactionCard = ({ transaction }) => {
     return (
-        <div className={'transactions-list'}>
+        <div>
             <div>
-                TXID: {transaction.txid}
+                <div className={'transaction-id'}>
+                    TXID: {transaction.txid}
+                </div>
+
                 <div>
                     Senders: {transaction.senders.join(', ')}
                 </div>
