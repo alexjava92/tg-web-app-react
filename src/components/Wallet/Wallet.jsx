@@ -36,11 +36,11 @@ const Wallet = () => {
             title: 'Заголовок',
             message: 'Текст сообщения',
             buttons: [
-                { id: 'ok_button', type: 'ok', text: 'Ок' },
-                { id: 'cancel_button', type: 'cancel', text: 'Отмена' },
-                { id: 'add_button', type: 'default', text: 'Добавить' },
+                {id: 'ok_button', type: 'ok', text: 'Ок'},
+                {id: 'cancel_button', type: 'cancel', text: 'Отмена'},
+                {id: 'add_button', type: 'default', text: 'Добавить'},
             ]
-        }, function(result) {
+        }, function (result) {
             if (result) {
                 console.log('Пользователь нажал кнопку:', result);
                 if (result === 'add_button') {
@@ -56,23 +56,24 @@ const Wallet = () => {
     };
 
 
-
     return (
-        <div className="wallet">
-            <div className="wallet-header">
-                <h3>Баланс</h3>
-                <div className="balance">{dummyBalance} $</div>
-                <div className="actions">
-                    <Link to="/send-bitcoin">
-                        <button onClick={() => {
-                        }}>Отправить
-                        </button>
-                    </Link>
-                    <Link to="/bitcoin-address">
-                        <button onClick={() => {
-                        }}>Получить
-                        </button>
-                    </Link>
+        <div>
+            <div className="wallet">
+                <div className="wallet-header">
+                    <h3>Баланс</h3>
+                    <div className="balance">{dummyBalance} $</div>
+                    <div className="actions">
+                        <Link to="/send-bitcoin">
+                            <button onClick={() => {
+                            }}>Отправить
+                            </button>
+                        </Link>
+                        <Link to="/bitcoin-address">
+                            <button onClick={() => {
+                            }}>Получить
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="currencies">
