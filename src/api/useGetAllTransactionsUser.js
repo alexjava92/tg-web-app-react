@@ -23,7 +23,7 @@ export const useGetAllTransactionsUser = (chatId) => {
                     const responseData = await response.json();
                     const allTransaction = responseData.allTransactions;
                   //  setBalance(newBalance.balance);
-                    console.log('Получены транзакции:', allTransaction.allTransaction);
+                    console.log('Получены транзакции:', allTransaction);
                 } else {
                     console.error('Server returned an error:', response.status);
                 }
