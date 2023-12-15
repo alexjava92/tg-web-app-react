@@ -104,11 +104,15 @@
 }
 
 .amount-incoming {
+    display: flex;
+    justify-content: flex-end;
     font-size: 1.2rem;
     color: #1dc41d; /* Зеленый цвет для поступлений */
 }
 
 .amount-outgoing {
+    display: flex;
+    justify-content: flex-end;
     font-size: 1.2rem;
     color: #e13636; /* Красный цвет для отправлений */
 }
