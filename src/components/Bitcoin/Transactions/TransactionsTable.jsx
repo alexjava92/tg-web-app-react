@@ -69,7 +69,7 @@ const TransactionCard = ({transaction}) => {
 };
 
 export const TransactionsList = ({transactions}) => {
-    const [filter, setFilter] = useState('All');
+    const [filter, setFilter] = useState('Все');
 
     const filteredTransactions = transactions.filter(tx => {
         if (filter === 'Все') return true;
