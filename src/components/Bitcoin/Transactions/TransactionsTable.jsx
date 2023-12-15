@@ -49,11 +49,13 @@ const TransactionCard = ({transaction}) => {
             {showDetails && (
                 <>
                     <div className={'transaction-id'}>TXID: {transaction.txid}</div>
-                    <div>От: {transaction.senders.join(', ')}</div>
-                    <div>Кому: {transaction.recipients.join(', ')}</div>
-                    <div>Подтверждение: {transaction.confirmed ? 'Yes' : 'No'}</div>
-                    <div>Дата время: {transaction.blockTime}</div>
+                    <div className={'senders'}>От: {transaction.senders.join(', ')}</div>
+                    <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
+                    <div className={'conformation'}>Подтверждение: {transaction.confirmed ? 'Yes' : 'No'}</div>
+                    <div className={'data_time'}>Дата время: {transaction.blockTime}</div>
+                    <div><span className={'span_show_transactions'}>Посмотреть транзакцию</span></div>
                 </>
+
             )}
         </div>
     );

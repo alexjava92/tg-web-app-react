@@ -26,3 +26,32 @@
     padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
 }
 
+.senders {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
+}
+.recipients {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
+}
+
+.conformation {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
+}
+
+.data_time {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
+}
+
+.span_show_transactions {
+    display: inline-block;
+    color: var(--tg-theme-link-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
