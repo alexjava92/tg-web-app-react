@@ -72,23 +72,12 @@ export const TransactionsList = ({transactions}) => {
     const [filter, setFilter] = useState('All');
 
     const filteredTransactions = transactions.filter(tx => {
-        if (filter === 'All') return true;
-        return tx.transactionType === filter;
+        if (filter === 'Все') return true;
+        if (filter === 'Получено') return tx.transactionType === 'Incoming';
+        if (filter === 'Отправлено') return tx.transactionType === 'Outgoing';
+        if (filter === 'Внутренний') return tx.transactionType === 'Internal';
+        return false;
     });
-
-    const handleFilterClick = (type) => {
-        setFilter(type);
-    };
-
-    const renderFilterOption = (type) => {
-        const isSelected = filter === type;
-        const className = `filter-option ${isSelected ? 'selected' : ''}`;
-        return (
-            <span key={type} onClick={() => handleFilterClick(type)} className={className}>
-                {type}
-            </span>
-        );
-    };
 
     return (
         <div>
@@ -96,10 +85,26 @@ export const TransactionsList = ({transactions}) => {
                 <h3>История транзакций</h3>
             </div>
             <div className={'flex-container'}>
-                <span onClick={() => handleFilterClick('All')}>Все</span>
-                <span onClick={() => handleFilterClick('Incoming')}>Получено</span>
-                <span onClick={() => handleFilterClick('Outgoing')}>Отправлено</span>
-                <span onClick={() => handleFilterClick('Internal')}>Внутренний</span>
+                <span
+                    className={filter === 'Все' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Все')}>
+                    Все
+                </span>
+                <span
+                    className={filter === 'Получено' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Получено')}>
+                    Получено
+                </span>
+                <span
+                    className={filter === 'Отправлено' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Отправлено')}>
+                    Отправлено
+                </span>
+                <span
+                    className={filter === 'Внутренний' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Внутренний')}>
+                    Внутренний
+                </span>
             </div>
             {filteredTransactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction}/>
