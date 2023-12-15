@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
-import {isValidBitcoinAddress} from "../../../api/ValidAddress/ValidAddres.mjs";
+import {isValidBitcoinAddress} from "../../../api/ValidAddres.js";
 import {
     convertBitcoinToSatoshis,
     convertBtcToRub,

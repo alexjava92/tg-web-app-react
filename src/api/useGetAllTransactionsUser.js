@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { config } from "./config";
 
 const url = config.apiBaseUrl;
