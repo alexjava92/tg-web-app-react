@@ -104,9 +104,11 @@
 }
 
 .amount-incoming {
+    font-size: 1.2rem;
     color: green; /* Зеленый цвет для поступлений */
 }
 
 .amount-outgoing {
+    font-size: 1.2rem;
     color: red; /* Красный цвет для отправлений */
 }
