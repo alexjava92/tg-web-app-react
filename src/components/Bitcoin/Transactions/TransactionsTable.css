@@ -112,3 +112,7 @@
     font-size: 1.2rem;
     color: #e13636; /* Красный цвет для отправлений */
 }
+
+.amount_rub {
+    font-size: 0.7rem;
+}

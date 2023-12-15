@@ -54,7 +54,7 @@ const TransactionCard = ({transaction}) => {
                 </div>
                 <div className={`transaction-amount ${amountClass}`}>
                     {amount}
-                    {amountInRub !== null && <div>{amountInRub} RUB</div>}
+                    {amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>}
                 </div>
             </div>
         );
