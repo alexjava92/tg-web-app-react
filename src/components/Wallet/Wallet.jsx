@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import './Wallet.css';
 import {useTelegram} from "../../hooks/useTelegram";
 import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser";
-import {TransactionsList} from "../Bitcoin/Transactions/TransactionsTable"; // Убедитесь, что вы создали соответствующий файл стилей
+import {TransactionsList} from "../Bitcoin/Transactions/TransactionsTable";
+import LocalLoadingSpinner from "../../LoadingSpinner/LocalLoadingSpinner"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
@@ -20,6 +21,7 @@ const Wallet = () => {
 
     const [transactions, setTransactions] = useState([]);
     const [showTransactions, setShowTransactions] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
 
@@ -33,8 +35,12 @@ const Wallet = () => {
     }, [backButton]);
 
     const handleShowTransactionsClick = () => {
-        setShowTransactions(true);
-        fetchTransactions(); // Вызов функции для загрузки транзакций
+        setShowTransactions(false);
+        setIsLoading(true); // включаем индикатор загрузки
+        fetchTransactions().then(() => {
+            setShowTransactions(true);
+            setIsLoading(false); // выключаем индикатор загрузки после загрузки транзакций
+        });
     };
 
 
@@ -93,11 +99,15 @@ const Wallet = () => {
                 ))}
             </div>
             <button className={'button'} onClick={handleButtonClick}>окно</button>
-            <div>
-                <h3>История транзакций</h3>
-                <span onClick={handleShowTransactionsClick}>Показать транзакции</span>
-                {showTransactions && <TransactionsList transactions={transactions}/>}
-            </div>
+            {isLoading ? (
+                <LocalLoadingSpinner />
+            ) : (
+                <div>
+                    <span onClick={handleShowTransactionsClick}>Показать транзакции</span>
+                    <h3>История транзакций</h3>
+                    {showTransactions && <TransactionsList transactions={transactions}/>}
+                </div>
+            )}
 
         </div>
     );
