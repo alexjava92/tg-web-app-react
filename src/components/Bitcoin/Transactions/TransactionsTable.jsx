@@ -10,17 +10,19 @@ const TransactionCard = ({transaction}) => {
     const toggleDetails = () => setShowDetails(!showDetails);
 
     const renderTransactionDetails = () => {
-        let icon, action, amount;
+        let icon, action, amount, amountClass;
         switch (transaction.transactionType) {
             case 'Incoming':
                 icon = '🟢';
                 action = 'Получено';
                 amount = convertSatoshisToBitcoin(transaction.amountReceived);
+                amountClass = 'amount-incoming';
                 break;
             case 'Outgoing':
                 icon = '🔴';
                 action = 'Отправлено';
                 amount = convertSatoshisToBitcoin(transaction.amountSent);
+                amountClass = 'amount-outgoing';
                 break;
             case 'Internal':
                 icon = '🔁';
@@ -34,11 +36,15 @@ const TransactionCard = ({transaction}) => {
                 break;
         }
         return (
-            <>
-                <div>{icon} {action}</div>
-                <div>Дата время: {transaction.blockTime}</div>
-                <div>Количество: {amount}</div>
-            </>
+            <div className="transaction-detail">
+                <div className="transaction-info">
+                    <div>{icon} {action}</div>
+                    <div>Дата время: {transaction.blockTime}</div>
+                </div>
+                <div className={`transaction-amount ${amountClass}`}>
+                    {amount}
+                </div>
+            </div>
         );
     };
 

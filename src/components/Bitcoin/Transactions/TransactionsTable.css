@@ -92,3 +92,21 @@
     background-color: var(--tg-theme-button-color); /* Или любой другой цвет для выделения */
     color: var(--tg-theme-text-color);
 }
+
+.transaction-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-info {
+    /* Стили для информации о транзакции */
+}
+
+.amount-incoming {
+    color: green; /* Зеленый цвет для поступлений */
+}
+
+.amount-outgoing {
+    color: red; /* Красный цвет для отправлений */
+}
