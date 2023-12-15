@@ -1,16 +1,23 @@
 import React, {useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
-import {convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
 
 const TransactionCard = ({transaction}) => {
     const [showDetails, setShowDetails] = useState(false);
+    const [displayInRub, setDisplayInRub] = useState(false);
+
+    const toggleCurrency = () => {
+        setDisplayInRub(!displayInRub);
+    };
 
     const toggleDetails = () => setShowDetails(!showDetails);
 
     const renderTransactionDetails = () => {
         let icon, action, amount, amountClass;
+
+
         switch (transaction.transactionType) {
             case 'Incoming':
                 icon = '🟢';
@@ -35,14 +42,20 @@ const TransactionCard = ({transaction}) => {
                 amount = '---';
                 break;
         }
+
+        const displayAmount = displayInRub
+            ? `${convertBtcToRub(amount)}`
+            : `${amount}`;
+
         return (
             <div className="transaction-detail">
                 <div className="transaction-info">
                     <div>{action}</div>
                     <div>{transaction.blockTime}</div>
                 </div>
-                <div className={`transaction-amount ${amountClass}`}>
-                    {amount}
+                <div className={`transaction-amount ${amountClass}`}
+                     onClick={toggleCurrency}>
+                    {displayAmount}
                 </div>
             </div>
         );
