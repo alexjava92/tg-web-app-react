@@ -19,7 +19,7 @@ const Wallet = () => {
     const backButton = tg.BackButton
 
     const [transactions, setTransactions] = useState([]);
-    const [showTransactions, setShowTransactions] = useState(false);
+    const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
 
     useEffect(() => {
@@ -32,8 +32,7 @@ const Wallet = () => {
     }, [backButton]);
 
     const handleShowTransactionsClick = () => {
-        setShowTransactions(true);
-        useGetAllTransactionsUser(chatId, setTransactions, true);
+        fetchTransactions(); // Вызов функции для загрузки транзакций
     };
 
 
