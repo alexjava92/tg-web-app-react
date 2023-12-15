@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
-import {convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
 
 const TransactionCard = ({transaction}) => {
