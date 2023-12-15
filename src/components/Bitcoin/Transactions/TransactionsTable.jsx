@@ -52,6 +52,7 @@ const TransactionCard = ({transaction}) => {
 export const TransactionsList = ({transactions}) => {
     return (
         <div>
+            <h3>История транзакций</h3>
             {transactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction}/>
             ))}

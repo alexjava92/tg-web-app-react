@@ -104,7 +104,7 @@ const Wallet = () => {
             ) : (
                 <div>
                     <span onClick={handleShowTransactionsClick}>Показать транзакции</span>
-                    <h3>История транзакций</h3>
+
                     {showTransactions && <TransactionsList transactions={transactions}/>}
                 </div>
             )}
