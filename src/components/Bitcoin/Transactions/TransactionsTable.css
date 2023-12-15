@@ -114,5 +114,7 @@
 }
 
 .amount_rub {
+    display: flex;
+    justify-content: flex-end;
     font-size: 0.7rem;
 }
