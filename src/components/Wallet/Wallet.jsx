@@ -104,7 +104,7 @@ const Wallet = () => {
             ) : (
                 <div>
                     {!showTransactions && (
-                        <span onClick={handleShowTransactionsClick}>Показать транзакции</span>
+                        <span className={'span_show_transactions'} onClick={handleShowTransactionsClick}>Показать транзакции</span>
                     )}
                     <h3>История транзакций</h3>
                     {showTransactions && <TransactionsList transactions={transactions}/>}

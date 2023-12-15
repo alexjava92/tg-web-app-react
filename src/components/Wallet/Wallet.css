@@ -47,3 +47,9 @@
 }
 
 
+.span_show_transactions {
+    display: inline-block;
+    color: var(--tg-theme-link-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
