@@ -1,23 +1,27 @@
 import React, {useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
-import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
 
 const TransactionCard = ({transaction}) => {
     const [showDetails, setShowDetails] = useState(false);
-    const [displayInRub, setDisplayInRub] = useState(false);
+    const [amountInRub, setAmountInRub] = useState(null);
 
-    const toggleCurrency = () => {
-        setDisplayInRub(!displayInRub);
-    };
+    useEffect(() => {
+        const convertToRub = async () => {
+            const btcAmount = convertSatoshisToBitcoin(transaction.amountReceived || transaction.amountSent);
+            const rubAmount = await convertBtcToRub(btcAmount);
+            setAmountInRub(rubAmount);
+        };
+
+        convertToRub();
+    }, [transaction]);
 
     const toggleDetails = () => setShowDetails(!showDetails);
 
     const renderTransactionDetails = () => {
         let icon, action, amount, amountClass;
-
-
         switch (transaction.transactionType) {
             case 'Incoming':
                 icon = '🟢';
@@ -42,20 +46,15 @@ const TransactionCard = ({transaction}) => {
                 amount = '---';
                 break;
         }
-
-        const displayAmount = displayInRub
-            ? `${convertBtcToRub(amount)}`
-            : `${amount}`;
-
         return (
             <div className="transaction-detail">
                 <div className="transaction-info">
                     <div>{action}</div>
                     <div>{transaction.blockTime}</div>
                 </div>
-                <div className={`transaction-amount ${amountClass}`}
-                     onClick={toggleCurrency}>
-                    {displayAmount}
+                <div className={`transaction-amount ${amountClass}`}>
+                    {amount}
+                    {amountInRub !== null && <div>{amountInRub} RUB</div>}
                 </div>
             </div>
         );
