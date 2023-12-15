@@ -23,11 +23,11 @@ const TransactionCard = ({transaction}) => {
 
     const renderAmount = () => {
         if (transaction.transactionType === 'Incoming') {
-            return `Received: ${transaction.amountReceived}`;
+            return `Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
         } else if (transaction.transactionType === 'Outgoing') {
-            return `Sent: ${transaction.amountSent}`;
+            return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)}`;
         }
-        return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
+        return `Sent: ${transaction.amountSent} / Received: ${transaction.amountReceived}`;
     };
 
     return (
