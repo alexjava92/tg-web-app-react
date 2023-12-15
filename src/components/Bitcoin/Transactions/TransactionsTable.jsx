@@ -49,10 +49,10 @@ const TransactionCard = ({transaction}) => {
             {showDetails && (
                 <>
                     <div className={'transaction-id'}>TXID: {transaction.txid}</div>
-                    <div>Senders: {transaction.senders.join(', ')}</div>
-                    <div>Recipients: {transaction.recipients.join(', ')}</div>
-                    <div>Confirmed: {transaction.confirmed ? 'Yes' : 'No'}</div>
-                    <div>Block Time: {transaction.blockTime}</div>
+                    <div>От: {transaction.senders.join(', ')}</div>
+                    <div>Кому: {transaction.recipients.join(', ')}</div>
+                    <div>Подтверждение: {transaction.confirmed ? 'Yes' : 'No'}</div>
+                    <div>Дата время: {transaction.blockTime}</div>
                 </>
             )}
         </div>
