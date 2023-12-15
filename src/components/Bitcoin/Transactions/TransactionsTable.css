@@ -20,4 +20,9 @@
     word-wrap: break-word;
     margin-top: 5px;
     margin-bottom: 5px;
+    border-top: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса сверху */
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-top: 5px; /* Добавляем отступ сверху, чтобы текст не прилипал к полосе */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
 }
+
