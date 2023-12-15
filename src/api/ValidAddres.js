@@ -1,7 +1,8 @@
 import {config} from "./config";
 
 
-export async function isValidBitcoinAddress(address) {
+const url = config.apiBaseUrl;
+export async function isValidBitcoinAddress (address) {
     try {
         const response = await fetch(`${url}/web-new-get-valid-bitcoin-address`, {
             method: 'POST',
@@ -13,19 +14,21 @@ export async function isValidBitcoinAddress(address) {
 
         if (response.ok) {
             const responseData = await response.json();
-            return responseData.isValid; // Возвращаем значение isValid
+            const validAddress = responseData.isValid;
+            console.log('Валидный:', validAddress);
+            return validAddress
         } else {
             console.error('Server returned an error:', response.status);
-            return false; // Возвращаем false при ошибке сервера
+            return false;
+
         }
     } catch (error) {
         console.error('Error fetching data from the server:', error);
-        return false; // Возвращаем false при ошибке запроса
+        return false;
+
     }
-}
+};
 
-/*// Пример использования функции
-isValidBitcoinAddress('2Mz87LWo5GgbHVZhx48nxZQfCh84opc9rzn').then(isValid => {
-    console.log('Is valid address:', isValid); // Выводит true или false
-});*/
-
+/*isValidBitcoinAddress('2Mz87LWo5GgbHVZhx48nxZQfCh84opc9rzn').then(valid => {
+    console.log(valid)
+})*/
