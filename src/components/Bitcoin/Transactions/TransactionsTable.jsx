@@ -38,7 +38,7 @@ const TransactionCard = ({transaction}) => {
         return (
             <div className="transaction-detail">
                 <div className="transaction-info">
-                    <div>{icon} {action}</div>
+                    <div>{action}</div>
                     <div>{transaction.blockTime}</div>
                 </div>
                 <div className={`transaction-amount ${amountClass}`}>
