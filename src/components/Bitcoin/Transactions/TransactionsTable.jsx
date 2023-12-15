@@ -7,19 +7,31 @@ const TransactionCard = ({ transaction }) => {
 
     const toggleDetails = () => setShowDetails(!showDetails);
 
+    const getTransactionIcon = (type) => {
+        switch (type) {
+            case 'Incoming':
+                return '🟢';
+            case 'Outgoing':
+                return '🔴';
+            case 'Internal':
+                return '🔁';
+            default:
+                return '❓';
+        }
+    };
+
     const renderAmount = () => {
         if (transaction.transactionType === 'Incoming') {
             return `Received: ${transaction.amountReceived}`;
         } else if (transaction.transactionType === 'Outgoing') {
             return `Sent: ${transaction.amountSent}`;
         }
-        // Default case for 'Internal' type
         return `Sent: ${transaction.amountSent} / Received: ${transaction.amountReceived}`;
     };
 
     return (
         <div className="body_second" onClick={toggleDetails}>
-            <div>Transaction Type: {transaction.transactionType}</div>
+            <div>Transaction Type: {getTransactionIcon(transaction.transactionType)} {transaction.transactionType}</div>
             <div>Block Time: {transaction.blockTime}</div>
             <div>{renderAmount()}</div>
 
