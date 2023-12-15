@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
 import {convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {config} from "../../../api/config";
 
 const TransactionCard = ({transaction}) => {
     const [showDetails, setShowDetails] = useState(false);
@@ -41,7 +42,7 @@ const TransactionCard = ({transaction}) => {
         );
     };
 
-
+    const transactionUrl = `${config.mempoolUrl}/tx/`;
     return (
         <div className="body_second" onClick={toggleDetails}>
             {renderTransactionDetails()}
@@ -53,7 +54,11 @@ const TransactionCard = ({transaction}) => {
                     <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
                     <div className={'conformation'}>Подтверждение: {transaction.confirmed ? 'Yes' : 'No'}</div>
                     <div className={'data_time'}>Дата время: {transaction.blockTime}</div>
-                    <div><span className={'span_show_transactions'}>Посмотреть транзакцию</span></div>
+                    <span className={'span_show_transactions'}>
+                        <a href={transactionUrl+transaction.txid} target="_blank"
+                           rel="noopener noreferrer">
+                        Посмотреть транзакцию
+                    </a></span>
                 </>
 
             )}
