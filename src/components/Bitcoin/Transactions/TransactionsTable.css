@@ -18,4 +18,5 @@
 
 .transaction-id {
     word-wrap: break-word;
+    gap: 5px;
 }
