@@ -19,6 +19,8 @@ const Wallet = () => {
     const backButton = tg.BackButton
 
     const [transactions, setTransactions] = useState([]);
+    const [showTransactions, setShowTransactions] = useState(false);
+
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -29,7 +31,11 @@ const Wallet = () => {
         return () => clearTimeout(timeoutId);
     }, [backButton]);
 
-    useGetAllTransactionsUser(chatId, setTransactions)
+    const handleShowTransactionsClick = () => {
+        setShowTransactions(true);
+        useGetAllTransactionsUser(chatId, setTransactions, true);
+    };
+
 
     const handleButtonClick = () => {
         tg.showPopup({
@@ -88,8 +94,10 @@ const Wallet = () => {
             <button className={'button'} onClick={handleButtonClick}>окно</button>
             <div>
                 <h3>История транзакций</h3>
-                <TransactionsList transactions={transactions}/>
+                <span onClick={handleShowTransactionsClick}>Показать транзакции</span>
+                {showTransactions && <TransactionsList transactions={transactions}/>}
             </div>
+
         </div>
     );
 };

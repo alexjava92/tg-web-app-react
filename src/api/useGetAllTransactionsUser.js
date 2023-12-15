@@ -3,8 +3,9 @@ import { config } from "./config";
 
 const url = config.apiBaseUrl;
 
-export const useGetAllTransactionsUser = (chatId, setTransactions) => {
+export const useGetAllTransactionsUser = (chatId, setTransactions, shouldFetch) => {
     useEffect(() => {
+        if (!shouldFetch) return;
         const fetchData = async () => {
             let responseStatus = 0; // Добавляем переменную для отслеживания статуса ответа
 
@@ -38,5 +39,5 @@ export const useGetAllTransactionsUser = (chatId, setTransactions) => {
         };
 
         fetchData();
-    }, [chatId]); // Добавляем onLoaded в массив зависимостей
+    }, [chatId, shouldFetch]); // Добавляем onLoaded в массив зависимостей
 };
