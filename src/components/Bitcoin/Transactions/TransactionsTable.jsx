@@ -24,7 +24,7 @@ const TransactionCard = ({transaction}) => {
             case 'Internal':
                 icon = '🔁';
                 action = 'Внутренняя';
-                amount = `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
+                amount = `${convertSatoshisToBitcoin(transaction.amountSent)} / ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
                 break;
             default:
                 icon = '❓';
@@ -41,14 +41,6 @@ const TransactionCard = ({transaction}) => {
         );
     };
 
-    /*const renderAmount = () => {
-        if (transaction.transactionType === 'Incoming') {
-            return `Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
-        } else if (transaction.transactionType === 'Outgoing') {
-            return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)}`;
-        }
-        return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
-    };*/
 
     return (
         <div className="body_second" onClick={toggleDetails}>
@@ -56,7 +48,7 @@ const TransactionCard = ({transaction}) => {
 
             {showDetails && (
                 <>
-                    <div>TXID: {transaction.txid}</div>
+                    <div className={'transaction-id'}>TXID: {transaction.txid}</div>
                     <div>Senders: {transaction.senders.join(', ')}</div>
                     <div>Recipients: {transaction.recipients.join(', ')}</div>
                     <div>Confirmed: {transaction.confirmed ? 'Yes' : 'No'}</div>
