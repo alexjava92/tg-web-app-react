@@ -8,33 +8,51 @@ const TransactionCard = ({transaction}) => {
 
     const toggleDetails = () => setShowDetails(!showDetails);
 
-    const getTransactionIcon = (type) => {
-        switch (type) {
+    const renderTransactionDetails = () => {
+        let icon, action, amount;
+        switch (transaction.transactionType) {
             case 'Incoming':
-                return '🟢';
+                icon = '🟢';
+                action = 'Получено';
+                amount = convertSatoshisToBitcoin(transaction.amountReceived);
+                break;
             case 'Outgoing':
-                return '🔴';
+                icon = '🔴';
+                action = 'Отправлено';
+                amount = convertSatoshisToBitcoin(transaction.amountSent);
+                break;
             case 'Internal':
-                return '🔁';
+                icon = '🔁';
+                action = 'Внутренняя';
+                amount = `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
+                break;
             default:
-                return '❓';
+                icon = '❓';
+                action = 'Неизвестно';
+                amount = '---';
+                break;
         }
+        return (
+            <>
+                <div>{icon} {action}</div>
+                <div>Дата время: {transaction.blockTime}</div>
+                <div>Количество: {amount}</div>
+            </>
+        );
     };
 
-    const renderAmount = () => {
+    /*const renderAmount = () => {
         if (transaction.transactionType === 'Incoming') {
             return `Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
         } else if (transaction.transactionType === 'Outgoing') {
             return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)}`;
         }
         return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
-    };
+    };*/
 
     return (
         <div className="body_second" onClick={toggleDetails}>
-            <div>Transaction Type: {getTransactionIcon(transaction.transactionType)} {transaction.transactionType}</div>
-            <div>Block Time: {transaction.blockTime}</div>
-            <div>{renderAmount()}</div>
+            {renderTransactionDetails()}
 
             {showDetails && (
                 <>
