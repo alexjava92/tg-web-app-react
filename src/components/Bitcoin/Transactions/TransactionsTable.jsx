@@ -56,7 +56,8 @@ const TransactionCard = ({transaction}) => {
                     <div className={'data_time'}>Дата время: {transaction.blockTime}</div>
                     <span className={'span_show_transactions'}>
                         <a href={transactionUrl+transaction.txid} target="_blank"
-                           rel="noopener noreferrer">
+                           rel="noopener noreferrer"
+                        className={'transaction-link'}>
                         Посмотреть транзакцию
                     </a></span>
                 </>

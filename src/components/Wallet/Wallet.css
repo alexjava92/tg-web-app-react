@@ -53,3 +53,8 @@
     font-size: 0.9rem;
     cursor: pointer;
 }
+.transaction-link {
+    color: var(--tg-theme-link-color); /* Цвет ссылки */
+    text-decoration: none; /* Убрать подчеркивание */
+    margin-bottom: 10px;
+}
