@@ -89,6 +89,6 @@
 }
 
 .filter-option.selected {
-    background-color: #007bff; /* Или любой другой цвет для выделения */
-    color: white;
+    background-color: var(--tg-theme-button-color); /* Или любой другой цвет для выделения */
+    color: var(--tg-theme-text-color);
 }
