@@ -69,17 +69,28 @@ const TransactionCard = ({transaction}) => {
 };
 
 export const TransactionsList = ({transactions}) => {
+    const [filter, setFilter] = useState('All');
+
+    const filteredTransactions = transactions.filter(tx => {
+        if (filter === 'All') return true;
+        return tx.transactionType === filter;
+    });
+
+    const handleFilterClick = (type) => {
+        setFilter(type);
+    };
     return (
         <div>
             <div className={'body_second'}>
                 <h3>История транзакций</h3>
             </div>
-                <div className={'flex-container'}>
-                    <span>Получено</span>
-                    <span>Отправлено</span>
-                    <span>Внутренний</span>
-                </div>
-            {transactions.map((transaction, index) => (
+            <div className={'flex-container'}>
+                <span onClick={() => handleFilterClick('All')}>Все</span>
+                <span onClick={() => handleFilterClick('Incoming')}>Получено</span>
+                <span onClick={() => handleFilterClick('Outgoing')}>Отправлено</span>
+                <span onClick={() => handleFilterClick('Internal')}>Внутренний</span>
+            </div>
+            {filteredTransactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction}/>
             ))}
         </div>
