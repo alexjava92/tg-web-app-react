@@ -52,7 +52,9 @@ const TransactionCard = ({transaction}) => {
 export const TransactionsList = ({transactions}) => {
     return (
         <div>
-            <h3>История транзакций</h3>
+            <div className={'body_second'}>
+                <h3>История транзакций</h3>
+            </div>
             {transactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction}/>
             ))}
