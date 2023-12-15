@@ -80,3 +80,15 @@
     margin: 10px; /* Внешний отступ */
     /* Другие стили, если нужно */
 }
+
+.filter-option {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.filter-option.selected {
+    background-color: #007bff; /* Или любой другой цвет для выделения */
+    color: white;
+}
