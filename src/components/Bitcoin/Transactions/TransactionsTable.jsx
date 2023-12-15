@@ -56,9 +56,9 @@ const TransactionCard = ({transaction}) => {
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
                     <span className={'span_show_transactions'}>
-                        <a href={transactionUrl+transaction.txid} target="_blank"
+                        <a href={transactionUrl + transaction.txid} target="_blank"
                            rel="noopener noreferrer"
-                        className={'transaction-link'}>
+                           className={'transaction-link'}>
                         Посмотреть транзакцию
                     </a></span>
                 </>
@@ -74,6 +74,11 @@ export const TransactionsList = ({transactions}) => {
             <div className={'body_second'}>
                 <h3>История транзакций</h3>
             </div>
+                <div className={'flex-container'}>
+                    <span>Получено</span>
+                    <span>Отправлено</span>
+                    <span>Внутренний</span>
+                </div>
             {transactions.map((transaction, index) => (
                 <TransactionCard key={index} transaction={transaction}/>
             ))}
