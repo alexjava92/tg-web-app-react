@@ -58,8 +58,14 @@
 
 .confirmation-yes {
     color: green;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
 }
 
 .confirmation-no {
     color: red;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
 }

@@ -53,7 +53,7 @@ const TransactionCard = ({transaction}) => {
                     <div className={'senders'}>От: {transaction.senders.join(', ')}</div>
                     <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
-                        Подтверждение: {transaction.confirmed ? 'Yes' : 'No'}
+                        Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
                     <span className={'span_show_transactions'}>
                         <a href={transactionUrl+transaction.txid} target="_blank"
