@@ -53,7 +53,7 @@ const TransactionCard = ({transaction}) => {
                     <div>{transaction.blockTime}</div>
                 </div>
                 <div className={`transaction-amount ${amountClass}`}>
-                    {amount}
+                    <div>{amount}</div>
                     {amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>}
                 </div>
             </div>
