@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
+import {convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
-const TransactionCard = ({ transaction }) => {
+const TransactionCard = ({transaction}) => {
     const [showDetails, setShowDetails] = useState(false);
 
     const toggleDetails = () => setShowDetails(!showDetails);
@@ -26,7 +27,7 @@ const TransactionCard = ({ transaction }) => {
         } else if (transaction.transactionType === 'Outgoing') {
             return `Sent: ${transaction.amountSent}`;
         }
-        return `Sent: ${transaction.amountSent} / Received: ${transaction.amountReceived}`;
+        return `Sent: ${convertSatoshisToBitcoin(transaction.amountSent)} / Received: ${convertSatoshisToBitcoin(transaction.amountReceived)}`;
     };
 
     return (
@@ -48,11 +49,11 @@ const TransactionCard = ({ transaction }) => {
     );
 };
 
-export const TransactionsList = ({ transactions }) => {
+export const TransactionsList = ({transactions}) => {
     return (
         <div>
             {transactions.map((transaction, index) => (
-                <TransactionCard key={index} transaction={transaction} />
+                <TransactionCard key={index} transaction={transaction}/>
             ))}
         </div>
     );
