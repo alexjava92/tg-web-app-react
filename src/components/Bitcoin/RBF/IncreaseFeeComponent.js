@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {sendReplaceByFee} from "../../../api/replaceByFee";
 
 export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId }) => {
-    const [newFee, setNewFee] = useState('');
+    const [newFee, setNewFee] = useState(0);
     const [statusMessage, setStatusMessage] = useState('');
 
     const handleFeeChange = (e) => {
