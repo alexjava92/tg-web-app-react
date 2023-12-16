@@ -3,10 +3,12 @@ import './TransactionsTable.css';
 import '../../../App.css';
 import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
+import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
 
 const TransactionCard = ({transaction}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [amountInRub, setAmountInRub] = useState(null);
+    const [showIncreaseFee, setShowIncreaseFee] = useState(false);
 
     useEffect(() => {
         const convertToRub = async () => {
@@ -17,6 +19,8 @@ const TransactionCard = ({transaction}) => {
 
         convertToRub();
     }, [transaction]);
+
+
 
     const toggleDetails = () => setShowDetails(!showDetails);
 
@@ -74,11 +78,16 @@ const TransactionCard = ({transaction}) => {
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
                     <div>
-                    {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
-                        <span className={'transaction-link'}>
-                Повысить комиссию
-            </span>
-                    )}
+                        {showIncreaseFee && (
+                            <IncreaseFeeComponent txHash={transaction.txid} onClose={() => setShowIncreaseFee(false)} />
+                        )}
+
+                        // Изменение кнопки "Повысить комиссию"
+                        {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
+                            <span className="increase-fee" onClick={() => setShowIncreaseFee(true)}>
+        Повысить комиссию
+    </span>
+                        )}
                     </div>
                     <span className={'span_show_transactions'}>
                     <a href={transactionUrl + transaction.txid} target="_blank"
