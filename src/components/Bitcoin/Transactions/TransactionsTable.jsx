@@ -80,8 +80,7 @@ const TransactionCard = ({transaction}) => {
                     <div className={'transaction-id'}>TXID: {transaction.txid}</div>
                     <div className={'senders'}>От: {transaction.senders.join(', ')}</div>
                     <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
-                    <div className={'commission'}>Комиссия сети: {transaction.fee} -
-                         {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)} sat/b</div>
+                    <div className={'commission'}>Комиссия сети: {transaction.fee} sat / {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)} sat/b</div>
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>

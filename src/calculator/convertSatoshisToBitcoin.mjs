@@ -50,7 +50,7 @@ export function formatNumberWithSpaces(number) {
 export function calculateFeePerVByte(size, weight, fee) {
     // Комиссия за виртуальный байт = Общая комиссия / (Вес транзакции / 4)
     const feePerVByte = fee / (weight / 4);
-    return feePerVByte;
+    return feePerVByte.toFixed(2);
 }
 
 /*const btc1 = convertSatoshisToBitcoin(222)
