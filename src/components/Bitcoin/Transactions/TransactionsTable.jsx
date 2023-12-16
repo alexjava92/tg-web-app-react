@@ -9,7 +9,7 @@ import {
 import {config} from "../../../api/config";
 import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
 
-const TransactionCard = ({transaction}) => {
+const TransactionCard = ({transaction, chatId}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [amountInRub, setAmountInRub] = useState(null);
     const [showIncreaseFee, setShowIncreaseFee] = useState(false);
@@ -88,6 +88,7 @@ const TransactionCard = ({transaction}) => {
                     <div>
                         {showIncreaseFee && (
                             <IncreaseFeeComponent
+                                chatId={chatId}
                                 txHash={transaction.txid}
                                 commission={transaction.fee}
                                 satByte = {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)}
@@ -113,7 +114,7 @@ const TransactionCard = ({transaction}) => {
     );
 };
 
-export const TransactionsList = ({transactions}) => {
+export const TransactionsList = ({transactions, chatId}) => {
     const [filter, setFilter] = useState('Все');
 
     const filteredTransactions = transactions.filter(tx => {
@@ -152,7 +153,7 @@ export const TransactionsList = ({transactions}) => {
                 </span>
             </div>
             {filteredTransactions.map((transaction, index) => (
-                <TransactionCard key={index} transaction={transaction}/>
+                <TransactionCard key={index} transaction={transaction} chatId={chatId}/>
             ))}
         </div>
     );
