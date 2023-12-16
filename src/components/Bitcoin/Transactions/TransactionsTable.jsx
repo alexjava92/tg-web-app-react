@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
-import {convertBtcToRub, convertSatoshisToBitcoin} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {
+    calculateFeePerVByte,
+    convertBtcToRub,
+    convertSatoshisToBitcoin
+} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
 import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
 
@@ -64,6 +68,8 @@ const TransactionCard = ({transaction}) => {
         );
     };
 
+
+
     const transactionUrl = `${config.mempoolUrl}/tx/`;
     return (
         <div className="body_second" >
@@ -74,10 +80,12 @@ const TransactionCard = ({transaction}) => {
                     <div className={'transaction-id'}>TXID: {transaction.txid}</div>
                     <div className={'senders'}>От: {transaction.senders.join(', ')}</div>
                     <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
+                    <div className={'commission'}>Комиссия сети: {transaction.fee} -
+                        {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)} sat/b</div>
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
-                    <div className={'commission'}>Комиссия сети: {transaction.fee}</div>
+
                     <div>
                         {showIncreaseFee && (
                             <IncreaseFeeComponent txHash={transaction.txid} commission={transaction.fee} onClose={() => setShowIncreaseFee(false)} />
