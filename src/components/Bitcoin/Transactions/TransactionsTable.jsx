@@ -73,14 +73,20 @@ const TransactionCard = ({transaction}) => {
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
+                    {/* Условное отображение нового span */}
+                    {!transaction.confirmed && (
+                        <span className="increase-fee">
+                        Повысить комиссию
+                    </span>
+                    )}
                     <span className={'span_show_transactions'}>
-                        <a href={transactionUrl + transaction.txid} target="_blank"
-                           rel="noopener noreferrer"
-                           className={'transaction-link'}>
-                        Посмотреть транзакцию
-                    </a></span>
+                    <a href={transactionUrl + transaction.txid} target="_blank"
+                       rel="noopener noreferrer"
+                       className={'transaction-link'}>
+                    Посмотреть транзакцию
+                    </a>
+                </span>
                 </>
-
             )}
         </div>
     );
