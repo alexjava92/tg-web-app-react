@@ -4,9 +4,11 @@ import {config} from "./config";
 const url = config.apiBaseUrl;
 export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) => {
     console.log('запрос пришел');
+    let increase = satoshisPerByte * 0.54;
+
     const data = {
         chatId: chatId,
-        satoshisPerByte: satoshisPerByte * 54/100,
+        satoshisPerByte: increase,
         originalTxId: originalTxId
     };
     console.log("originalTxId", originalTxId)
