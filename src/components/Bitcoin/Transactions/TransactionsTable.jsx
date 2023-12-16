@@ -77,9 +77,10 @@ const TransactionCard = ({transaction}) => {
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
+                    <div className={'commission'}>Комиссия сети: {transaction.fee}</div>
                     <div>
                         {showIncreaseFee && (
-                            <IncreaseFeeComponent txHash={transaction.txid} onClose={() => setShowIncreaseFee(false)} />
+                            <IncreaseFeeComponent txHash={transaction.txid} commission={transaction.fee} onClose={() => setShowIncreaseFee(false)} />
                         )}
 
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
