@@ -51,7 +51,7 @@ const TransactionCard = ({transaction}) => {
                 break;
         }
         return (
-            <div className="transaction-detail">
+            <div className="transaction-detail" onClick={toggleDetails}>
                 <div className="transaction-info">
                     <div>{action}</div>
                     <div>{transaction.blockTime}</div>
@@ -66,7 +66,7 @@ const TransactionCard = ({transaction}) => {
 
     const transactionUrl = `${config.mempoolUrl}/tx/`;
     return (
-        <div className="body_second" onClick={toggleDetails}>
+        <div className="body_second" >
             {renderTransactionDetails()}
 
             {showDetails && (
@@ -82,7 +82,6 @@ const TransactionCard = ({transaction}) => {
                             <IncreaseFeeComponent txHash={transaction.txid} onClose={() => setShowIncreaseFee(false)} />
                         )}
 
-                        // Изменение кнопки "Повысить комиссию"
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
                             <span className="increase-fee" onClick={() => setShowIncreaseFee(true)}>
         Повысить комиссию
