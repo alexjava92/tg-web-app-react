@@ -74,10 +74,10 @@ const TransactionCard = ({transaction}) => {
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
                     {/* Условное отображение нового span */}
-                    {!transaction.confirmed && (
+                    {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
                         <span className="increase-fee">
-                        Повысить комиссию
-                    </span>
+                Повысить комиссию
+            </span>
                     )}
                     <span className={'span_show_transactions'}>
                     <a href={transactionUrl + transaction.txid} target="_blank"
