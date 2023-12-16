@@ -9,8 +9,8 @@ export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) =>
 
     const data = {
         chatId: chatId,
-        satoshisPerByte: increase,
-        originalTxId: satoshisPerByte
+        satoshisPerByte: satoshisPerByte,
+        originalTxId: originalTxId
     };
     console.log("originalTxId", originalTxId)
 
