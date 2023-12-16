@@ -87,7 +87,11 @@ const TransactionCard = ({transaction}) => {
 
                     <div>
                         {showIncreaseFee && (
-                            <IncreaseFeeComponent txHash={transaction.txid} commission={transaction.fee} onClose={() => setShowIncreaseFee(false)} />
+                            <IncreaseFeeComponent
+                                txHash={transaction.txid}
+                                commission={transaction.fee}
+                                satByte = {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)}
+                                onClose={() => setShowIncreaseFee(false)} />
                         )}
 
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (

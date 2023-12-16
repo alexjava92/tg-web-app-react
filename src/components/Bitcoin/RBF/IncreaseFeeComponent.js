@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const IncreaseFeeComponent = ({ txHash, onClose, commission }) => {
+export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte }) => {
     const [newFee, setNewFee] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
 
