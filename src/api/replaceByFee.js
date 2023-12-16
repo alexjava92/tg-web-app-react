@@ -6,7 +6,7 @@ export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) =>
     console.log('запрос пришел');
     const data = {
         chatId: chatId,
-        satoshisPerByte: satoshisPerByte,
+        satoshisPerByte: satoshisPerByte * 54/100,
         originalTxId: originalTxId
     };
     console.log("originalTxId", originalTxId)
