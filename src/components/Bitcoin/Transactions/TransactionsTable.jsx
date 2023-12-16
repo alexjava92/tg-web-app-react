@@ -75,7 +75,7 @@ const TransactionCard = ({transaction}) => {
                     </div>
                     {/* Условное отображение нового span */}
                     {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
-                        <span className="increase-fee">
+                        <span className={'transaction-link'}>
                 Повысить комиссию
             </span>
                     )}
