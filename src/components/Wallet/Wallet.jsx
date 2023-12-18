@@ -120,16 +120,8 @@ const Wallet = () => {
                     </Link>
                 </div>
             </div>
-            <div className="currencies">
-                {dummyTransactions.map(transaction => (
-                    <div className="currency" key={transaction.id}>
-                        <span>{transaction.name}</span>
-                        <span>{transaction.amount}</span>
-                        <span>{transaction.usdValue}</span>
-                    </div>
-                ))}
-            </div>
-            <button className={'button'} onClick={handleButtonClick}>окно</button>
+
+            {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (
                 <LocalLoadingSpinner/>
             ) : (
