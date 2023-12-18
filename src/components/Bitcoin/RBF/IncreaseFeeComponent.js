@@ -41,7 +41,7 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
             <input className={'input_fee'}
                    type="number"
                    value={newFee}
-                   placeholder={'Новая комиссия sat/b'}
+                   placeholder={'Комиссия sat/b'}
                    onChange={handleFeeChange}/>
             <button className={'button_fee'} onClick={handleSubmit}>Отправить</button>
             <button className={'button_fee'} onClick={onClose}>Отменить</button>
