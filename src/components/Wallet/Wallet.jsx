@@ -51,7 +51,7 @@ const Wallet = () => {
             setShowTransactions(true);
             setIsLoading(false); // выключаем индикатор загрузки после загрузки транзакций
         });
-    }, [transactions]);
+    }, []);
 
 
     useEffect(() => {
