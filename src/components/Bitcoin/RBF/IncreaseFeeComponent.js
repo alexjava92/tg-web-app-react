@@ -3,7 +3,7 @@ import {sendReplaceByFee} from "../../../api/replaceByFee";
 import './IncreaseFeeComponent.css'
 
 
-export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId, onNewTxHash }) => {
+export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId, onNewTxHash}) => {
     const [newFee, setNewFee] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
     const [newTxHash, setNewTxHash] = useState('');
@@ -16,16 +16,16 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
     const handleSubmit = async () => {
         try {
             await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError);
-            if (newTxHash) {
-                onNewTxHash(); // Вызываем функцию обратного вызова
-                setStatusMessage(newTxHash);
-            } else if (error) {
-                setStatusMessage(error);
-            }
+            setStatusMessage(newTxHash || error);
         } catch (e) {
             setStatusMessage('Произошла ошибка');
         }
     };
+    useEffect(() => {
+        if (newTxHash) {
+            onNewTxHash();
+        }
+    }, [newTxHash]);
 
     useEffect(() => {
         if (newTxHash) {
