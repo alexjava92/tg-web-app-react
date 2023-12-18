@@ -44,6 +44,16 @@ const Wallet = () => {
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
     const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
+    // Загрузка транзакций при первом рендере
+    useEffect(() => {
+        setIsLoading(true); // включаем индикатор загрузки
+        fetchTransactions().then(() => {
+            setShowTransactions(true);
+            setIsLoading(false); // выключаем индикатор загрузки после загрузки транзакций
+        });
+    }, [fetchTransactions]);
+
+
     useEffect(() => {
         setBalanceToBtc(convertSatoshisToBitcoin(balance));
     }, [balance]);
