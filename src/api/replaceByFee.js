@@ -25,7 +25,7 @@ export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) =>
         if (response.ok) {
             const responseData = await response.json();
             console.log('responseData', responseData);
-            const transactionId = responseData.transactionTxId;
+            const transactionId = responseData.transactionTxId.newTxId;
             console.log('Получен txId:', transactionId);
 
         } else {
