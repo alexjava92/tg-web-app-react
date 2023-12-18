@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {sendReplaceByFee} from "../../../api/replaceByFee";
-import './IncreaseFeeComponent.css'
+import React, { useEffect, useState } from 'react';
+import { sendReplaceByFee } from "../../../api/replaceByFee";
+import './IncreaseFeeComponent.css';
 import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
 
-
-export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId, onNewTxHash}) => {
+export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId, onNewTxHash }) => {
     const [newFee, setNewFee] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
     const [newTxHash, setNewTxHash] = useState('');
@@ -16,33 +15,32 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
     };
 
     const handleSubmit = async () => {
-        setIsLoading(true); // Включаем индикатор загрузки
+        setIsLoading(true);
         try {
             await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError);
-            setStatusMessage(newTxHash || error);
+            if (newTxHash) {
+                setStatusMessage(`Успешно, новый txid: ${newTxHash}`);
+            }
         } catch (e) {
             setStatusMessage('Произошла ошибка');
         } finally {
-            setIsLoading(false); // Выключаем индикатор загрузки
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
         if (newTxHash) {
-            // Установка таймера на 3 секунды
             const timer = setTimeout(() => {
                 onNewTxHash();
             }, 3000);
 
-            // Очистка таймера при размонтировании компонента
             return () => clearTimeout(timer);
         }
     }, [newTxHash]);
 
-
     useEffect(() => {
         if (newTxHash) {
-            setStatusMessage(newTxHash);
+            setStatusMessage(`Успешно, новый txid: ${newTxHash}`);
         }
     }, [newTxHash]);
 
@@ -52,13 +50,10 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
         }
     }, [error]);
 
-
     return (
         <div className={'container_fee'}>
-
-            {isLoading ? (
-                <LocalLoadingSpinner /> // Отображаем индикатор загрузки
-            ) : (
+            {isLoading && <LocalLoadingSpinner />}
+            {!isLoading && !newTxHash && !error && (
                 <>
                     <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
                     <input className={'input_fee'}
@@ -70,9 +65,7 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
                     <button className={'button_fee'} onClick={onClose}>Отменить</button>
                 </>
             )}
-
             {statusMessage && <div className={'transaction-id'}>{statusMessage}</div>}
         </div>
     );
 };
-
