@@ -97,9 +97,11 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
                         )}
 
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && !showIncreaseFee && (
+                            <div className={'span_show_transactions'}>
                             <span className={'span_show_transactions'} onClick={() => setShowIncreaseFee(true)}>
                                 Повысить комиссию
                             </span>
+                            </div>
                         )}
                     </div>
                     <span className={'span_show_transactions'}>
