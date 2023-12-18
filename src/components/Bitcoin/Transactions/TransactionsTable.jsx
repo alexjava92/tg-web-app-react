@@ -25,7 +25,6 @@ const TransactionCard = ({transaction, chatId}) => {
     }, [transaction]);
 
 
-
     const toggleDetails = () => setShowDetails(!showDetails);
 
     const renderTransactionDetails = () => {
@@ -69,10 +68,9 @@ const TransactionCard = ({transaction, chatId}) => {
     };
 
 
-
     const transactionUrl = `${config.mempoolUrl}/tx/`;
     return (
-        <div className="body_second" >
+        <div className="body_second">
             {renderTransactionDetails()}
 
             {showDetails && (
@@ -80,7 +78,9 @@ const TransactionCard = ({transaction, chatId}) => {
                     <div className={'transaction-id'}>TXID: {transaction.txid}</div>
                     <div className={'senders'}>От: {transaction.senders.join(', ')}</div>
                     <div className={'recipients'}>Кому: {transaction.recipients.join(', ')}</div>
-                    <div className={'commission'}>Комиссия сети: {transaction.fee} sat / {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)} sat/b</div>
+                    <div className={'commission'}>Комиссия сети: {transaction.fee} sat
+                        / {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)} sat/b
+                    </div>
                     <div className={transaction.confirmed ? 'confirmation-yes' : 'confirmation-no'}>
                         Подтвержденная транзакция: {transaction.confirmed ? 'Yes' : 'No'}
                     </div>
@@ -91,14 +91,14 @@ const TransactionCard = ({transaction, chatId}) => {
                                 chatId={chatId}
                                 txHash={transaction.txid}
                                 commission={transaction.fee}
-                                satByte = {calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)}
-                                onClose={() => setShowIncreaseFee(false)} />
+                                satByte={calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)}
+                                onClose={() => setShowIncreaseFee(false)}/>
                         )}
 
-                        {!transaction.confirmed && transaction.transactionType === 'Outgoing' && (
+                        {!transaction.confirmed && transaction.transactionType === 'Outgoing' && !showIncreaseFee && (
                             <span className={'span_show_transactions'} onClick={() => setShowIncreaseFee(true)}>
-        Повысить комиссию
-    </span>
+                                Повысить комиссию
+                            </span>
                         )}
                     </div>
                     <span className={'span_show_transactions'}>
