@@ -107,22 +107,17 @@ const Wallet = () => {
         <div>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
             <div className="wallet">
-                <div className="wallet-header">
-
-                    <h3>Баланс</h3>
-                    <div className="balance">{dummyBalance} $</div>
-                    <div className="actions">
-                        <Link to="/send-bitcoin">
-                            <button onClick={() => {
-                            }}>Отправить
-                            </button>
-                        </Link>
-                        <Link to="/bitcoin-address">
-                            <button onClick={() => {
-                            }}>Получить
-                            </button>
-                        </Link>
-                    </div>
+                <div className="actions">
+                    <Link to="/send-bitcoin">
+                        <button onClick={() => {
+                        }}>Отправить
+                        </button>
+                    </Link>
+                    <Link to="/bitcoin-address">
+                        <button onClick={() => {
+                        }}>Получить
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className="currencies">
@@ -136,7 +131,7 @@ const Wallet = () => {
             </div>
             <button className={'button'} onClick={handleButtonClick}>окно</button>
             {isLoading ? (
-                <LocalLoadingSpinner />
+                <LocalLoadingSpinner/>
             ) : (
                 <div>
                     {!showTransactions && (
