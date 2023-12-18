@@ -2,7 +2,7 @@ import {config} from "./config";
 
 
 const url = config.apiBaseUrl;
-export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) => {
+export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId, setNewTxHash, setError) => {
     console.log('запрос пришел');
 
     const data = {
@@ -25,8 +25,16 @@ export const sendReplaceByFee = async (chatId, satoshisPerByte, originalTxId) =>
         if (response.ok) {
             const responseData = await response.json();
             console.log('responseData', responseData);
-            const transactionId = responseData.transactionTxId.newTxId;
-            console.log('Получен txId:', transactionId);
+            if (responseData.transactionTxId.newTxId){
+                const transactionId = responseData.transactionTxId.newTxId;
+                setNewTxHash(transactionId);
+                console.log('Получен txId:', transactionId);
+            } else {
+                const error = responseData.transactionTxId.message;
+                setError(error);
+                console.log('Error:', error);
+            }
+
 
         } else {
             console.error('Server returned an error:', response.status);

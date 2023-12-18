@@ -4,6 +4,8 @@ import {sendReplaceByFee} from "../../../api/replaceByFee";
 export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId }) => {
     const [newFee, setNewFee] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
+    const [newTxHash, setNewTxHash] = useState('');
+    const [error, setError] = useState('');
 
     const handleFeeChange = (e) => {
         setNewFee(e.target.value);
@@ -13,11 +15,11 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
         try {
             // Здесь логика отправки новой комиссии используя txHash и newFee
             // Например: await sendNewFee(txHash, newFee);
-            await sendReplaceByFee(chatId, parseFloat(newFee), txHash)
+            await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError)
 
-            setStatusMessage('Комиссия успешно отправлена.');
+            setStatusMessage(newTxHash);
         } catch (error) {
-            setStatusMessage('Ошибка при отправке комиссии.');
+            setStatusMessage(error);
         }
     };
 
