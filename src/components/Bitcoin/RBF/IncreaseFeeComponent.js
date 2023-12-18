@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {sendReplaceByFee} from "../../../api/replaceByFee";
 import './IncreaseFeeComponent.css'
-import '../../../GlobalStyle.css'
+
 
 export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId}) => {
     const [newFee, setNewFee] = useState('');
