@@ -22,6 +22,8 @@ const Wallet = () => {
     const [transactions, setTransactions] = useState([]);
     const [showTransactions, setShowTransactions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [transactionsKey, setTransactionsKey] = useState(0);
+
     const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
 
@@ -40,6 +42,7 @@ const Wallet = () => {
         fetchTransactions().then(() => {
             setShowTransactions(true);
             setIsLoading(false); // выключаем индикатор загрузки после загрузки транзакций
+            setTransactionsKey(prevKey => prevKey + 1); // Обновляем ключ для перерисовки TransactionsList
         });
     };
 
@@ -107,6 +110,7 @@ const Wallet = () => {
                         <span className={'span_show_transactions'} onClick={handleShowTransactionsClick}>Показать транзакции</span>
                     )}
                     {showTransactions && <TransactionsList
+                        key={transactionsKey}
                         transactions={transactions}
                         handleShowTransactionsClick={handleShowTransactionsClick}
                         chatId={chatId}/>}
