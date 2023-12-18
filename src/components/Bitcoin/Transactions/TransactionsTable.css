@@ -124,3 +124,8 @@
     justify-content: flex-end;
     font-size: 0.7rem;
 }
+
+.container_link_button{
+    display: flex;
+    justify-content: space-between;
+}

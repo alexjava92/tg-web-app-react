@@ -96,6 +96,16 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
                                 onNewTxHash={onNewTxHash}/>
                         )}
 
+
+                    </div>
+                    <div className={'container_link_button'}>
+                    <span className={'span_show_transactions'}>
+                    <a href={transactionUrl + transaction.txid} target="_blank"
+                       rel="noopener noreferrer"
+                       className={'transaction-link'}>
+                    Посмотреть транзакцию
+                    </a>
+                </span>
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && !showIncreaseFee && (
 
                             <button className={'button_fee'} onClick={() => setShowIncreaseFee(true)}>
@@ -104,13 +114,6 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
 
                         )}
                     </div>
-                    <span className={'span_show_transactions'}>
-                    <a href={transactionUrl + transaction.txid} target="_blank"
-                       rel="noopener noreferrer"
-                       className={'transaction-link'}>
-                    Посмотреть транзакцию
-                    </a>
-                </span>
                 </>
             )}
         </div>
