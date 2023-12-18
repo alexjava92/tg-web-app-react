@@ -5,7 +5,7 @@ import '../../../App.css'
 export const Balance = ({ balanceToBtc, balanceToRub }) => {
     return (
         <div className={'body_second'}>
-            <h2 className={'h2'}>Баланс:</h2>
+            {/*<h2 className={'h2'}>Баланс:</h2>*/}
             <div className={'balance'}>{balanceToBtc} BTC</div>
             <div className={'balance'}>{balanceToRub} ₽</div>
         </div>
