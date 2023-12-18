@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {sendReplaceByFee} from "../../../api/replaceByFee";
 import './IncreaseFeeComponent.css'
+import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
 
 
 export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId, onNewTxHash}) => {
@@ -8,19 +9,24 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
     const [statusMessage, setStatusMessage] = useState('');
     const [newTxHash, setNewTxHash] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFeeChange = (e) => {
         setNewFee(e.target.value);
     };
 
     const handleSubmit = async () => {
+        setIsLoading(true); // Включаем индикатор загрузки
         try {
             await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError);
             setStatusMessage(newTxHash || error);
         } catch (e) {
             setStatusMessage('Произошла ошибка');
+        } finally {
+            setIsLoading(false); // Выключаем индикатор загрузки
         }
     };
+
     useEffect(() => {
         if (newTxHash) {
             onNewTxHash();
@@ -48,8 +54,15 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
                    value={newFee}
                    placeholder={'Комиссия sat/b'}
                    onChange={handleFeeChange}/>
-            <button className={'button_fee'} onClick={handleSubmit}>Отправить</button>
-            <button className={'button_fee'} onClick={onClose}>Отменить</button>
+            {isLoading ? (
+                <LocalLoadingSpinner /> // Отображаем индикатор загрузки
+            ) : (
+                <>
+                    <button className={'button_fee'} onClick={handleSubmit}>Отправить</button>
+                    <button className={'button_fee'} onClick={onClose}>Отменить</button>
+                </>
+            )}
+
             {statusMessage && <div>{statusMessage}</div>}
         </div>
     );
