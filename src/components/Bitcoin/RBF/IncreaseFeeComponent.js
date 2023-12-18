@@ -53,7 +53,7 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
     return (
         <div className={'container_fee'}>
             {isLoading && <LocalLoadingSpinner />}
-            {!isLoading && !newTxHash && !error && (
+            {!isLoading && !newTxHash && (
                 <>
                     <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
                     <input className={'input_fee'}
@@ -67,5 +67,6 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
             )}
             {statusMessage && <div className={'transaction-id'}>{statusMessage}</div>}
         </div>
+
     );
 };
