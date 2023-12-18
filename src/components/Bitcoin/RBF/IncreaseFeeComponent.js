@@ -36,8 +36,8 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
 
 
     return (
-        <div>
-            <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше satByte sat/b</h3>
+        <div className={'container_fee'}>
+            <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
             <input className={'input_fee'}
                    type="number"
                    value={newFee}

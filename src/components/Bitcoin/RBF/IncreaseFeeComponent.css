@@ -1,3 +1,9 @@
+.container_fee {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color); /* Горизонтальная полоса снизу */
+    padding-bottom: 5px; /* Добавляем отступ снизу, аналогично */
+}
+
 .input_fee {
     background: var(--tg-theme-secondary-bg-color);
     width: 150px;
@@ -14,14 +20,15 @@
 .button_fee {
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
+    padding: 10px;
     margin: 5px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 .h3_fee {
     padding: 5px;
-    font-size: 16px;
     color: var(--tg-theme-hint-color);
 }
