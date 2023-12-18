@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {sendReplaceByFee} from "../../../api/replaceByFee";
 
 export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId }) => {
@@ -13,15 +13,25 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
 
     const handleSubmit = async () => {
         try {
-            // Здесь логика отправки новой комиссии используя txHash и newFee
-            // Например: await sendNewFee(txHash, newFee);
-            await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError)
-
-            setStatusMessage(newTxHash);
-        } catch (error) {
-            setStatusMessage(error);
+            await sendReplaceByFee(chatId, parseFloat(newFee), txHash, setNewTxHash, setError);
+            setStatusMessage(newTxHash || error);
+        } catch (e) {
+            setStatusMessage('Произошла ошибка');
         }
     };
+
+    useEffect(() => {
+        if (newTxHash) {
+            setStatusMessage(newTxHash);
+        }
+    }, [newTxHash]);
+
+    useEffect(() => {
+        if (error) {
+            setStatusMessage(error);
+        }
+    }, [error]);
+
 
     return (
         <div>
