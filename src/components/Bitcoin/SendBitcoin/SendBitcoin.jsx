@@ -33,9 +33,9 @@ export const SendBitcoin = () => {
     const navigate = useNavigate();
 
 
-    const [balanceToBtc, setBalanceToBtc] = useState('');
+    /*const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
-    const [balanceToRub, setBalanceToRub] = useState('');
+    const [balanceToRub, setBalanceToRub] = useState('');*/
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
@@ -106,7 +106,7 @@ export const SendBitcoin = () => {
         setIsLoading(false);
     }, []);
 
-    useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
+    /*useGetBalanceUserWallet(chatId, setBalance, handleLoaded);*/
     // Внутри компонента SendBitcoin
     const totalBitcoinAmount = inputs.reduce((total, input) => {
         const amount = parseFloat(input.bitcoinAmount) || 0;
@@ -150,11 +150,11 @@ export const SendBitcoin = () => {
         }
     };
 
-    useEffect(() => {
+   /* useEffect(() => {
         setBalanceToBtc(convertSatoshisToBitcoin(balance));
-    }, [balance]);
+    }, [balance]);*/
 
-    useEffect(() => {
+   /* useEffect(() => {
         const fetchBalanceToRub = async () => {
             const convertedBalance = await convertBtcToRub(balanceToBtc);
 
@@ -162,7 +162,7 @@ export const SendBitcoin = () => {
         };
 
         fetchBalanceToRub();
-    }, [balanceToBtc]); // добавил balanceToBtc в массив зависимостей
+    }, [balanceToBtc]); // добавил balanceToBtc в массив зависимостей*/
 
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
@@ -242,7 +242,7 @@ export const SendBitcoin = () => {
                 <div className={'img_bitcoin'}>
                     <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
                 </div>
-                <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+                <Balance chatId={chatId}/>
 
                 {totalBitcoinAmount > 0 && (
                     <div className={'total_amount_bitcoin'}>
