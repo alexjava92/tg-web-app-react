@@ -105,9 +105,10 @@ const Wallet = () => {
 
     return (
         <div>
+            <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
             <div className="wallet">
                 <div className="wallet-header">
-                    <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+
                     <h3>Баланс</h3>
                     <div className="balance">{dummyBalance} $</div>
                     <div className="actions">
