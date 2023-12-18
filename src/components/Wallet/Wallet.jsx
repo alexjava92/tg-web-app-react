@@ -1,10 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Wallet.css';
 import {useTelegram} from "../../hooks/useTelegram";
 import {useGetAllTransactionsUser} from "../../api/useGetAllTransactionsUser";
 import {TransactionsList} from "../Bitcoin/Transactions/TransactionsTable";
-import LocalLoadingSpinner from "../../LoadingSpinner/LocalLoadingSpinner"; // Убедитесь, что вы создали соответствующий файл стилей
+import LocalLoadingSpinner from "../../LoadingSpinner/LocalLoadingSpinner";
+import {useGetBalanceUserWallet} from "../../api/useGetBalanceUserWallet";
+import {
+    convertBtcToRub,
+    convertSatoshisToBitcoin,
+    formatNumberWithSpaces
+} from "../../calculator/convertSatoshisToBitcoin.mjs";
+import {Balance} from "../Bitcoin/Balance/Balance"; // Убедитесь, что вы создали соответствующий файл стилей
 
 const dummyTransactions = [
     {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
@@ -24,8 +31,32 @@ const Wallet = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [transactionsKey, setTransactionsKey] = useState(0);
 
+    const [balanceToBtc, setBalanceToBtc] = useState('');
+    const [balance, setBalance] = useState('');
+    const [balanceToRub, setBalanceToRub] = useState('');
+
+    // Используем ваш хук для получения баланса
+    const handleLoaded = useCallback(() => {
+        // Логика после загрузки данных
+        setIsLoading(false);
+    }, []);
+
+    useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
     const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
+    useEffect(() => {
+        setBalanceToBtc(convertSatoshisToBitcoin(balance));
+    }, [balance]);
+
+    useEffect(() => {
+        const fetchBalanceToRub = async () => {
+            const convertedBalance = await convertBtcToRub(balanceToBtc);
+
+            setBalanceToRub(formatNumberWithSpaces(convertedBalance));
+        };
+
+        fetchBalanceToRub();
+    }, [balanceToBtc]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -76,6 +107,7 @@ const Wallet = () => {
         <div>
             <div className="wallet">
                 <div className="wallet-header">
+                    <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
                     <h3>Баланс</h3>
                     <div className="balance">{dummyBalance} $</div>
                     <div className="actions">
