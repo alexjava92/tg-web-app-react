@@ -38,13 +38,13 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
     return (
         <div>
             <h3>Повысить комиссию за транзакцию</h3>
-            <input className={'input'}
+            <input className={'input_fee'}
                    type="number"
                    value={newFee}
                    placeholder={'Новая комиссия sat/b'}
                    onChange={handleFeeChange}/>
-            <button className={'button'} onClick={handleSubmit}>Отправить</button>
-            <button className={'button'} onClick={onClose}>Отменить</button>
+            <button className={'button_fee'} onClick={handleSubmit}>Отправить</button>
+            <button className={'button_fee'} onClick={onClose}>Отменить</button>
             {statusMessage && <div>{statusMessage}</div>}
         </div>
     );

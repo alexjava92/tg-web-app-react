@@ -1,6 +1,6 @@
-.input {
+.input_fee {
     background: var(--tg-theme-secondary-bg-color);
-    width: 30%;
+    width: 150px;
     height: 40px;
     border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
     border-radius: 10px;
@@ -11,11 +11,10 @@
 
 }
 
-.button {
+.button_fee {
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
     margin: 5px;
-    padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
