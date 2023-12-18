@@ -13,14 +13,6 @@ import {
 } from "../../calculator/convertSatoshisToBitcoin.mjs";
 import {Balance} from "../Bitcoin/Balance/Balance"; // Убедитесь, что вы создали соответствующий файл стилей
 
-const dummyTransactions = [
-    {id: 1, name: 'TONcoin', amount: '0,000882527 TON', usdValue: '0,00 $'},
-    {id: 2, name: 'Доллары', amount: '4 948,58 USDT', usdValue: '4 949,55 $'},
-    {id: 3, name: 'Bitcoin', amount: '0,0001902 BTC', usdValue: '8,37 $'},
-];
-
-const dummyBalance = '4 957,92';
-
 
 const Wallet = () => {
     const {tg, chatId} = useTelegram();
@@ -116,7 +108,7 @@ const Wallet = () => {
     return (
         <div>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
-
+            <div className={'container_button'}>
                 <div className="body_second">
                     <Link to="/send-bitcoin">
                         <button className={'button'} onClick={() => {
@@ -129,7 +121,7 @@ const Wallet = () => {
                         </button>
                     </Link>
                 </div>
-
+            </div>
 
             {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (

@@ -58,3 +58,7 @@
     text-decoration: none; /* Убрать подчеркивание */
     margin-bottom: 10px;
 }
+.container_button {
+    display: flex;
+    justify-content: center;
+}

@@ -138,9 +138,6 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
 
     return (
         <div>
-            <div className={'body_second'}>
-                <h3>История транзакций</h3>
-            </div>
             <div className={'flex-container'}>
                 <span
                     className={filter === 'Все' ? 'filter-option selected' : 'filter-option'}
