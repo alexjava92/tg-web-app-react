@@ -9,7 +9,7 @@ import {
 import {config} from "../../../api/config";
 import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
 
-const TransactionCard = ({transaction, chatId}) => {
+const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [amountInRub, setAmountInRub] = useState(null);
     const [showIncreaseFee, setShowIncreaseFee] = useState(false);
@@ -92,7 +92,8 @@ const TransactionCard = ({transaction, chatId}) => {
                                 txHash={transaction.txid}
                                 commission={transaction.fee}
                                 satByte={calculateFeePerVByte(transaction.size, transaction.weight, transaction.fee)}
-                                onClose={() => setShowIncreaseFee(false)}/>
+                                onClose={() => setShowIncreaseFee(false)}
+                                onNewTxHash={onNewTxHash}/>
                         )}
 
                         {!transaction.confirmed && transaction.transactionType === 'Outgoing' && !showIncreaseFee && (
@@ -114,8 +115,13 @@ const TransactionCard = ({transaction, chatId}) => {
     );
 };
 
-export const TransactionsList = ({transactions, chatId}) => {
+export const TransactionsList = ({transactions, fetchTransactions, chatId}) => {
     const [filter, setFilter] = useState('Все');
+
+    const refreshTransactions = () => {
+        // Логика для обновления списка транзакций
+        fetchTransactions()
+    };
 
     const filteredTransactions = transactions.filter(tx => {
         if (filter === 'Все') return true;
@@ -153,7 +159,11 @@ export const TransactionsList = ({transactions, chatId}) => {
                 </span>
             </div>
             {filteredTransactions.map((transaction, index) => (
-                <TransactionCard key={index} transaction={transaction} chatId={chatId}/>
+                <TransactionCard
+                    key={index}
+                    transaction={transaction}
+                    chatId={chatId}
+                    onNewTxHash={refreshTransactions}/>
             ))}
         </div>
     );
