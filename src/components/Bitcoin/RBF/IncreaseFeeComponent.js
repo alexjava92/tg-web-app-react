@@ -29,9 +29,16 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
 
     useEffect(() => {
         if (newTxHash) {
-            onNewTxHash();
+            // Установка таймера на 3 секунды
+            const timer = setTimeout(() => {
+                onNewTxHash();
+            }, 3000);
+
+            // Очистка таймера при размонтировании компонента
+            return () => clearTimeout(timer);
         }
     }, [newTxHash]);
+
 
     useEffect(() => {
         if (newTxHash) {
@@ -64,7 +71,7 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
                 </>
             )}
 
-            {statusMessage && <div>{statusMessage}</div>}
+            {statusMessage && <div className={'transaction-id'}>{statusMessage}</div>}
         </div>
     );
 };
