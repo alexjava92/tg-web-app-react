@@ -106,8 +106,8 @@ const Wallet = () => {
     return (
         <div>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
-            <div className="wallet">
-                <div className="actions">
+
+                <div className="body_second">
                     <Link to="/send-bitcoin">
                         <button onClick={() => {
                         }}>Отправить
@@ -119,7 +119,7 @@ const Wallet = () => {
                         </button>
                     </Link>
                 </div>
-            </div>
+
 
             {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (
