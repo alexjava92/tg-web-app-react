@@ -115,12 +115,12 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
     );
 };
 
-export const TransactionsList = ({transactions, fetchTransactions, chatId}) => {
+export const TransactionsList = ({transactions, handleShowTransactionsClick, chatId}) => {
     const [filter, setFilter] = useState('Все');
 
     const refreshTransactions = () => {
         // Логика для обновления списка транзакций
-        fetchTransactions()
+        handleShowTransactionsClick()
     };
 
     const filteredTransactions = transactions.filter(tx => {

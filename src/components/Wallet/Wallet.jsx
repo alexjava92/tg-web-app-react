@@ -108,7 +108,7 @@ const Wallet = () => {
                     )}
                     {showTransactions && <TransactionsList
                         transactions={transactions}
-                        fetchTransactions={fetchTransactions}
+                        handleShowTransactionsClick={handleShowTransactionsClick}
                         chatId={chatId}/>}
                 </div>
             )}
