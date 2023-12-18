@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {sendReplaceByFee} from "../../../api/replaceByFee";
+import './IncreaseFeeComponent.css'
 
-export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId }) => {
+export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chatId}) => {
     const [newFee, setNewFee] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
     const [newTxHash, setNewTxHash] = useState('');
@@ -36,7 +37,11 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
     return (
         <div>
             <h3>Повысить комиссию за транзакцию</h3>
-            <input type="number" value={newFee} onChange={handleFeeChange} />
+            <input className={'input'}
+                   type="number"
+                   value={newFee}
+                   placeholder={'Новая комиссия sat/b'}
+                   onChange={handleFeeChange}/>
             <button onClick={handleSubmit}>Отправить</button>
             <button onClick={onClose}>Отменить</button>
             {statusMessage && <div>{statusMessage}</div>}
