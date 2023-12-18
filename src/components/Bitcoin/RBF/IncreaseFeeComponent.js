@@ -48,16 +48,17 @@ export const IncreaseFeeComponent = ({txHash, onClose, commission, satByte, chat
 
     return (
         <div className={'container_fee'}>
-            <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
-            <input className={'input_fee'}
-                   type="number"
-                   value={newFee}
-                   placeholder={'Комиссия sat/b'}
-                   onChange={handleFeeChange}/>
+
             {isLoading ? (
                 <LocalLoadingSpinner /> // Отображаем индикатор загрузки
             ) : (
                 <>
+                    <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
+                    <input className={'input_fee'}
+                           type="number"
+                           value={newFee}
+                           placeholder={'Комиссия sat/b'}
+                           onChange={handleFeeChange}/>
                     <button className={'button_fee'} onClick={handleSubmit}>Отправить</button>
                     <button className={'button_fee'} onClick={onClose}>Отменить</button>
                 </>
