@@ -10,11 +10,12 @@
 }
 
 .button:hover {
-    transform: scale(1.1); /* увеличение размера кнопки */
+    transform: scale(1.05); /* увеличение размера кнопки */
+    opacity: 0.9; /* Немного уменьшаем прозрачность */
 }
 
 .button:active {
-    transform: scale(0.9); /* уменьшение размера кнопки */
+    transform: scale(1); /* уменьшение размера кнопки */
 }
 
 .button:disabled {
