@@ -18,10 +18,12 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
         window.requestAnimationFrame(step);
     };
 
+
     useEffect(() => {
-        const btcValue = parseFloat(balanceToBtc) || 0; // Обработка NaN и неправильных значений
+        console.log("API BTC:", balanceToBtc, "API RUB:", balanceToRub); // Для отладки
+        const btcValue = parseFloat(balanceToBtc) || 0;
         const rubValue = parseFloat(balanceToRub) || 0;
-        animateValue(0, btcValue, 1000, setAnimatedBtc); // 1000ms для анимации
+        animateValue(0, btcValue, 1000, setAnimatedBtc);
         animateValue(0, rubValue, 1000, setAnimatedRub);
     }, [balanceToBtc, balanceToRub]);
 
