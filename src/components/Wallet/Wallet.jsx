@@ -111,7 +111,7 @@ const Wallet = () => {
         <div>
             <BitcoinPrice/>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
-            {/*<div className={'container_button'}>
+            <div className={'container_button'}>
                 <div className="body_second">
                     <Link to="/send-bitcoin">
                         <button className={'button'} onClick={() => {
@@ -124,7 +124,7 @@ const Wallet = () => {
                         </button>
                     </Link>
                 </div>
-            </div>*/}
+            </div>
 
             {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (
