@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Balance.css';
+import {formatNumberWithSpaces} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 export const Balance = ({ balanceToBtc, balanceToRub }) => {
     const [animatedBtc, setAnimatedBtc] = useState(0);
@@ -29,8 +30,8 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
 
     return (
         <div className='body_second'>
-            <div className='balance'>{animatedBtc.toFixed(3)} BTC</div>
-            <div className='balance'>{animatedRub.toFixed(2)} ₽</div>
+            <div className='balance'>{animatedBtc.toFixed(8)} BTC</div>
+            <div className='balance'>{formatNumberWithSpaces(animatedRub.toFixed(2))} ₽</div>
         </div>
     );
 };
