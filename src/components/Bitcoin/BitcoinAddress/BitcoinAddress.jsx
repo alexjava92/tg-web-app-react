@@ -47,8 +47,8 @@ const BitcoinAddress = () => {
                             src: bitcoinImage,
                             x: null,
                             y: null,
-                            height: 24,
-                            width: 24,
+                            height: 45,
+                            width: 45,
                             excavate: true,
                         }}/>
                 <div className={'body_second'}>
