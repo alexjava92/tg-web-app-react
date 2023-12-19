@@ -118,29 +118,20 @@ const Wallet = () => {
                     <BouncingLoader/>
                 </div>
             ) : (
-                <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+                <>
+                    <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+                    <div className="body_second">
+                        <div className={'container_button'}>
+                            <Link to="/send-bitcoin">
+                                <button className={'button'}>Отправить</button>
+                            </Link>
+                            <Link to="/bitcoin-address">
+                                <button className={'button'}>Получить</button>
+                            </Link>
+                        </div>
+                    </div>
+                </>
             )}
-            <div className="body_second">
-                {isLoadingBalance ? (
-                    <div className={'body_second'}>
-                        <BouncingLoader/>
-                    </div>
-                ) : (
-                    <div className={'container_button'}>
-                        <Link to="/send-bitcoin">
-                            <button className={'button'} onClick={() => {
-                            }}>Отправить
-                            </button>
-                        </Link>
-                        <Link to="/bitcoin-address">
-                            <button className={'button'} onClick={() => {
-                            }}>Получить
-                            </button>
-                        </Link>
-                    </div>
-                )}
-
-            </div>
 
             {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (
