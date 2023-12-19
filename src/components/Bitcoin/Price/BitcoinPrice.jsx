@@ -25,8 +25,9 @@ export const BitcoinPrice = () => {
                 </div>
                 <div>
                     <h2>Курс Bitcoin</h2>
-                    {btcPrice.USD && <p>1 BTC = {formatNumberWithSpaces(btcPrice.USD.last)} USD</p>}
-                    {btcPrice.RUB && <p>1 BTC = {formatNumberWithSpaces(btcPrice.RUB.last)} RUB</p>}
+                    {btcPrice.USD?.last && <p>1 BTC = {formatNumberWithSpaces(btcPrice.USD.last)} USD</p>}
+                    {btcPrice.RUB?.last && <p>1 BTC = {formatNumberWithSpaces(btcPrice.RUB.last)} RUB</p>}
+
                 </div>
             </div>
         </div>
