@@ -18,9 +18,9 @@ export const BitcoinPrice = () => {
 
     return (
         <div className={'body_second'}>
-            <div>
+            <div className={'container-price-img'}>
                 <div>
-                    <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
+                    <img src={ExampleImage} width="55" height="55" alt="bitcoin"/>
                 </div>
                 <div>
                     <h2>Курс Bitcoin</h2>
