@@ -12,7 +12,8 @@ import {
     formatNumberWithSpaces
 } from "../../calculator/convertSatoshisToBitcoin.mjs";
 import {Balance} from "../Bitcoin/Balance/Balance";
-import {BitcoinPrice} from "../Bitcoin/Price/BitcoinPrice"; // Убедитесь, что вы создали соответствующий файл стилей
+import {BitcoinPrice} from "../Bitcoin/Price/BitcoinPrice";
+import {BitcoinChart} from "../Bitcoin/BitcoinChart/BitcoinChart"; // Убедитесь, что вы создали соответствующий файл стилей
 
 
 const Wallet = () => {
@@ -108,6 +109,7 @@ const Wallet = () => {
     return (
         <div>
             <BitcoinPrice/>
+            <BitcoinChart/>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
             <div className={'container_button'}>
                 <div className="body_second">
