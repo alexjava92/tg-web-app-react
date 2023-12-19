@@ -25,6 +25,7 @@ const Wallet = () => {
     const [transactions, setTransactions] = useState([]);
     const [showTransactions, setShowTransactions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingBalance, setIsLoadingBalance] = useState(true); // Новое состояние для загрузки баланса
 
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
@@ -34,6 +35,7 @@ const Wallet = () => {
     const handleLoaded = useCallback(() => {
         // Логика после загрузки данных
         setIsLoading(false);
+        setIsLoadingBalance(false);
     }, []);
 
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
@@ -111,7 +113,11 @@ const Wallet = () => {
     return (
         <div>
             <BitcoinPrice/>
-            <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+            {isLoadingBalance ? ( // Показываем BouncingLoader пока загружается баланс
+                <BouncingLoader/>
+            ) : (
+                <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
+            )}
             <div className="body_second">
                 <div className={'container_button'} >
                     <Link to="/send-bitcoin">
