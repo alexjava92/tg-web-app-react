@@ -170,7 +170,9 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
                     />
                 ))
             ) : (
-                <p>У вас еще нет транзакций, нажмите кнопку получить для пополнения кошелька.</p>
+                <div className={'body_second'}>
+                    <p>У вас еще нет транзакций, нажмите кнопку получить для пополнения кошелька.</p>
+                </div>
             )}
         </div>
     );
