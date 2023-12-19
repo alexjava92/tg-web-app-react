@@ -114,12 +114,14 @@ const Wallet = () => {
         <div>
             <BitcoinPrice/>
             {isLoadingBalance ? ( // Показываем BouncingLoader пока загружается баланс
-                <BouncingLoader/>
+                <div className={'body_second'}>
+                    <BouncingLoader/>
+                </div>
             ) : (
                 <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
             )}
             <div className="body_second">
-                <div className={'container_button'} >
+                <div className={'container_button'}>
                     <Link to="/send-bitcoin">
                         <button className={'button'} onClick={() => {
                         }}>Отправить
@@ -135,10 +137,12 @@ const Wallet = () => {
 
             {/*<button className={'button'} onClick={handleButtonClick}>окно</button>*/}
             {isLoading ? (
-                <BouncingLoader/>
+                <div className={'body_second'}>
+                    <BouncingLoader/>
+                </div>
             ) : (
                 <div>
-{/*                    {!showTransactions && (
+                    {/*                    {!showTransactions && (
                         <span className={'span_show_transactions'} onClick={handleShowTransactionsClick}>Показать транзакции</span>
                     )}*/}
                     {showTransactions && <TransactionsList
