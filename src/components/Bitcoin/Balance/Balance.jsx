@@ -24,7 +24,7 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
         const btcValue = parseFloat(balanceToBtc) || 0;
         const rubValue = parseFloat(balanceToRub) || 0;
         animateValue(0, btcValue, 1000, setAnimatedBtc); // Убрали округление внутри animateValue
-        animateValue(0, rubValue, 1000, setAnimatedRub);
+        animateValue(0, rubValue, 4000, setAnimatedRub);
     }, [balanceToBtc, balanceToRub]);
 
     // Округляем только для отображения
