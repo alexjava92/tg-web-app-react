@@ -111,8 +111,8 @@ const Wallet = () => {
         <div>
             <BitcoinPrice/>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
-            <div className={'container_button'}>
-                <div className="body_second">
+            <div className="body_second">
+                <div className={'container_button'} >
                     <Link to="/send-bitcoin">
                         <button className={'button'} onClick={() => {
                         }}>Отправить
