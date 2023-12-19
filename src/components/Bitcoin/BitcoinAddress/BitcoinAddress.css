@@ -6,7 +6,6 @@
 
 .body p {
     margin: 5px;
-    border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
     padding: 10px; /* Отступы вокруг адреса */
 }
 
