@@ -9,6 +9,14 @@
     cursor: pointer;
 }
 
+.button:hover {
+    transform: scale(1.1); /* увеличение размера кнопки */
+}
+
+.button:active {
+    transform: scale(0.9); /* уменьшение размера кнопки */
+}
+
 .button:disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
