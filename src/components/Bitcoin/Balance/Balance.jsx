@@ -23,8 +23,8 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
         // Преобразуем значение в строку перед заменой
         const btcValue = parseFloat(String(balanceToBtc).replace(/ /g, '')) || 0;
         const rubValue = parseFloat(String(balanceToRub).replace(/ /g, '')) || 0;
-        animateValue(0, btcValue, 2000, setAnimatedBtc);
-        animateValue(0, rubValue, 2000, setAnimatedRub);
+        animateValue(0, btcValue, 1000, setAnimatedBtc);
+        animateValue(0, rubValue, 1000, setAnimatedRub);
     }, [balanceToBtc, balanceToRub]);
 
 
