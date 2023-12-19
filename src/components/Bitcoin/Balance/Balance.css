@@ -15,3 +15,8 @@
     margin: 5px 0; /* Отступы для каждого div */
     font-size: 2rem; /* Размер шрифта для баланса */
 }
+
+.button_balance {
+    display: flex;
+    justify-content: center;
+}
