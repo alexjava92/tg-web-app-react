@@ -11,13 +11,10 @@
 
 /* Стили для параграфа с txId */
 .success-txid {
-    color: var(--tg-theme-text-color);
-    background: var(--tg-theme-secondary-bg-color);
-    border: 1px solid var(--tg-theme-hint-color);
     padding: 10px;
     width: 100%;
     word-break: break-all; /* Переносит длинный текст на новую строку */
-    margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 /* Стиль для знака успешной отправки */
