@@ -9,6 +9,7 @@
     "axios": "^1.6.2",
     "clipboard": "^2.0.11",
     "copy-paste": "^1.5.3",
+    "lightweight-charts": "^4.1.1",
     "ngrok": "^5.0.0-beta.2",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
