@@ -110,7 +110,6 @@ const Wallet = () => {
     return (
         <div>
             <BitcoinPrice/>
-            <BitcoinLightweightChart/>
             <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
             <div className={'container_button'}>
                 <div className="body_second">
