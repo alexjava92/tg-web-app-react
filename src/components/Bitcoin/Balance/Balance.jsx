@@ -1,16 +1,14 @@
 import React from 'react';
-import './Balance.css';
-import CountUp from 'react-countup'; // Default export, no curly braces needed
+import './Balance.css'
+import '../../../App.css'
 
-export const Balance = ({ balanceToBtc, balanceToRub }) => {
+
+export const Balance = ({balanceToBtc, balanceToRub}) => {
     return (
-        <div className='body_second'>
-            <div className='balance'>
-                <CountUp end={parseFloat(balanceToBtc)} decimals={8} duration={1} /> BTC
-            </div>
-            <div className='balance'>
-                <CountUp end={parseFloat(balanceToRub)} decimals={2} duration={1} /> ₽
-            </div>
+        <div className={'body_second'}>
+            {/*<h2 className={'h2'}>Баланс:</h2>*/}
+            <div className={'balance'}>{balanceToBtc} BTC</div>
+            <div className={'balance'}>{balanceToRub} ₽</div>
         </div>
     );
 };
