@@ -8,6 +8,7 @@ import {
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
 import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
+import ExampleImage from "../../../img/document_list.png";
 
 const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
     const [showDetails, setShowDetails] = useState(false);
@@ -172,6 +173,9 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
             ) : (
                 <div className={'body_second'}>
                     <p>У вас еще нет транзакций, нажмите кнопку получить для пополнения кошелька.</p>
+                    <div className={'img_transactions'}>
+                        <img src={ExampleImage} width="55" height="55" alt="bitcoin"/>
+                    </div>
                 </div>
             )}
         </div>
