@@ -8,7 +8,7 @@ export const BitcoinChart = () => {
         script.onload = () => {
             new window.TradingView.widget(
                 {
-                    "container_id": "tradingview-widget-container",
+                    "container_id": "tradingview_6b3e5",
                     "symbol": "BITSTAMP:BTCUSD",
                     "interval": "D",
                     "timezone": "Etc/UTC",
