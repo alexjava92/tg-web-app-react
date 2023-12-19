@@ -23,6 +23,7 @@ import {BitcoinInput} from "../BitcoinInput/BitcoinInput";
 import {useSendBitcoin} from "../Hooks/useSendBitcoinHook";
 import {getWeightTransactions} from "../../../api/useGetWeightTransaction";
 import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
+import {BouncingLoader} from "../../../LoadingSpinner/BouncingLoader";
 // В начале вашего файла компонента
 
 
@@ -283,7 +284,7 @@ export const SendBitcoin = () => {
 
                 <div className={'body_second'}>
                     <div>
-                        {showBitcoinFees ? (isFetchingFee ? <LocalLoadingSpinner/> :
+                        {showBitcoinFees ? (isFetchingFee ? <BouncingLoader/> :
                                 <BitcoinNetworkFees onSelect={handleCommissionSelect} virtualSize={virtualSize}/>) :
                             <span className={'span_add'}
                                   onClick={toggleBitcoinFeesDisplay}>Установить комиссию сети</span>}
