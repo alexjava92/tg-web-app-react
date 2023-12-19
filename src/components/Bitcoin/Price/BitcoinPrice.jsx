@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {fetchBitcoinPrices} from "../../../api/Blockchain/BlockchainRate.mjs";
 import ExampleImage from "../../../img/bitcoin.png";
 import './BitcoinPrice.css'
+import {formatNumberWithSpaces} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 
 export const BitcoinPrice = () => {
@@ -24,8 +25,8 @@ export const BitcoinPrice = () => {
                 </div>
                 <div>
                     <h2>Курс Bitcoin</h2>
-                    {btcPrice.USD && <p>1 BTC = {btcPrice.USD.last} USD</p>}
-                    {btcPrice.RUB && <p>1 BTC = {btcPrice.RUB.last} RUB</p>}
+                    {btcPrice.USD && <p>1 BTC = {formatNumberWithSpaces(btcPrice.USD.last)} USD</p>}
+                    {btcPrice.RUB && <p>1 BTC = {formatNumberWithSpaces(btcPrice.RUB.last)} RUB</p>}
                 </div>
             </div>
         </div>
