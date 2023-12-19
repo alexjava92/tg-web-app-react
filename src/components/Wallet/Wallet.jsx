@@ -131,9 +131,9 @@ const Wallet = () => {
                 <LocalLoadingSpinner/>
             ) : (
                 <div>
-                    {!showTransactions && (
+{/*                    {!showTransactions && (
                         <span className={'span_show_transactions'} onClick={handleShowTransactionsClick}>Показать транзакции</span>
-                    )}
+                    )}*/}
                     {showTransactions && <TransactionsList
                         transactions={transactions}
                         handleShowTransactionsClick={handleShowTransactionsClick}
