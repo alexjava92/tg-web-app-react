@@ -14,4 +14,5 @@
     justify-content: center;
     margin: 5px 0; /* Отступы для каждого div */
     font-size: 2rem; /* Размер шрифта для баланса */
+    transition: all 1s ease-out;
 }
