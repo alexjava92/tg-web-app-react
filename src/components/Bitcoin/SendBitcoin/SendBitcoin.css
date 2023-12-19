@@ -1,7 +1,5 @@
 .success-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрирует содержимое по горизонтали */
+
     text-align: center; /* Центрирует текст */
 }
 

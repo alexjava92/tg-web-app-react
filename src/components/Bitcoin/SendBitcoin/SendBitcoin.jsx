@@ -216,19 +216,19 @@ export const SendBitcoin = () => {
                     <div className="success-icon">✔️</div>
                     <h2 className="success-header">Транзакция успешно отправлена!</h2>
                 </div>
-
-                <p className="success-txid">{txId}</p>
-
+                <div className={'body_second'}>
+                    <p className="success-txid">{txId}</p>
+                </div>
                 <CopyToClipboard text={txId}>
                     <button className={'button'} onClick={handleCopyAddress}>
                         Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
-                <div className={'body_second'}>
+
                     <a href={transactionUrl} target="_blank" rel="noopener noreferrer" className="transaction-link">
                         Посмотреть транзакцию
                     </a>
-                </div>
+
                 <ToastContainer/>
             </div>
 
