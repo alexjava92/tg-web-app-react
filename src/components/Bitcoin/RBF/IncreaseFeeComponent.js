@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { sendReplaceByFee } from "../../../api/replaceByFee";
 import './IncreaseFeeComponent.css';
 import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
+import {BouncingLoader} from "../../../LoadingSpinner/BouncingLoader";
 
 export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, chatId, onNewTxHash }) => {
     const [newFee, setNewFee] = useState('');
@@ -52,7 +53,7 @@ export const IncreaseFeeComponent = ({ txHash, onClose, commission, satByte, cha
 
     return (
         <div className={'container_fee'}>
-            {isLoading && <LocalLoadingSpinner />}
+            {isLoading && <BouncingLoader />}
             {!isLoading && !newTxHash && (
                 <>
                     <h3 className={'h3_fee'}>Введите новое значение комиссии, комиссия должна быть больше {satByte} sat/b</h3>
