@@ -148,7 +148,9 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
                     />
                 ))
             ) : (
-                <p>Ещё нет транзакций.</p>
+                <div className={'body_second'}>
+                    <p>Ещё нет транзакций.</p>
+                </div>
             )}
         </div>
     );
