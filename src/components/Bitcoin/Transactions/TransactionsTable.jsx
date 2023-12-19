@@ -138,6 +138,28 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
 
     return (
         <div>
+            <div className={'flex-container'}>
+                <span
+                    className={filter === 'Все' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Все')}>
+                    Все
+                </span>
+                <span
+                    className={filter === 'Получено' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Получено')}>
+                    Получено
+                </span>
+                <span
+                    className={filter === 'Отправлено' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Отправлено')}>
+                    Отправлено
+                </span>
+                <span
+                    className={filter === 'Внутренний' ? 'filter-option selected' : 'filter-option'}
+                    onClick={() => setFilter('Внутренний')}>
+                    Внутренний
+                </span>
+            </div>
             {filteredTransactions.length > 0 ? (
                 filteredTransactions.map((transaction, index) => (
                     <TransactionCard
@@ -148,9 +170,7 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
                     />
                 ))
             ) : (
-                <div className={'body_second'}>
-                    <p>У вас еще не было ни одной транзакции, нажмите кнопку получить для пополнения кошелька.</p>
-                </div>
+                <p>У вас еще нет транзакций, нажмите кнопку получить для пополнения кошелька.</p>
             )}
         </div>
     );
