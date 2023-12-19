@@ -9,6 +9,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
+import  QRCode  from 'qrcode.react';
 
 
 const BitcoinAddress = () => {
@@ -35,6 +36,7 @@ const BitcoinAddress = () => {
         return (
             <div className={'body'}>
                 <h3>Новый адрес биткоина:</h3>
+                <QRCode value={address} />
                 <div className={'body_second'}>
                     <p><code style={{fontFamily: 'monospace'}}>{address}</code></p>
                 </div>
