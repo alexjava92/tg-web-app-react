@@ -29,9 +29,9 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
 
 
     return (
-        <div className='body_second'>
-            <div className='balance'>{animatedBtc.toFixed(8)} BTC</div>
-            <div className='balance'>{formatNumberWithSpaces(animatedRub.toFixed(2))} ₽</div>
+        <div className={'body_second'}>
+            <div className={'balance'}>{animatedBtc.toFixed(8)} BTC</div>
+            <div className={'balance'}>{formatNumberWithSpaces(animatedRub.toFixed(2))} ₽</div>
         </div>
     );
 };
