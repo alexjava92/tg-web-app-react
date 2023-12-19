@@ -21,7 +21,7 @@
     height: inherit;
     border-radius: 0.15em;
     background-color: currentColor;
-    animation: var(--speed) ease-out infinite spin;
+    animation: var(--speed) ease-out infinite spiner;
     will-change: transform;
 }
 
@@ -67,7 +67,7 @@
     }
 }
 
-@keyframes spin {
+@keyframes spiner {
     0%,
     18% {
         transform: rotateZ(0);
