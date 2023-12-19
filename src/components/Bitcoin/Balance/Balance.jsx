@@ -13,8 +13,6 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
             setFunction(start + progress * (end - start));
             if (progress < 1) {
                 window.requestAnimationFrame(step);
-            } else {
-                setFunction(end); // После завершения анимации устанавливаем конечное значение
             }
         };
         window.requestAnimationFrame(step);
@@ -28,14 +26,10 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
         animateValue(0, rubValue, 1000, setAnimatedRub);
     }, [balanceToBtc, balanceToRub]);
 
-    // Округляем только для отображения
-    const displayBtc = animatedBtc.toFixed(8);
-    const displayRub = animatedRub.toFixed(2);
-
     return (
         <div className='body_second'>
-            <div className='balance'>{displayBtc} BTC</div>
-            <div className='balance'>{displayRub} ₽</div>
+            <div className='balance'>{animatedBtc.toFixed(3)} BTC</div>
+            <div className='balance'>{animatedRub.toFixed(2)} ₽</div>
         </div>
     );
 };
