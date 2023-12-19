@@ -19,12 +19,13 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
     };
 
     useEffect(() => {
-        // Удаляем пробелы перед преобразованием строки в число
-        const btcValue = parseFloat(balanceToBtc.replace(/ /g, '')) || 0;
-        const rubValue = parseFloat(balanceToRub.replace(/ /g, '')) || 0;
+        // Преобразуем значение в строку перед заменой
+        const btcValue = parseFloat(String(balanceToBtc).replace(/ /g, '')) || 0;
+        const rubValue = parseFloat(String(balanceToRub).replace(/ /g, '')) || 0;
         animateValue(0, btcValue, 1000, setAnimatedBtc);
         animateValue(0, rubValue, 1000, setAnimatedRub);
     }, [balanceToBtc, balanceToRub]);
+
 
     return (
         <div className='body_second'>
