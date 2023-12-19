@@ -10,7 +10,7 @@ import {useFetchBitcoinAddress} from "../../../api/useFetchBitcoinAddress";
 import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 import QRCode from 'qrcode.react';
-
+import bitcoinImage from '../../../img/bitcoin.png';
 
 const BitcoinAddress = () => {
     const {tg, chatId} = useTelegram();
@@ -44,7 +44,7 @@ const BitcoinAddress = () => {
                         level="Q"
                         includeMargin={true}
                         imageSettings={{
-                            src: "src/img/bitcoin.png",
+                            src: bitcoinImage,
                             x: null,
                             y: null,
                             height: 24,
