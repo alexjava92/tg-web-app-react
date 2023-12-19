@@ -138,35 +138,18 @@ export const TransactionsList = ({transactions, handleShowTransactionsClick, cha
 
     return (
         <div>
-            <div className={'flex-container'}>
-                <span
-                    className={filter === 'Все' ? 'filter-option selected' : 'filter-option'}
-                    onClick={() => setFilter('Все')}>
-                    Все
-                </span>
-                <span
-                    className={filter === 'Получено' ? 'filter-option selected' : 'filter-option'}
-                    onClick={() => setFilter('Получено')}>
-                    Получено
-                </span>
-                <span
-                    className={filter === 'Отправлено' ? 'filter-option selected' : 'filter-option'}
-                    onClick={() => setFilter('Отправлено')}>
-                    Отправлено
-                </span>
-                <span
-                    className={filter === 'Внутренний' ? 'filter-option selected' : 'filter-option'}
-                    onClick={() => setFilter('Внутренний')}>
-                    Внутренний
-                </span>
-            </div>
-            {filteredTransactions.map((transaction, index) => (
-                <TransactionCard
-                    key={index}
-                    transaction={transaction}
-                    chatId={chatId}
-                    onNewTxHash={refreshTransactions}/>
-            ))}
+            {filteredTransactions.length > 0 ? (
+                filteredTransactions.map((transaction, index) => (
+                    <TransactionCard
+                        key={index}
+                        transaction={transaction}
+                        chatId={chatId}
+                        onNewTxHash={refreshTransactions}
+                    />
+                ))
+            ) : (
+                <p>Ещё нет транзакций.</p>
+            )}
         </div>
     );
 };
