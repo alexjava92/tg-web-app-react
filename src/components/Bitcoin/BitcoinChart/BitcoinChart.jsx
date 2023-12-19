@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import './BitcoinChart.css';
+
 export const BitcoinChart = () => {
     useEffect(() => {
         const script = document.createElement('script');
@@ -31,8 +32,10 @@ export const BitcoinChart = () => {
     }, []);
 
     return (
-        <div className="tradingview-widget-container">
-            <div id="tradingview_6b3e5" />
+        <div className={'body_second'}>
+            <div className="tradingview-widget-container">
+                <div id="tradingview_6b3e5"/>
+            </div>
         </div>
     );
 };
