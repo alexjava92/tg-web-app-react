@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import './BitcoinChart.css';
 export const BitcoinChart = () => {
     useEffect(() => {
         const script = document.createElement('script');
