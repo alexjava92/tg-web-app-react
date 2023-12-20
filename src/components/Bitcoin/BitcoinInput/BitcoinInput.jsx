@@ -122,29 +122,25 @@ export const BitcoinInput = ({
     return (
         <div className={'body_second'}>
             <div className={'container_input_amount'}>
-                <div>
-                    <input
-                        className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
-                        type="text"
-                        id="bitcoinAmount"
-                        value={bitcoinAmount}
-                        min="0.000001"
-                        max={balanceToBtc}
-                        placeholder="Сумма минимум 0.000001"
-                        onChange={handleBitcoinAmountChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
-                        type="text"
-                        id="rubAmount"
-                        value={rubAmount}
-                        // другие нужные пропсы
-                        onChange={handleRubAmountChange}
-                        placeholder="Сумма в рублях"
-                    />
-                </div>
+                <input
+                    className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
+                    type="text"
+                    id="bitcoinAmount"
+                    value={bitcoinAmount}
+                    min="0.000001"
+                    max={balanceToBtc}
+                    placeholder="Сумма минимум 0.000001"
+                    onChange={handleBitcoinAmountChange}
+                />
+                <input
+                    className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
+                    type="text"
+                    id="rubAmount"
+                    value={rubAmount}
+                    // другие нужные пропсы
+                    onChange={handleRubAmountChange}
+                    placeholder="Сумма в рублях"
+                />
             </div>
             <div className={'container_input_address_bitcoin'}>
                 <input
