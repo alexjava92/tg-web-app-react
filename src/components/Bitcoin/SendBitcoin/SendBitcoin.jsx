@@ -199,7 +199,7 @@ export const SendBitcoin = () => {
         }
     }, [onSendClick])
 
-    const totalAmountToSend = totalBitcoinAmount + (commissionNetwork ? parseFloat(commissionNetwork) : '');
+    const totalAmountToSend = totalBitcoinAmount + (commissionNetwork ? parseFloat(commissionNetwork) : 0);
 // Обновление логики проверки валидности
     useEffect(() => {
         const isValid = convertBitcoinToSatoshis(totalAmountToSend) <= balance;
