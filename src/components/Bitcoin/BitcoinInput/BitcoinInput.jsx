@@ -11,7 +11,7 @@ import {
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 import {useTelegram} from "../../../hooks/useTelegram";
-import {AiOutlineQrcode}  from 'react-icons/ai';
+import { BsQrCodeScan } from "react-icons/bs";
 
 
 export const BitcoinInput = ({
@@ -154,9 +154,9 @@ export const BitcoinInput = ({
                     placeholder="Адрес"
                     onChange={handleBitcoinAddressChange}
                 />
-                <AiOutlineQrcode
+                <BsQrCodeScan
                     onClick={handleScanQrClick}
-                    size={45}/>
+                    size={30}/>
             </div>
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>
