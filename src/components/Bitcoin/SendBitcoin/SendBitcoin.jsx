@@ -199,12 +199,13 @@ export const SendBitcoin = () => {
         }
     }, [onSendClick])
 
+    const totalAmountToSend = totalBitcoinAmount + (commissionNetwork ? parseFloat(commissionNetwork) : 0);
+// Обновление логики проверки валидности
     useEffect(() => {
-        const totalAmount = convertBitcoinToSatoshis(totalBitcoinAmount);
-        const isValid = totalAmount <= balance;
+        const isValid = convertBitcoinToSatoshis(totalAmountToSend) <= balance;
         setIsTotalAmountValid(isValid);
         console.log("Total Amount Valid:", isValid);
-    }, [totalBitcoinAmount, balance]);
+    }, [totalAmountToSend, balance]);
 
 
     useEffect(() => {
@@ -259,8 +260,13 @@ export const SendBitcoin = () => {
                     <div className={'total_amount_bitcoin'}>
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
                             {!isTotalAmountValid
-                                ? `Недостаточно баланса для отправки ${totalBitcoinAmount} BTC`
-                                : <>Отправляем: {totalBitcoinAmount} BTC<br/>Комиссия сети: {commissionNetwork} BTC</>}
+                                ? `Недостаточно баланса для отправки ${totalAmountToSend} BTC`
+                                : <>
+                                    Отправляем: {totalBitcoinAmount} BTC
+                                    {commissionNetwork && <><br/>Комиссия сети: {commissionNetwork} BTC</>}
+                                    <br/>Общая сумма к отправке: {totalAmountToSend.toFixed(8)} BTC
+                                </>
+                            }
                         </label>
                     </div>
                 )}
