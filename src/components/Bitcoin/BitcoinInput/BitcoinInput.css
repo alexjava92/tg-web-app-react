@@ -13,7 +13,7 @@
 
 .input_amount {
     background: var(--tg-theme-secondary-bg-color);
-    width: 50%;
+    width: 48%;
     height: 40px;
     border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
     border-radius: 10px;
@@ -36,4 +36,15 @@
     margin-bottom: 5px;
     font-size: 12px;
 
+}
+
+.container_input_amount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_input_address_bitcoin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

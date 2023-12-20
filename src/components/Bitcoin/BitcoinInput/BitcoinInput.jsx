@@ -129,7 +129,7 @@ export const BitcoinInput = ({
                     value={bitcoinAmount}
                     min="0.000001"
                     max={balanceToBtc}
-                    placeholder="Сумма минимум 0.000001"
+                    placeholder="BTC"
                     onChange={handleBitcoinAmountChange}
                 />
                 <input
@@ -137,9 +137,9 @@ export const BitcoinInput = ({
                     type="text"
                     id="rubAmount"
                     value={rubAmount}
-                    // другие нужные пропсы
+
                     onChange={handleRubAmountChange}
-                    placeholder="Сумма в рублях"
+                    placeholder="RUB"
                 />
             </div>
             <div className={'container_input_address_bitcoin'}>
@@ -148,7 +148,7 @@ export const BitcoinInput = ({
                     type="text"
                     id="bitcoinAddress"
                     value={bitcoinAddress}
-                    placeholder="Адрес"
+                    placeholder="Адрес BTC"
                     onChange={handleBitcoinAddressChange}
                 />
                 <BsQrCodeScan
