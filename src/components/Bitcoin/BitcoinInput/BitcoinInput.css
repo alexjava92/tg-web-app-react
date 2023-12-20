@@ -34,6 +34,13 @@
     font-size: 11px;
 
 }
+.input_amount.invalid-text {
+    color: red;
+}
+
+.input_address_bitcoin.invalid-text {
+    color: red;
+}
 
 .container_input_amount {
     display: flex;
