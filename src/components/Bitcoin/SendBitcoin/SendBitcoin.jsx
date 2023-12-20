@@ -253,8 +253,7 @@ export const SendBitcoin = () => {
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
                             {!isTotalAmountValid
                                 ? `Недостаточно баланса для отправки ${totalBitcoinAmount} BTC`
-                                : `Отправляем: ${totalBitcoinAmount} BTC`
-                            `Комиссия сети: ${commissionNetwork} BTC`}
+                                : `Отправляем: ${totalBitcoinAmount} BTC\nКомиссия сети: ${commissionNetwork} BTC`}
                         </label>
                     </div>
                 )}
