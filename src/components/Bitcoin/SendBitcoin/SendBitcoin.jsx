@@ -115,15 +115,22 @@ export const SendBitcoin = () => {
         return parseFloat((total + amount).toFixed(8));
     }, 0);
 
+    const calculateCommission = (satoshiValue) => {
+        setSatoshiPerByte(satoshiValue);
+        const btcValue = convertSatoshisToBitcoin(satoshiValue * virtualSize);
+        setCommissionNetwork(btcValue);
+    };
 
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
-        const btcValue = convertSatoshisToBitcoin(selectedCommission * virtualSize);
-        setCommissionNetwork(btcValue);
+        calculateCommission(selectedCommission);
         console.log('Выбрана комиссия:', selectedCommission);
     };
-
+    const onSatoshiPerByteChange = (e) => {
+        const value = e.target.value === '' ? '' : Number(e.target.value);
+        calculateCommission(value);
+    };
 
     const toggleBitcoinFeesDisplay = async () => {
         if (allInputsValid) {
@@ -299,7 +306,7 @@ export const SendBitcoin = () => {
                                 className={'input'}
                                 type="number"
                                 value={satoshiPerByte}
-                                onChange={(e) => setSatoshiPerByte(e.target.value === '' ? '' : Number(e.target.value))}
+                                onChange={onSatoshiPerByteChange}
                                 placeholder="sat/byte"
                             />
                         )}
