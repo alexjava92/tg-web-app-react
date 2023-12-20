@@ -1,5 +1,6 @@
 // BitcoinInput.js
 import React, {useEffect, useState} from 'react';
+import '../../../GlobalStyle.css'
 import '../../../App.css';
 import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
