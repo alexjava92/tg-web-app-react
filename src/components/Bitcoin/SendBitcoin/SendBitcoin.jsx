@@ -44,6 +44,7 @@ export const SendBitcoin = () => {
     const [virtualSize, setVirtualSize] = useState('');
     const [isFetchingFee, setIsFetchingFee] = useState(false);
     const [showBitcoinFees, setShowBitcoinFees] = useState(false);
+    const [commissionNetwork, setCommissionNetwork] = useState('');
 
 
     // Массив для хранения вводов
@@ -118,7 +119,8 @@ export const SendBitcoin = () => {
     const handleCommissionSelect = (selectedCommission) => {
         setIsCustomFee(selectedCommission === '');
         setSatoshiPerByte(selectedCommission);
-
+        const btcValue = convertSatoshisToBitcoin(selectedCommission * virtualSize);
+        setCommissionNetwork(btcValue);
         console.log('Выбрана комиссия:', selectedCommission);
     };
 
@@ -251,7 +253,8 @@ export const SendBitcoin = () => {
                         <label className={`${!isTotalAmountValid ? 'invalid-text' : ''}`}>
                             {!isTotalAmountValid
                                 ? `Недостаточно баланса для отправки ${totalBitcoinAmount} BTC`
-                                : `Всего к отправке: ${totalBitcoinAmount} BTC`}
+                                : `Отправляем: ${totalBitcoinAmount} BTC`
+                            `Комиссия сети: ${commissionNetwork} BTC`}
                         </label>
                     </div>
                 )}
