@@ -21,7 +21,7 @@
 
 .input {
     background: var(--tg-theme-secondary-bg-color);
-    width: 100%;
+    width: 69%;
     height: 40px;
     border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
     border-radius: 10px;
