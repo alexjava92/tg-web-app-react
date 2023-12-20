@@ -9,6 +9,8 @@ import {
     convertBtcToRub,
     convertRubToBtc
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import  AiOutlineQrCode  from 'react-icons/ai';
+import {useTelegram} from "../../../hooks/useTelegram";
 
 
 export const BitcoinInput = ({
@@ -28,7 +30,8 @@ export const BitcoinInput = ({
                                  validBalance,
                                  setValidBalance,
                              }) => {
-
+    const {tg} = useTelegram();
+    console.log(tg)
     const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
 
@@ -61,6 +64,15 @@ export const BitcoinInput = ({
     const handleBitcoinAddressChange = (e) => {
         const address = e.target.value;
         setBitcoinAddress(address); // Устанавливаем адрес в состояние сразу же
+    };
+
+    // Функция для обработки клика по иконке QR
+    const handleScanQrClick = () => {
+        // Предполагаем, что showScanQrPopup вызывает сканирование QR кода
+        tg.showScanQrPopup({ text: 'Сканируйте QR-код' }, (scannedText) => {
+            setBitcoinAddress(scannedText); // Обновляем адрес после сканирования
+            return true; // Закрываем popup после сканирования
+        });
     };
 
     useEffect(() => {
@@ -141,6 +153,7 @@ export const BitcoinInput = ({
                     placeholder="Адрес"
                     onChange={handleBitcoinAddressChange}
                 />
+                <AiOutlineQrCode onClick={handleScanQrClick} /> {/* Иконка QR */}
             </div>
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>

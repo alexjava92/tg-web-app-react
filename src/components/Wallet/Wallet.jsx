@@ -13,8 +13,7 @@ import {
 } from "../../calculator/convertSatoshisToBitcoin.mjs";
 import {Balance} from "../Bitcoin/Balance/Balance";
 import {BitcoinPrice} from "../Bitcoin/Price/BitcoinPrice";
-import {BitcoinChart} from "../Bitcoin/BitcoinChart/BitcoinChart";
-import {BitcoinLightweightChart} from "../Bitcoin/BitcoinChart/BitcoinLightweightChart";
+
 import {BouncingLoader} from "../../LoadingSpinner/BouncingLoader"; // Убедитесь, что вы создали соответствующий файл стилей
 
 
