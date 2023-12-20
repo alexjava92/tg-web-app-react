@@ -9,8 +9,9 @@ import {
     convertBtcToRub,
     convertRubToBtc
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
-import  AiOutlineQrCode  from 'react-icons/ai';
+
 import {useTelegram} from "../../../hooks/useTelegram";
+import {AiOutlineQrcode}  from 'react-icons/ai';
 
 
 export const BitcoinInput = ({
@@ -153,7 +154,7 @@ export const BitcoinInput = ({
                     placeholder="Адрес"
                     onChange={handleBitcoinAddressChange}
                 />
-                <AiOutlineQrCode onClick={handleScanQrClick} /> {/* Иконка QR */}
+                <AiOutlineQrcode onClick={handleScanQrClick} /> {/* Иконка QR */}
             </div>
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>
