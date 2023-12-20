@@ -1,8 +1,8 @@
 // BitcoinInput.js
 import React, {useEffect, useState} from 'react';
 import '../../../App.css';
-import './BitcoinInput.css';
 import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
+import './BitcoinInput.css';
 import {isValidBitcoinAddress} from "../../../api/ValidAddres.js";
 import {
     convertBitcoinToSatoshis,
@@ -11,7 +11,7 @@ import {
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 import {useTelegram} from "../../../hooks/useTelegram";
-import { BsQrCodeScan } from "react-icons/bs";
+import {BsQrCodeScan} from "react-icons/bs";
 
 
 export const BitcoinInput = ({
@@ -70,7 +70,7 @@ export const BitcoinInput = ({
     // Функция для обработки клика по иконке QR
     const handleScanQrClick = () => {
         // Предполагаем, что showScanQrPopup вызывает сканирование QR кода
-        tg.showScanQrPopup({ text: 'Сканируйте QR-код' }, (scannedText) => {
+        tg.showScanQrPopup({text: 'Сканируйте QR-код'}, (scannedText) => {
             setBitcoinAddress(scannedText); // Обновляем адрес после сканирования
             return true; // Закрываем popup после сканирования
         });
@@ -121,33 +121,34 @@ export const BitcoinInput = ({
 
     return (
         <div className={'body_second'}>
-            <div>
-
-                <input
-                    className={`input ${!validBalance ? 'invalid-text' : ''}`}
-                    type="text"
-                    id="bitcoinAmount"
-                    value={bitcoinAmount}
-                    min="0.000001"
-                    max={balanceToBtc}
-                    placeholder="Сумма минимум 0.000001"
-                    onChange={handleBitcoinAmountChange}
-                />
+            <div className={'container_input_amount'}>
+                <div>
+                    <input
+                        className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
+                        type="text"
+                        id="bitcoinAmount"
+                        value={bitcoinAmount}
+                        min="0.000001"
+                        max={balanceToBtc}
+                        placeholder="Сумма минимум 0.000001"
+                        onChange={handleBitcoinAmountChange}
+                    />
+                </div>
+                <div>
+                    <input
+                        className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
+                        type="text"
+                        id="rubAmount"
+                        value={rubAmount}
+                        // другие нужные пропсы
+                        onChange={handleRubAmountChange}
+                        placeholder="Сумма в рублях"
+                    />
+                </div>
             </div>
-            <div>
+            <div className={'container_input_address_bitcoin'}>
                 <input
-                    className={`input ${!validBalance ? 'invalid-text' : ''}`}
-                    type="text"
-                    id="rubAmount"
-                    value={rubAmount}
-                    // другие нужные пропсы
-                    onChange={handleRubAmountChange}
-                    placeholder="Сумма в рублях"
-                />
-            </div>
-            <div>
-                <input
-                    className={`input ${!isValidAddress ? 'invalid-text' : ''}`}
+                    className={`input_address_bitcoin ${!isValidAddress ? 'invalid-text' : ''}`}
                     type="text"
                     id="bitcoinAddress"
                     value={bitcoinAddress}
@@ -156,7 +157,7 @@ export const BitcoinInput = ({
                 />
                 <BsQrCodeScan
                     onClick={handleScanQrClick}
-                    size={30}/>
+                    size={25}/>
             </div>
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>

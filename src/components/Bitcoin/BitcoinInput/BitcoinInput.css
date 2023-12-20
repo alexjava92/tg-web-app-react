@@ -10,3 +10,30 @@
     color: var(--tg-theme-link-color);
     margin-left: 10px;
 }
+
+.input_amount {
+    background: var(--tg-theme-secondary-bg-color);
+    width: 50%;
+    height: 40px;
+    border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
+    border-radius: 10px;
+    padding: 5px; /* Отступы вокруг адреса */
+    color: var(--tg-theme-text-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.input_address_bitcoin {
+    background: var(--tg-theme-secondary-bg-color);
+    width: 90%;
+    height: 40px;
+    border: 1px solid var(--tg-theme-hint-color); /* Рамка вокруг адреса */
+    border-radius: 10px;
+    padding: 5px; /* Отступы вокруг адреса */
+    color: var(--tg-theme-text-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+
+}
