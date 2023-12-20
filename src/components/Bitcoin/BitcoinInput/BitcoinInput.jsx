@@ -154,7 +154,9 @@ export const BitcoinInput = ({
                     placeholder="Адрес"
                     onChange={handleBitcoinAddressChange}
                 />
-                <AiOutlineQrcode onClick={handleScanQrClick} /> {/* Иконка QR */}
+                <AiOutlineQrcode
+                    onClick={handleScanQrClick}
+                    size={45}/>
             </div>
             {canRemove && (
                 <span className={'span_delete'} onClick={() => removeInput(index)}>Удалить</span>
