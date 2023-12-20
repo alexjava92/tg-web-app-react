@@ -1,8 +1,9 @@
 // BitcoinInput.js
 import React, {useEffect, useState} from 'react';
 import '../../../App.css';
-import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import './BitcoinInput.css';
+import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
+
 import {isValidBitcoinAddress} from "../../../api/ValidAddres.js";
 import {
     convertBitcoinToSatoshis,
