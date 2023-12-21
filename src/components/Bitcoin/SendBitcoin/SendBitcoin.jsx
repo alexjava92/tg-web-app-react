@@ -263,7 +263,7 @@ export const SendBitcoin = () => {
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
                                     {commissionNetwork !== 0 && <><br/>Комиссия
-                                        сети: {commissionNetwork} BTC {convertBtcToRub(commissionNetwork)} RUB</>}
+                                        сети: {commissionNetwork} BTC</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
