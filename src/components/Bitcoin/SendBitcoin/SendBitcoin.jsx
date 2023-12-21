@@ -239,7 +239,6 @@ export const SendBitcoin = () => {
                 </CopyToClipboard>
 
 
-
                 <ToastContainer/>
             </div>
 
@@ -263,7 +262,8 @@ export const SendBitcoin = () => {
                                 ? `Недостаточно баланса для отправки ${totalAmountToSend} BTC`
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
-                                    {commissionNetwork !== 0 && <><br/>Комиссия сети: {commissionNetwork} BTC</>}
+                                    {commissionNetwork !== 0 && <><br/>Комиссия
+                                        сети: {commissionNetwork} BTC {convertBtcToRub(commissionNetwork)} RUB</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
