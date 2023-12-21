@@ -44,7 +44,7 @@ export const SendBitcoin = () => {
     const [virtualSize, setVirtualSize] = useState('');
     const [isFetchingFee, setIsFetchingFee] = useState(false);
     const [showBitcoinFees, setShowBitcoinFees] = useState(false);
-    const [commissionNetwork, setCommissionNetwork] = useState('');
+    const [commissionNetwork, setCommissionNetwork] = useState(0);
 
 
     // Массив для хранения вводов
@@ -199,7 +199,7 @@ export const SendBitcoin = () => {
         }
     }, [onSendClick])
 
-    const totalAmountToSend = totalBitcoinAmount + (commissionNetwork ? parseFloat(commissionNetwork) : 0);
+    const totalAmountToSend = totalBitcoinAmount + (commissionNetwork ? commissionNetwork : 0);
 // Обновление логики проверки валидности
     useEffect(() => {
         const isValid = convertBitcoinToSatoshis(totalAmountToSend) <= balance;
@@ -263,7 +263,7 @@ export const SendBitcoin = () => {
                                 ? `Недостаточно баланса для отправки ${totalAmountToSend} BTC`
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
-                                    {commissionNetwork && parseFloat(commissionNetwork) !== 0 && <><br/>Комиссия сети: {commissionNetwork} BTC</>}
+                                    {commissionNetwork !== 0 && <><br/>Комиссия сети: {commissionNetwork} BTC</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
