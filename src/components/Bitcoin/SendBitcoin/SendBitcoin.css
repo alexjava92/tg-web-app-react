@@ -91,6 +91,7 @@ label {
 }
 
 .total_amount_bitcoin {
+    color: var(--tg-theme-hint-color);
     display: flex;
     justify-content: center;
     border-radius: 10px; /* Закругление углов */
