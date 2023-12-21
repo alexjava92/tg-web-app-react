@@ -263,7 +263,7 @@ export const SendBitcoin = () => {
                                 ? `Недостаточно баланса для отправки ${totalAmountToSend} BTC`
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
-                                    {commissionNetwork &&  <><br/>Комиссия сети: {commissionNetwork} BTC</>}
+                                    {commissionNetwork && parseFloat(commissionNetwork) !== 0 && <><br/>Комиссия сети: {commissionNetwork} BTC</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
