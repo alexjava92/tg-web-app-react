@@ -100,3 +100,7 @@ label {
     margin: 10px; /* Внешний отступ */
     /* Другие стили, если нужно */
 }
+
+.total_amount_bitcoin label {
+    color: var(--tg-theme-hint-color);
+}
