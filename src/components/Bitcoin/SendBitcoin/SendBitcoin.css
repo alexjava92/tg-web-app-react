@@ -105,6 +105,6 @@ label {
     color: var(--tg-theme-hint-color);
 }
 
-.total_amount_bitcoin label invalid-text{
+.total_amount_bitcoin label.invalid-text{
     color: red;
 }
