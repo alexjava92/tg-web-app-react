@@ -63,11 +63,6 @@ const BitcoinAddress = () => {
                         </code>
                     </p>
                 </div>
-
-                <div className={'body_second'}>
-                    <p>Отправляйте только Bitcoin (BTC) на этот адрес. Другие активы могут не дойти и будут безвозвратно
-                        утрачены.</p>
-                </div>
                 <CopyToClipboard text={address}>
                     <button className={'copy-button'} onClick={handleCopyAddress}>
                         <IoCopyOutline
@@ -77,6 +72,11 @@ const BitcoinAddress = () => {
                     </button>
                 </CopyToClipboard>
                 <ToastContainer/>
+                <div className={'body_second'}>
+                    <p>Отправляйте только Bitcoin (BTC) на этот адрес. Другие активы могут не дойти и будут безвозвратно
+                        утрачены.</p>
+                </div>
+
             </div>
         );
     }
