@@ -24,6 +24,19 @@ export async function convertBtcToRub(btc) {
     }
 }
 
+// Принимает биткоин, показывает usd
+export async function convertBtcToUsd(btc) {
+    try {
+        const rates = await fetchBitcoinPrices(); // Дожидаемся выполнения запроса
+        const rateUSD = rates.USD.last; // Предполагаем, что курс находится в свойстве 'last'
+        const amountUSD = btc * rateUSD; // Вычисляем итоговую сумму в usd
+        return amountUSD.toFixed(2);
+    } catch (error) {
+        console.error('Error fetching Bitcoin prices:', error);
+        return null;
+    }
+}
+
 // Принимает рубли, показывает биткоин
 export async function convertRubToBtc(rub) {
     try {
@@ -42,6 +55,8 @@ export async function convertRubToBtc(rub) {
         return null;
     }
 }
+
+
 // Устанавливает пробел между тысячами
 export function formatNumberWithSpaces(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

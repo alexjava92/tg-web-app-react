@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './Balance.css';
-import {formatNumberWithSpaces} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {convertBtcToUsd, formatNumberWithSpaces} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
-export const Balance = ({ balanceToBtc, balanceToRub }) => {
+export const Balance = ({balanceToBtc, balanceToRub, balanceToUsd}) => {
     const [animatedBtc, setAnimatedBtc] = useState(0);
     const [animatedRub, setAnimatedRub] = useState(0);
+    const [animatedUsd, setAnimatedUsd] = useState(0);
+    const [showUsd, setShowUsd] = useState(false);
 
     const animateValue = (start, end, duration, setFunction) => {
         let startTimestamp = null;
@@ -23,15 +25,24 @@ export const Balance = ({ balanceToBtc, balanceToRub }) => {
         // Преобразуем значение в строку перед заменой
         const btcValue = parseFloat(String(balanceToBtc).replace(/ /g, '')) || 0;
         const rubValue = parseFloat(String(balanceToRub).replace(/ /g, '')) || 0;
+        const usdValue = parseFloat(String(balanceToUsd).replace(/ /g, '')) || 0;
         animateValue(0, btcValue, 1000, setAnimatedBtc);
         animateValue(0, rubValue, 1000, setAnimatedRub);
+        animateValue(0, usdValue, 1000, setAnimatedUsd);
     }, [balanceToBtc, balanceToRub]);
 
+
+    const toggleCurrency = () => {
+        setShowUsd(!showUsd);
+    };
 
     return (
         <div className={'body_second'}>
             <div className={'balance'}>{animatedBtc.toFixed(8)} ₿</div>
-            <div className={'balance'}>{formatNumberWithSpaces(animatedRub.toFixed(2))} ₽</div>
+            <div className={'balance'} onClick={toggleCurrency}>
+                {showUsd ? `${formatNumberWithSpaces(animatedUsd.toFixed(2))} $`
+                    : `${formatNumberWithSpaces(animatedRub.toFixed(2))} ₽`}
+            </div>
         </div>
     );
 };
