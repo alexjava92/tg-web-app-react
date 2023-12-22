@@ -76,7 +76,6 @@ const BitcoinAddress = () => {
                 </CopyToClipboard>
                 <ToastContainer/>
                 <div className={'body_second'}>
-                    <PiWarningCircle size={'30px'}/>
                     <p>Отправляйте только Bitcoin (BTC) на этот адрес. Другие активы могут не дойти и будут безвозвратно
                         утрачены.</p>
                 </div>
