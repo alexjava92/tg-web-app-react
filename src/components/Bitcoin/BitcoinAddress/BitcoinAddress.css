@@ -29,3 +29,7 @@
     border-radius: 10px; /* или любое другое значение */
     overflow: hidden; /* чтобы обрезать части, выходящие за пределы скругления */
 }
+
+.icon_copy {
+    background-color: var(--tg-theme-button-color);
+}
