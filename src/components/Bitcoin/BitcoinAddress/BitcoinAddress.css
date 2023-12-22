@@ -7,6 +7,7 @@
 .body p {
     margin: 5px;
     padding: 10px; /* Отступы вокруг адреса */
+    text-align: center;
 }
 
 .copy-button {
