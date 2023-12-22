@@ -33,5 +33,6 @@
 }
 
 .icon_copy {
+    margin-right: 10px;
     background-color: var(--tg-theme-button-color);
 }
