@@ -86,7 +86,7 @@ export const SendBitcoin = () => {
     };
 
 
-// Проверка, что все вводы корректны
+    // Проверка, что все вводы корректны
     const allInputsValid = inputs.every(input =>
         input.bitcoinAmount
         && input.bitcoinAddress
@@ -97,8 +97,6 @@ export const SendBitcoin = () => {
     const outputs = inputs.map(input => ({
         address: input.bitcoinAddress,
         amount: convertBitcoinToSatoshis(input.bitcoinAmount),
-
-        // и другие необходимые данные для каждого input
     }));
 
 
@@ -237,8 +235,6 @@ export const SendBitcoin = () => {
                         Скопировать транзакцию
                     </button>
                 </CopyToClipboard>
-
-
                 <ToastContainer/>
             </div>
 
@@ -263,7 +259,7 @@ export const SendBitcoin = () => {
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
                                     {commissionNetwork !== 0 && <><br/>Комиссия
-                                        сети: {commissionNetwork} BTC</>}
+                                        сети: {commissionNetwork} BTC {convertBtcToRub(commissionNetwork)}</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
