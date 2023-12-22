@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './Balance.css';
 import {
     convertBtcToRub,
     convertBtcToUsd,
     formatNumberWithSpaces
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {CurrencyContext} from "../../../App";
 
 export const Balance = ({balanceToBtc, balanceToRub}) => {
     const [animatedBtc, setAnimatedBtc] = useState(0);
     const [animatedRub, setAnimatedRub] = useState(0);
     const [animatedUsd, setAnimatedUsd] = useState(0);
-    const [showUsd, setShowUsd] = useState(false);
+    const [showUsd, setShowUsd] = useContext(CurrencyContext);
     const [balanceToUsd, setBalanceToUsd] = useState('');
 
 
