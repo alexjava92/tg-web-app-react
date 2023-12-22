@@ -7,6 +7,7 @@ export const Balance = ({balanceToBtc, balanceToRub, balanceToUsd}) => {
     const [animatedRub, setAnimatedRub] = useState(0);
     const [animatedUsd, setAnimatedUsd] = useState(0);
     const [showUsd, setShowUsd] = useState(false);
+    console.log('balanceToUsd', balanceToUsd)
 
     const animateValue = (start, end, duration, setFunction) => {
         let startTimestamp = null;
@@ -29,7 +30,7 @@ export const Balance = ({balanceToBtc, balanceToRub, balanceToUsd}) => {
         animateValue(0, btcValue, 1000, setAnimatedBtc);
         animateValue(0, rubValue, 1000, setAnimatedRub);
         animateValue(0, usdValue, 1000, setAnimatedUsd);
-    }, [balanceToBtc, balanceToRub]);
+    }, [balanceToBtc, balanceToRub, balanceToUsd]);
 
 
     const toggleCurrency = () => {
