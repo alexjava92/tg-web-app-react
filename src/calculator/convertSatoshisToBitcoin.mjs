@@ -29,7 +29,9 @@ export async function convertBtcToUsd(btc) {
     try {
         const rates = await fetchBitcoinPrices(); // Дожидаемся выполнения запроса
         const rateUSD = rates.USD.last; // Предполагаем, что курс находится в свойстве 'last'
+        console.log('rateUSD', rateUSD)
         const amountUSD = btc * rateUSD; // Вычисляем итоговую сумму в usd
+        console.log('amountUSD', amountUSD)
         return amountUSD.toFixed(2);
     } catch (error) {
         console.error('Error fetching Bitcoin prices:', error);
