@@ -176,7 +176,7 @@ export const SendBitcoin = () => {
     useEffect(() => {
         // Показываем кнопку назад после загрузки данных
         backButton.show();
-    }, [backButton]);
+    }, []);
 
     // Обновление состояния кнопки в зависимости от вводов
     useEffect(() => {
