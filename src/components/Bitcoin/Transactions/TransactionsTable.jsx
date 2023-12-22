@@ -68,8 +68,8 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
                 <div className={`transaction-amount ${amountClass}`}>
                     {amount}
                     {showUsd ?
-                        (amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>)
-                        : (amountInUsd !== null && <div className={'amount_usd'}>{amountInUsd} USD</div>)
+                        (amountInUsd !== null && <div className={'amount_usd'}>{amountInUsd} USD</div>)
+                        : (amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>)
                     }
                 </div>
             </div>
