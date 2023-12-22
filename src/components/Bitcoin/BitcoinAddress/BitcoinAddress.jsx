@@ -35,26 +35,27 @@ const BitcoinAddress = () => {
     const renderForm = () => {
         return (
             <div className={'body'}>
-
-                <QRCode className={'qr-code'}
-                        value={address}
-                        renderAs="svg"
-                        size={200}
-                        bgColor="var(--tg-theme-bg-color)"
-                        fgColor="var(--tg-theme-text-color)"
-                        level="Q"
-                        includeMargin={true}
-                        imageSettings={{
-                            src: bitcoinImage,
-                            x: null,
-                            y: null,
-                            height: 45,
-                            width: 45,
-                            excavate: true,
-                        }}/>
+                <div className={'body_second'}>
+                    <QRCode className={'qr-code'}
+                            value={address}
+                            renderAs="svg"
+                            size={200}
+                            bgColor="var(--tg-theme-bg-color)"
+                            fgColor="var(--tg-theme-text-color)"
+                            level="Q"
+                            includeMargin={true}
+                            imageSettings={{
+                                src: bitcoinImage,
+                                x: null,
+                                y: null,
+                                height: 45,
+                                width: 45,
+                                excavate: true,
+                            }}/>
+                </div>
                 <div className={'body_second'}>
                     <p>
-                        <code style={{ fontFamily: 'monospace', wordBreak: 'break-all' }}>
+                        <code style={{fontFamily: 'monospace', wordBreak: 'break-all'}}>
                             {address}
                         </code>
                     </p>
