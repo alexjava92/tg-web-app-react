@@ -63,7 +63,7 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
             <div className="transaction-detail" onClick={toggleDetails}>
                 <div className="transaction-info">
                     <div>{action}</div>
-                    <div>{transaction.blockTime}</div>
+                    <div>{transaction.blockTime === 'Invalid Date' ? 'Wait confirmations' : transaction.blockTime}</div>
                 </div>
                 <div className={`transaction-amount ${amountClass}`}>
                     {amount}
