@@ -188,7 +188,7 @@ export const SendBitcoin = () => {
         } else {
             tg.MainButton.hide();
         }
-    }, [inputs, satoshiPerByte]);
+    }, [inputs, satoshiPerByte, commissionNetworkRUB]);
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendClick)
