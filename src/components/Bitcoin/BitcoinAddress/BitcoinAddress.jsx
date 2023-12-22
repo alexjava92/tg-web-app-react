@@ -11,6 +11,8 @@ import {useCopyToClipboard} from "../../../hooks/useCopyToClipboard";
 import {LoadingSpinner} from "../../../LoadingSpinner/LoadingSpinner";
 import QRCode from 'qrcode.react';
 import bitcoinImage from '../../../img/bitcoin.png';
+import { IoCopyOutline } from "react-icons/io5";
+
 
 const BitcoinAddress = () => {
     const {tg, chatId} = useTelegram();
@@ -68,7 +70,7 @@ const BitcoinAddress = () => {
                 </div>
                 <CopyToClipboard text={address}>
                     <button className={'copy-button'} onClick={handleCopyAddress}>
-                        Скопировать адрес bitcoin
+                        <IoCopyOutline />  Скопировать адрес bitcoin
                     </button>
                 </CopyToClipboard>
                 <ToastContainer/>
