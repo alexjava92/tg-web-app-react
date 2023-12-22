@@ -45,6 +45,7 @@ export const SendBitcoin = () => {
     const [isFetchingFee, setIsFetchingFee] = useState(false);
     const [showBitcoinFees, setShowBitcoinFees] = useState(false);
     const [commissionNetwork, setCommissionNetwork] = useState(0);
+    const [commissionNetworkRUB, setCommissionNetworkRUB] = useState('');
 
 
     // Массив для хранения вводов
@@ -214,6 +215,11 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
+    useEffect(async () => {
+        const commission = await convertBtcToRub(commissionNetwork)
+        setCommissionNetworkRUB(commission)
+    }, [commissionNetwork])
+
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
     // Рендеринг страницы успеха
@@ -259,7 +265,7 @@ export const SendBitcoin = () => {
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
                                     {commissionNetwork !== 0 && <><br/>Комиссия
-                                        сети: {commissionNetwork} BTC {convertBtcToRub(commissionNetwork)}</>}
+                                        сети: {commissionNetwork} BTC {commissionNetworkRUB}</>}
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
