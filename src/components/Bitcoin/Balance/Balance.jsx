@@ -1,13 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import './Balance.css';
-import {convertBtcToUsd, formatNumberWithSpaces} from "../../../calculator/convertSatoshisToBitcoin.mjs";
+import {
+    convertBtcToRub,
+    convertBtcToUsd,
+    formatNumberWithSpaces
+} from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
-export const Balance = ({balanceToBtc, balanceToRub, balanceToUsd}) => {
+export const Balance = ({balanceToBtc, balanceToRub}) => {
     const [animatedBtc, setAnimatedBtc] = useState(0);
     const [animatedRub, setAnimatedRub] = useState(0);
     const [animatedUsd, setAnimatedUsd] = useState(0);
     const [showUsd, setShowUsd] = useState(false);
-    console.log('balanceToUsd', balanceToUsd)
+    const [balanceToUsd, setBalanceToUsd] = useState('');
+
+
+    useEffect(() => {
+        const fetchBalanceToUsd = async () => {
+            const convertedBalanceUsd = await convertBtcToUsd(balanceToBtc)
+            setBalanceToUsd(formatNumberWithSpaces(convertedBalanceUsd));
+
+        };
+        fetchBalanceToUsd();
+    }, [balanceToBtc])
 
     const animateValue = (start, end, duration, setFunction) => {
         let startTimestamp = null;

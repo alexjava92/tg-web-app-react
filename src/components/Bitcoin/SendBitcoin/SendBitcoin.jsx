@@ -37,7 +37,7 @@ export const SendBitcoin = () => {
     const [balanceToBtc, setBalanceToBtc] = useState('');
     const [balance, setBalance] = useState('');
     const [balanceToRub, setBalanceToRub] = useState('');
-    const [balanceToUsd, setBalanceToUsd] = useState('');
+
     const [satoshiPerByte, setSatoshiPerByte] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const [isCustomFee, setIsCustomFee] = useState(false);
@@ -167,10 +167,10 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchBalanceToRub = async () => {
             const convertedBalanceRub = await convertBtcToRub(balanceToBtc);
-            const convertedBalanceUsd = await convertBtcToUsd(balanceToBtc)
+
 
             setBalanceToRub(formatNumberWithSpaces(convertedBalanceRub));
-            setBalanceToUsd(formatNumberWithSpaces(convertedBalanceUsd));
+
         };
 
         fetchBalanceToRub();
@@ -269,7 +269,7 @@ export const SendBitcoin = () => {
                 <div className={'img_bitcoin'}>
                     <img src={ExampleImage} width="70" height="70" alt="bitcoin"/>
                 </div>
-                <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub} balanceToUsd={balanceToUsd}/>
+                <Balance balanceToBtc={balanceToBtc} balanceToRub={balanceToRub}/>
 
                 {totalBitcoinAmount > 0 && (
                     <div className={'total_amount_bitcoin'}>
