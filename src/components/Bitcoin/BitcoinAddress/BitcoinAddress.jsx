@@ -40,6 +40,7 @@ const BitcoinAddress = () => {
     const renderForm = () => {
         return (
             <div className={'body'}>
+                <h2>Bitcoin</h2>
                 <div className={'body_second'}>
                     <QRCode className={'qr-code'}
                             value={address}

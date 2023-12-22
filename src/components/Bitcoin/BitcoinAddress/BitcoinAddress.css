@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.body h2 {
+    font-size: 18px;
+    margin: 10px;
+}
+
 .copy-button {
     display: flex;
     background: var(--tg-theme-button-color);
