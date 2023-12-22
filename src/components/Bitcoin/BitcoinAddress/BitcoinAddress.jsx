@@ -32,6 +32,24 @@ const BitcoinAddress = () => {
         navigate(-1);
     });
 
+    useEffect(() => {
+        tg.MainButton.show();
+        tg.MainButton.setParams({
+            text: `Скопировать адрес`
+        });
+        return () => {
+            tg.MainButton.hide();
+        }
+    }, []);
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', handleCopyAddress)
+        return () => {
+            tg.MainButton.hide();
+            tg.offEvent('mainButtonClicked', handleCopyAddress)
+        }
+    }, [handleCopyAddress])
+
     const renderForm = () => {
         return (
             <div className={'body'}>
