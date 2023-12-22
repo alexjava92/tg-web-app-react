@@ -228,7 +228,7 @@ export const SendBitcoin = () => {
         if (commissionNetwork) {
             fetchCommission();
         }
-    }, [commissionNetwork]);
+    }, [commissionNetwork, satoshiPerByte]);
 
 
 
