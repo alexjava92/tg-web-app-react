@@ -215,10 +215,21 @@ export const SendBitcoin = () => {
         navigate(-1);
     });
 
-    useEffect(async () => {
-        const commission = await convertBtcToRub(commissionNetwork)
-        setCommissionNetworkRUB(commission)
-    }, [commissionNetwork])
+    useEffect(() => {
+        const fetchCommission = async () => {
+            try {
+                const commission = await convertBtcToRub(commissionNetwork);
+                setCommissionNetworkRUB(commission);
+            } catch (error) {
+                console.error("Ошибка при конвертации: ", error);
+            }
+        };
+
+        if (commissionNetwork) {
+            fetchCommission();
+        }
+    }, [commissionNetwork]);
+
 
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
