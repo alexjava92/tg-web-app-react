@@ -11,7 +11,7 @@ export const Balance = ({balanceToBtc, balanceToRub}) => {
     const [animatedBtc, setAnimatedBtc] = useState(0);
     const [animatedRub, setAnimatedRub] = useState(0);
     const [animatedUsd, setAnimatedUsd] = useState(0);
-    const [showUsd, setShowUsd] = useContext(CurrencyContext);
+    const { showUsd, setShowUsd } = useContext(CurrencyContext);
     const [balanceToUsd, setBalanceToUsd] = useState('');
 
 
