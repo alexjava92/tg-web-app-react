@@ -3,7 +3,7 @@ import './TransactionsTable.css';
 import '../../../App.css';
 import {
     calculateFeePerVByte,
-    convertBtcToRub,
+    convertBtcToRub, convertBtcToUsd,
     convertSatoshisToBitcoin
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 import {config} from "../../../api/config";
