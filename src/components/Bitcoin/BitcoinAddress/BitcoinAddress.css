@@ -11,13 +11,15 @@
 }
 
 .copy-button {
+    display: flex;
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
-    margin: 5px;
-    padding: 10px 20px;
+    padding: 10px 70px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    align-items: center;
+    margin-top: 110px;
 }
 
 .copy-button:disabled {

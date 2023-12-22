@@ -72,8 +72,8 @@ const BitcoinAddress = () => {
                     <button className={'copy-button'} onClick={handleCopyAddress}>
                         <IoCopyOutline
                             className={'icon_copy'}
-                            size={'24px'}
-                        />  Скопировать адрес bitcoin
+                            size={'20px'}
+                        />  Скопировать адрес
                     </button>
                 </CopyToClipboard>
                 <ToastContainer/>
