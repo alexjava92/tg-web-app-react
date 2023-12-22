@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './TransactionsTable.css';
 import '../../../App.css';
 import {
@@ -9,20 +9,25 @@ import {
 import {config} from "../../../api/config";
 import {IncreaseFeeComponent} from "../RBF/IncreaseFeeComponent";
 import ExampleImage from "../../../img/document_list.png";
+import {CurrencyContext} from "../../../App";
 
 const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [amountInRub, setAmountInRub] = useState(null);
+    const [amountInUsd, setAmountInUsd] = useState(null);
     const [showIncreaseFee, setShowIncreaseFee] = useState(false);
-
+    const {showUsd} = useContext(CurrencyContext);
     useEffect(() => {
-        const convertToRub = async () => {
+        const convertCurrency = async () => {
             const btcAmount = convertSatoshisToBitcoin(transaction.amountReceived || transaction.amountSent);
             const rubAmount = await convertBtcToRub(btcAmount);
             setAmountInRub(rubAmount);
+            // Предполагаем, что у вас есть функция convertBtcToUsd
+            const usdAmount = await convertBtcToUsd(btcAmount);
+            setAmountInUsd(usdAmount);
         };
 
-        convertToRub();
+        convertCurrency();
     }, [transaction]);
 
 
@@ -62,7 +67,10 @@ const TransactionCard = ({transaction, chatId, onNewTxHash}) => {
                 </div>
                 <div className={`transaction-amount ${amountClass}`}>
                     {amount}
-                    {amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>}
+                    {showUsd ?
+                        (amountInRub !== null && <div className={'amount_rub'}>{amountInRub} RUB</div>)
+                        : (amountInUsd !== null && <div className={'amount_usd'}>{amountInUsd} USD</div>)
+                    }
                 </div>
             </div>
         );
