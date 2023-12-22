@@ -35,7 +35,7 @@ const BitcoinAddress = () => {
     const renderForm = () => {
         return (
             <div className={'body'}>
-                <h3>Для пополнения переведите BTC на этот адрес</h3>
+
                 <QRCode className={'qr-code'}
                         value={address}
                         renderAs="svg"
