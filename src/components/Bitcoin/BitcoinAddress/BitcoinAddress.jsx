@@ -35,7 +35,7 @@ const BitcoinAddress = () => {
     const renderForm = () => {
         return (
             <div className={'body'}>
-                <h3>Новый адрес биткоина:</h3>
+                <h3>Для пополнения переведите BTC на этот адрес</h3>
                 <QRCode className={'qr-code'}
                         value={address}
                         renderAs="svg"
@@ -53,7 +53,11 @@ const BitcoinAddress = () => {
                             excavate: true,
                         }}/>
                 <div className={'body_second'}>
-                    <p><code style={{fontFamily: 'monospace'}}>{address}</code></p>
+                    <p>
+                        <code style={{ fontFamily: 'monospace', wordBreak: 'break-all' }}>
+                            {address}
+                        </code>
+                    </p>
                 </div>
                 <CopyToClipboard text={address}>
                     <button className={'button'} onClick={handleCopyAddress}>
