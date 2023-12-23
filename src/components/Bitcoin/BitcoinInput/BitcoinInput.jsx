@@ -146,6 +146,8 @@ export const BitcoinInput = ({
                 }
                 if (usdAmount !== '' || rubAmount !== ''){
                     setBitcoinAmount(String(btcEquivalent));
+                } else {
+                    setBitcoinAmount('')
                 }
 
             }
