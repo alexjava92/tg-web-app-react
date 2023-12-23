@@ -136,7 +136,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
+    }, [lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
