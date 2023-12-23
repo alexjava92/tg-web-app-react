@@ -125,17 +125,20 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         const convert = async () => {
-            if (lastUpdatedByUserRub && rubAmount !== '') {
-                const btcEquivalent = await convertRubToBtc(rubAmount);
-                setBitcoinAmount(String(btcEquivalent));
-            } else if (lastUpdatedByUserRub && usdAmount !== '') {
-                const btcEquivalent = await convertUsdToBtc(rubAmount);
+            if (lastUpdatedByUserRub) {
+                let btcEquivalent;
+                if (usdAmount !== '') {
+                    btcEquivalent = await convertUsdToBtc(usdAmount);
+                } else if (rubAmount !== '') {
+                    btcEquivalent = await convertRubToBtc(rubAmount);
+                }
                 setBitcoinAmount(String(btcEquivalent));
             }
             setLastUpdatedByUserRub(false);
         };
         convert();
     }, [rubAmount, usdAmount, lastUpdatedByUserRub]);
+
     useEffect(() => {
         const validateAddress = async () => {
             const isValid = await isValidBitcoinAddress(bitcoinAddress);
