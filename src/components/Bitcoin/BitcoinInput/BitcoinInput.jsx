@@ -42,6 +42,19 @@ export const BitcoinInput = ({
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
     const {showUsd} = useContext(CurrencyContext);
 
+    useEffect(() => {
+        console.log('showUsd changed:', showUsd);
+        console.log('Clearing bitcoinAmount...');
+        setBitcoinAmount('');
+
+        if (showUsd) {
+            console.log('Clearing rubAmount...');
+            setRubAmount('');
+        } else {
+            console.log('Clearing usdAmount...');
+            setUsdAmount('');
+        }
+    }, [showUsd]);
 
 
     const handleBitcoinAmountChange = (e) => {
@@ -148,19 +161,7 @@ export const BitcoinInput = ({
         }
     }, [bitcoinAddress]);
 
-    useEffect(() => {
-        console.log('showUsd changed:', showUsd);
-        console.log('Clearing bitcoinAmount...');
-        setBitcoinAmount('');
 
-        if (showUsd) {
-            console.log('Clearing rubAmount...');
-            setRubAmount('');
-        } else {
-            console.log('Clearing usdAmount...');
-            setUsdAmount('');
-        }
-    }, [showUsd]);
 
     useEffect(() => {
         console.log("Address: ", bitcoinAddress, "Is Valid: ", isValidAddress);
