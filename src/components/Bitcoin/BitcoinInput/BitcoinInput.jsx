@@ -75,26 +75,26 @@ export const BitcoinInput = ({
     const handleAmountChange = async (e) => {
         const inputValue = e.target.value;
         console.log(inputValue);
-        if (inputValue !== '') {
+
             if (showUsd) {
                 // Конвертируем из USD в BTC
                 const btcEquivalent = await convertUsdToBtc(inputValue);
-                setBitcoinAmount(String(btcEquivalent));
+                if (btcEquivalent !== 'undefined') {
+                    setBitcoinAmount(String(btcEquivalent));
+                }
                 setUsdAmount(inputValue);
 
             }
             if (!showUsd) {
                 // Конвертируем из RUB в BTC
                 const btcEquivalent = await convertRubToBtc(inputValue);
-                setBitcoinAmount(String(btcEquivalent));
+                if (btcEquivalent !== 'undefined') {
+                    setBitcoinAmount(String(btcEquivalent));
+                }
                 setRubAmount(inputValue);
 
             }
-        }else {
-            setUsdAmount('')
-            setRubAmount('')
-            setBitcoinAmount('')
-        }
+
         setLastUpdatedByUserRub(true);
     };
 
