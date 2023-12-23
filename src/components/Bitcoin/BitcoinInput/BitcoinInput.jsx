@@ -118,7 +118,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [bitcoinAmount, lastUpdatedByUserBitcoin, showUsd]);
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
@@ -134,7 +134,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserRub(false);
         };
         convert();
-    }, [rubAmount, usdAmount, lastUpdatedByUserRub, showUsd]);
+    }, [rubAmount, usdAmount, lastUpdatedByUserRub]);
 
     useEffect(() => {
         const validateAddress = async () => {
