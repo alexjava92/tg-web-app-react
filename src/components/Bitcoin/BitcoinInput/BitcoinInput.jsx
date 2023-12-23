@@ -78,6 +78,9 @@ export const BitcoinInput = ({
 
 
             if (showUsd) {
+                if (inputValue === '') {
+                    setBitcoinAmount(0)
+                }
                 // Конвертируем из USD в BTC
                 const btcEquivalent = await convertUsdToBtc(inputValue);
                 setBitcoinAmount(String(btcEquivalent));
@@ -85,6 +88,9 @@ export const BitcoinInput = ({
 
             }
             if (!showUsd) {
+                if (inputValue === '') {
+                    setBitcoinAmount(0)
+                }
                 // Конвертируем из RUB в BTC
                 const btcEquivalent = await convertRubToBtc(inputValue);
                 setBitcoinAmount(String(btcEquivalent));
