@@ -56,6 +56,24 @@ export async function convertRubToBtc(rub) {
     }
 }
 
+// Принимает usd, показывает биткоин
+export async function convertUsdToBtc(usd) {
+    try {
+        const rates = await fetchBitcoinPrices(); // Дожидаемся выполнения запроса
+        const rateUSD = rates.USD.last; // Предполагаем, что курс находится в свойстве 'last'
+
+        // Убедитесь, что курс не равен нулю, чтобы избежать деления на ноль
+        if (rateUSD === 0) {
+            throw new Error("Нулевой обменный курс");
+        }
+
+        const amountBTC = usd / rateUSD; // Вычисляем итоговую сумму в биткоинах
+        return amountBTC.toFixed(8); // Биткоин обычно округляется до 8 знаков после запятой
+    } catch (error) {
+        console.error('Error fetching Bitcoin prices:', error);
+        return null;
+    }
+}
 
 // Устанавливает пробел между тысячами
 export function formatNumberWithSpaces(number) {

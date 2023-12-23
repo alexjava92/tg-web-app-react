@@ -1,5 +1,5 @@
 // BitcoinInput.js
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../../../GlobalStyle.css'
 import '../../../App.css';
 import './BitcoinInput.css';
@@ -8,12 +8,13 @@ import '../../Bitcoin/SendBitcoin/SendBitcoin.css'
 import {isValidBitcoinAddress} from "../../../api/ValidAddres.js";
 import {
     convertBitcoinToSatoshis,
-    convertBtcToRub,
-    convertRubToBtc
+    convertBtcToRub, convertBtcToUsd,
+    convertRubToBtc, convertUsdToBtc
 } from "../../../calculator/convertSatoshisToBitcoin.mjs";
 
 import {useTelegram} from "../../../hooks/useTelegram";
 import {BsQrCodeScan} from "react-icons/bs";
+import {CurrencyContext} from "../../../App";
 
 
 export const BitcoinInput = ({
@@ -37,6 +38,7 @@ export const BitcoinInput = ({
     console.log(tg)
     const [lastUpdatedByUserBitcoin, setLastUpdatedByUserBitcoin] = useState(false);
     const [lastUpdatedByUserRub, setLastUpdatedByUserRub] = useState(false);
+    const {showUsd} = useContext(CurrencyContext);
 
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
@@ -53,15 +55,25 @@ export const BitcoinInput = ({
             }
         }
     };
-    const handleRubAmountChange = (e) => {
-        const rubValue = e.target.value;
-        console.log(rubValue)
-        // Установка rubAmount независимо от того, является ли значение числом
-        setRubAmount(rubValue);
-
-        if (rubValue !== '') {
-            setLastUpdatedByUserRub(true);
+    const handleRubAmountChange = async (e) => {
+        const value = e.target.value;
+        console.log(value);
+        if (!value) {
+            setRubAmount('');
+            return;
         }
+
+        if (showUsd) {
+            // Конвертируем из USD в BTC, если включен режим USD
+            const btcEquivalent = await convertUsdToBtc(value);
+            setBitcoinAmount(String(btcEquivalent));
+        } else {
+            // Конвертируем из RUB в BTC, если включен режим RUB
+            const btcEquivalent = await convertRubToBtc(value);
+            setBitcoinAmount(String(btcEquivalent));
+        }
+        setRubAmount(value);
+        setLastUpdatedByUserRub(true);
     };
 
     const handleBitcoinAddressChange = (e) => {
@@ -80,20 +92,28 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         const convert = async () => {
-            console.log(balance)
-            const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount)
+            console.log(balance);
+            const satoshiBalance = convertBitcoinToSatoshis(bitcoinAmount);
+
             if (lastUpdatedByUserBitcoin && bitcoinAmount !== '') {
-                const rubEquivalent = await convertBtcToRub(bitcoinAmount);
-                setRubAmount(String(rubEquivalent));
+                let fiatEquivalent;
+                if (showUsd) {
+                    // Конвертируем в USD, если включен режим USD
+                    fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
+                } else {
+                    // Конвертируем в RUB, если включен режим RUB
+                    fiatEquivalent = await convertBtcToRub(bitcoinAmount);
+                }
+                setRubAmount(String(fiatEquivalent));
             } else if (satoshiBalance > balance) {
-                setValidBalance(false)
+                setValidBalance(false);
             } else if (satoshiBalance <= balance) {
-                setValidBalance(true)
+                setValidBalance(true);
             }
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin, showUsd]);
 
     useEffect(() => {
         const convert = async () => {
@@ -141,7 +161,7 @@ export const BitcoinInput = ({
                     value={rubAmount}
 
                     onChange={handleRubAmountChange}
-                    placeholder="RUB"
+                    placeholder={showUsd ? "USD" : "RUB"}
                 />
             </div>
             <div className={'container_input_address_bitcoin'}>
