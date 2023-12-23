@@ -58,36 +58,29 @@ export const BitcoinInput = ({
         }
     };
     const handleAmountChange = async (e) => {
-        const value = e.target.value;
+        const inputValue = e.target.value;
+        console.log(inputValue);
 
-        // Установка состояния для USD или RUB в зависимости от текущего режима
-        if (showUsd) {
-            setUsdAmount(value);
-        } else {
-            setRubAmount(value);
-        }
-
-        // Если значение пустое, также очищаем bitcoinAmount
-        if (value === '') {
+        if (inputValue === '') {
+            setUsdAmount('');
+            setRubAmount('');
             setBitcoinAmount('');
+            // Форсировать обновление, если нужно
+            // forceUpdate();
             return;
         }
 
-        try {
-            let btcEquivalent;
-            if (showUsd) {
-                // Конвертируем из USD в BTC, если включен режим USD
-                btcEquivalent = await convertUsdToBtc(value);
-            } else {
-                // Конвертируем из RUB в BTC, если включен режим RUB
-                btcEquivalent = await convertRubToBtc(value);
-            }
+        if (showUsd) {
+            // Конвертируем из USD в BTC
+            const btcEquivalent = await convertUsdToBtc(inputValue);
             setBitcoinAmount(String(btcEquivalent));
-        } catch (error) {
-            console.error('Ошибка конвертации: ', error);
-            // Обработка ошибок конвертации
+            setUsdAmount(inputValue);
+        } else {
+            // Конвертируем из RUB в BTC
+            const btcEquivalent = await convertRubToBtc(inputValue);
+            setBitcoinAmount(String(btcEquivalent));
+            setRubAmount(inputValue);
         }
-
         setLastUpdatedByUserRub(true);
     };
 
