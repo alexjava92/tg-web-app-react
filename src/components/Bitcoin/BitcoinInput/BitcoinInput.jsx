@@ -44,6 +44,7 @@ export const BitcoinInput = ({
 
     useEffect(()=>{
         console.log('showUsd',showUsd)
+        setBitcoinAmount('');
         if(showUsd) {
             setRubAmount('');
         }
