@@ -61,13 +61,6 @@ export const BitcoinInput = ({
         const inputValue = e.target.value;
         console.log(inputValue);
 
-        if (inputValue === '') {
-            setUsdAmount('');
-            setRubAmount('');
-            // Форсировать обновление, если нужно
-            // forceUpdate();
-            return;
-        }
 
         if (showUsd) {
             // Конвертируем из USD в BTC
