@@ -60,7 +60,7 @@ export const BitcoinInput = ({
     const handleAmountChange = async (e) => {
         const inputValue = e.target.value;
         console.log(inputValue);
-        if(inputValue === '') {
+
             if (showUsd) {
                 setRubAmount('')
             }
@@ -70,7 +70,7 @@ export const BitcoinInput = ({
                 setBitcoinAmount('');
             }
             return;
-        }
+
 
 
         if (showUsd) {
