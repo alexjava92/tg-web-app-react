@@ -92,9 +92,6 @@ export const BitcoinInput = ({
                 setRubAmount(inputValue);
 
             }
-        if (inputValue === ''){
-            setBitcoinAmount('');
-        }
 
         setLastUpdatedByUserRub(true);
     };
