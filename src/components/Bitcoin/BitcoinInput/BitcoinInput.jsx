@@ -77,7 +77,6 @@ export const BitcoinInput = ({
         console.log(inputValue);
 
 
-
             if (showUsd) {
                 // Конвертируем из USD в BTC
                 const btcEquivalent = await convertUsdToBtc(inputValue);
@@ -136,7 +135,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [lastUpdatedByUserBitcoin]);
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
