@@ -76,25 +76,18 @@ export const BitcoinInput = ({
         const inputValue = e.target.value;
         console.log(inputValue);
 
-
         if (showUsd) {
-            if (inputValue !== '') {
-                // Конвертируем из USD в BTC
-                const btcEquivalent = await convertUsdToBtc(inputValue);
-                setBitcoinAmount(String(btcEquivalent));
-                setUsdAmount(inputValue);
+            // Конвертируем из USD в BTC
+            const btcEquivalent = await convertUsdToBtc(inputValue);
+            setBitcoinAmount(String(btcEquivalent));
+            setUsdAmount(inputValue);
 
-            }
-            setBitcoinAmount(0)
         }
         if (!showUsd) {
-            if (inputValue !== '') {
-                // Конвертируем из RUB в BTC
-                const btcEquivalent = await convertRubToBtc(inputValue);
-                setBitcoinAmount(String(btcEquivalent));
-                setRubAmount(inputValue);
-            }
-            setBitcoinAmount(0)
+            // Конвертируем из RUB в BTC
+            const btcEquivalent = await convertRubToBtc(inputValue);
+            setBitcoinAmount(String(btcEquivalent));
+            setRubAmount(inputValue);
         }
 
         setLastUpdatedByUserRub(true);
@@ -151,7 +144,10 @@ export const BitcoinInput = ({
                 } else if (rubAmount !== '') {
                     btcEquivalent = await convertRubToBtc(rubAmount);
                 }
-                setBitcoinAmount(String(btcEquivalent));
+                if (usdAmount !== '' || rubAmount !== ''){
+                    setBitcoinAmount(String(btcEquivalent));
+                }
+
             }
             setLastUpdatedByUserRub(false);
         };

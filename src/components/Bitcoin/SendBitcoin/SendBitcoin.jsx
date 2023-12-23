@@ -169,8 +169,6 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchBalanceToRub = async () => {
             const convertedBalanceRub = await convertBtcToRub(balanceToBtc);
-
-
             setBalanceToRub(formatNumberWithSpaces(convertedBalanceRub));
 
         };
