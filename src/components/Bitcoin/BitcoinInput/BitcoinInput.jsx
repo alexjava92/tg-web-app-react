@@ -62,6 +62,8 @@ export const BitcoinInput = ({
         console.log(inputValue);
         if(inputValue === ''){
             setBitcoinAmount('');
+            setUsdAmount('');
+            setRubAmount('');
             return;
         }
 
