@@ -70,6 +70,7 @@ export const BitcoinInput = ({
             // Конвертируем из USD в BTC, если включен режим USD
             const btcEquivalent = await convertUsdToBtc(value);
             setBitcoinAmount(String(btcEquivalent));
+            console.log('btcEquivalent', btcEquivalent)
             setUsdAmount(value)
         } else if (!showUsd){
             // Конвертируем из RUB в BTC, если включен режим RUB
