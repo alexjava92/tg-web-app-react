@@ -44,7 +44,13 @@ export const BitcoinInput = ({
 
     useEffect(()=>{
         console.log('showUsd',showUsd)
-    }, [])
+        if(showUsd) {
+            setRubAmount('')
+        }
+        if(!showUsd) {
+            setUsdAmount('')
+        }
+    }, [showUsd])
 
     const handleBitcoinAmountChange = (e) => {
         const inputValue = e.target.value;
@@ -122,7 +128,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [bitcoinAmount, rubAmount, usdAmount, lastUpdatedByUserBitcoin]);
+    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
