@@ -45,12 +45,12 @@ export const BitcoinInput = ({
     useEffect(()=>{
         console.log('showUsd',showUsd)
         if(showUsd) {
-            setRubAmount('');
             setBitcoinAmount('');
+            setRubAmount('');
         }
         if(!showUsd) {
-            setUsdAmount('');
             setBitcoinAmount('');
+            setUsdAmount('');
         }
     }, [showUsd])
 
