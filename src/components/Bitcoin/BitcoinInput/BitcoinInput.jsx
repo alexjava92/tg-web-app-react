@@ -108,7 +108,7 @@ export const BitcoinInput = ({
                     // Конвертируем в USD, если включен режим USD
                     fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
                     setUsdAmount(String(fiatEquivalent))
-                } else {
+                } if (!showUsd) {
                     // Конвертируем в RUB, если включен режим RUB
                     fiatEquivalent = await convertBtcToRub(bitcoinAmount);
                     setRubAmount(String(fiatEquivalent));
@@ -122,7 +122,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserBitcoin(false);
         };
         convert();
-    }, [bitcoinAmount, lastUpdatedByUserBitcoin]);
+    }, [bitcoinAmount, rubAmount, usdAmount, lastUpdatedByUserBitcoin]);
 
     useEffect(() => {
         const convert = async () => {
