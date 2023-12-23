@@ -55,6 +55,7 @@ export const SendBitcoin = () => {
         bitcoinAddress: '',
         isValidAddress: true,  // Новое свойство для каждого инпута
         rubAmount: '',
+        usdAmount: '',
         validBalance: true,
 
 
@@ -67,6 +68,7 @@ export const SendBitcoin = () => {
             bitcoinAddress: '',
             isValidAddress: true,
             rubAmount: '',
+            usdAmount: '',
             validBalance: true,
         }]);
         setShowBitcoinFees(false); // Сбросить состояние для показа кнопки
@@ -300,6 +302,8 @@ export const SendBitcoin = () => {
                             isValidAddress={input.isValidAddress}
                             rubAmount={input.rubAmount}
                             setRubAmount={amount => updateInput(index, {...input, rubAmount: amount})}
+                            usdAmount={input.usdAmount}
+                            setUsdAmount={amount => updateInput(index, {...input, usdAmount: amount})}
                             balanceToBtc={balanceToBtc}
                             removeInput={removeInput}
                             canRemove={inputs.length > 1}

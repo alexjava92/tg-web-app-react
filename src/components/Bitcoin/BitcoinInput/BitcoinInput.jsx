@@ -27,6 +27,8 @@ export const BitcoinInput = ({
                                  isValidAddress,
                                  rubAmount,
                                  setRubAmount,
+                                 usdAmount,
+                                 setUsdAmount,
                                  balanceToBtc,
                                  removeInput,
                                  canRemove,
@@ -55,24 +57,32 @@ export const BitcoinInput = ({
             }
         }
     };
-    const handleRubAmountChange = async (e) => {
+    const handleAmountChange = async (e) => {
         const value = e.target.value;
         console.log(value);
         if (!value) {
-            setRubAmount('');
-            return;
+            if (showUsd){
+                setUsdAmount('');
+                return
+            } else {
+                setRubAmount('');
+                return;
+            }
+
         }
 
         if (showUsd) {
             // Конвертируем из USD в BTC, если включен режим USD
             const btcEquivalent = await convertUsdToBtc(value);
             setBitcoinAmount(String(btcEquivalent));
+            setUsdAmount(value)
         } else {
             // Конвертируем из RUB в BTC, если включен режим RUB
             const btcEquivalent = await convertRubToBtc(value);
             setBitcoinAmount(String(btcEquivalent));
+            setRubAmount(value);
         }
-        setRubAmount(value);
+
         setLastUpdatedByUserRub(true);
     };
 
@@ -100,11 +110,13 @@ export const BitcoinInput = ({
                 if (showUsd) {
                     // Конвертируем в USD, если включен режим USD
                     fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
+                    setUsdAmount(String(fiatEquivalent))
                 } else {
                     // Конвертируем в RUB, если включен режим RUB
                     fiatEquivalent = await convertBtcToRub(bitcoinAmount);
+                    setRubAmount(String(fiatEquivalent));
                 }
-                setRubAmount(String(fiatEquivalent));
+
             } else if (satoshiBalance > balance) {
                 setValidBalance(false);
             } else if (satoshiBalance <= balance) {
@@ -120,11 +132,14 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserRub && rubAmount !== '') {
                 const btcEquivalent = await convertRubToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent));
+            } else if (lastUpdatedByUserRub && usdAmount !== ''){
+                const btcEquivalent = await convertUsdToBtc(rubAmount);
+                setBitcoinAmount(String(btcEquivalent));
             }
             setLastUpdatedByUserRub(false);
         };
         convert();
-    }, [rubAmount, lastUpdatedByUserRub]);
+    }, [rubAmount, usdAmount, lastUpdatedByUserRub]);
     useEffect(() => {
         const validateAddress = async () => {
             const isValid = await isValidBitcoinAddress(bitcoinAddress);
@@ -160,7 +175,7 @@ export const BitcoinInput = ({
                     id="rubAmount"
                     value={rubAmount}
 
-                    onChange={handleRubAmountChange}
+                    onChange={handleAmountChange}
                     placeholder={showUsd ? "USD" : "RUB"}
                 />
             </div>
