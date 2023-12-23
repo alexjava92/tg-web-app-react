@@ -167,9 +167,8 @@ export const BitcoinInput = ({
                 <input
                     className={`input_amount ${!validBalance ? 'invalid-text' : ''}`}
                     type="text"
-                    id="rubAmount"
-                    value={rubAmount}
-
+                    id={showUsd ? "usdAmount" : "rubAmount"}
+                    value={showUsd ? usdAmount : rubAmount}
                     onChange={handleAmountChange}
                     placeholder={showUsd ? "USD" : "RUB"}
                 />
