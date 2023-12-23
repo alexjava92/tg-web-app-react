@@ -66,17 +66,18 @@ export const BitcoinInput = ({
             setBitcoinAmount('');
         }
 
-
         if (showUsd) {
             // Конвертируем из USD в BTC
             const btcEquivalent = await convertUsdToBtc(inputValue);
             setBitcoinAmount(String(btcEquivalent));
             setUsdAmount(inputValue);
+            setRubAmount('')
         } else {
             // Конвертируем из RUB в BTC
             const btcEquivalent = await convertRubToBtc(inputValue);
             setBitcoinAmount(String(btcEquivalent));
             setRubAmount(inputValue);
+            setUsdAmount('')
         }
         setLastUpdatedByUserRub(true);
     };
