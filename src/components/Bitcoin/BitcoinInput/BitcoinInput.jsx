@@ -61,14 +61,9 @@ export const BitcoinInput = ({
         const value = e.target.value;
         console.log(value);
         if (!value) {
-            if (showUsd){
-                setUsdAmount('');
-                return
-            } else {
-                setRubAmount('');
-                return;
-            }
-
+            setUsdAmount('');
+            setRubAmount('');
+            return;
         }
 
         if (showUsd) {
@@ -132,7 +127,7 @@ export const BitcoinInput = ({
             if (lastUpdatedByUserRub && rubAmount !== '') {
                 const btcEquivalent = await convertRubToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent));
-            } else if (lastUpdatedByUserRub && usdAmount !== ''){
+            } else if (lastUpdatedByUserRub && usdAmount !== '') {
                 const btcEquivalent = await convertUsdToBtc(rubAmount);
                 setBitcoinAmount(String(btcEquivalent));
             }
