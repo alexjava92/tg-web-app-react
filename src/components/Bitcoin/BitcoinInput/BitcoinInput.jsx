@@ -69,12 +69,13 @@ export const BitcoinInput = ({
 
         if (showUsd) {
             // Конвертируем из USD в BTC, если включен режим USD
-            const btcEquivalent = value ? await convertUsdToBtc(value) : '';
+            const btcEquivalent = await convertUsdToBtc(value);
             setBitcoinAmount(String(btcEquivalent));
-            setUsdAmount(value);
-        } else {
+            console.log('btcEquivalent', btcEquivalent)
+            setUsdAmount(value)
+        } else if (!showUsd){
             // Конвертируем из RUB в BTC, если включен режим RUB
-            const btcEquivalent = value ? await convertRubToBtc(value) : '';
+            const btcEquivalent = await convertRubToBtc(value);
             setBitcoinAmount(String(btcEquivalent));
             setRubAmount(value);
         }
