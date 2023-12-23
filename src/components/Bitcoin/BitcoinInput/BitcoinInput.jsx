@@ -49,8 +49,6 @@ export const BitcoinInput = ({
         }
         if(!showUsd) {
             setUsdAmount('');
-        }else {
-            setBitcoinAmount('');
         }
     }, [showUsd])
 
