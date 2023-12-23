@@ -64,7 +64,6 @@ export const BitcoinInput = ({
         if (inputValue === '') {
             setUsdAmount('');
             setRubAmount('');
-            setBitcoinAmount('');
             // Форсировать обновление, если нужно
             // forceUpdate();
             return;
