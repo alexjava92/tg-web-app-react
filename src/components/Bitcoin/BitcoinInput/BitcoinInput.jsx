@@ -90,6 +90,10 @@ export const BitcoinInput = ({
                 setRubAmount(inputValue);
 
             }
+        }else {
+            setUsdAmount('')
+            setRubAmount('')
+            setBitcoinAmount('')
         }
         setLastUpdatedByUserRub(true);
     };
