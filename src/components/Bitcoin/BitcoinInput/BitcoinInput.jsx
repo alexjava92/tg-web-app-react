@@ -45,7 +45,9 @@ export const BitcoinInput = ({
     useEffect(() => {
         console.log('showUsd changed:', showUsd);
         console.log('Clearing bitcoinAmount...');
-        setBitcoinAmount('');
+        if(rubAmount === '' || usdAmount === ''){
+            setBitcoinAmount('');
+        }
 
         if (showUsd) {
             console.log('Clearing rubAmount...');
@@ -147,7 +149,7 @@ export const BitcoinInput = ({
                 if (usdAmount !== '' || rubAmount !== ''){
                     setBitcoinAmount(String(btcEquivalent));
                 } else {
-                    setBitcoinAmount('')
+                    setBitcoinAmount('');
                 }
 
             }
