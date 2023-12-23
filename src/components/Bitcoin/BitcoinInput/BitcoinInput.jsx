@@ -53,10 +53,6 @@ export const BitcoinInput = ({
             setUsdAmount('');
         }
 
-        if(rubAmount === '' || usdAmount === ''){
-            console.log('Clearing bitcoinAmount...');
-            setBitcoinAmount('');
-        }
     }, [showUsd]);
 
 
