@@ -43,17 +43,23 @@ export const BitcoinInput = ({
     const {showUsd} = useContext(CurrencyContext);
 
     useEffect(() => {
-        console.log('showUsd changed:', showUsd);
-        setBitcoinAmount('');
-
-        if (showUsd) {
-            console.log('Clearing rubAmount...');
-            setRubAmount('');
-        } else {
-            console.log('Clearing usdAmount...');
-            setUsdAmount('');
+        const convert = async () => {
+            console.log('showUsd changed:', showUsd);
+            setBitcoinAmount('');
+            let fiatEquivalent;
+            if (showUsd) {
+                console.log('Clearing rubAmount...');
+                fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
+                setUsdAmount(String(fiatEquivalent))
+                // setRubAmount('');
+            } else {
+                console.log('Clearing usdAmount...');
+                fiatEquivalent = await convertBtcToRub(bitcoinAmount);
+                setRubAmount(String(fiatEquivalent));
+                //   setUsdAmount('');
+            }
         }
-
+        convert();
     }, [showUsd]);
 
 
@@ -144,7 +150,7 @@ export const BitcoinInput = ({
                 } else if (rubAmount !== '') {
                     btcEquivalent = await convertRubToBtc(rubAmount);
                 }
-                if (usdAmount !== '' || rubAmount !== ''){
+                if (usdAmount !== '' || rubAmount !== '') {
                     setBitcoinAmount(String(btcEquivalent));
                 } else {
                     setBitcoinAmount('');
