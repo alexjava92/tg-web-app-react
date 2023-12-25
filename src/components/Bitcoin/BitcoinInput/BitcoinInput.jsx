@@ -46,7 +46,6 @@ export const BitcoinInput = ({
         const convert = async () => {
             console.log('showUsd changed:', showUsd);
             setBitcoinAmount('');
-            let fiatEquivalent;
             if (showUsd) {
                 setRubAmount('');
             } else {

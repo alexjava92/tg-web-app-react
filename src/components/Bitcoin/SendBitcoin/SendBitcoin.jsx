@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useTelegram} from "../../../hooks/useTelegram";
 import {useNavigate} from "react-router-dom";
 import '../../../GlobalStyle.css'
@@ -24,6 +24,7 @@ import {useSendBitcoin} from "../Hooks/useSendBitcoinHook";
 import {getWeightTransactions} from "../../../api/useGetWeightTransaction";
 import LocalLoadingSpinner from "../../../LoadingSpinner/LocalLoadingSpinner";
 import {BouncingLoader} from "../../../LoadingSpinner/BouncingLoader";
+import {CurrencyContext} from "../../../App";
 // В начале вашего файла компонента
 
 
@@ -47,7 +48,8 @@ export const SendBitcoin = () => {
     const [showBitcoinFees, setShowBitcoinFees] = useState(false);
     const [commissionNetwork, setCommissionNetwork] = useState(0);
     const [commissionNetworkRUB, setCommissionNetworkRUB] = useState('');
-
+    const [commissionNetworkUSD, setCommissionNetworkUSD] = useState('');
+    const {showUsd} = useContext(CurrencyContext);
 
     // Массив для хранения вводов
     const [inputs, setInputs] = useState([{
@@ -221,8 +223,14 @@ export const SendBitcoin = () => {
     useEffect(() => {
         const fetchCommission = async () => {
             try {
-                const commission = await convertBtcToRub(commissionNetwork);
-                setCommissionNetworkRUB(commission);
+                if (showUsd) {
+                    const commission = await convertBtcToRub(commissionNetwork);
+                    setCommissionNetworkRUB(commission);
+                } else {
+                    const commission = await convertBtcToUsd(commissionNetwork);
+                    setCommissionNetworkUSD(commission)
+                }
+
             } catch (error) {
                 console.error("Ошибка при конвертации: ", error);
             }
@@ -232,7 +240,6 @@ export const SendBitcoin = () => {
             fetchCommission();
         }
     }, [commissionNetwork, satoshiPerByte]);
-
 
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
@@ -278,8 +285,12 @@ export const SendBitcoin = () => {
                                 ? `Недостаточно баланса для отправки ${totalAmountToSend} BTC`
                                 : <>
                                     Отправляем: {totalBitcoinAmount} BTC
-                                    {commissionNetwork !== 0 && <><br/>Комиссия
-                                        сети: {commissionNetwork} BTC {commissionNetworkRUB} RUB</>}
+                                    {commissionNetwork !== 0 &&
+                                        <>
+                                            <br/>Комиссия сети: {commissionNetwork} BTC
+                                            {showUsd ? ` ${commissionNetworkUSD} USD` : ` ${commissionNetworkRUB} RUB`}
+                                        </>
+                                    }
                                     <br/>Итог к отправке: {totalAmountToSend.toFixed(8)} BTC
                                 </>
                             }
