@@ -224,11 +224,11 @@ export const SendBitcoin = () => {
         const fetchCommission = async () => {
             try {
                 if (showUsd) {
-                    const commission = await convertBtcToRub(commissionNetwork);
+                    const commission = await convertBtcToUsd(commissionNetwork);
                     setCommissionNetworkUSD(commission)
                     console.log(commission)
                 } else {
-                    const commission = await convertBtcToUsd(commissionNetwork);
+                    const commission = await convertBtcToRub(commissionNetwork);
                     setCommissionNetworkRUB(commission);
                     console.log(commission)
                 }
@@ -241,7 +241,7 @@ export const SendBitcoin = () => {
         if (commissionNetwork) {
             fetchCommission();
         }
-    }, [commissionNetwork, satoshiPerByte]);
+    }, [commissionNetwork, satoshiPerByte, showUsd]);
 
 
     const transactionUrl = `${config.mempoolUrl}/tx/${txId}`;
