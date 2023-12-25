@@ -225,10 +225,12 @@ export const SendBitcoin = () => {
             try {
                 if (showUsd) {
                     const commission = await convertBtcToRub(commissionNetwork);
-                    setCommissionNetworkRUB(commission);
+                    setCommissionNetworkUSD(commission)
+                    console.log(commission)
                 } else {
                     const commission = await convertBtcToUsd(commissionNetwork);
-                    setCommissionNetworkUSD(commission)
+                    setCommissionNetworkRUB(commission);
+                    console.log(commission)
                 }
 
             } catch (error) {
