@@ -44,14 +44,15 @@ export const BitcoinInput = ({
 
     useEffect(() => {
         console.log('showUsd changed:', showUsd);
+        setBitcoinAmount('');
 
-        if (showUsd) {
+       /* if (showUsd) {
             console.log('Clearing rubAmount...');
             setRubAmount('');
         } else {
             console.log('Clearing usdAmount...');
             setUsdAmount('');
-        }
+        }*/
 
     }, [showUsd]);
 
