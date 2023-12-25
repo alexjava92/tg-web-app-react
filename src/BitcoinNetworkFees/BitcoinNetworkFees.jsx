@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { getFees } from "./apiGetFees";
-import {convertBtcToRub, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
+import {convertBtcToRub, convertBtcToUsd, convertSatoshisToBitcoin} from "../calculator/convertSatoshisToBitcoin.mjs";
 import './BitcoinNetworkFees.css'
 import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
 import LocalLoadingSpinner from "../LoadingSpinner/LocalLoadingSpinner";
+import {CurrencyContext} from "../App";
 
 export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
     const [fees, setFees] = useState([]);
     const [selectedFee, setSelectedFee] = useState('');
     const [amountRubFinal, setAmountRubFinal] = useState('');
     const [isLoadingCommission, setIsLoadingCommission] = useState(false);
-
+    const {showUsd} = useContext(CurrencyContext);
 
     useEffect(() => {
         const fetchFeesAndRates = async () => {
@@ -32,13 +33,15 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
                         }
                         const btcValue = convertSatoshisToBitcoin(value * virtualSize);
                         const amountRub = await convertBtcToRub(btcValue);
+                        const amountUsd = await convertBtcToUsd(btcValue);
                         console.log(btcValue)
                         console.log(amountRub)
                         return {
                             label,
                             value,
                             satPerByte: value,
-                            amountRub: Math.round(amountRub)
+                            amountRub: Math.round(amountRub),
+                            amountUsd: Math.round(amountUsd)
                         };
                     });
 
@@ -79,9 +82,9 @@ export const BitcoinNetworkFees = ({ onSelect, virtualSize }) => {
         <div>
             <select id="fee" value={selectedFee} onChange={handleSelectChange} className={'select'}>
                 <option value="" disabled hidden>Выберите комиссию</option>
-                {fees.map(({ label, satPerByte, amountRub }, index) => (
+                {fees.map(({ label, satPerByte, amountRub, amountUsd }, index) => (
                     <option key={index} value={satPerByte}>
-                        {label} - {satPerByte} sat/b - {amountRub} руб
+                        {label} - {satPerByte} sat/b - {showUsd ? `${amountUsd} usd` : `${amountRub} руб`}
                     </option>
                 ))}
                 <option value="custom">Установить свою</option>
