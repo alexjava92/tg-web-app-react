@@ -51,12 +51,12 @@ export const BitcoinInput = ({
                 console.log('Clearing rubAmount...');
                 fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
                 setUsdAmount(String(fiatEquivalent))
-                setRubAmount('');
+               // setRubAmount('');
             } else {
                 console.log('Clearing usdAmount...');
                 fiatEquivalent = await convertBtcToRub(bitcoinAmount);
                 setRubAmount(String(fiatEquivalent));
-                setUsdAmount('');
+               // setUsdAmount('');
             }
         }
         convert();
