@@ -160,7 +160,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserRub(false);
         };
         convert();
-    }, [rubAmount, usdAmount, lastUpdatedByUserRub]);
+    }, [rubAmount, usdAmount, lastUpdatedByUserRub, showUsd]);
 
     useEffect(() => {
         const validateAddress = async () => {
