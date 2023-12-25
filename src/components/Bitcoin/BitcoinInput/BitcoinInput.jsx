@@ -48,15 +48,9 @@ export const BitcoinInput = ({
             setBitcoinAmount('');
             let fiatEquivalent;
             if (showUsd) {
-                console.log('Clearing rubAmount...');
-                fiatEquivalent = await convertBtcToUsd(bitcoinAmount);
-                setUsdAmount(String(fiatEquivalent))
-               // setRubAmount('');
+                setRubAmount('');
             } else {
-                console.log('Clearing usdAmount...');
-                fiatEquivalent = await convertBtcToRub(bitcoinAmount);
-                setRubAmount(String(fiatEquivalent));
-               // setUsdAmount('');
+                setUsdAmount('');
             }
         }
         convert();
@@ -160,7 +154,7 @@ export const BitcoinInput = ({
             setLastUpdatedByUserRub(false);
         };
         convert();
-    }, [rubAmount, usdAmount, lastUpdatedByUserRub, showUsd]);
+    }, [rubAmount, usdAmount, lastUpdatedByUserRub]);
 
     useEffect(() => {
         const validateAddress = async () => {
