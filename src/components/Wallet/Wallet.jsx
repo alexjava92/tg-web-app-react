@@ -37,6 +37,7 @@ const Wallet = () => {
         setIsLoadingBalance(false);
     }, []);
 
+
     useGetBalanceUserWallet(chatId, setBalance, handleLoaded);
     const fetchTransactions = useGetAllTransactionsUser(chatId, setTransactions);
 
@@ -153,4 +154,5 @@ const Wallet = () => {
     );
 };
 
-export default Wallet;
+export default React.memo(Wallet);
+
