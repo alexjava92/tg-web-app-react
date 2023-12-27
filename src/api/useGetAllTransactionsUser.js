@@ -19,10 +19,11 @@ export const useGetAllTransactionsUser = (chatId, setTransactions) => {
             responseStatus = response.status; // Обновляем статус ответа
 
             if (response.ok) {
-                const responseData = await response.json();
-                const allTransaction = responseData.allTransactions;
-                setTransactions(allTransaction);
-                console.log('Получены транзакции:', allTransaction);
+                response.json().then(responseData => {
+                    const allTransaction = responseData.allTransactions;
+                    setTransactions(allTransaction);
+                    console.log('Получены транзакции:', allTransaction);
+                });
             } else {
                 console.error('Server returned an error:', response.status);
             }

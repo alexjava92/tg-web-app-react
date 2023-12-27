@@ -58,10 +58,8 @@ const Wallet = () => {
     useEffect(() => {
         const fetchBalanceToRub = async () => {
             const convertedBalance = await convertBtcToRub(balanceToBtc);
-
             setBalanceToRub(formatNumberWithSpaces(convertedBalance));
         };
-
         fetchBalanceToRub();
     }, [balanceToBtc]);
 
